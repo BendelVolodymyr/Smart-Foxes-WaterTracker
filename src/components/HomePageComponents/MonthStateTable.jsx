@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 import {
@@ -93,11 +93,15 @@ const MonthStateTable = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleDayClick = (date) => (event) => {
+  useEffect(() => {
+    console.log(selectedDate);
+  });
+
+  const handleDayClick = (event, date) => {
     setSelectedDate(date);
+
     setAnchorEl(event.currentTarget);
   };
-
   const handleClosePopover = () => {
     setAnchorEl(null);
   };
@@ -108,8 +112,6 @@ const MonthStateTable = () => {
   const renderPaginator = () => {
     const currentMonth = new Date().getMonth();
     const currentYear = new Date().getFullYear();
-    // const selectedMonth = selectedDate.getMonth();
-    // const selectedYear = selectedDate.getFullYear();
 
     const isPrevDisabled = isBefore(
       selectedDate,
@@ -156,7 +158,7 @@ const MonthStateTable = () => {
         i
       );
       days.push(
-        <DayCell key={i} onClick={handleDayClick(date)}>
+        <DayCell key={i} onClick={(event) => handleDayClick(event, date)}>
           <DayCircle percentage={0}>
             <DayNumber>{i}</DayNumber>
           </DayCircle>
@@ -190,7 +192,7 @@ const MonthStateTable = () => {
           horizontal: 'center',
         }}
       >
-        <DaysGeneralStats />
+        <DaysGeneralStats selectedDate={selectedDate} />
       </Popover>
     </MonthComponentWrapper>
   );

@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import styled from 'styled-components';
 
 const ModalContainer = styled.div`
@@ -24,12 +25,19 @@ const StatItem = styled.li`
   margin-bottom: 10px;
 `;
 
-const DaysGeneralStats = ({ selectedDate, dailyNorm }) => {
+const DaysGeneralStats = ({ selectedDate }) => {
+  // const parsedDate = new Date(selectedDate);
+  console.log(selectedDate);
+  const monthName = format(selectedDate, 'MMMM');
+  const day = selectedDate.getDate();
   return (
     <ModalContainer>
-      <Header> {selectedDate}</Header>
+      <Header>
+        {' '}
+        {day},{monthName}
+      </Header>
       <StatsList>
-        <StatItem>Daily Norma: {dailyNorm}</StatItem>
+        <StatItem>Daily Norma: 0</StatItem>
         <StatItem>Fulfillment of the daily norm: 0</StatItem>
         <StatItem>How many servings of water: 0</StatItem>
       </StatsList>
