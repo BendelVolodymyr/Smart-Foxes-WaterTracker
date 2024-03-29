@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import TodayWaterList from '../components/HomePageComponents/TodayWaterList';
-import MonthStateTable from '../components/HomePageComponents/MonthStateTable';
+import MonthStateTable from '../components/HomePageComponents/MonthStateTable/MonthStateTable';
 import { useState } from 'react';
 
 const HomeWaterPage = () => {
