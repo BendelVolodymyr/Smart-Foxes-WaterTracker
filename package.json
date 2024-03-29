@@ -1,5 +1,5 @@
 {
-  "name": "react_vite",
+  "name": "Smart-Foxes-WaterTracker",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,14 +11,19 @@
     "format": "prettier --write ./src"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.14",
     "@vitejs/plugin-react-swc": "^3.3.2",
+    "axios": "^1.6.8",
+    "formik": "^2.4.5",
     "modern-normalize": "^2.0.0",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^9.1.0",
     "react-router-dom": "^6.15.0",
+    "redux-persist": "^6.0.0",
     "styled-components": "^6.0.7",
     "vite-plugin-svgr": "^3.2.0"
   },

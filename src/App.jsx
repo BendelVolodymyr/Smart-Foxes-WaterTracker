@@ -1,27 +1,54 @@
 import { Route, Routes } from 'react-router-dom';
-import SharedLayout from 'components/SharedLayout/SharedLayout';
-import FirstPage from 'pages/FirstPage/FirstPage';
-import SecondPage from 'pages/SecondPage/SecondPage';
-import HalfPage from 'pages/HalfPage/HalfPage';
-import ErrorPage from 'pages/ErrorPage/ErrorPage';
-import { AppWrapper } from './App.styled';
+import { lazy } from 'react';
+import { RestrictedRoute } from './RestrictedRoute';
 
-const test = import.meta.env.VITE_API_TEST;
+import SharedLayout from 'components/SharedLayout/SharedLayout';
+import HomeWaterPage from './pages/HomeWaterPage';
+
+const HomeNotAuthPage = lazy(() => import('./pages/HomeNotAuth'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const Registration = lazy(() => import('./pages/Registration'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
-  console.log(test);
+  // УСЕ ЩО ЗАКОМЕНТОВАНО ДОДАМ ПІСЛЯ НАЛАШТУВАННЯ REDUX
+  // const { isRefreshing } = useAuth();
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
+
+  // isRefreshing ? 'spiner' : усе що знизу
+
   return (
-    <AppWrapper>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route path="/first" element={<FirstPage />} />
-          <Route path="/second" element={<SecondPage />}>
-            <Route path=":half" element={<HalfPage />} />
-          </Route>
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
-    </AppWrapper>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<HomeNotAuthPage />} />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute
+              redirectTo="/Smart-Foxes-WaterTracker/home"
+              component={<LoginPage />}
+            />
+          }
+        />
+        <Route
+          path="/registration"
+          element={
+            <RestrictedRoute redirectTo="/home" component={<Registration />} />
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <RestrictedRoute redirectTo="/" component={<HomeWaterPage />} />
+          }
+        />
+      </Route>
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 export default App;
