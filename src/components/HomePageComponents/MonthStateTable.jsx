@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 
 import styled from 'styled-components';
 import {
@@ -10,6 +10,7 @@ import {
   isAfter,
 } from 'date-fns';
 import Popover from '@mui/material/Popover';
+import DaysGeneralStats from './DaysGeneralStats/DaysGeneralStats';
 
 const PaginatorBlock = styled.div`
   display: flex;
@@ -88,15 +89,6 @@ const DayPercentage = styled.p`
   color: #9ebbff;
 `;
 
-const DaysGeneralStatsContent = () => {
-  return (
-    <div>
-      <h2>Days General Stats</h2>
-      <p>This is just a placeholder for Days General Stats component</p>
-    </div>
-  );
-};
-
 const MonthStateTable = () => {
   const [selectedMonth, setSelectedDate] = useState(new Date());
   const [anchorEl, setAnchorEl] = useState(null);
@@ -105,7 +97,7 @@ const MonthStateTable = () => {
   //     setSelectedDate(date);
   //   };
 
-  const handleDayClick = event => {
+  const handleDayClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -196,7 +188,7 @@ const MonthStateTable = () => {
           horizontal: 'center',
         }}
       >
-        <DaysGeneralStatsContent />
+        <DaysGeneralStats />
       </Popover>
     </MonthComponentWrapper>
   );
