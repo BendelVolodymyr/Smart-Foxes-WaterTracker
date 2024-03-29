@@ -2,10 +2,6 @@ import { format } from 'date-fns';
 import styled from 'styled-components';
 
 const ModalContainer = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-color: white;
   padding: 20px;
   border: 1px solid #ccc;

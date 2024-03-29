@@ -158,7 +158,11 @@ const MonthStateTable = () => {
         i
       );
       days.push(
-        <DayCell key={i} onClick={(event) => handleDayClick(event, date)}>
+        <DayCell
+          key={i}
+          variant="contained"
+          onClick={(event) => handleDayClick(event, date)}
+        >
           <DayCircle percentage={0}>
             <DayNumber>{i}</DayNumber>
           </DayCircle>
@@ -184,11 +188,11 @@ const MonthStateTable = () => {
         anchorEl={anchorEl}
         onClose={handleClosePopover}
         anchorOrigin={{
-          vertical: 'bottom',
+          vertical: 'top',
           horizontal: 'center',
         }}
         transformOrigin={{
-          vertical: 'top',
+          vertical: 'bottom',
           horizontal: 'center',
         }}
       >
