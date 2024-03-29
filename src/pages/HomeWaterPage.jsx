@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import TodayWaterList from '../components/HomePageComponents/TodayWaterList';
 import MonthStateTable from '../components/HomePageComponents/MonthStateTable';
+import { useState } from 'react';
 
 const HomeWaterPage = () => {
   const HomePageContainer = styled.div`
@@ -24,13 +25,21 @@ const HomeWaterPage = () => {
     padding: 32px 24px;
   `;
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleAddWaterClick = () => {
+    setModalOpen(true); // Відкрити модальне вікно при кліку на кнопку
+    console.log(modalOpen);
+  };
   return (
     <HomePageContainer>
       <LeftBoxWrapper></LeftBoxWrapper>
       <RightBoxWrapper>
-        <TodayWaterList></TodayWaterList>
+        <TodayWaterList
+          handleAddWaterClick={handleAddWaterClick}
+        ></TodayWaterList>
         <MonthStateTable></MonthStateTable>
       </RightBoxWrapper>
+      {/* {modalOpen && <TodayListModal />} розкоментую коли буде модалка */}
     </HomePageContainer>
   );
 };
