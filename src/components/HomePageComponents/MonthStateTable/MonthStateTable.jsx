@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DatePaginator from '../DatePaginator/DatePaginator';
 
 import Popover from '@mui/material/Popover';
@@ -13,15 +13,11 @@ const MonthStateTable = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [anchorEl, setAnchorEl] = useState(null);
 
-  useEffect(() => {
-    console.log(selectedDate);
-  });
-
   const handleDayClick = (event, date) => {
     setSelectedDate(date);
-
     setAnchorEl(event.currentTarget);
   };
+
   const handleClosePopover = () => {
     setAnchorEl(null);
   };
