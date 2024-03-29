@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Pullrequests list
+pullrequests-list.txt
+
+
