@@ -90,14 +90,11 @@ const DayPercentage = styled.p`
 `;
 
 const MonthStateTable = () => {
-  const [selectedMonth, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [anchorEl, setAnchorEl] = useState(null);
 
-  //   const handleDateChange = date => {
-  //     setSelectedDate(date);
-  //   };
-
-  const handleDayClick = (event) => {
+  const handleDayClick = (date) => (event) => {
+    setSelectedDate(date);
     setAnchorEl(event.currentTarget);
   };
 
@@ -115,28 +112,28 @@ const MonthStateTable = () => {
     // const selectedYear = selectedDate.getFullYear();
 
     const isPrevDisabled = isBefore(
-      selectedMonth,
+      selectedDate,
       addMonths(new Date(), -12) // Поки що порівнюємо з 12 місяцями тому, а надалі додати з часу реєстрації
     );
     const isNextDisabled = isAfter(
-      selectedMonth,
+      selectedDate,
       new Date(currentYear, currentMonth, 1)
     );
 
-    const monthName = format(selectedMonth, 'MMMM');
-    const year = selectedMonth.getFullYear();
+    const monthName = format(selectedDate, 'MMMM');
+    const year = selectedDate.getFullYear();
 
     return (
       <Paginator>
         <button
-          onClick={() => setSelectedDate(addMonths(selectedMonth, -1))} //addMonths з бібл data-fns
+          onClick={() => setSelectedDate(addMonths(selectedDate, -1))} //addMonths з бібл data-fns
           disabled={isPrevDisabled}
         >
           {'<'}
         </button>
         <span>{`${monthName}, ${year}`}</span>
         <button
-          onClick={() => setSelectedDate(addMonths(selectedMonth, 1))}
+          onClick={() => setSelectedDate(addMonths(selectedDate, 1))}
           disabled={isNextDisabled}
         >
           {'>'}
@@ -146,15 +143,20 @@ const MonthStateTable = () => {
   };
 
   const renderDaysList = () => {
-    const startOfMonthDate = startOfMonth(selectedMonth);
-    const endOfMonthDate = endOfMonth(selectedMonth);
+    const startOfMonthDate = startOfMonth(selectedDate);
+    const endOfMonthDate = endOfMonth(selectedDate);
     const daysInMonth =
       endOfMonthDate.getDate() - startOfMonthDate.getDate() + 1;
 
     const days = [];
     for (let i = 1; i <= daysInMonth; i++) {
+      const date = new Date(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        i
+      );
       days.push(
-        <DayCell key={i} onClick={handleDayClick}>
+        <DayCell key={i} onClick={handleDayClick(date)}>
           <DayCircle percentage={0}>
             <DayNumber>{i}</DayNumber>
           </DayCircle>
