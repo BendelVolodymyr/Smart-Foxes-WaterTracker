@@ -43,11 +43,11 @@ const MonthStateTable = () => {
         onClose={handleClosePopover}
         anchorOrigin={{
           vertical: 'top',
-          horizontal: 'center',
+          horizontal: 'left',
         }}
         transformOrigin={{
           vertical: 'bottom',
-          horizontal: 'center',
+          horizontal: 'right',
         }}
       >
         <DaysGeneralStats selectedDate={selectedDate} />

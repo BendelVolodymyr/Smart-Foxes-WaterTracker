@@ -6,7 +6,7 @@ import {
   DayNumber,
   DayPercentage,
   DaysGrid,
-} from './DeyList.styled';
+} from './DayList.styled';
 
 const DaysList = ({ selectedDate, onDayClick }) => {
   const startOfMonthDate = startOfMonth(selectedDate);
@@ -22,7 +22,7 @@ const DaysList = ({ selectedDate, onDayClick }) => {
     );
     days.push(
       <DayCell key={i} onClick={(event) => onDayClick(event, date)}>
-        <DayCircle>
+        <DayCircle percentage={0}>
           <DayNumber>{i}</DayNumber>
         </DayCircle>
         <DayPercentage>0%</DayPercentage>

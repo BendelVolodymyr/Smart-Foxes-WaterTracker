@@ -19,6 +19,16 @@ const DayCell = styled.li`
   cursor: pointer;
 `;
 
+export const ContactListStyling = styled('div')(() => {
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
+    fontSize: '18px',
+
+
+  };
+});
 const DayCircle = styled.div`
   width: 34px;
   height: 34px;
@@ -29,31 +39,32 @@ const DayCircle = styled.div`
   background-color: ${({ isToday }) => (isToday ? 'lightblue' : 'white')};
   border: 2px solid
     ${({ percentage }) => (percentage < 100 ? 'red' : 'transparent')};
+
 `;
 
 const DayNumber = styled.p`
-  z-index: 1;
-  margin: 0;
+z-index: 1;
+margin: 0;
 `;
 
 const DayPercentage = styled.p`
-  position: absolute;
-  bottom: -21px;
-  z-index: 0;
-  margin: 0;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 18px;
-  color: #9ebbff;
+position: absolute;
+bottom: -21px;
+z-index: 0;
+margin: 0;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 18px;
+color: #9ebbff;
 `;
 
 
 export {
-    DayCell,
-    DayCircle,
-    DayNumber,
-    DayPercentage,
-    DaysGrid,
+  DayCell,
+  DayCircle,
+  DayNumber,
+  DayPercentage,
+  DaysGrid,
 
 }
