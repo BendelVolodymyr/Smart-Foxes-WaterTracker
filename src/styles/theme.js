@@ -1,8 +1,8 @@
 import { BREAKPONTS } from '../constants/devices';
 
 const theme = {
-  colors: {
-    lightTheme: {
+  lightTheme: {
+    colors: {
       primary: {
         bg: 'FFFFFF',
         text: '2F2F2F',
@@ -18,7 +18,24 @@ const theme = {
         color7: 'F5F5F5',
       },
     },
-    darkTheme: {
+    fontWeights: {
+      regular: 400,
+      medium: 500,
+      bolt: 700,
+    },
+    transitions: {
+      hover50ms: '50ms ease-in-out',
+      hover150ms: '150ms ease-in-out',
+      hover250ms: '250ms ease-in-out',
+    },
+    screens: {
+      mob: BREAKPONTS.MOB,
+      tab: BREAKPONTS.TAB,
+      desk: BREAKPONTS.DESK,
+    },
+  },
+  nightTheme: {
+    colors: {
       primary: { bg: '1C1D26', text: 'D5DFF5', accent: '5082F2' },
       secondary: {
         color1: '1F2438',
@@ -30,21 +47,21 @@ const theme = {
         color7: '1B1B21',
       },
     },
-  },
-  fontWeights: {
-    regular: 400,
-    medium: 500,
-    bolt: 700,
-  },
-  transitions: {
-    hover50ms: '50ms ease-in-out',
-    hover150ms: '150ms ease-in-out',
-    hover250ms: '250ms ease-in-out',
-  },
-  screens: {
-    mob: BREAKPONTS.MOB,
-    tab: BREAKPONTS.TAB,
-    desk: BREAKPONTS.DESK,
+    fontWeights: {
+      regular: 400,
+      medium: 500,
+      bolt: 700,
+    },
+    transitions: {
+      hover50ms: '50ms ease-in-out',
+      hover150ms: '150ms ease-in-out',
+      hover250ms: '250ms ease-in-out',
+    },
+    screens: {
+      mob: BREAKPONTS.MOB,
+      tab: BREAKPONTS.TAB,
+      desk: BREAKPONTS.DESK,
+    },
   },
 };
 
