@@ -32,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomeNotAuthPage />} />
+          <Route path="/welcome" element={<Main />} />
           <Route
             path="/login"
             element={
