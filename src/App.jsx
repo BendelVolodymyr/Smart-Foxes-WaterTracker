@@ -4,6 +4,8 @@ import { RestrictedRoute } from './RestrictedRoute';
 
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import HomeWaterPage from './pages/HomeWaterPage';
+// import { refreshUser } from './redux/auth/operations';
+// import { useDispatch } from 'react-redux';
 
 const HomeNotAuthPage = lazy(() => import('./pages/HomeNotAuth'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -11,6 +13,11 @@ const Registration = lazy(() => import('./pages/Registration'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
   // УСЕ ЩО ЗАКОМЕНТОВАНО ДОДАМ ПІСЛЯ НАЛАШТУВАННЯ REDUX
   // const { isRefreshing } = useAuth();
   // const dispatch = useDispatch();
