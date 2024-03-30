@@ -1,5 +1,5 @@
-import TodayWaterList from '../components/HomePageComponents/TodayWaterList/TodayWaterList';
-import MonthStateTable from '../components/HomePageComponents/MonthStateTable/MonthStateTable';
+import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
+import MonthStateTable from '../components/HomeWaterPageComponents/MonthStateTable/MonthStateTable';
 import { useState } from 'react';
 import {
   HomePageContainer,

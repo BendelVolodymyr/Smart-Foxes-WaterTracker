@@ -4,7 +4,13 @@ const TodayWaterList = (handleAddWaterClick) => {
   return (
     <TodayBoxWrapper>
       <h2>Today</h2>
-      <button onClick={handleAddWaterClick}>Add water</button>
+      <button
+        onClick={() => {
+          handleAddWaterClick;
+        }}
+      >
+        Add water
+      </button>
     </TodayBoxWrapper>
   );
 };
