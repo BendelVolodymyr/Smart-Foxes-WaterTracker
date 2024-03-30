@@ -1,3 +1,3 @@
 export const NotAuthNav = () => {
-  return <div>NotAuthNav</div>;
+  return <div></div>;
 };
