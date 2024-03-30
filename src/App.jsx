@@ -4,6 +4,7 @@ import { RestrictedRoute } from './RestrictedRoute';
 
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import HomeWaterPage from './pages/HomeWaterPage';
+import { Main } from './components/Main/Main';
 
 const HomeNotAuthPage = lazy(() => import('./pages/HomeNotAuth'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -25,6 +26,7 @@ function App() {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomeNotAuthPage />} />
+        <Route path="/welcome" element={<Main />} />
         <Route
           path="/login"
           element={
