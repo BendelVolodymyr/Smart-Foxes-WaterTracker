@@ -80,8 +80,28 @@ import {
   TodayBoxWrapper,
 } from './TodayWaterList.styled';
 
+const formatTime = (dateTimeString) => {
+  const date = new Date(dateTimeString);
+  console.log(date);
+  let hours = date.getHours();
+  const minutes = date.getMinutes();
+  console.log(minutes);
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // 12 годин у вечорі вважаються як 12 AM
+  const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes
+    .toString()
+    .padStart(2, '0')} ${ampm}`;
+  return formattedTime;
+};
+
 const TodayWaterList = ({ handleAddWaterClick }) => {
-  const waterPortions = [{ id: 1, amount: '250', time: '12:10' }];
+  //заглушка. замінити на дані зі стейту
+  const waterPortions = [
+    { id: 1, portion: '250', date: '2024-03-30T20:00:00.000Z' },
+    { id: 2, portion: '250', date: '2024-03-30T10:00:00.000Z' },
+    { id: 3, portion: '250', date: '2024-03-30T15:00:00.000Z' },
+  ];
 
   const handleDelete = (id) => {
     console.log('delete', id);
@@ -100,8 +120,8 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
             <li key={portion.id}>
               <div>
                 <CupSvg />
-                <span>{`${portion.amount} ml `}</span>
-                <span>{portion.time}</span>
+                <span>{`${portion.portion} ml `}</span>
+                <span>{formatTime(portion.date)}</span>
                 <ListButtons>
                   <Button onClick={() => handleEdit(portion)}>
                     <EditSvg />

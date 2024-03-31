@@ -21,13 +21,13 @@ const CupSvg = styled(CupIcon)`
 `;
 
 const EditSvg = styled(EditIcon)`
-  stroke:  ${({ theme }) => `#${theme.colors.lightTheme.secondary.color4}`};
+  stroke:  ${({ theme }) => `#${theme.colors.lightTheme.secondary.color3}`};
   width: 16px;
   height: 16px;
 `;
 
 const DeleteSvg = styled(DeleteIcon)`
-   stroke:  ${({ theme }) => `#${theme.colors.lightTheme.secondary.color3}`};
+   stroke:  ${({ theme }) => `#${theme.colors.lightTheme.secondary.color2}`};
   width: 16px;
   height: 16px;
 `;
