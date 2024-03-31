@@ -34,6 +34,7 @@ export const Label = styled.label`
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
+  position: relative;
 `;
 
 export const Input = styled.input`
@@ -55,6 +56,14 @@ export const Input = styled.input`
   :focus {
     color: #407bff;
   }
+`;
+
+export const ButtonPassword = styled.button`
+  border: none;
+  background: transparent;
+  position: absolute;
+  left: 90%;
+  bottom: 15%;
 `;
 
 export const Button = styled.button`

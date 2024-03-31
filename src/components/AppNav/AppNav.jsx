@@ -1,4 +1,4 @@
-import LoginPage from '../../pages/LoginPage';
+import LoginPage from '../../pages/LoginPage/LoginPage';
 import { AuthNav } from '../AuthNav/AuthNav';
 import { NotAuthNav } from '../NotAuthNav/NotAuthNav';
 
