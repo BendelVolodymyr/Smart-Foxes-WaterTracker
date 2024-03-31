@@ -13,7 +13,7 @@ const TodayBoxWrapper = styled.div`
   height: 260px;
 
   h2{
-    color:${({ theme }) => `#${theme.colors.lightTheme.primary.text}`};
+   
 
 font-size: 24px;
 
@@ -54,11 +54,10 @@ const ListContext = styled.div`
 display:flex;
 align-items: center;
 gap:12px;
-color:${({ theme }) => `#${theme.colors.lightTheme.primary.text}`};
+
 font-size: 12px;
 font-weight: 400;
 line-height: 2;
-
 
 `
 

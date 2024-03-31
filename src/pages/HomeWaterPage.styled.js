@@ -5,6 +5,7 @@ display: flex;
 flex-direction:column;
 
 align-items: center;
+color:${({ theme }) => `#${theme.colors.lightTheme.primary.text}`};
 
 @media (min-width: ${({ theme }) => theme.screens.tab}) {
     flex-direction:row;

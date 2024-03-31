@@ -4,6 +4,14 @@ const PaginatorBlock = styled.div`
 display: flex;
 align-items: center;
 justify-content: space-between;
+margin-bottom:18px;
+
+
+ h3{
+  font-size: 24px;
+font-weight: 500;
+line-height: 1.25;
+ }
 `;
 
 const MonthComponentWrapper = styled.div`
@@ -61,11 +69,11 @@ const DayPercentage = styled.p`
 
 
 export {
-    DayCell,
-    DayCircle,
-    DayNumber,
-    DayPercentage,
-    DaysGrid,
-    MonthComponentWrapper,
-    PaginatorBlock
+  DayCell,
+  DayCircle,
+  DayNumber,
+  DayPercentage,
+  DaysGrid,
+  MonthComponentWrapper,
+  PaginatorBlock
 }
