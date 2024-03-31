@@ -94,21 +94,15 @@ const DeleteSvg = styled(DeleteIcon)`
 const ListButtons = styled.div`
 display: flex;
 gap:18px;
+align-items:center;
 margin-left:auto;
 margin-right:4px;
+ button {
+  margin-bottom:0px;
 
-`
-
-const Button = styled.button`
   position: relative;
- background: none;
-  border: none;
-  padding: 0;
-  
-  margin-bottom:12px;
-  
 
-  cursor: pointer;
+
   &:hover::after {
     content: "";
     position: absolute;
@@ -116,9 +110,30 @@ const Button = styled.button`
     left: 0;
     display: block;
     width: 100%;
-    height: 4px;
-    background-color: green;
-    border-radius: 2px;
+    height: 1px;
+    border-radius: 1px;
+  }
+ }
+
+`
+
+const ButtonEdit = styled.button`
+
+  &:hover::after {
+   
+    background-color:  ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+   
+  }`
+
+
+
+const ButtonDelete = styled.button`
+ 
+  cursor: pointer;
+  &:hover::after {
+   
+    background-color:  ${({ theme }) => `#${theme.colors.lightTheme.secondary.color2}`};
+    
   }`
 
 const PlusSvg = styled(PlusIcon)`
@@ -136,7 +151,7 @@ gap: 8px;
 
 font-size: 16px;
 font-weight: 500;
-line-height: 20px; /* 125% */
+line-height: 1.25;
 color: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
 
 margin-bottom:24px;
@@ -161,8 +176,9 @@ export {
   PortionsList,
   ListContext,
   ListButtons,
-  Button,
+  ButtonEdit,
   Portion,
   PlusSvg,
-  AddWaterBtn
+  AddWaterBtn,
+  ButtonDelete
 }

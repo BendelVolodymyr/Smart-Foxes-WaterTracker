@@ -1,7 +1,8 @@
 import formatTime from '../../../helpers/formatTime';
 import {
   AddWaterBtn,
-  Button,
+  ButtonDelete,
+  ButtonEdit,
   DeleteSvg,
   EditSvg,
   GlassSvg,
@@ -45,12 +46,12 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
                 <span>{formatTime(portion.date)}</span>
               </ListContext>
               <ListButtons>
-                <Button onClick={() => handleEdit(portion)}>
+                <ButtonEdit onClick={() => handleEdit(portion)}>
                   <EditSvg />
-                </Button>
-                <Button onClick={() => handleDelete(portion.id)}>
+                </ButtonEdit>
+                <ButtonDelete onClick={() => handleDelete(portion.id)}>
                   <DeleteSvg />
-                </Button>
+                </ButtonDelete>
               </ListButtons>
             </li>
           ))}
