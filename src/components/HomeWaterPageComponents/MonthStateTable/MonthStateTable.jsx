@@ -6,7 +6,7 @@ import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
 import {
   MonthComponentWrapper,
   PaginatorBlock,
-} from './MonthStateTable.stuled';
+} from './MonthStateTable.styled';
 import DaysList from '../DayList/DayList';
 
 const MonthStateTable = () => {

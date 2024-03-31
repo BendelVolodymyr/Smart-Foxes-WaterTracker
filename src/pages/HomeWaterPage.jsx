@@ -1,4 +1,3 @@
-import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
 import MonthStateTable from '../components/HomeWaterPageComponents/MonthStateTable/MonthStateTable';
 import { useState } from 'react';
 import {
@@ -6,6 +5,7 @@ import {
   LeftBoxWrapper,
   RightBoxWrapper,
 } from './HomeWaterPage.styled';
+import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
 
 const HomeWaterPage = () => {
   const [modalOpen, setModalOpen] = useState(false);

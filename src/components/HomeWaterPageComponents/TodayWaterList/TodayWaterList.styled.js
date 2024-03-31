@@ -11,6 +11,7 @@ const TodayBoxWrapper = styled.div`
   
   width: 100%;
   height: 260px;
+  margin-bottom:24px;
 
   h2{
    
@@ -29,6 +30,7 @@ margin-bottom: 9px;
 const PortionsList = styled.ul`
 height: 188px;
 overflow: auto;
+margin-bottom:12px;
 
 
 li {
@@ -129,7 +131,7 @@ const ButtonEdit = styled.button`
 
 const ButtonDelete = styled.button`
  
-  cursor: pointer;
+ 
   &:hover::after {
    
     background-color:  ${({ theme }) => `#${theme.colors.lightTheme.secondary.color2}`};
@@ -154,7 +156,7 @@ font-weight: 500;
 line-height: 1.25;
 color: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
 
-margin-bottom:24px;
+
 &:hover {
     color: ${({ theme }) => `#${theme.colors.lightTheme.secondary.color4}`};
     ${PlusSvg} {
