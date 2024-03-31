@@ -1,10 +1,14 @@
 import formatTime from '../../../helpers/formatTime';
 import {
+  AddWaterBtn,
   Button,
-  CupSvg,
   DeleteSvg,
   EditSvg,
+  GlassSvg,
   ListButtons,
+  ListContext,
+  PlusSvg,
+  Portion,
   PortionsList,
   TodayBoxWrapper,
 } from './TodayWaterList.styled';
@@ -19,7 +23,7 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
     { id: 5, portion: '250', date: '2024-03-30T19:00:00.000Z' },
     { id: 6, portion: '250', date: '2024-03-30T20:00:00.000Z' },
   ];
-
+  //заглушки для хендлерів
   const handleDelete = (id) => {
     console.log('delete', id);
   };
@@ -35,24 +39,26 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
         <PortionsList>
           {waterPortions.map((portion) => (
             <li key={portion.id}>
-              <div>
-                <CupSvg />
-                <span>{`${portion.portion} ml `}</span>
+              <ListContext>
+                <GlassSvg />
+                <Portion>{`${portion.portion} ml `}</Portion>
                 <span>{formatTime(portion.date)}</span>
-                <ListButtons>
-                  <Button onClick={() => handleEdit(portion)}>
-                    <EditSvg />
-                  </Button>
-                  <Button onClick={() => handleDelete(portion.id)}>
-                    <DeleteSvg />
-                  </Button>
-                </ListButtons>
-              </div>
+              </ListContext>
+              <ListButtons>
+                <Button onClick={() => handleEdit(portion)}>
+                  <EditSvg />
+                </Button>
+                <Button onClick={() => handleDelete(portion.id)}>
+                  <DeleteSvg />
+                </Button>
+              </ListButtons>
             </li>
           ))}
         </PortionsList>
       )}
-      <button onClick={handleAddWaterClick}>Add water</button>
+      <AddWaterBtn onClick={handleAddWaterClick}>
+        <PlusSvg /> Add water
+      </AddWaterBtn>
     </TodayBoxWrapper>
   );
 };

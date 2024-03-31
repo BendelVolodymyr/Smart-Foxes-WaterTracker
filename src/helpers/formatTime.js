@@ -1,9 +1,9 @@
 const formatTime = (dateTimeString) => {
     const date = new Date(dateTimeString);
-    console.log(date);
+
     let hours = date.getHours();
     const minutes = date.getMinutes();
-    console.log(minutes);
+
     const ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
     hours = hours ? hours : 12; // 12 годин у вечорі вважаються як 12 AM

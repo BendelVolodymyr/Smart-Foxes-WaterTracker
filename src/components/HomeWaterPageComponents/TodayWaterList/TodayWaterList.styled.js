@@ -1,23 +1,83 @@
 import styled from 'styled-components';
 
-import { ReactComponent as CupIcon } from '../../../assets/icons/cup.svg';
-import { ReactComponent as EditIcon } from '../../../assets/icons/edit.svg';
-import { ReactComponent as DeleteIcon } from '../../../assets/icons/delete.svg';
+import { ReactComponent as GlassIcon } from '../../../assets/iconsDayList/glass_26.svg';
+import { ReactComponent as EditIcon } from '../../../assets/iconsDayList/edit.svg';
+import { ReactComponent as DeleteIcon } from '../../../assets/iconsDayList/delete.svg';
 
-// import theme from '../../../styles/theme';
+import { ReactComponent as PlusIcon } from '../../../assets/iconsDayList/plus.svg';
 
 
 const TodayBoxWrapper = styled.div`
-  display: block;
+  
   width: 100%;
   height: 260px;
+
+  h2{
+    color:${({ theme }) => `#${theme.colors.lightTheme.primary.text}`};
+
+font-size: 24px;
+
+font-weight: 500;
+line-height: 1.25; 
+margin-bottom: 9px;
+  }
+
+ 
 `;
 
 
-const CupSvg = styled(CupIcon)`
+const PortionsList = styled.ul`
+height: 188px;
+overflow: auto;
+
+
+li {
+    display:flex;
+  margin:0;
+  padding: 12px 0;
+  border-bottom: 1px solid ${({ theme }) => `#${theme.colors.lightTheme.secondary.color5}`};
+
+    
+  }
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => `#${theme.colors.lightTheme.secondary.color3}`};
+    border-radius: 20px;
+  }
+  `
+const ListContext = styled.div`
+display:flex;
+align-items: center;
+gap:12px;
+color:${({ theme }) => `#${theme.colors.lightTheme.primary.text}`};
+font-size: 12px;
+font-weight: 400;
+line-height: 2;
+
+
+`
+
+const Portion = styled.span`
+color:${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+
+font-size: 18px;
+
+font-weight: 400;
+line-height: 1.33;
+`
+
+
+
+const GlassSvg = styled(GlassIcon)`
   fill: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
-  width: 36px;
-  height: 36px;
+  width: 26px;
+  height: auto;
+  
 `;
 
 const EditSvg = styled(EditIcon)`
@@ -34,6 +94,9 @@ const DeleteSvg = styled(DeleteIcon)`
 
 const ListButtons = styled.div`
 display: flex;
+gap:18px;
+margin-left:auto;
+margin-right:4px;
 
 `
 
@@ -42,8 +105,11 @@ const Button = styled.button`
  background: none;
   border: none;
   padding: 0;
-  cursor: pointer;
   
+  margin-bottom:12px;
+  
+
+  cursor: pointer;
   &:hover::after {
     content: "";
     position: absolute;
@@ -56,27 +122,48 @@ const Button = styled.button`
     border-radius: 2px;
   }`
 
-const PortionsList = styled.ul`
-height: 188px;
-overflow: auto;
-  &::-webkit-scrollbar {
-    width: 4px;
+const PlusSvg = styled(PlusIcon)`
+  fill: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+  stroke: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+  width: 16px;
+  height: 16px;
+ 
+`;
+
+const AddWaterBtn = styled.button`
+display: flex;
+align-items: center;
+gap: 8px;
+
+font-size: 16px;
+font-weight: 500;
+line-height: 20px; /* 125% */
+color: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+
+margin-bottom:24px;
+&:hover {
+    color: ${({ theme }) => `#${theme.colors.lightTheme.secondary.color4}`};
+    ${PlusSvg} {
+      fill: ${({ theme }) => `#${theme.colors.lightTheme.secondary.color4}`};
+      stroke: ${({ theme }) => `#${theme.colors.lightTheme.secondary.color4}`};
+    }
   }
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => `#${theme.colors.lightTheme.secondary.color3}`};
-    border-radius: 20px;
-  }
-  `
+`
+
+
+
+
 
 export {
   TodayBoxWrapper,
-  CupSvg,
+  GlassSvg,
   EditSvg,
   DeleteSvg,
   PortionsList,
+  ListContext,
   ListButtons,
-  Button
+  Button,
+  Portion,
+  PlusSvg,
+  AddWaterBtn
 }
