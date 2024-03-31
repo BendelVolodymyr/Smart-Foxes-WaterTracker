@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 const DaysGrid = styled.ul`
   display: grid;
-  grid-template-columns: repeat(10, 34px);
-  gap: 48px 22px;
+  grid-template-columns: repeat(auto-fill, 32px);//
+  gap: 26px 16px;//
   list-style: none;
   padding: 0;
-  font-size: 16px;
+  font-size: 14px;//
   justify-content: space-between;
 `;
 
