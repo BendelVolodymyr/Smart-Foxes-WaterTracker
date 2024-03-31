@@ -35,7 +35,7 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
 
   return (
     <TodayBoxWrapper>
-      <h2>Today</h2>
+      <h3>Today</h3>
       {waterPortions && waterPortions.length > 0 && (
         <PortionsList>
           {waterPortions.map((portion) => (

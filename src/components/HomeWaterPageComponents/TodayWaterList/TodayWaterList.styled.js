@@ -13,7 +13,7 @@ const TodayBoxWrapper = styled.div`
   height: 260px;
   margin-bottom:24px;
 
-  h2{
+  h3{
    
 
 font-size: 24px;
