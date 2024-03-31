@@ -1,4 +1,4 @@
-import{u as t,N as n,G as e}from"./index-dbb4650a.js";const r=t.div`
+import{u as t,N as n,G as e}from"./index-f19cef1e.js";const r=t.div`
   padding: 24px 20px;
   width: 320px;
   display: flex;
