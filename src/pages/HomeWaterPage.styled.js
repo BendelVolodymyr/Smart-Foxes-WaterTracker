@@ -12,7 +12,9 @@ color:${({ theme }) => `#${theme.colors.lightTheme.primary.text}`};
     align-items: flex-start;
   }
 `;
-const LeftBoxWrapper = styled.div`//змінити, коли буде контекст
+
+//змінити, коли буде контекст
+const LeftBoxWrapper = styled.div`
 display: flex;
 flex-direction: column;
 
@@ -31,7 +33,7 @@ background: ${({ theme }) => `#${theme.colors.lightTheme.secondary.color1}`};
 box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.30);
 
 width: 280px;
-height: 680px;
+height:auto;
 padding: 24px 8px;
 margin: 0;
 `;
