@@ -6,6 +6,8 @@ import {
   LeftBoxWrapper,
   RightBoxWrapper,
 } from './HomeWaterPage.styled';
+import DailyNorma from '../components/HomePageComponents/DailyNorma/DailyNorma';
+import DailyNormaModal from '../components/HomePageComponents/DailyNormaModal/DailyNormaModal';
 
 const HomeWaterPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -13,9 +15,13 @@ const HomeWaterPage = () => {
     setModalOpen(true); // Відкрити модальне вікно при кліку на кнопку
     console.log(modalOpen);
   };
+
   return (
     <HomePageContainer>
-      <LeftBoxWrapper></LeftBoxWrapper>
+      <LeftBoxWrapper>
+        <DailyNormaModal />
+        <DailyNorma ModalEditWaterNorma={handleAddWaterClick}></DailyNorma>
+      </LeftBoxWrapper>
       <RightBoxWrapper>
         <TodayWaterList
           handleAddWaterClick={handleAddWaterClick}
