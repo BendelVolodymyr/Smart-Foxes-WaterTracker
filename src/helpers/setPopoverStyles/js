@@ -1,0 +1,20 @@
+const setPopoverStyles = () => {
+  const isMobile = window.innerWidth <= 780; // Перевірка, чи є ширина екрану менше або дорівнює 780px
+
+  const popoverElement = document.querySelector('.MuiPaper-root.MuiPopover-paper');
+
+  if (popoverElement) {
+    if (isMobile) {
+      // Якщо мобільна версія
+      popoverElement.style.width = '276px';
+      popoverElement.style.left = '50%';
+      popoverElement.style.transform = 'translateX(-50%)';
+    } else {
+      // Якщо десктопна версія
+      popoverElement.style.width = ''; // Видалення ширини
+      popoverElement.style.left = ''; // Видалення властивості left
+      popoverElement.style.transform = ''; // Видалення трансформації
+    }
+  }
+};
+

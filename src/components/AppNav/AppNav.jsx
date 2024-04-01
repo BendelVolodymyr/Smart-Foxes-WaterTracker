@@ -1,4 +1,3 @@
-import LoginPage from '../../pages/LoginPage';
 import { AuthNav } from '../AuthNav/AuthNav';
 import { NotAuthNav } from '../NotAuthNav/NotAuthNav';
 
@@ -8,7 +7,6 @@ export const AppNav = () => {
 
   return (
     <>
-      <LoginPage />
       {isLogIn ? <AuthNav /> : <NotAuthNav />}
     </>
   );
