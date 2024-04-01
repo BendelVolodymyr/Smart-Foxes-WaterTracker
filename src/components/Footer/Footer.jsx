@@ -21,6 +21,8 @@ import {
   TextGlobal,
 } from './Footer.styled';
 
+import foto from '../../assets/team/Volodymyr.jpg';
+
 export const Footer = () => {
   const { openModal } = useContext(ModalContext);
 
@@ -31,7 +33,7 @@ export const Footer = () => {
         <TextGlobal>Front end</TextGlobal>
         <UlWrapper>
           <ListWrapper>
-            <ImageWrapper src="/assets/team/Volodymyr.jpg" alt="Volodymyr" />
+            <ImageWrapper src={foto} alt="Volodymyr" />
             <InfoTeamWrapper>
               <TextPositionModal>Volodymyr Bendel</TextPositionModal>
               <TextTeamPosition>Team lead project</TextTeamPosition>
