@@ -1,11 +1,12 @@
 import { startOfMonth, endOfMonth } from 'date-fns';
+
 import {
   DayCell,
   DayCircle,
   DayNumber,
   DayPercentage,
   DaysGrid,
-} from './DeyList.styled';
+} from './DayList.styled';
 
 const DaysList = ({ selectedDate, onDayClick }) => {
   const startOfMonthDate = startOfMonth(selectedDate);
@@ -20,11 +21,7 @@ const DaysList = ({ selectedDate, onDayClick }) => {
       i
     );
     days.push(
-      <DayCell
-        key={i}
-        variant="contained"
-        onClick={(event) => onDayClick(event, date)}
-      >
+      <DayCell key={i} onClick={(event) => onDayClick(event, date)}>
         <DayCircle percentage={0}>
           <DayNumber>{i}</DayNumber>
         </DayCircle>
