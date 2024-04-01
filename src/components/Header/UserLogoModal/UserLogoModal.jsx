@@ -4,16 +4,16 @@ import { ReactComponent as LogOutIcon } from '../../../assets/header-icons/logou
 import { ReactComponent as SettingIcon } from '../../../assets/header-icons/setting-icon.svg';
 import { useState } from 'react';
 import LogoutModal from '../UserLogOutModal/UserLogOutModal';
-import SettingModal from '../../SettingModal/SettingModal';
+// import SettingModal from '../../SettingModal/SettingModal';
 
 const UserLogoModal = () => {
-  const [settingIsOpen, setSettingIsOpen] = useState(false);
+  // const [settingIsOpen, setSettingIsOpen] = useState(false);
 
   const [logoutgIsOpen, setLogoutIsOpen] = useState(false);
 
-  const openSettingModal = () => {
-    setSettingIsOpen(true);
-  };
+  // const openSettingModal = () => {
+  //   setSettingIsOpen(true);
+  // };
 
   const toggleLogoutModal = () => {
     setLogoutIsOpen((prevLogoutIsOpen) => !prevLogoutIsOpen);
@@ -23,7 +23,7 @@ const UserLogoModal = () => {
   return (
     <>
       <Modal>
-        <Button onClick={openSettingModal}>
+        <Button>
           <SettingIcon />
           Setting
         </Button>
@@ -34,7 +34,7 @@ const UserLogoModal = () => {
         </Button>
       </Modal>
       {logoutgIsOpen && <LogoutModal onClose={toggleLogoutModal} />}
-      {settingIsOpen && <SettingModal />}
+      {/* {settingIsOpen && <SettingModal />} */}
     </>
   );
 };

@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { IoMdClose } from 'react-icons/io';
+import { IoMdClose } from 'react-icons';
 
 const showBackdrop = keyframes`
 0% {
@@ -65,7 +65,7 @@ export const ModalWrapper = styled.div`
   height: 80%;
   padding: 20px;
 
-  background-color: ${p => p.theme.colors.primary.bg};
+  background-color: ${(p) => p.theme.colors.primary.bg};
 
   border-radius: 10px;
 
@@ -84,7 +84,7 @@ export const ModalWrapper = styled.div`
     background-color: #555; /* Колір скролу при наведенні */
   }
 
-  @media (min-width: ${p => p.theme.screens.tab}) {
+  @media (min-width: ${(p) => p.theme.screens.tab}) {
     width: 720px;
   }
 `;
@@ -101,6 +101,6 @@ export const IconClose = styled(IoMdClose)`
   cursor: pointer;
   &:hover {
     transform: scale(1.1);
-    color: ${p => p.theme.colors.secondary.color4};
+    color: ${(p) => p.theme.colors.secondary.color4};
   }
 `;
