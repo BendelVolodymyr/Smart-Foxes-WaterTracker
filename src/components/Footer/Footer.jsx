@@ -31,10 +31,7 @@ export const Footer = () => {
         <TextGlobal>Front end</TextGlobal>
         <UlWrapper>
           <ListWrapper>
-            <ImageWrapper
-              src="./src/assets/team/Volodymyr.jpg"
-              alt="Volodymyr"
-            />
+            <ImageWrapper src="/assets/team/Volodymyr.jpg" alt="Volodymyr" />
             <InfoTeamWrapper>
               <TextPositionModal>Volodymyr Bendel</TextPositionModal>
               <TextTeamPosition>Team lead project</TextTeamPosition>
