@@ -1,17 +1,30 @@
 import styled from 'styled-components';
-import theme from '../../../styles/theme';
+
+const ModalContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1200;
+  backdrop-filter: blur(0.1rem);
+`;
 
 const Modal = styled.div`
   width: 704px;
   height: 696px;
   padding: 32px 24px 32px 24px;
-  border-radius: 10px 0px 0px 0px;
+  border-radius: 10px;
+  background-color: ${({ theme }) => `${theme.colors.primary.bg}`};
 `;
 const Head = styled.h2`
   font-size: 26px;
   font-weight: 500;
   line-height: 32px;
-  color: #${theme.lightTheme.colors.primary.text};
+  color: ${({ theme }) => `${theme.colors.primary.text}`};
 `;
 const ContainerGender = styled.div`
   display: flex;
@@ -24,15 +37,14 @@ const GenderPargh = styled.p`
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
-
-  color: #${theme.lightTheme.colors.primary.text};
+  color: ${({ theme }) => `${theme.colors.primary.text}`};
 `;
 const GenderSpan = styled.span`
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
   text-align: left;
-  color: #${theme.lightTheme.colors.primary.accent};
+  color: ${({ theme }) => `${theme.colors.primary.accent}`};
 `;
 const InfoContainer = styled.div`
   width: 544px;
@@ -40,7 +52,7 @@ const InfoContainer = styled.div`
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 24px;
-  border-color: #${theme.lightTheme.colors.secondary.color5};
+  border-color: ${({ theme }) => `${theme.colors.secondary.color5}`};
 `;
 const InfoPargh = styled.p`
   font-size: 12px;
@@ -50,7 +62,7 @@ const InfoPargh = styled.p`
   color: #8f8f8f;
 `;
 const InfoSpan = styled.span`
-  color: #${theme.lightTheme.colors.primary.accent};
+  color: ${({ theme }) => `${theme.colors.primary.accent}`};
 `;
 const CalculateForm = styled.form`
   display: flex;
@@ -61,7 +73,7 @@ const CalculateHead = styled.h3`
   font-weight: 500;
   line-height: 20px;
   text-align: left;
-  color: #${theme.lightTheme.colors.primary.text};
+  border-color: ${({ theme }) => `${theme.colors.primary.text}`};
 `;
 const GenderLabel = styled.label`
   display: flex;
@@ -70,11 +82,11 @@ const GenderLabel = styled.label`
   align-items: center;
 `;
 const GenderInput = styled.input`
-  color: #${theme.lightTheme.colors.primary.bg};
   width: 14px;
   height: 14px;
   border: 1px solid;
-  border-color: #${theme.lightTheme.colors.primary.accent};
+  border-color: ${({ theme }) => `${theme.colors.primary.accent}`};
+  color: ${({ theme }) => `${theme.colors.primary.bg}`};
   border-radius: 50%;
 `;
 const GenderContainer = styled.div`
@@ -92,11 +104,11 @@ const UserInputs = styled.input`
   border-radius: 6px;
   border: 1px solid;
   width: 100%;
-  color: #${theme.lightTheme.colors.primary.accent};
+  color: ${({ theme }) => `${theme.colors.primary.accent}`};
   padding: 12px 10px 12px 10px;
-  border-color: #${theme.lightTheme.colors.secondary.color5};
+  border-color: ${({ theme }) => `${theme.colors.secondary.color5}`};
   &::placeholder {
-    color: #${theme.lightTheme.colors.primary.accent};
+    color: ${({ theme }) => `${theme.colors.primary.accent}`};
   }
 `;
 const UserInputsContainer = styled.div`
@@ -116,8 +128,8 @@ const SaveButton = styled.button`
   border-radius: 10px;
   padding: 10px 30px;
   width: 160px;
-  color: #${theme.lightTheme.colors.primary.bg};
-  background-color: #${theme.lightTheme.colors.primary.accent};
+  color: ${({ theme }) => `${theme.colors.primary.bg}`};
+  background-color: ${({ theme }) => `${theme.colors.primary.accent}`};
 `;
 const ButtonContainer = styled.div`
   width: 544px;
@@ -135,7 +147,7 @@ const WaterAmountSpan = styled.span`
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;
-  color: #${theme.lightTheme.colors.primary.accent};
+  color: ${({ theme }) => `${theme.colors.primary.accent}`};
 `;
 export {
   Modal,
@@ -160,4 +172,5 @@ export {
   UserInputs,
   CalculateForm,
   UserInputsContainer,
+  ModalContainer,
 };

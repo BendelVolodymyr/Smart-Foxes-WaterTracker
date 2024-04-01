@@ -6,7 +6,7 @@ import {
   NumberDailyNorma,
   DailyWrapper,
 } from './DailyNorma.styled';
-import { createPortal } from 'react-dom';
+
 import { DailyNormaModal } from '../DailyNormaModal/DailyNormaModal';
 
 const DailyNorma = ({ ModalEditWaterNorma }) => {
@@ -24,8 +24,8 @@ const DailyNorma = ({ ModalEditWaterNorma }) => {
       <DailyWrapper>
         <NumberDailyNorma>{dailyNorma} L</NumberDailyNorma>
         <ButtonEditNorma onClick={handleEditButtonClick}>Edit</ButtonEditNorma>
-        {modalOpen && <DailyNormaModal onClose={closeModal}></DailyNormaModal>}
       </DailyWrapper>
+      {modalOpen && <DailyNormaModal onClose={closeModal}></DailyNormaModal>}
     </DailyWaterWrapper>
   );
 };
