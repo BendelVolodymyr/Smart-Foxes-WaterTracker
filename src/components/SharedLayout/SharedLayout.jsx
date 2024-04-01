@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AppNav } from '../AppNav/AppNav';
+import { Footer } from '../Footer/Footer';
 
 const SharedLayout = () => {
   return (
@@ -9,6 +10,7 @@ const SharedLayout = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
+      <Footer/>
     </>
   );
 };
