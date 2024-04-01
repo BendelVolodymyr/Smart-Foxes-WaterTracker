@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import theme from '../../../styles/theme';
-console.log(theme);
 
 export const Modal = styled.div`
   position: absolute;
@@ -35,6 +34,10 @@ export const Button = styled.button`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   line-height: 20px;
   text-align: left;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
 
   color: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
 `;

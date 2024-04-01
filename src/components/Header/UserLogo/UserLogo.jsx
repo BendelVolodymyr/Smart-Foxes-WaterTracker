@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { ReactComponent as DownArrow } from '../../../assets/header-icons/down-arrow.svg';
 import {
@@ -10,10 +10,12 @@ import {
 import UserLogoModal from '../UserLogoModal/UserLogoModal';
 import formatEmail from '../../../helpers/formatEmail';
 import getFirstLetter from '../../../helpers/getFirstLetter';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 // import UserLogoModal from '../UserAuth/UserLogoModal/UserLogoModal';
 
 const UserLogo = ({ avatarUrl }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+
   const menuRef = useRef();
 
   const userEmail = 's.georgiymail@gmail.com';
@@ -23,36 +25,32 @@ const UserLogo = ({ avatarUrl }) => {
   const handleToggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+  const onCloseLogomodal = () => {
+    console.log('CLOSE USER MODAL');
+    setIsExpanded(false);
+  };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsExpanded(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  const handleClickAway = () => {
+    setIsExpanded(false);
+  };
 
   return (
-    <UserLogoWrapper ref={menuRef}>
-      <UserName>{formatEmail(userEmail)}</UserName>
-      <AvatarBox>
-        {avatarUrl ? (
-          <img src={avatarUrl} alt="uer-avatar" />
-        ) : (
-          firstNameLetter || firstEmailLetter
-        )}
-      </AvatarBox>
-      <Button onClick={handleToggleExpand}>
-        <DownArrow />
-      </Button>
-      {isExpanded && <UserLogoModal />}
-    </UserLogoWrapper>
+    <ClickAwayListener onClickAway={handleClickAway}>
+      <UserLogoWrapper ref={menuRef}>
+        <UserName>{formatEmail(userEmail)}</UserName>
+        <AvatarBox>
+          {avatarUrl ? (
+            <img src={avatarUrl} alt="uer-avatar" />
+          ) : (
+            firstNameLetter || firstEmailLetter
+          )}
+        </AvatarBox>
+        <Button onClick={handleToggleExpand}>
+          <DownArrow />
+        </Button>
+        {isExpanded && <UserLogoModal onCloseLogomodal={onCloseLogomodal} />}
+      </UserLogoWrapper>
+    </ClickAwayListener>
   );
 };
 
