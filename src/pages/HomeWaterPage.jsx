@@ -1,5 +1,5 @@
 import MonthStateTable from '../components/HomeWaterPageComponents/MonthStateTable/MonthStateTable';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   HomePageContainer,
   LeftBoxWrapper,
@@ -10,9 +10,14 @@ import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList
 const HomeWaterPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const handleAddWaterClick = () => {
-    setModalOpen(true); // Відкрити модальне вікно при кліку на кнопку
-    console.log(modalOpen);
+    setModalOpen(true);
   };
+  useEffect(() => {
+    if (modalOpen) {
+      // Відкрити модальне вікно тут
+      console.log('Modal opened');
+    }
+  }, [modalOpen]);
   return (
     <HomePageContainer>
       <LeftBoxWrapper></LeftBoxWrapper>

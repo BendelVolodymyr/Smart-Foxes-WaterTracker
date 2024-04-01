@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import {
-  ModalContainer,
-  PopupDate,
+  PopoverContainer,
+  PopoverDate,
   StatItem,
   StatsList,
 } from './DaysGeneralStats.styled';
@@ -11,17 +11,23 @@ const DaysGeneralStats = ({ selectedDate }) => {
   const monthName = format(selectedDate, 'MMMM');
   const day = selectedDate.getDate();
   return (
-    <ModalContainer>
-      <PopupDate>
+    <PopoverContainer>
+      <PopoverDate>
         {' '}
-        {day},{monthName}
-      </PopupDate>
+        {day}, {monthName}
+      </PopoverDate>
       <StatsList>
-        <StatItem>Daily Norma: 0</StatItem>
-        <StatItem>Fulfillment of the daily norm: 0</StatItem>
-        <StatItem>How many servings of water: 0</StatItem>
+        <StatItem>
+          Daily Norma: <span>1.2 L</span>
+        </StatItem>
+        <StatItem>
+          Fulfillment of the daily norm: <span>100 %</span>
+        </StatItem>
+        <StatItem>
+          How many servings of water: <span>6</span>
+        </StatItem>
       </StatsList>
-    </ModalContainer>
+    </PopoverContainer>
   );
 };
 
