@@ -1,5 +1,24 @@
-
 import styled from 'styled-components';
+
+const PaginatorBlock = styled.div`
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom:18px;
+
+
+ h3{
+  font-size: 24px;
+font-weight: 500;
+line-height: 1.25;
+ }
+`;
+
+const MonthComponentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 
 const DaysGrid = styled.ul`
   display: grid;
@@ -50,10 +69,11 @@ const DayPercentage = styled.p`
 
 
 export {
-    DayCell,
-    DayCircle,
-    DayNumber,
-    DayPercentage,
-    DaysGrid,
-
+  DayCell,
+  DayCircle,
+  DayNumber,
+  DayPercentage,
+  DaysGrid,
+  MonthComponentWrapper,
+  PaginatorBlock
 }

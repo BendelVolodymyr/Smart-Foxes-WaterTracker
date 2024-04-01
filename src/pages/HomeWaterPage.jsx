@@ -1,21 +1,32 @@
-import TodayWaterList from '../components/HomePageComponents/TodayWaterList/TodayWaterList';
-import MonthStateTable from '../components/HomePageComponents/MonthStateTable/MonthStateTable';
-import { useState } from 'react';
+import MonthStateTable from '../components/HomeWaterPageComponents/MonthStateTable/MonthStateTable';
+import { useEffect, useState } from 'react';
 import {
   HomePageContainer,
   LeftBoxWrapper,
   RightBoxWrapper,
 } from './HomeWaterPage.styled';
+
+import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
+
 import DailyNorma from '../components/HomePageComponents/DailyNorma/DailyNorma';
 import DailyNormaModal from '../components/HomePageComponents/DailyNormaModal/DailyNormaModal';
+
 
 const HomeWaterPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const handleAddWaterClick = () => {
-    setModalOpen(true); // Відкрити модальне вікно при кліку на кнопку
-    console.log(modalOpen);
+    setModalOpen(true);
   };
 
+  useEffect(() => {
+    if (modalOpen) {
+      // Відкрити модальне вікно тут
+      console.log('Modal opened');
+    }
+  }, [modalOpen]);
+
+
+ main
   return (
     <HomePageContainer>
       <LeftBoxWrapper>

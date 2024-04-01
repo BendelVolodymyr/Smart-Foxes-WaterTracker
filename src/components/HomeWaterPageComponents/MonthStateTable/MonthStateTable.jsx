@@ -6,7 +6,7 @@ import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
 import {
   MonthComponentWrapper,
   PaginatorBlock,
-} from './MonthStateTable.stuled';
+} from './MonthStateTable.styled';
 import DaysList from '../DayList/DayList';
 
 const MonthStateTable = () => {
@@ -43,11 +43,11 @@ const MonthStateTable = () => {
         onClose={handleClosePopover}
         anchorOrigin={{
           vertical: 'top',
-          horizontal: 'center',
+          horizontal: 'left',
         }}
         transformOrigin={{
           vertical: 'bottom',
-          horizontal: 'center',
+          horizontal: 'right',
         }}
       >
         <DaysGeneralStats selectedDate={selectedDate} />
