@@ -7,8 +7,8 @@ import Header from '../Header/Header';
 const SharedLayout = () => {
   return (
     <>
-      <AppNav />
       <Header />
+      <AppNav />
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>

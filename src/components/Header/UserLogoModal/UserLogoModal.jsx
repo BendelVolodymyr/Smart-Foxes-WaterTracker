@@ -16,8 +16,9 @@ const UserLogoModal = () => {
   // };
 
   const toggleLogoutModal = () => {
-    setLogoutIsOpen((prevLogoutIsOpen) => !prevLogoutIsOpen);
+    // setLogoutIsOpen((prevLogoutIsOpen) => !prevLogoutIsOpen);
     // onCloseLogomodal();
+    setLogoutIsOpen(true);
   };
 
   return (

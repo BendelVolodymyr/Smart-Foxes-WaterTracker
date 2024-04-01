@@ -12,7 +12,7 @@ import { ReactComponent as Close } from '../../../assets/header-icons/close-icon
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-// import { logout } from '../../../redux/auth/operations';
+import { logout } from '../../../redux/auth/operations';
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -21,7 +21,7 @@ const LogoutModal = ({ onClose }) => {
   const modalRef = useRef();
 
   const logOut = () => {
-    // dispatch(logout());
+    dispatch(logout());
   };
 
   useEffect(() => {
