@@ -10,12 +10,12 @@ const ModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1200;
-  backdrop-filter: blur(0.1rem);
+  background: rgba(0, 0, 0, 0.8);
 `;
 
 const Modal = styled.div`
-  width: 704px;
-  height: 696px;
+  width: 592px;
+  height: 712px;
   padding: 32px 24px 32px 24px;
   border-radius: 10px;
   background-color: ${({ theme }) => `${theme.colors.primary.bg}`};
@@ -73,7 +73,7 @@ const CalculateHead = styled.h3`
   font-weight: 500;
   line-height: 20px;
   text-align: left;
-  border-color: ${({ theme }) => `${theme.colors.primary.text}`};
+  color: ${({ theme }) => `${theme.colors.primary.text}`};
 `;
 const GenderLabel = styled.label`
   display: flex;
@@ -106,6 +106,7 @@ const UserInputs = styled.input`
   width: 100%;
   color: ${({ theme }) => `${theme.colors.primary.accent}`};
   padding: 12px 10px 12px 10px;
+  background: transparent;
   border-color: ${({ theme }) => `${theme.colors.secondary.color5}`};
   &::placeholder {
     color: ${({ theme }) => `${theme.colors.primary.accent}`};
@@ -149,8 +150,13 @@ const WaterAmountSpan = styled.span`
   line-height: 24px;
   color: ${({ theme }) => `${theme.colors.primary.accent}`};
 `;
+const CloseIcon = styled.svg`
+background-color: ;
+`;
+
 export {
   Modal,
+  CloseIcon,
   Head,
   ButtonContainer,
   CloseModalButton,

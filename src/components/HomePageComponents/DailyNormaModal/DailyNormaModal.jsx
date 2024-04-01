@@ -23,12 +23,11 @@ import {
   HeadContainer,
   CloseModalButton,
   ModalContainer,
- 
+  CloseIcon,
 } from './DailyNormaModal.styled';
 
 export const DailyNormaModal = ({
   onClose,
-  isOpen,
   SaveWaterNorma,
   dailyWaterNorma,
 }) => {
@@ -39,7 +38,7 @@ export const DailyNormaModal = ({
   const [dailyNorma, setDailyNorma] = useState(dailyWaterNorma);
   const [userSportsActivite, setUserSportsActivite] = useState();
   const [userWaterPredict, setUserWaterPredict] = useState();
-  const [userWaterPerDay, setUserWaterPerDay] = useState(1.5);
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === 'Escape') {
@@ -56,7 +55,17 @@ export const DailyNormaModal = ({
       <Modal>
         <HeadContainer>
           <Head>My daily norma</Head>
-          <CloseModalButton onClick={() => onClose()}>X</CloseModalButton>
+          <CloseModalButton onClick={() => onClose()}>
+            <CloseIcon width="24" height="24">
+              <path
+                d="M6 18L18 6M6 6L18 18"
+                stroke="#407BFF"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </CloseIcon>
+          </CloseModalButton>
         </HeadContainer>
         <ContainerGender>
           <GenderPargh>
@@ -125,7 +134,7 @@ export const DailyNormaModal = ({
             </UserLabel>
             <GenderPargh>
               The required amount of water in liters per day:
-              <WaterAmountSpan> 1.5 L</WaterAmountSpan>
+              <WaterAmountSpan> {dailyNorma} L</WaterAmountSpan>
             </GenderPargh>
           </UserInputsContainer>
           <UserWaterPredict>
