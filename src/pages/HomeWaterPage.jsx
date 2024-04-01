@@ -7,7 +7,6 @@ import {
   RightBoxWrapper,
 } from './HomeWaterPage.styled';
 import DailyNorma from '../components/HomePageComponents/DailyNorma/DailyNorma';
-import DailyNormaModal from '../components/HomePageComponents/DailyNormaModal/DailyNormaModal';
 
 const HomeWaterPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -19,7 +18,6 @@ const HomeWaterPage = () => {
   return (
     <HomePageContainer>
       <LeftBoxWrapper>
-        <DailyNormaModal />
         <DailyNorma ModalEditWaterNorma={handleAddWaterClick}></DailyNorma>
       </LeftBoxWrapper>
       <RightBoxWrapper>

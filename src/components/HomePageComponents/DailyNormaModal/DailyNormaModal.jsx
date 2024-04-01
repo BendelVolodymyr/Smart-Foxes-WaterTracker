@@ -16,13 +16,25 @@ import {
   UserInputs,
   CalculateForm,
   UserInputsContainer,
+  UserWaterPredict,
+  SaveButton,
+  ButtonContainer,
+  WaterAmountSpan,
+  HeadContainer,
+  CloseModalButton,
 } from './DailyNormaModal.styled';
 
-const DailyNormaModal = ({ onClose, isOpen, SaveWaterNorma }) => {
+export const DailyNormaModal = ({
+  onClose,
+  isOpen,
+  SaveWaterNorma,
+  dailyWaterNorma,
+}) => {
   const woman = { weight: Number(0.03), activity: Number(0.04) };
   const man = { weight: Number(0.04), activity: Number(0.06) };
   const [genderOption, setGenderOption] = useState(woman);
   const [userWeight, setUserWeight] = useState();
+  const [dailyNorma, setDailyNorma] = useState(dailyWaterNorma);
   const [userSportsActivite, setUserSportsActivite] = useState();
   const [userWaterPredict, setUserWaterPredict] = useState();
   const [userWaterPerDay, setUserWaterPerDay] = useState(1.5);
@@ -38,10 +50,13 @@ const DailyNormaModal = ({ onClose, isOpen, SaveWaterNorma }) => {
     };
   }, [onClose]);
 
-  console.log(genderOption);
   return (
     <Modal>
-      <Head>My daily norma</Head>
+      <HeadContainer>
+        <Head>My daily norma</Head>
+        <CloseModalButton onClick={() => onClose}>X</CloseModalButton>
+      </HeadContainer>
+
       <ContainerGender>
         <GenderPargh>
           For girl: <GenderSpan>V=(M*0,03) + (T*0,4)</GenderSpan>
@@ -107,22 +122,15 @@ const DailyNormaModal = ({ onClose, isOpen, SaveWaterNorma }) => {
               onChange={() => setUserSportsActivite()}
             />
           </UserLabel>
-          <UserLabel>
-            <GenderPargh>
-              The required amount of water in liters per day:
-            </GenderPargh>
-            <span>
-              {() => {
-                const sum =
-                  userWeight * genderOption.weight +
-                  userSportsActivite * genderOption.activity;
-                return Number(sum);
-              }}
-            </span>
-          </UserLabel>
+          <GenderPargh>
+            The required amount of water in liters per day:
+            <WaterAmountSpan> 1.5 L</WaterAmountSpan>
+          </GenderPargh>
         </UserInputsContainer>
-        <UserLabel>
-          <GenderPargh>Write down how much water you will drink:</GenderPargh>
+        <UserWaterPredict>
+          <CalculateHead>
+            Write down how much water you will drink:
+          </CalculateHead>
           <UserInputs
             type="number"
             name="userWaterPredict"
@@ -131,11 +139,11 @@ const DailyNormaModal = ({ onClose, isOpen, SaveWaterNorma }) => {
             min={0}
             onChange={() => setUserWaterPredict()}
           />
-        </UserLabel>
-        <button>Save</button>
+        </UserWaterPredict>
+        <ButtonContainer>
+          <SaveButton>Save</SaveButton>
+        </ButtonContainer>
       </CalculateForm>
     </Modal>
   );
 };
-
-export default DailyNormaModal;
