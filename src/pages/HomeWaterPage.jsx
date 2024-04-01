@@ -5,22 +5,34 @@ import {
   LeftBoxWrapper,
   RightBoxWrapper,
 } from './HomeWaterPage.styled';
+
 import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
+
+import DailyNorma from '../components/HomePageComponents/DailyNorma/DailyNorma';
+import DailyNormaModal from '../components/HomePageComponents/DailyNormaModal/DailyNormaModal';
+
 
 const HomeWaterPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const handleAddWaterClick = () => {
     setModalOpen(true);
   };
+
   useEffect(() => {
     if (modalOpen) {
       // Відкрити модальне вікно тут
       console.log('Modal opened');
     }
   }, [modalOpen]);
+
+
+ main
   return (
     <HomePageContainer>
-      <LeftBoxWrapper></LeftBoxWrapper>
+      <LeftBoxWrapper>
+        <DailyNormaModal />
+        <DailyNorma ModalEditWaterNorma={handleAddWaterClick}></DailyNorma>
+      </LeftBoxWrapper>
       <RightBoxWrapper>
         <TodayWaterList
           handleAddWaterClick={handleAddWaterClick}
