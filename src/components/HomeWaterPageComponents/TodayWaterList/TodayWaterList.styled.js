@@ -37,7 +37,7 @@ li {
     display:flex;
   margin:0;
   padding: 12px 0;
-  border-bottom: 1px solid ${({ theme }) => `#${theme.colors.lightTheme.secondary.color5}`};
+  border-bottom: 1px solid ${p => p.theme.colors.secondary.color5};
 
     
   }
@@ -48,7 +48,7 @@ li {
     background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => `#${theme.colors.lightTheme.secondary.color3}`};
+    background-color: ${p => p.theme.colors.secondary.color3};
     border-radius: 20px;
   }
   `
@@ -64,7 +64,8 @@ line-height: 2;
 `
 
 const Portion = styled.span`
-color:${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+color:${p => p.theme.colors.primary.accent};
+
 
 font-size: 18px;
 
@@ -75,20 +76,20 @@ line-height: 1.33;
 
 
 const GlassSvg = styled(GlassIcon)`
-  fill: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+  fill:${p => p.theme.colors.primary.accent};
   width: 26px;
   height: auto;
   
 `;
 
 const EditSvg = styled(EditIcon)`
-  stroke:  ${({ theme }) => `#${theme.colors.lightTheme.secondary.color3}`};
+  stroke:  ${p => p.theme.colors.secondary.color3};
   width: 16px;
   height: 16px;
 `;
 
 const DeleteSvg = styled(DeleteIcon)`
-   stroke:  ${({ theme }) => `#${theme.colors.lightTheme.secondary.color2}`};
+   stroke: ${p => p.theme.colors.secondary.color2};
   width: 16px;
   height: 16px;
 `;
@@ -123,7 +124,7 @@ const ButtonEdit = styled.button`
 
   &:hover::after {
    
-    background-color:  ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+    background-color: ${p => p.theme.colors.primary.accent};
    
   }`
 
@@ -134,13 +135,13 @@ const ButtonDelete = styled.button`
  
   &:hover::after {
    
-    background-color:  ${({ theme }) => `#${theme.colors.lightTheme.secondary.color2}`};
+    background-color:  ${p => p.theme.colors.secondary.color2};
     
   }`
 
 const PlusSvg = styled(PlusIcon)`
-  fill: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
-  stroke: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+  fill: ${p => p.theme.colors.primary.accent};
+  stroke: ${p => p.theme.colors.primary.accent};
   width: 16px;
   height: 16px;
  
@@ -154,15 +155,14 @@ gap: 8px;
 font-size: 16px;
 font-weight: 500;
 line-height: 1.25;
-color: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+color: ${p => p.theme.colors.primary.accent};
 
 
 &:hover {
-    color: ${({ theme }) => `#${theme.colors.lightTheme.secondary.color4}`};
+    color: ${p => p.theme.colors.secondary.color4};
     ${PlusSvg} {
-      fill: ${({ theme }) => `#${theme.colors.lightTheme.secondary.color4}`};
-      stroke: ${({ theme }) => `#${theme.colors.lightTheme.secondary.color4}`};
-    }
+      fill: ${p => p.theme.colors.secondary.color4};
+      stroke: ${p => p.theme.colors.secondary.color4};
   }
 `
 

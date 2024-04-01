@@ -11,9 +11,9 @@ const Paginator = styled.div`
   font-weight: 400;
   line-height: 20px;
   width: 162px;
-  color: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+  color: ${p => p.theme.colors.primary.accent};
   button {
-    color: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+    color: ${p => p.theme.colors.primary.accent};
     background: transparent;
     border: none;
     cursor: pointer;

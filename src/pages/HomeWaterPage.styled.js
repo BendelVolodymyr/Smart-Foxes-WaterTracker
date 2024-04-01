@@ -5,7 +5,7 @@ display: flex;
 flex-direction:column;
 
 align-items: center;
-color:${({ theme }) => `#${theme.colors.lightTheme.primary.text}`};
+color:${p => p.theme.colors.primary.text};
 
 @media (min-width: ${({ theme }) => theme.screens.tab}) {
     flex-direction:row;
@@ -29,7 +29,7 @@ flex-direction: column;
 align-items: center;
 
 border-radius: 10px;
-background: ${({ theme }) => `#${theme.colors.lightTheme.secondary.color1}`};
+background: ${p => p.theme.colors.secondary.color1};
 box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.30);
 
 width: 280px;

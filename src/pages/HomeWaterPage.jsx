@@ -11,7 +11,6 @@ import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList
 import DailyNorma from '../components/HomePageComponents/DailyNorma/DailyNorma';
 import DailyNormaModal from '../components/HomePageComponents/DailyNormaModal/DailyNormaModal';
 
-
 const HomeWaterPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const handleAddWaterClick = () => {
@@ -25,8 +24,6 @@ const HomeWaterPage = () => {
     }
   }, [modalOpen]);
 
-
- main
   return (
     <HomePageContainer>
       <LeftBoxWrapper>

@@ -12,9 +12,9 @@ export const ModalContext = createContext({
 export const ModalProvider = ({ children }) => {
   const [modalShowing, setModalShowing] = useState(false);
   const [modalContent, setModalContent] = useState(null);
-  const [themeShow, setThemeShow] = useState(false);
+  const [themeShow, setThemeShow] = useState(true);
 
-  const openModal = modalConfig => {
+  const openModal = (modalConfig) => {
     setModalContent(modalConfig.props);
     setModalShowing(true);
   };
