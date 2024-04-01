@@ -32,7 +32,7 @@ export const Footer = () => {
         <UlWrapper>
           <ListWrapper>
             <ImageWrapper
-              src="./Smart-Foxes-WaterTracker/src/assets/team/Volodymyr.jpg"
+              src="./src/assets/team/Volodymyr.jpg"
               alt="Volodymyr"
             />
             <InfoTeamWrapper>
