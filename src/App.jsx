@@ -8,7 +8,7 @@ import { Main } from './components/Main/Main';
 
 const HomeNotAuthPage = lazy(() => import('./pages/HomeNotAuth'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
-const Registration = lazy(() => import('./pages/Registration'));
+const Registration = lazy(() => import('./pages/RegistrationPage.jsx'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
