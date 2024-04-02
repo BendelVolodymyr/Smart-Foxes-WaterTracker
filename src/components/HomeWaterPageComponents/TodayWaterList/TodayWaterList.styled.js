@@ -130,7 +130,7 @@ margin-left:auto;
 margin-right:4px;
  button {
   margin-bottom:0px;
-
+height: 16px;
   position: relative;
 
 
