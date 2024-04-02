@@ -61,8 +61,8 @@ export const BackdropWrapper = styled.div`
 export const ModalWrapper = styled.div`
   position: relative;
   overflow: auto;
-  width: 280px;
-  height: 80%;
+  width: ${p => (p.$isWidth ? p.$isWidth : '280px')};
+  height: ${p => (p.$isHeight ? p.$isHeight : '80%')};
   padding: 20px;
 
   background-color: ${(p) => p.theme.colors.primary.bg};
@@ -99,6 +99,7 @@ export const IconClose = styled(IoMdClose)`
     color 0.3s ease-in-out;
 
   cursor: pointer;
+
   &:hover {
     transform: scale(1.1);
     color: ${(p) => p.theme.colors.secondary.color4};

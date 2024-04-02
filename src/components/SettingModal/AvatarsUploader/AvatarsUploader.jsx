@@ -11,11 +11,12 @@ import {
   StyledAvatar,
   StyledUploadButton,
 } from './avatarsuploader.styled';
+
 export const AvatarsUploader = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async values => {
     setIsLoading(true);
     setUploadError(null);
 
@@ -36,7 +37,7 @@ export const AvatarsUploader = () => {
       avatar: '',
     },
     onSubmit: handleSubmit,
-    validate: (values) => {
+    validate: values => {
       const errors = {};
       if (!values.avatar) {
         errors.avatar = 'Please select a photo';
@@ -45,7 +46,7 @@ export const AvatarsUploader = () => {
     },
   });
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     formik.setFieldValue('avatar', e.target.files[0]);
   };
 

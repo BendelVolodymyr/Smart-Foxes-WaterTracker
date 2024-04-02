@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { AvatarsUploader } from '../AvatarsUploader/AvatarsUploader';
 import {
   StyledContainer,
   StyledHeader,
@@ -6,20 +7,19 @@ import {
   StyledCloseButton,
 } from './settings.styled';
 import UserInfoForm from '../UserInfo/userInfoForm';
-import { AvatarsUploader } from '../avatarsUploader/avatarsUploader';
 import { Close } from '@mui/icons-material';
 
 export const Setting = ({ onClose }) => {
   const modalRef = useRef(null);
 
   useEffect(() => {
-    const handleEscapeKey = (event) => {
+    const handleEscapeKey = event => {
       if (event.key === 'Escape') {
         onClose();
       }
     };
 
-    const handleCloseModal = (event) => {
+    const handleCloseModal = event => {
       if (!modalRef.current.contains(event.target)) {
         onClose();
       }

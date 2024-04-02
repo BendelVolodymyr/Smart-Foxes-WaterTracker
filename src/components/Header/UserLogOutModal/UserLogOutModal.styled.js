@@ -11,30 +11,13 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
 `;
 
 export const Modal = styled.div`
-  width: 280px;
-  height: 260px;
-  top: 80px;
-  left: 20px;
-  padding: 32px 24px;
-  gap: 24px;
-  border-radius: 10px;
-  background-color: white;
-
-  @media screen and (min-width: 768px) {
-    width: 592px;
-    height: 208px;
-  }
-`;
-
-export const CloseBtn = styled.button`
-  position: absolute;
-  right: 0px;
-
-  width: 24px;
-  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
 `;
 
 export const Title = styled.h4`
@@ -62,7 +45,7 @@ export const ButtonWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
-    justify-content: end;
+    justify-content: start;
   }
 `;
 

@@ -3,7 +3,7 @@ import { ModalContext } from '../../context';
 
 import { BackdropWrapper, IconClose, ModalWrapper } from './ModalFooter.styled';
 
-export const ModalFooter = ({ children }) => {
+export const ModalFooter = ({ children, inWidth, inHeight }) => {
   const { closeModal } = useContext(ModalContext);
 
   useEffect(() => {
@@ -28,8 +28,8 @@ export const ModalFooter = ({ children }) => {
 
   return (
     <BackdropWrapper id="close" onClick={handleClick}>
-      <ModalWrapper>
-        <IconClose id="close" />
+      <ModalWrapper $isWidth={inWidth} $isHeight={inHeight}>
+        <IconClose id="close" onClick={handleClick} />
         {children}
       </ModalWrapper>
     </BackdropWrapper>

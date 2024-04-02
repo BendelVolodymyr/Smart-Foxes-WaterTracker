@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import theme from '../../../styles/theme';
+// import theme from '../../../styles/theme';
 
 export const UserLogoWrapper = styled.div`
   position: relative;
@@ -7,9 +7,13 @@ export const UserLogoWrapper = styled.div`
   align-items: center;
 `;
 export const UserName = styled.p`
+  width: 166px;
+  overflow: auto;
   font-size: 16px;
-  /* font-weight: ${theme.fontWeights.medium}; */
-  font-weight: ${(props) => props.theme.fontWeights.medium};
+
+  font-weight: ${(p) => {
+    p.theme.fontWeights.regular;
+  }};
   line-height: 20px;
   text-align: right;
   margin-right: 8px;

@@ -23,23 +23,6 @@ const Header = () => {
           </Link>
           {isLoggedIn ? <UserLogo avatarUrl={user.avatar} /> : <UserAuth />}
         </HeaderWrapper>
-
-        {/* <div className="container">
-        <div className={css.inner}>
-          <Link to="/">
-            <Logo />
-          </Link>
-
-          
-
-        {/* <div className={css.user}>
-            <Link to="/signin">
-              <p style={{ color: 'black' }}> Sigh In</p>
-            </Link>
-            <img className={css.user_avatar} src="#" alt="user_avatar" />
-          </div> */}
-        {/* </div>
-      </div> */}
       </Container>
     </header>
   );
