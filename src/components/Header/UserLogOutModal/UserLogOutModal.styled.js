@@ -11,17 +11,23 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
 `;
 
 export const Modal = styled.div`
+  position: absolute;
   width: 280px;
   height: 260px;
-  top: 80px;
-  left: 20px;
+
   padding: 32px 24px;
   gap: 24px;
-  border-radius: 10px;
-  background-color: white;
+  /* border-radius: 10px;
+  background-color: white; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* z-index: 999; */
 
   @media screen and (min-width: 768px) {
     width: 592px;

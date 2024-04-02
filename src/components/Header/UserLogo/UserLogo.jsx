@@ -48,7 +48,7 @@ const UserLogo = ({ avatarUrl }) => {
         <Button onClick={handleToggleExpand}>
           <DownArrow />
         </Button>
-        {isExpanded && <UserLogoModal onCloseLogomodal={onCloseLogomodal} />}
+        {isExpanded && <UserLogoModal onclose={onCloseLogomodal} />}
       </UserLogoWrapper>
     </ClickAwayListener>
   );

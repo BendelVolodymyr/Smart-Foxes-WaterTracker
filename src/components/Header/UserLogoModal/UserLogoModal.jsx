@@ -1,41 +1,35 @@
 import { Button, Modal } from './UserLogoModal.styled';
-
+import { useContext } from 'react';
+import { ModalContext } from '../../../context';
 import { ReactComponent as LogOutIcon } from '../../../assets/header-icons/logout-icon.svg';
 import { ReactComponent as SettingIcon } from '../../../assets/header-icons/setting-icon.svg';
-import { useState } from 'react';
+import { Setting } from '../../SettingModal/SettingsModal/SettingModal';
 import LogoutModal from '../UserLogOutModal/UserLogOutModal';
-// import SettingModal from '../../SettingModal/SettingModal';
 
 const UserLogoModal = () => {
-  // const [settingIsOpen, setSettingIsOpen] = useState(false);
+  const { openModal } = useContext(ModalContext);
 
-  const [logoutgIsOpen, setLogoutIsOpen] = useState(false);
-
-  // const openSettingModal = () => {
-  //   setSettingIsOpen(true);
-  // };
-
-  const toggleLogoutModal = () => {
-    // setLogoutIsOpen((prevLogoutIsOpen) => !prevLogoutIsOpen);
-    // onCloseLogomodal();
-    setLogoutIsOpen(true);
+  const handleOpenModal = (modalContent) => {
+    openModal(<>{modalContent}</>);
   };
 
   return (
     <>
       <Modal>
-        <Button>
+        <Button
+          onClick={() => {
+            handleOpenModal(<Setting />);
+          }}
+        >
           <SettingIcon />
           Setting
         </Button>
 
-        <Button onClick={toggleLogoutModal}>
+        <Button onClick={() => handleOpenModal(<LogoutModal />)}>
           <LogOutIcon />
           Log Out
         </Button>
       </Modal>
-      {logoutgIsOpen && <LogoutModal onClose={toggleLogoutModal} />}
-      {/* {settingIsOpen && <SettingModal />} */}
     </>
   );
 };
