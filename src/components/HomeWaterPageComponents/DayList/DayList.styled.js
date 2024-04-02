@@ -19,6 +19,11 @@ font-size: 16px;
 line-height: 1.25;
 
 }
+@media (min-width: ${({ theme }) => theme.screens.tab}){
+grid-template-columns: repeat(auto-fill, 34px);  
+gap: 20px 22px;
+
+}
 `;
 
 const DayCell = styled.li`
