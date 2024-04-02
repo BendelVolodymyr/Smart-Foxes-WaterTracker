@@ -37,11 +37,11 @@ const authSlice = createSlice({
       .addCase(API.signIn.pending, handlePending)
       .addCase(API.signIn.fulfilled, (state, action) => {
         console.log(action);
-        state.isLoading = false;
-        state.error = null;
-        state.user = action.payload.user;
+        state.user.email = action.payload.email;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(API.signIn.rejected, handleRejected)
       .addCase(API.logout.pending, handlePending)
@@ -65,8 +65,8 @@ const authSlice = createSlice({
       })
       .addCase(API.refreshUser.fulfilled, (state, action) => {
         console.log(action.payload);
-        state.user = action.payload;
-        // state.isAuthenticated = true;
+        state.user = { ...action.payload };
+        state.isAuthenticated = true;
         state.isRefreshing = false;
         state.isLoggedIn = true;
       })

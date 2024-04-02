@@ -19,6 +19,7 @@ const UserLogOutModal = () => {
   const logOut = () => {
     console.log('DISPATCH LOG OUT');
     dispatch(logout());
+    closeModal();
   };
 
   const handleCloseModal = () => {

@@ -82,7 +82,7 @@ const LoginPage = () => {
           </ButtonPassword>
         </Label>
         <Button type="submit">Sing In</Button>
-        <LinkTo to="/registration">Sing up</LinkTo>
+        <LinkTo to="/signup">Sing up</LinkTo>
       </Form>
       <ImgWrapp>
         <ImgBottle src={bottle} alt="bottle" />
