@@ -15,32 +15,9 @@ export const Overlay = styled.div`
 `;
 
 export const Modal = styled.div`
-  position: absolute;
-  width: 280px;
-  height: 260px;
-
-  padding: 32px 24px;
-  gap: 24px;
-  /* border-radius: 10px;
-  background-color: white; */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  /* z-index: 999; */
-
-  @media screen and (min-width: 768px) {
-    width: 592px;
-    height: 208px;
-  }
-`;
-
-export const CloseBtn = styled.button`
-  position: absolute;
-  right: 0px;
-
-  width: 24px;
-  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
 `;
 
 export const Title = styled.h4`
@@ -68,7 +45,7 @@ export const ButtonWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
-    justify-content: end;
+    justify-content: start;
   }
 `;
 
@@ -85,8 +62,8 @@ export const LogoutButton = styled.button`
   line-height: 20px;
   text-align: center;
 
-  background-color: ${(props) => props.$background};
-  color: ${(props) => props.color};
+  background-color: ${props => props.$background};
+  color: ${props => props.color};
 
   @media screen and (min-width: 768px) {
     width: 160px;

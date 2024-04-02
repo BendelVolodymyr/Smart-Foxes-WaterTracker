@@ -2,13 +2,11 @@ import { useContext } from 'react';
 import { ModalContext } from '../../../context';
 import {
   ButtonWrapper,
-  CloseBtn,
   LogoutButton,
   Modal,
   Text,
   Title,
 } from './UserLogOutModal.styled';
-import { ReactComponent as Close } from '../../../assets/header-icons/close-icon.svg';
 
 const UserLogOutModal = () => {
   const { closeModal } = useContext(ModalContext);
@@ -22,11 +20,7 @@ const UserLogOutModal = () => {
   };
   return (
     <Modal>
-      <div style={{ position: 'relative' }}>
-        <CloseBtn onClick={handleCloseModal}>
-          <Close />
-        </CloseBtn>
-
+      <div>
         <Title>Log out</Title>
         <Text>Do you really want to leave?</Text>
       </div>
