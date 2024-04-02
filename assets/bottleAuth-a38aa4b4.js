@@ -1,4 +1,4 @@
-import{u as e,t,N as d,G as p,r as a}from"./index-dde9af41.js";const c="/Smart-Foxes-WaterTracker/assets/backgroundMobile-0bf10f90.png",n="/Smart-Foxes-WaterTracker/assets/backgroundDesk-54c098d2.png",x="/Smart-Foxes-WaterTracker/assets/backgroundTab-345a663e.png",g=e.div`
+import{u as e,t,N as d,G as p,r as a}from"./index-3c9738c5.js";const c="/Smart-Foxes-WaterTracker/assets/backgroundMobile-0bf10f90.png",n="/Smart-Foxes-WaterTracker/assets/backgroundDesk-54c098d2.png",x="/Smart-Foxes-WaterTracker/assets/backgroundTab-345a663e.png",g=e.div`
   @media (min-width: 320px) and (max-width: 768px) {
     padding: 24px 20px;
     display: flex;
@@ -16,7 +16,7 @@ import{u as e,t,N as d,G as p,r as a}from"./index-dde9af41.js";const c="/Smart-F
     background-size: cover;
   }
   @media (min-width: 768px) and (max-width: 1440px) {
-    padding: 32px 40px;
+    padding: 40px 32px;
   }
   @media (min-width: 1200px) and (max-width: 1440px) {
     background-image: url(${n});
@@ -37,7 +37,7 @@ import{u as e,t,N as d,G as p,r as a}from"./index-dde9af41.js";const c="/Smart-F
   background-color: #${t.lightTheme.colors.primary.bg};
   gap: 16px;
 `,h=e.h2`
-  color: #${t.lightTheme.colors.primary.text};
+  color: ${t.lightTheme.colors.primary.text};
   font-size: 26px;
   font-weight: 500;
   line-height: 1.23;
@@ -62,7 +62,7 @@ import{u as e,t,N as d,G as p,r as a}from"./index-dde9af41.js";const c="/Smart-F
     padding-right: 198px;
   }
 `,b=e.label`
-  color: #${t.lightTheme.colors.primary.text};
+  color: ${t.lightTheme.colors.primary.text};
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
@@ -73,20 +73,20 @@ import{u as e,t,N as d,G as p,r as a}from"./index-dde9af41.js";const c="/Smart-F
   width: 100%;
   height: 44px;
   border-radius: 6px;
-  border: 1px solid #${t.lightTheme.colors.secondary.color5};
-  color: #${t.lightTheme.colors.primary.accent};
-  background: #${t.lightTheme.colors.primary.bg};
+  border: 1px solid ${t.lightTheme.colors.secondary.color5};
+  color: ${t.lightTheme.colors.primary.accent};
+  background: ${t.lightTheme.colors.primary.bg};
   padding: 12px 10px;
   outline: none;
 
   &::placeholder {
-    color: #${t.lightTheme.colors.secondary.color3};
+    color: ${t.lightTheme.colors.secondary.color3};
     font-size: 16px;
     font-weight: 400;
     line-height: 1.25;
   }
   :focus {
-    color: #${t.lightTheme.colors.primary.accent};
+    color: ${t.lightTheme.colors.primary.accent};
   }
 `,f=e.button`
   border: none;
@@ -99,8 +99,8 @@ import{u as e,t,N as d,G as p,r as a}from"./index-dde9af41.js";const c="/Smart-F
   border-radius: 10px;
   padding: 8px 30px;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  background: #${t.lightTheme.colors.primary.accent};
-  color: #${t.lightTheme.colors.primary.bg};
+  background: ${t.lightTheme.colors.primary.accent};
+  color: ${t.lightTheme.colors.primary.bg};
   text-align: center;
   font-size: 16px;
   font-weight: 500;
@@ -117,13 +117,13 @@ import{u as e,t,N as d,G as p,r as a}from"./index-dde9af41.js";const c="/Smart-F
     line-height: 1.33;
   }
 `,y=e(d)`
-  color: #${t.lightTheme.colors.primary.accent};
+  color: ${t.lightTheme.colors.primary.accent};
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
   transition: transform 150ms ease-in-out;
   &:hover {
-    color: #${t.lightTheme.colors.secondary.color4};
+    color: ${t.lightTheme.colors.secondary.color4};
   }
 `,T=e.div`
   padding-top: 50px;
