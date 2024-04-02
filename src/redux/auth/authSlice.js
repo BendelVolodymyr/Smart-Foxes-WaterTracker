@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import * as API from './operations';
 
 const initialState = {
-  user: { name: null, email: null, gender: null, avatar: null },
+  user: { name: null, email: null, gender: null, avatarUrl: null, norma: null },
   // isAuthenticated: false,
   token: null,
   isRefreshing: true,
-  isLoggedIn: true,
+  isLoggedIn: false,
   isLoading: false,
   error: null,
 };
@@ -64,8 +64,9 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(API.refreshUser.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.user = action.payload;
-        state.isAuthenticated = true;
+        // state.isAuthenticated = true;
         state.isRefreshing = false;
         state.isLoggedIn = true;
       })

@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import { ModalContext } from '../../../context';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../redux/auth/operations';
 import {
   ButtonWrapper,
   CloseBtn,
@@ -11,10 +13,12 @@ import {
 import { ReactComponent as Close } from '../../../assets/header-icons/close-icon.svg';
 
 const UserLogOutModal = () => {
+  const dispatch = useDispatch();
   const { closeModal } = useContext(ModalContext);
 
   const logOut = () => {
     console.log('DISPATCH LOG OUT');
+    dispatch(logout());
   };
 
   const handleCloseModal = () => {

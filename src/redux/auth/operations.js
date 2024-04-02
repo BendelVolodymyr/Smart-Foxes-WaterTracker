@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'http://localhost:3000/api';
 
 const token = {
   set(token) {
@@ -17,7 +17,7 @@ export const signUp = createAsyncThunk(
   async (userData, thunkAPI) => {
     console.log(userData);
     try {
-      const response = await axios.post('/users/signup', userData);
+      const response = await axios.post('/users/register', userData);
       token.set(response.data.token);
       // console.log(response);
       return response.data;
@@ -40,7 +40,7 @@ export const signIn = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const logout = createAsyncThunk('users/logout', async (_, thunkAPI) => {
   try {
     const response = await axios.post('/users/logout');
 

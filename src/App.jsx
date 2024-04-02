@@ -1,10 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { RestrictedRoute } from './RestrictedRoute';
 
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import HomeWaterPage from './pages/HomeWaterPage';
 import { Main } from './components/Main/Main';
+import useAuth from './hooks/useAuth.js';
+import { useDispatch } from 'react-redux';
+import { refreshUser } from './redux/auth/operations.js';
 
 const HomeNotAuthPage = lazy(() => import('./pages/HomeNotAuth'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
@@ -13,12 +16,12 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
   // УСЕ ЩО ЗАКОМЕНТОВАНО ДОДАМ ПІСЛЯ НАЛАШТУВАННЯ REDUX
-  // const { isRefreshing } = useAuth();
-  // const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   // isRefreshing ? 'spiner' : усе що знизу
 

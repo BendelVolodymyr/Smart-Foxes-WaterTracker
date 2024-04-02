@@ -21,7 +21,7 @@ const Header = () => {
           <Link to="/">
             <Logo />
           </Link>
-          {isLoggedIn ? <UserLogo avatarUrl={user.avatar} /> : <UserAuth />}
+          {isLoggedIn ? <UserLogo avatarUrl={null} /> : <UserAuth />}
         </HeaderWrapper>
       </Container>
     </header>
