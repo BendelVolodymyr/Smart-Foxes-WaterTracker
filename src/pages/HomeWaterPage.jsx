@@ -10,7 +10,6 @@ import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList
 
 import DailyNorma from '../components/HomePageComponents/DailyNorma/DailyNorma';
 
-
 const HomeWaterPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const handleAddWaterClick = () => {

@@ -22,10 +22,10 @@ const DaysList = ({ selectedDate, onDayClick }) => {
     );
     days.push(
       <DayCell key={i} onClick={(event) => onDayClick(event, date)}>
-        <DayCircle percentage={0}>
+        <DayCircle percentage={100}>
           <DayNumber>{i}</DayNumber>
         </DayCircle>
-        <DayPercentage>0%</DayPercentage>
+        <DayPercentage>100%</DayPercentage>
       </DayCell>
     );
   }
