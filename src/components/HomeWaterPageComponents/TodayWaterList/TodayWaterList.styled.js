@@ -23,6 +23,18 @@ line-height: 1.25;
 margin-bottom: 9px;
   }
 
+
+
+  @media (min-width: ${({ theme }) => theme.screens.tab}){
+
+    h3{
+
+   font-size: 26px;
+   line-height: 1.23; 
+   margin-bottom: 12px;
+     }
+
+  }
  
 `;
 
@@ -51,6 +63,7 @@ li {
     background-color: ${p => p.theme.colors.secondary.color3};
     border-radius: 20px;
   }
+
   `
 const ListContext = styled.div`
 display:flex;
@@ -60,6 +73,16 @@ gap:12px;
 font-size: 12px;
 font-weight: 400;
 line-height: 2;
+
+
+
+@media (min-width: ${({ theme }) => theme.screens.tab}){
+
+  
+  & > :last-child {
+      margin-left: auto;
+    }
+  }
 
 `
 
@@ -79,6 +102,11 @@ const GlassSvg = styled(GlassIcon)`
   fill:${p => p.theme.colors.primary.accent};
   width: 26px;
   height: auto;
+
+
+  @media (min-width: ${({ theme }) => theme.screens.tab}){
+    width: 36px;
+  }
   
 `;
 
@@ -144,6 +172,11 @@ const PlusSvg = styled(PlusIcon)`
   stroke: ${p => p.theme.colors.primary.accent};
   width: 16px;
   height: 16px;
+
+  @media (min-width: ${({ theme }) => theme.screens.tab}){
+    width: 24px;
+  height: 24px;
+  }
  
 `;
 
@@ -164,7 +197,15 @@ color: ${p => p.theme.colors.primary.accent};
       fill: ${p => p.theme.colors.secondary.color4};
       stroke: ${p => p.theme.colors.secondary.color4};
   }
-`
+}
+
+
+@media (min-width: ${({ theme }) => theme.screens.tab}){
+  font-size: 18px;
+line-height: 1.33;
+  }
+
+`;
 
 
 
