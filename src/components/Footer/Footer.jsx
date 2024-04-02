@@ -21,6 +21,17 @@ import {
   TextGlobal,
 } from './Footer.styled';
 
+import Volodymyr from '../../assets/team/Volodymyr.jpg';
+import Daria from '../../assets/team/Daria.jpg';
+import Georgiy from '../../assets/team/Georgiy.jpg';
+import Julia from '../../assets/team/Julia.jpg';
+import Kiril from '../../assets/team/Kiril.jpg';
+import Natalia from '../../assets/team/Natalia.jpg';
+import Oksana from '../../assets/team/Oksana.jpg';
+import Oleksiy from '../../assets/team/Oleksiy.jpg';
+import Tania from '../../assets/team/Tania.jpg';
+import Tymur from '../../assets/team/Tymur.jpg';
+
 export const Footer = () => {
   const { openModal } = useContext(ModalContext);
 
@@ -31,10 +42,7 @@ export const Footer = () => {
         <TextGlobal>Front end</TextGlobal>
         <UlWrapper>
           <ListWrapper>
-            <ImageWrapper
-              src="/Smart-Foxes-WaterTracker/src/assets/team/Volodymyr.jpg"
-              alt="Volodymyr"
-            />
+            <ImageWrapper src={Volodymyr} alt="Volodymyr" />
             <InfoTeamWrapper>
               <TextPositionModal>Volodymyr Bendel</TextPositionModal>
               <TextTeamPosition>Team lead project</TextTeamPosition>
@@ -52,10 +60,7 @@ export const Footer = () => {
             </InfoTeamWrapper>
           </ListWrapper>
           <ListWrapper>
-            <ImageWrapper
-              src="/Smart-Foxes-WaterTracker/src/assets/team/Natalia.jpg"
-              alt="Natalia"
-            />
+            <ImageWrapper src={Natalia} alt="Natalia" />
             <InfoTeamWrapper>
               <TextPositionModal>Nataliia Filina</TextPositionModal>
               <TextTeamPosition>Developer</TextTeamPosition>
@@ -73,10 +78,7 @@ export const Footer = () => {
             </InfoTeamWrapper>
           </ListWrapper>
           <ListWrapper>
-            <ImageWrapper
-              src="/Smart-Foxes-WaterTracker/src/assets/team/Oksana.jpg"
-              alt="Oksana"
-            />
+            <ImageWrapper src={Oksana} alt="Oksana" />
             <InfoTeamWrapper>
               <TextPositionModal>Oksana Lesjuk</TextPositionModal>
               <TextTeamPosition>Developer</TextTeamPosition>
@@ -94,10 +96,7 @@ export const Footer = () => {
             </InfoTeamWrapper>
           </ListWrapper>
           <ListWrapper>
-            <ImageWrapper
-              src="/Smart-Foxes-WaterTracker/src/assets/team/Tania.jpg"
-              alt="Tania"
-            />
+            <ImageWrapper src={Tania} alt="Tania" />
             <InfoTeamWrapper>
               <TextPositionModal>Tania Sibilova</TextPositionModal>
               <TextTeamPosition>Developer</TextTeamPosition>
@@ -116,10 +115,7 @@ export const Footer = () => {
           </ListWrapper>
 
           <ListWrapper>
-            <ImageWrapper
-              src="/Smart-Foxes-WaterTracker/src/assets/team/Kiril.jpg"
-              alt="Kiril"
-            />
+            <ImageWrapper src={Kiril} alt="Kiril" />
             <InfoTeamWrapper>
               <TextPositionModal>Kyrylo Matkash</TextPositionModal>
               <TextTeamPosition>Developer</TextTeamPosition>
@@ -137,10 +133,7 @@ export const Footer = () => {
             </InfoTeamWrapper>
           </ListWrapper>
           <ListWrapper>
-            <ImageWrapper
-              src="/Smart-Foxes-WaterTracker/src/assets/team/Oleksiy.jpg"
-              alt="Oleksiy"
-            />
+            <ImageWrapper src={Oleksiy} alt="Oleksiy" />
             <InfoTeamWrapper>
               <TextPositionModal>Oleksiy Zhmuida</TextPositionModal>
               <TextTeamPosition>Developer</TextTeamPosition>
@@ -158,10 +151,7 @@ export const Footer = () => {
             </InfoTeamWrapper>
           </ListWrapper>
           <ListWrapper>
-            <ImageWrapper
-              src="/Smart-Foxes-WaterTracker/src/assets/team/Georgiy.jpg"
-              alt="Georgiy"
-            />
+            <ImageWrapper src={Georgiy} alt="Georgiy" />
             <InfoTeamWrapper>
               <TextPositionModal>Georgiy Sergeev</TextPositionModal>
               <TextTeamPosition>Developer</TextTeamPosition>
@@ -182,10 +172,7 @@ export const Footer = () => {
         <TextGlobal>Backend</TextGlobal>
         <UlWrapper>
           <ListWrapper>
-            <ImageWrapper
-              src="/Smart-Foxes-WaterTracker/src/assets/team/Julia.jpg"
-              alt="Julia"
-            />
+            <ImageWrapper src={Julia} alt="Julia" />
             <InfoTeamWrapper>
               <TextPositionModal>Yuliya Turasova</TextPositionModal>
               <TextTeamPosition>Developer</TextTeamPosition>
@@ -203,10 +190,7 @@ export const Footer = () => {
             </InfoTeamWrapper>
           </ListWrapper>
           <ListWrapper>
-            <ImageWrapper
-              src="/Smart-Foxes-WaterTracker/src/assets/team/Tymur.jpg"
-              alt="Tymur"
-            />
+            <ImageWrapper src={Tymur} alt="Tymur" />
             <InfoTeamWrapper>
               <TextPositionModal>Tymur Prysiazhniuk</TextPositionModal>
               <TextTeamPosition>Developer</TextTeamPosition>
@@ -224,10 +208,7 @@ export const Footer = () => {
             </InfoTeamWrapper>
           </ListWrapper>
           <ListWrapper>
-            <ImageWrapper
-              src="/Smart-Foxes-WaterTracker/src/assets/team/Daria.jpg"
-              alt="Daria"
-            />
+            <ImageWrapper src={Daria} alt="Daria" />
             <InfoTeamWrapper>
               <TextPositionModal>Daria Korolenko</TextPositionModal>
               <TextTeamPosition>Developer</TextTeamPosition>

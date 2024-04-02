@@ -2,6 +2,7 @@ import {
   Blok,
   BlokList,
   BlokListItems,
+  BlokListItemsContainer,
   BlokListItemsText,
   BlokTitle,
   Button,
@@ -23,15 +24,23 @@ export const WaterСonsumptionTracker = () => {
         <BlokTitle>Tracker Benefits</BlokTitle>
         <BlokList>
           <BlokListItems>
-            <IoCalendarOutline size="32px" color="#407BFF" />
+            <BlokListItemsContainer>
+              <IoCalendarOutline size="100%" color="#407BFF" />
+            </BlokListItemsContainer>
             <BlokListItemsText>Habit drive</BlokListItemsText>
           </BlokListItems>
+
           <BlokListItems>
-            <HiOutlinePresentationChartBar size="32px" color="#407BFF" />
+            <BlokListItemsContainer>
+              <HiOutlinePresentationChartBar size="100%" color="#407BFF" />
+            </BlokListItemsContainer>
             <BlokListItemsText>View statistics</BlokListItemsText>
           </BlokListItems>
+
           <BlokListItems>
-            <HiOutlineWrenchScrewdriver size="32px" color="#407BFF" />
+            <BlokListItemsContainer>
+              <HiOutlineWrenchScrewdriver size="100%" color="#407BFF" />
+            </BlokListItemsContainer>
             <BlokListItemsText>Personal rate setting</BlokListItemsText>
           </BlokListItems>
         </BlokList>
