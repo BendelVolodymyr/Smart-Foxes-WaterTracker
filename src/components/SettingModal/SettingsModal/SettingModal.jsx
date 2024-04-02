@@ -4,22 +4,22 @@ import {
   StyledContainer,
   StyledHeader,
   StyledTitle,
-  StyledCloseButton,
+  // StyledCloseButton,
 } from './settings.styled';
 import UserInfoForm from '../UserInfo/userInfoForm';
-import { Close } from '@mui/icons-material';
+// import { Close } from '@mui/icons-material';
 
 export const Setting = ({ onClose }) => {
   const modalRef = useRef(null);
 
   useEffect(() => {
-    const handleEscapeKey = event => {
+    const handleEscapeKey = (event) => {
       if (event.key === 'Escape') {
         onClose();
       }
     };
 
-    const handleCloseModal = event => {
+    const handleCloseModal = (event) => {
       if (!modalRef.current.contains(event.target)) {
         onClose();
       }
@@ -38,9 +38,9 @@ export const Setting = ({ onClose }) => {
     <StyledContainer ref={modalRef}>
       <StyledHeader>
         <StyledTitle></StyledTitle>
-        <StyledCloseButton onClick={onClose}>
+        {/* <StyledCloseButton onClick={onClose}>
           <Close />
-        </StyledCloseButton>
+        </StyledCloseButton> */}
       </StyledHeader>
       <AvatarsUploader />
       <UserInfoForm />
