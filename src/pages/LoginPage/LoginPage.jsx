@@ -4,6 +4,8 @@ import { HiOutlineEyeSlash } from "react-icons/hi2";
 import { PiEyeLight } from "react-icons/pi";
 import { useVisiblePassword } from "../../hooks/useVisiblePassword";
 import bottleImg from './image/bottleAuth.png'
+// import { useDispatch } from "react-redux";
+// import { signIn } from "../../redux/auth/operations";
 
 
 const LoginPage = () => {
@@ -11,6 +13,7 @@ const LoginPage = () => {
 const {handleShowPassword, toggleIcon, type} = useVisiblePassword();
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
+// const dispatch = useDispatch();
 const bottle = bottleImg;
 
 
@@ -24,6 +27,7 @@ const handleChangePassword = event => {
 
 const handleSubmit = event =>{
   event.preventDefault();
+  // dispatch(signIn(email, password));
   setEmail("");
   setPassword("");
 }
@@ -49,7 +53,7 @@ const handleSubmit = event =>{
   <Button type="submit">
     Sing In
   </Button>
-  <LinkTo to="/registration">Sing up</LinkTo>
+  <LinkTo to="/signup">Sing up</LinkTo>
 </Form>
 <ImgWrapp>
   <ImgBottle src={bottle} alt="bottle" />
