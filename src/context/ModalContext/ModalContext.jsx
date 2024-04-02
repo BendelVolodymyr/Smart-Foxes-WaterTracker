@@ -13,6 +13,9 @@ export const ModalProvider = ({ children }) => {
   const [modalShowing, setModalShowing] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [themeShow, setThemeShow] = useState(true);
+  const toggleTheme = () => {
+    setThemeShow(!themeShow);
+  };
 
   const openModal = (modalConfig) => {
     setModalContent(modalConfig.props);
@@ -26,6 +29,7 @@ export const ModalProvider = ({ children }) => {
   const valueModalProvider = {
     openModal,
     closeModal,
+    toggleTheme,
   };
   return (
     <ModalContext.Provider value={valueModalProvider}>

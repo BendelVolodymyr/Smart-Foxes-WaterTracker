@@ -5,6 +5,8 @@ import { PiEyeLight } from "react-icons/pi";
 import { ButtonPassword } from "./LoginPage/LoginPage.styled";
 import { useVisiblePassword } from "../hooks/useVisiblePassword";
 import bottleImg from './LoginPage/image/bottleAuth.png'
+// import { useDispatch } from "react-redux";
+// import { signUp } from "../redux/auth/operations";
 const Registration = () => {
   const bottle = bottleImg;
   const {handleShowPassword, toggleIcon, type} = useVisiblePassword();
@@ -12,6 +14,7 @@ const Registration = () => {
  const [email, setEmail] = useState("");
  const [password, setPassword] = useState(""); 
  const [confirmPassword, setConfirmPassword] = useState("");
+//  const dispatch = useDispatch();
   
  const handleChangeEmail = event => {
   setEmail(event.target.value);
@@ -27,6 +30,7 @@ const handleChangeConfirmPassword = event => {
 
 const handleSubmit = event =>{
     event.preventDefault();
+    // dispatch(signUp(email, password, confirmPassword))
     setEmail("");
     setPassword("");
     setConfirmPassword("");
@@ -57,7 +61,7 @@ Repeat password
 <Button type="submit">
 Sing Up
 </Button>
-<LinkTo to="/login">Sing in</LinkTo>
+<LinkTo to="/signin">Sing in</LinkTo>
 </Form>
 <ImgWrapp>
   <ImgBottle src={bottle} alt="bottle" />
