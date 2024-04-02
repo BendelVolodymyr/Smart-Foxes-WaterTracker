@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { IoMdClose } from 'react-icons';
+import { IoMdClose } from 'react-icons/io';
 
 const showBackdrop = keyframes`
 0% {
@@ -61,8 +61,8 @@ export const BackdropWrapper = styled.div`
 export const ModalWrapper = styled.div`
   position: relative;
   overflow: auto;
-  width: ${p => (p.$isWidth ? p.$isWidth : '280px')};
-  height: ${p => (p.$isHeight ? p.$isHeight : '80%')};
+  width: ${(p) => (p.$isWidth ? p.$isWidth : '280px')};
+  height: ${(p) => (p.$isHeight ? p.$isHeight : '80%')};
   padding: 20px;
 
   background-color: ${(p) => p.theme.colors.primary.bg};
