@@ -1,4 +1,4 @@
-import{n as e,G as l,j as i,L as d,F as t}from"./index-3c9738c5.js";import{H as x,a as p}from"./index-1db5e05f.js";const h=e.div`
+import{n as e,G as l,j as i,H as d,a as x,L as p,F as t}from"./index-beac28e4.js";const h=e.div`
   display: flex;
   flex-direction: column;
   width: 280px;
@@ -122,7 +122,7 @@ import{n as e,G as l,j as i,L as d,F as t}from"./index-3c9738c5.js";import{H as 
   @media screen and (min-width: 1440px) {
     width: 384px;
   }
-`;function w(a){return l({tag:"svg",attr:{viewBox:"0 0 512 512"},child:[{tag:"rect",attr:{width:"416",height:"384",x:"48",y:"80",fill:"none",strokeLinejoin:"round",strokeWidth:"32",rx:"48"},child:[]},{tag:"circle",attr:{cx:"296",cy:"232",r:"24"},child:[]},{tag:"circle",attr:{cx:"376",cy:"232",r:"24"},child:[]},{tag:"circle",attr:{cx:"296",cy:"312",r:"24"},child:[]},{tag:"circle",attr:{cx:"376",cy:"312",r:"24"},child:[]},{tag:"circle",attr:{cx:"136",cy:"312",r:"24"},child:[]},{tag:"circle",attr:{cx:"216",cy:"312",r:"24"},child:[]},{tag:"circle",attr:{cx:"136",cy:"392",r:"24"},child:[]},{tag:"circle",attr:{cx:"216",cy:"392",r:"24"},child:[]},{tag:"circle",attr:{cx:"296",cy:"392",r:"24"},child:[]},{tag:"path",attr:{fill:"none",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:"32",d:"M128 48v32m256-32v32"},child:[]},{tag:"path",attr:{fill:"none",strokeLinejoin:"round",strokeWidth:"32",d:"M464 160H48"},child:[]}]})(a)}const k=()=>i.jsxs(h,{children:[i.jsx(g,{children:"Water consumption tracker"}),i.jsx(f,{children:"Record daily water intake and track"}),i.jsxs(m,{children:[i.jsx(u,{children:"Tracker Benefits"}),i.jsxs(y,{children:[i.jsxs(r,{children:[i.jsx(s,{children:i.jsx(w,{size:"100%",color:"#407BFF"})}),i.jsx(c,{children:"Habit drive"})]}),i.jsxs(r,{children:[i.jsx(s,{children:i.jsx(x,{size:"100%",color:"#407BFF"})}),i.jsx(c,{children:"View statistics"})]}),i.jsxs(r,{children:[i.jsx(s,{children:i.jsx(p,{size:"100%",color:"#407BFF"})}),i.jsx(c,{children:"Personal rate setting"})]})]})]}),i.jsx(d,{to:"/signup",children:i.jsx(j,{type:"button",children:"Try tracker"})})]}),b=e.div`
+`;function w(a){return l({tag:"svg",attr:{viewBox:"0 0 512 512"},child:[{tag:"rect",attr:{width:"416",height:"384",x:"48",y:"80",fill:"none",strokeLinejoin:"round",strokeWidth:"32",rx:"48"},child:[]},{tag:"circle",attr:{cx:"296",cy:"232",r:"24"},child:[]},{tag:"circle",attr:{cx:"376",cy:"232",r:"24"},child:[]},{tag:"circle",attr:{cx:"296",cy:"312",r:"24"},child:[]},{tag:"circle",attr:{cx:"376",cy:"312",r:"24"},child:[]},{tag:"circle",attr:{cx:"136",cy:"312",r:"24"},child:[]},{tag:"circle",attr:{cx:"216",cy:"312",r:"24"},child:[]},{tag:"circle",attr:{cx:"136",cy:"392",r:"24"},child:[]},{tag:"circle",attr:{cx:"216",cy:"392",r:"24"},child:[]},{tag:"circle",attr:{cx:"296",cy:"392",r:"24"},child:[]},{tag:"path",attr:{fill:"none",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:"32",d:"M128 48v32m256-32v32"},child:[]},{tag:"path",attr:{fill:"none",strokeLinejoin:"round",strokeWidth:"32",d:"M464 160H48"},child:[]}]})(a)}const k=()=>i.jsxs(h,{children:[i.jsx(g,{children:"Water consumption tracker"}),i.jsx(f,{children:"Record daily water intake and track"}),i.jsxs(m,{children:[i.jsx(u,{children:"Tracker Benefits"}),i.jsxs(y,{children:[i.jsxs(r,{children:[i.jsx(s,{children:i.jsx(w,{size:"100%",color:"#407BFF"})}),i.jsx(c,{children:"Habit drive"})]}),i.jsxs(r,{children:[i.jsx(s,{children:i.jsx(d,{size:"100%",color:"#407BFF"})}),i.jsx(c,{children:"View statistics"})]}),i.jsxs(r,{children:[i.jsx(s,{children:i.jsx(x,{size:"100%",color:"#407BFF"})}),i.jsx(c,{children:"Personal rate setting"})]})]})]}),i.jsx(p,{to:"/signup",children:i.jsx(j,{type:"button",children:"Try tracker"})})]}),b=e.div`
   display: flex;
   flex-direction: column;
   padding: 16px 24px;
@@ -192,4 +192,4 @@ import{n as e,G as l,j as i,L as d,F as t}from"./index-3c9738c5.js";import{H as 
     padding: 80px 0 294px;
     justify-content: center;
   }
-`,M=()=>i.jsxs(v,{children:[i.jsx(k,{}),i.jsx(F,{})]});export{M as default};
+`,L=()=>i.jsxs(v,{children:[i.jsx(k,{}),i.jsx(F,{})]});export{L as default};
