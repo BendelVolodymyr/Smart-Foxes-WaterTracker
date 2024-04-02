@@ -1,11 +1,5 @@
 import styled from '@emotion/styled';
-// @media only screen and (min-width: 768px) {
-//     gap: 60px;
-//   }
-//   @media screen and (min-width: 1440px) {
-//     flex-direction: row;
-//     gap: 81px;
-//   }
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -105,6 +99,15 @@ export const BlokListItems = styled.li`
   }
 `;
 
+export const BlokListItemsContainer = styled.div`
+  width: 32px;
+  height: 32px;
+  @media only screen and (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
+`;
+
 export const BlokListItemsText = styled.div`
   color: #2f2f2f;
   font-family: Roboto;
@@ -130,4 +133,13 @@ export const Button = styled.button`
   font-style: normal;
   font-weight: 500;
   line-height: 125%;
+  @media only screen and (min-width: 768px) {
+    width: 336px;
+    padding: 10px 30px;
+    font-size: 18px;
+    line-height: 133.333%;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 384px;
+  }
 `;

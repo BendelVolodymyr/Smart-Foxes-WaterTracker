@@ -12,7 +12,7 @@ padding: 24px 13px;
 
 
 border-radius: 10px;
-background: ${({ theme }) => `#${theme.colors.lightTheme.primary.bg}`};
+background:${p => p.theme.colors.primary.bg};
 box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.30);
 
 
@@ -37,7 +37,7 @@ box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.30);
 // `;
 
 const PopoverDate = styled.h2`
-color: ${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+color:${p => p.theme.colors.primary.accent};
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
@@ -49,7 +49,7 @@ display: flex;
 flex-direction: column;
 gap: 16px;
 
-color: ${({ theme }) => `#${theme.colors.lightTheme.primary.text}`};
+color: ${p => p.theme.colors.primary.text};
 
 font-size: 16px;
 font-style: normal;
@@ -60,7 +60,7 @@ line-height: 1.25;
 const StatItem = styled.li`
 
 span{
-  color:${({ theme }) => `#${theme.colors.lightTheme.primary.accent}`};
+  color:${p => p.theme.colors.primary.accent};
 
   font-size: 18px;
 

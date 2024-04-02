@@ -23,7 +23,7 @@ export const LoginContainer = styled.div`
     background-size: cover;
   }
   @media (min-width: 768px) and (max-width: 1440px) {
-    padding: 32px 40px;
+    padding: 40px 32px;
   }
   @media (min-width: 1200px) and (max-width: 1440px) {
     background-image: url(${bgDes});
@@ -46,7 +46,7 @@ export const LoginContainer = styled.div`
 `;
 
 export const AuthTitle = styled.h2`
-  color: #${theme.lightTheme.colors.primary.text};
+  color: ${theme.lightTheme.colors.primary.text};
   font-size: 26px;
   font-weight: 500;
   line-height: 1.23;
@@ -75,7 +75,7 @@ export const Form = styled.form`
 `;
 
 export const Label = styled.label`
-  color: #${theme.lightTheme.colors.primary.text};
+  color: ${theme.lightTheme.colors.primary.text};
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
@@ -88,20 +88,20 @@ export const Input = styled.input`
   width: 100%;
   height: 44px;
   border-radius: 6px;
-  border: 1px solid #${theme.lightTheme.colors.secondary.color5};
-  color: #${theme.lightTheme.colors.primary.accent};
-  background: #${theme.lightTheme.colors.primary.bg};
+  border: 1px solid ${theme.lightTheme.colors.secondary.color5};
+  color: ${theme.lightTheme.colors.primary.accent};
+  background: ${theme.lightTheme.colors.primary.bg};
   padding: 12px 10px;
   outline: none;
 
   &::placeholder {
-    color: #${theme.lightTheme.colors.secondary.color3};
+    color: ${theme.lightTheme.colors.secondary.color3};
     font-size: 16px;
     font-weight: 400;
     line-height: 1.25;
   }
   :focus {
-    color: #${theme.lightTheme.colors.primary.accent};
+    color: ${theme.lightTheme.colors.primary.accent};
   }
 `;
 
@@ -118,8 +118,8 @@ export const Button = styled.button`
   border-radius: 10px;
   padding: 8px 30px;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  background: #${theme.lightTheme.colors.primary.accent};
-  color: #${theme.lightTheme.colors.primary.bg};
+  background: ${theme.lightTheme.colors.primary.accent};
+  color: ${theme.lightTheme.colors.primary.bg};
   text-align: center;
   font-size: 16px;
   font-weight: 500;
@@ -138,13 +138,13 @@ export const Button = styled.button`
 `;
 
 export const LinkTo = styled(NavLink)`
-  color: #${theme.lightTheme.colors.primary.accent};
+  color: ${theme.lightTheme.colors.primary.accent};
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
   transition: transform 150ms ease-in-out;
   &:hover {
-    color: #${theme.lightTheme.colors.secondary.color4};
+    color: ${theme.lightTheme.colors.secondary.color4};
   }
 `;
 

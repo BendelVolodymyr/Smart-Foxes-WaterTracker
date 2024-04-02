@@ -9,6 +9,10 @@ export const Blok = styled.div`
   border-radius: 10px;
   background: #ecf2ff;
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
+  @media only screen and (min-width: 768px) {
+    width: 494px;
+    padding: 32px 24px;
+  }
 `;
 
 export const BlokTitle = styled.div`
@@ -43,4 +47,7 @@ export const BlokListItemsText = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 125%;
+  @media only screen and (min-width: 768px) {
+    width: 430px;
+  }
 `;
