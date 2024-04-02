@@ -13,9 +13,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/* <Provider store={}>
       <PersistGate loading={null}> */}
-    <BrowserRouter basename="/Smart-Foxes-WaterTracker">
-      <ModalProvider><App /></ModalProvider>
-      
+    <BrowserRouter basename="/Smart-Foxes-WaterTracker/">
+      <ModalProvider>
+        <App />
+      </ModalProvider>
     </BrowserRouter>
     {/* </PersistGate>
     </Provider> */}

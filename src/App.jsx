@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy, useState } from 'react';
 import { RestrictedRoute } from './RestrictedRoute';
 
@@ -6,12 +6,12 @@ import SharedLayout from 'components/SharedLayout/SharedLayout';
 import HomeWaterPage from './pages/HomeWaterPage';
 import { Main } from './components/Main/Main';
 
-const HomeNotAuthPage = lazy(() => import('./pages/HomeNotAuth'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
 const Registration = lazy(() => import('./pages/RegistrationPage.jsx'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
+  const [test, setTest] = useState(true);
   // УСЕ ЩО ЗАКОМЕНТОВАНО ДОДАМ ПІСЛЯ НАЛАШТУВАННЯ REDUX
   // const { isRefreshing } = useAuth();
   // const dispatch = useDispatch();
@@ -21,14 +21,16 @@ function App() {
   // }, [dispatch]);
 
   // isRefreshing ? 'spiner' : усе що знизу
-
+  // <Route index element={isAuth ? <HomeWaterPage /> : <Main />} />  це буде при авторизації
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomeNotAuthPage />} />
-        <Route path="/welcome" element={<Main />} />
         <Route
-          path="/login"
+          index
+          element={test ? <Navigate to="/welcome" /> : <Navigate to="/home" />}
+        />
+        <Route
+          path="/signin"
           element={
             <RestrictedRoute
               redirectTo="/Smart-Foxes-WaterTracker/home"
@@ -37,7 +39,7 @@ function App() {
           }
         />
         <Route
-          path="/registration"
+          path="/signup"
           element={
             <RestrictedRoute redirectTo="/home" component={<Registration />} />
           }
@@ -47,6 +49,10 @@ function App() {
           element={
             <RestrictedRoute redirectTo="/" component={<HomeWaterPage />} />
           }
+        />
+        <Route
+          path="/welcome"
+          element={<RestrictedRoute redirectTo="/home" component={<Main />} />}
         />
       </Route>
       <Route path="*" element={<NotFoundPage />} />

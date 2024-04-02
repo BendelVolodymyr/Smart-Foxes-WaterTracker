@@ -25,8 +25,6 @@ const HomeWaterPage = () => {
     }
   }, [modalOpen]);
 
-
- main
   return (
     <HomePageContainer>
       <LeftBoxWrapper>
