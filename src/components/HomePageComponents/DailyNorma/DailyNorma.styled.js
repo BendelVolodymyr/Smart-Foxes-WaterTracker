@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from '../../../styles/theme';
 
 const DailyWaterWrapper = styled.div`
   padding: 8px 20px 8px 20px;
@@ -9,7 +8,7 @@ const DailyWaterWrapper = styled.div`
   gap: 12px;
   width: 164px;
   border-radius: 10px;
-  border-color: #${theme.lightTheme.colors.secondary.color1};
+  border-color: ${({ theme }) => `${theme.colors.secondary.color1}`};
 `;
 const DailyWrapper = styled.div`
   display: flex;
@@ -19,9 +18,9 @@ const DailyWrapper = styled.div`
 `;
 const DailyNormaP = styled.p`
   font-size: 18px;
-  font-weight: ${theme.lightTheme.fontWeights.medium};
+  font-weight: ${({ theme }) => `${theme.fontWeights.medium}`};
   line-height: 24px;
-  color: #${theme.lightTheme.colors.primary.text};
+  color: ${({ theme }) => `${theme.colors.primary.text}`};
   white-space: nowrap;
 `;
 
@@ -38,7 +37,7 @@ const NumberDailyNorma = styled.p`
   font-weight: 700;
   line-height: 24px;
   text-align: left;
-  color: #${theme.lightTheme.colors.primary.accent};
+  color: ${({ theme }) => `${theme.colors.primary.accent}`};
 `;
 
 export {

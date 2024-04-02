@@ -9,7 +9,6 @@ import {
 import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
 
 import DailyNorma from '../components/HomePageComponents/DailyNorma/DailyNorma';
-import DailyNormaModal from '../components/HomePageComponents/DailyNormaModal/DailyNormaModal';
 
 
 const HomeWaterPage = () => {
@@ -30,7 +29,6 @@ const HomeWaterPage = () => {
   return (
     <HomePageContainer>
       <LeftBoxWrapper>
-        <DailyNormaModal />
         <DailyNorma ModalEditWaterNorma={handleAddWaterClick}></DailyNorma>
       </LeftBoxWrapper>
       <RightBoxWrapper>
