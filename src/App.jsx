@@ -5,9 +5,14 @@ import { RestrictedRoute } from './RestrictedRoute';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 // import HomeWaterPage from './pages/HomeWaterPage';
 // import { Main } from './components/Main/Main';
-import useAuth from './hooks/useAuth.js';
+// import useAuth from './hooks/useAuth.js';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from './redux/auth/operations.js';
+import { Navigate } from 'react-router-dom';
+import { Suspense } from 'react';
+
+import { Loader } from './components/Loader/Loader.jsx';
+// const Loader = lazy(() => import('./components/Loader/Loader.jsx'));
 
 const Main = lazy(() => import('./pages/Main/Main.jsx'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
@@ -18,7 +23,7 @@ const HomeWaterPage = lazy(() => import('./pages/HomeWaterPage.jsx'));
 function App() {
   const [test, setTest] = useState(true);
   // УСЕ ЩО ЗАКОМЕНТОВАНО ДОДАМ ПІСЛЯ НАЛАШТУВАННЯ REDUX
-  const { isRefreshing } = useAuth();
+  // const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {

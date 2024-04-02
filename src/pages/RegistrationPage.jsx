@@ -109,7 +109,7 @@ const Registration = () => {
           </ButtonPassword>
         </Label>
         <Button type="submit">Sing Up</Button>
-        <LinkTo to="/login">Sing in</LinkTo>
+        <LinkTo to="/signin">Sing in</LinkTo>
       </Form>
       <ImgWrapp>
         <ImgBottle src={bottle} alt="bottle" />
