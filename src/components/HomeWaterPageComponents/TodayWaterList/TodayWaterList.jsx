@@ -18,6 +18,11 @@ import {
 import TodayDelModal from '../TodayDelModal/TodayDelModal';
 import { ModalContext } from '../../../context';
 
+//заглушка для модалки
+const TodayEditModal = () => {
+  return <div> Тут колись буде модалка TodayEditModal</div>;
+};
+
 const TodayWaterList = ({ handleAddWaterClick }) => {
   //заглушка. замінити на дані зі стейту
   const waterDayList = [
@@ -44,12 +49,12 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
   const handleEdit = (portion) => {
     setSelectedPortion(portion);
     console.log(selectedPortion);
-    // openModal(
-    //   <TodayEditModal
-    //     portion={portion}
-    //     onClose={() => setSelectedPortion(null)}
-    //   />
-    // );
+
+    openModal(
+      <>
+        <TodayEditModal portion={portion} />
+      </>
+    );
   };
 
   return (

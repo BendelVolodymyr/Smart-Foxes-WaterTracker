@@ -12,7 +12,7 @@ import { ModalContext } from '../context';
 
 //заглушка для модалки
 const AddWaterModal = () => {
-  return <div>AddWaterModal</div>;
+  return <div> Тут колись буде модалка AddWaterModal</div>;
 };
 
 const HomeWaterPage = () => {
