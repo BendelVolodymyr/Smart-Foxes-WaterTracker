@@ -75,7 +75,8 @@ export const DailyNormaModal = ({ onClose }) => {
     }
   };
 
-  const handleSave = () => {
+  const handleSave = (e) => {
+    e.preventDefault();
     const parseDailyNorma = parseFloat(dailyNorma);
     const isValid =
       (userSportsActivite > 0 && userWeight > 0) || userWaterPredict > 0;
