@@ -28,22 +28,21 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
     { id: 5, portion: '250', date: '2024-03-30T19:00:00.000Z' },
     { id: 6, portion: '250', date: '2024-03-30T20:00:00.000Z' },
   ];
-  console.log(ModalContext);
+
   const { openModal } = useContext(ModalContext);
 
-  console.log(openModal);
   const [selectedPortion, setSelectedPortion] = useState(null);
 
   //заглушки для хендлерів
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     openModal(
       <>
-        <TodayDelModal  id={id} />
+        <TodayDelModal id={id} />
       </>
     );
   };
 
-  const handleEdit = portion => {
+  const handleEdit = (portion) => {
     setSelectedPortion(portion);
     console.log(selectedPortion);
     // openModal(
@@ -59,7 +58,7 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
       <h3>Today</h3>
       {waterPortions && waterPortions.length > 0 && (
         <PortionsList>
-          {waterPortions.map(portion => (
+          {waterPortions.map((portion) => (
             <li key={portion.id}>
               <ListContext>
                 <GlassSvg />
