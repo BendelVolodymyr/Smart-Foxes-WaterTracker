@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 
@@ -17,18 +17,15 @@ const HomeWaterPage = lazy(() => import('./pages/HomeWaterPage.jsx'));
 
 function App() {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useAuth();
-  // УСЕ ЩО ЗАКОМЕНТОВАНО ДОДАМ ПІСЛЯ НАЛАШТУВАННЯ REDUX
-  // const { isRefreshing } = useAuth();
-  // const dispatch = useDispatch();
+  const { isLoggedIn, isRefreshing } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  // isRefreshing ? 'spiner' : усе що знизу
-  // <Route index element={isAuth ? <HomeWaterPage /> : <Main />} />  це буде при авторизації
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
