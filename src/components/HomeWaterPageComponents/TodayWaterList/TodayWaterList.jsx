@@ -43,7 +43,7 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
               <ListContext>
                 <GlassSvg />
                 <Portion>{`${portion.portion} ml `}</Portion>
-                <span>{formatTime(portion.date)}</span>
+                <span>{formatTime(portion.date, true)}</span>
               </ListContext>
               <ListButtons>
                 <ButtonEdit onClick={() => handleEdit(portion)}>
