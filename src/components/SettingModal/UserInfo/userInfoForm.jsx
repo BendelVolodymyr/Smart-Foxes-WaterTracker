@@ -25,8 +25,8 @@ const UserInfoForm = () => {
   const [showRepPassword, setShowRepPassword] = useState(false);
 
   return (
-    <Formik
-      initialValues={{
+    <Formik 
+    initialValues={{
         gender: 'female',
         name: '',
         email: '',
