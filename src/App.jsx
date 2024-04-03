@@ -52,12 +52,7 @@ function App() {
               />
             }
           />
-          <Route
-            path="/home"
-            element={
-              <RestrictedRoute redirectTo="/" component={<HomeWaterPage />} />
-            }
-          />
+          <Route path="/home" element={<HomeWaterPage />} />
           <Route
             path="/welcome"
             element={
