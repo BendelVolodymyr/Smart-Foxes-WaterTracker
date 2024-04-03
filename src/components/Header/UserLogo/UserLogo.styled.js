@@ -7,7 +7,7 @@ export const UserLogoWrapper = styled.div`
   align-items: center;
 `;
 export const UserName = styled.p`
-  width: 166px;
+  max-width: 166px;
   overflow: auto;
   font-size: 16px;
 

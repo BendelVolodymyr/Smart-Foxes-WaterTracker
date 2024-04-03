@@ -12,17 +12,16 @@ export const ModalContext = createContext({
 export const ModalProvider = ({ children }) => {
   const [modalShowing, setModalShowing] = useState(false);
   const [modalContent, setModalContent] = useState(null);
-  const [width, setWidth] = useState(null);
-  const [height, setHeight] = useState(null);
+  const [overflow, setOverflow] = useState(null);
   const [themeShow, setThemeShow] = useState(true);
+
   const toggleTheme = () => {
     setThemeShow(!themeShow);
   };
 
-  const openModal = (modalConfig, width, height) => {
+  const openModal = (modalConfig, inOverflow) => {
     setModalContent(modalConfig.props);
-    setWidth(width);
-    setHeight(height);
+    setOverflow(inOverflow);
     setModalShowing(true);
   };
 
@@ -35,11 +34,12 @@ export const ModalProvider = ({ children }) => {
     closeModal,
     toggleTheme,
   };
+
   return (
     <ModalContext.Provider value={valueModalProvider}>
       <ThemeProvider theme={themeShow ? theme.lightTheme : theme.nightTheme}>
         {modalShowing && (
-          <ModalFooter {...modalContent} inWidth={width} inHeight={height} />
+          <ModalFooter {...modalContent} inOverflow={overflow} />
         )}
         {children}
       </ThemeProvider>

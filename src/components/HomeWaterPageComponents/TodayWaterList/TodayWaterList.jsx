@@ -1,3 +1,4 @@
+import { useContext, useState } from 'react';
 import formatTime from '../../../helpers/formatTime';
 import {
   AddWaterBtn,
@@ -14,6 +15,9 @@ import {
   TodayBoxWrapper,
 } from './TodayWaterList.styled';
 
+import TodayDelModal from '../TodayDelModal/TodayDelModal';
+import { ModalContext } from '../../../context';
+
 const TodayWaterList = ({ handleAddWaterClick }) => {
   //заглушка. замінити на дані зі стейту
   const waterPortions = [
@@ -24,13 +28,29 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
     { id: 5, portion: '250', date: '2024-03-30T19:00:00.000Z' },
     { id: 6, portion: '250', date: '2024-03-30T20:00:00.000Z' },
   ];
+
+  const { openModal } = useContext(ModalContext);
+
+  const [selectedPortion, setSelectedPortion] = useState(null);
+
   //заглушки для хендлерів
   const handleDelete = (id) => {
-    console.log('delete', id);
+    openModal(
+      <>
+        <TodayDelModal id={id} />
+      </>
+    );
   };
 
   const handleEdit = (portion) => {
-    console.log('edit', portion);
+    setSelectedPortion(portion);
+    console.log(selectedPortion);
+    // openModal(
+    //   <TodayEditModal
+    //     portion={portion}
+    //     onClose={() => setSelectedPortion(null)}
+    //   />
+    // );
   };
 
   return (
@@ -43,7 +63,7 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
               <ListContext>
                 <GlassSvg />
                 <Portion>{`${portion.portion} ml `}</Portion>
-                <span>{formatTime(portion.date)}</span>
+                <span>{formatTime(portion.date, true)}</span>
               </ListContext>
               <ListButtons>
                 <ButtonEdit onClick={() => handleEdit(portion)}>

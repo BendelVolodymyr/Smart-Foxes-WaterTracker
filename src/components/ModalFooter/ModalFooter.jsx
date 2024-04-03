@@ -3,9 +3,9 @@ import { ModalContext } from '../../context';
 
 import { BackdropWrapper, IconClose, ModalWrapper } from './ModalFooter.styled';
 
-export const ModalFooter = ({ children, inWidth, inHeight }) => {
+export const ModalFooter = ({ children, inOverflow }) => {
   const { closeModal } = useContext(ModalContext);
-
+  
   useEffect(() => {
     const handleEscapeKey = event => {
       if (event.key === 'Escape') {
@@ -28,7 +28,7 @@ export const ModalFooter = ({ children, inWidth, inHeight }) => {
 
   return (
     <BackdropWrapper id="close" onClick={handleClick}>
-      <ModalWrapper $isWidth={inWidth} $isHeight={inHeight}>
+      <ModalWrapper $overflow={inOverflow}>
         <IconClose id="close" onClick={handleClick} />
         {children}
       </ModalWrapper>

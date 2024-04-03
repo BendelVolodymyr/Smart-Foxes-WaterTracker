@@ -1,4 +1,5 @@
 
+
 import { LoginContainer, AuthTitle, Button, LinkTo, Label, Input, ButtonPassword, ImgWrapp, ImgBottle, Form, ErrorMessage, IconConteiner } from "./LoginPage.styled";
 import { HiOutlineEyeSlash } from "react-icons/hi2";
 import { PiEyeLight } from "react-icons/pi";
@@ -10,12 +11,19 @@ import * as Yup from 'yup';
 // import { useDispatch } from "react-redux";
 // import { signIn } from "../../redux/auth/operations";
 
+import { signIn } from '../../redux/auth/operations';
+import { useDispatch } from 'react-redux';
 
 const LoginPage = () => {
+
 const {handleShowPassword, toggleIcon, type} = useVisiblePassword();
 // const dispatch = useDispatch();
 const bottle = bottleImg;
 
+  const formData = {
+    email,
+    password,
+  };
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -37,6 +45,13 @@ const formik = useFormik({
   },
 });
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setEmail('');
+    setPassword('');
+    console.log(formData);
+    dispatch(signIn(formData));
+  };
 
   return (
   <LoginContainer>
@@ -73,6 +88,7 @@ const formik = useFormik({
   </LoginContainer>
   
   )
+
 };
 
 export default LoginPage;
