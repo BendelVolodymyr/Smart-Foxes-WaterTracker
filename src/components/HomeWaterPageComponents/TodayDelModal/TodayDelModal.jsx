@@ -6,13 +6,15 @@ import {
   DialogActions,
   PortionDelModalWrapper,
 } from './TodayDelModal.styled';
+import { useDispatch } from 'react-redux';
+import { deletePortion } from '../../../redux/waters/operations';
 
 const TodayDelModal = ({ id }) => {
   const { closeModal } = useContext(ModalContext);
+  const dispatch = useDispatch();
   console.log(id);
   const handleDelete = () => {
-    // Тут  логіка для виклику запиту на сервер для видалення
-
+    dispatch(deletePortion(id));
     closeModal();
   };
 

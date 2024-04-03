@@ -1,32 +1,35 @@
 import MonthStateTable from '../components/HomeWaterPageComponents/MonthStateTable/MonthStateTable';
-import { useEffect, useState } from 'react';
+
 import {
   DailyNormaBoxWrapper,
   HomePageContainer,
   TodayAndCalendarWrapper,
 } from './HomeWaterPage.styled';
-
 import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
-
 import DailyNorma from '../components/HomePageComponents/DailyNorma/DailyNorma';
+import { useContext } from 'react';
+import { ModalContext } from '../context';
+
+//заглушка для модалки
+const AddWaterModal = () => {
+  return <div> Тут колись буде модалка AddWaterModal</div>;
+};
 
 const HomeWaterPage = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const { openModal } = useContext(ModalContext);
   const handleAddWaterClick = () => {
-    setModalOpen(true);
+    openModal(
+      <>
+        <AddWaterModal />
+      </>
+    );
   };
-
-  useEffect(() => {
-    if (modalOpen) {
-      // Відкрити модальне вікно тут
-      console.log('Modal opened');
-    }
-  }, [modalOpen]);
 
   return (
     <HomePageContainer>
       <DailyNormaBoxWrapper>
-        <DailyNorma ModalEditWaterNorma={handleAddWaterClick}></DailyNorma>
+        <DailyNorma></DailyNorma>
+        {/* <WaterRatioPanel andleAddWaterClick={handleAddWaterClick}></WaterRatioPanel> */}
       </DailyNormaBoxWrapper>
       <TodayAndCalendarWrapper>
         <TodayWaterList
@@ -34,7 +37,6 @@ const HomeWaterPage = () => {
         ></TodayWaterList>
         <MonthStateTable></MonthStateTable>
       </TodayAndCalendarWrapper>
-      {/* {modalOpen && <TodayListModal />} розкоментую коли буде модалка */}
     </HomePageContainer>
   );
 };
