@@ -59,6 +59,8 @@ export const Form = styled.form`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 16px;
+  position: relative;
+  z-index: 25;
   @media (min-width: 390px) and (max-width: 768px) {
     width: 350px;
   }
@@ -157,6 +159,7 @@ export const ImgWrapp = styled.div`
   margin: 0 auto;
   @media (min-width: 620px) and (max-width: 700px) {
     position: relative;
+    z-index: -1;
     bottom: 95px;
     left: 0;
   }
