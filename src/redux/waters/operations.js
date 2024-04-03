@@ -39,9 +39,9 @@ export const deletePortion = createAsyncThunk(
 export const updatePortion = createAsyncThunk(
   'water/update',
 
-  async ({ id, waterVolume }, thunkAPI) => {
+  async ({ id, date, portion }, thunkAPI) => {
     try {
-      const response = await axios.patch('/waters/', { id, waterVolume });
+      const response = await axios.patch(`/waters/${id}`, { date, portion });
 
       // console.log(response);
       return response.data;
