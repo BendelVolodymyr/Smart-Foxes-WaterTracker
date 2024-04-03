@@ -5,25 +5,20 @@ import { HiOutlineEyeSlash } from "react-icons/hi2";
 import { PiEyeLight } from "react-icons/pi";
 import { useVisiblePassword } from "../../hooks/useVisiblePassword";
 import bottleImg from './image/bottleAuth.png'
-import { Formik, useFormik } from "formik";
+import {useFormik } from "formik";
 import * as Yup from 'yup';
+import { useDispatch } from "react-redux";
+import { signIn } from "../../redux/auth/operations";
 
 // import { useDispatch } from "react-redux";
 // import { signIn } from "../../redux/auth/operations";
 
-import { signIn } from '../../redux/auth/operations';
-import { useDispatch } from 'react-redux';
 
 const LoginPage = () => {
 
 const {handleShowPassword, toggleIcon, type} = useVisiblePassword();
-// const dispatch = useDispatch();
 const bottle = bottleImg;
-
-  const formData = {
-    email,
-    password,
-  };
+const dispatch = useDispatch();
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -32,7 +27,6 @@ const SigninSchema = Yup.object().shape({
   .required('Password is required'),
 });
 
-
 const formik = useFormik({
   initialValues: {
     email: '',
@@ -40,22 +34,13 @@ const formik = useFormik({
   },
   validationSchema: SigninSchema,
   onSubmit: (values, { resetForm }) => {
-    console.log((JSON.stringify(values, null, 2)));
+    console.log(values);
+   dispatch(signIn(values));
     resetForm();
   },
 });
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setEmail('');
-    setPassword('');
-    console.log(formData);
-    dispatch(signIn(formData));
-  };
-
   return (
   <LoginContainer>
-    <Formik ></Formik>
       <Form onSubmit={formik.handleSubmit}> 
  <AuthTitle>Sing In</AuthTitle>
   <Label >
@@ -75,7 +60,6 @@ const formik = useFormik({
   </IconConteiner>
   {formik.touched.password && formik.errors.password && <ErrorMessage>{formik.errors.password}</ErrorMessage>}
 
-    
   </Label>
   <Button type="submit">
     Sing In
@@ -86,7 +70,6 @@ const formik = useFormik({
   <ImgBottle src={bottle} alt="bottle" />
 </ImgWrapp>
   </LoginContainer>
-  
   )
 
 };
