@@ -14,12 +14,11 @@ export const ModalProvider = ({ children }) => {
   const [modalContent, setModalContent] = useState(null);
   const [themeShow, setThemeShow] = useState(true);
 
-
   const toggleTheme = () => {
     setThemeShow(!themeShow);
   };
 
-  const openModal = modalConfig => {
+  const openModal = (modalConfig) => {
     setModalContent(modalConfig.props);
     setModalShowing(true);
   };
