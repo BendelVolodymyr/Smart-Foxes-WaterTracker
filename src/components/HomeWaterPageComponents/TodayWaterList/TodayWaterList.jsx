@@ -29,7 +29,8 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
     { id: 6, portion: '250', date: '2024-03-30T20:00:00.000Z' },
   ];
   console.log(ModalContext);
-  const { openModal } = useContext(ModalContext);
+  const { openModal, closeModal } = useContext(ModalContext);
+
   console.log(openModal);
   const [selectedPortion, setSelectedPortion] = useState(null);
 
@@ -38,7 +39,11 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
     console.log('delete', id);
     console.log('при кліку OpenModal', openModal);
     console.log(TodayDelModal);
-    openModal(<TodayDelModal onClose={() => openModal(null)} id={id} />);
+    openModal(
+      <>
+        <TodayDelModal onClose={() => closeModal()} id={id} />
+      </>
+    );
     console.log('вже мала б бути модалка ');
   };
 

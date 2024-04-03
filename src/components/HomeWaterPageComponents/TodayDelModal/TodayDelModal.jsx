@@ -31,10 +31,10 @@ const TodayDelModal = ({ onClose, id }) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary">
+        <Button onClick={onClose} $color="primary">
           Cancel
         </Button>
-        <Button onClick={handleDelete} color="error">
+        <Button onClick={handleDelete} $color="error">
           Delete
         </Button>
       </DialogActions>
