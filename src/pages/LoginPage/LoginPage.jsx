@@ -7,6 +7,8 @@ import { useVisiblePassword } from "../../hooks/useVisiblePassword";
 import bottleImg from './image/bottleAuth.png'
 import {useFormik } from "formik";
 import * as Yup from 'yup';
+import { useDispatch } from "react-redux";
+import { signIn } from "../../redux/auth/operations";
 
 // import { useDispatch } from "react-redux";
 // import { signIn } from "../../redux/auth/operations";
@@ -16,7 +18,7 @@ const LoginPage = () => {
 
 const {handleShowPassword, toggleIcon, type} = useVisiblePassword();
 const bottle = bottleImg;
-
+const dispatch = useDispatch();
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -32,19 +34,11 @@ const formik = useFormik({
   },
   validationSchema: SigninSchema,
   onSubmit: (values, { resetForm }) => {
-    console.log((JSON.stringify(values, null, 2)));
+    console.log(values);
+   dispatch(signIn(values));
     resetForm();
   },
 });
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setEmail('');
-    setPassword('');
-    console.log(formData);
-    dispatch(signIn(formData));
-  };
-
   return (
   <LoginContainer>
       <Form onSubmit={formik.handleSubmit}> 

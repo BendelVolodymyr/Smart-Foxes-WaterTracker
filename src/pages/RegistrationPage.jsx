@@ -6,11 +6,13 @@ import { useVisiblePassword } from "../hooks/useVisiblePassword";
 import bottleImg from './LoginPage/image/bottleAuth.png';
 import * as Yup from 'yup';
 import { useFormik } from "formik";
+import { signUp } from "../redux/auth/operations";
+import { useDispatch } from "react-redux";
 
 const Registration = () => {
   const bottle = bottleImg;
   const {handleShowPassword, toggleIcon, type} = useVisiblePassword();
-
+  const dispatch = useDispatch();
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string().min(8, 'Password should be of minimum 8 characters length')
@@ -27,7 +29,7 @@ const Registration = () => {
     },
     validationSchema: SignupSchema,
     onSubmit: (values, { resetForm }) => {
-      console.log((JSON.stringify(values, null, 2)));
+     dispatch(signUp(values));
       resetForm();
     },
   });
