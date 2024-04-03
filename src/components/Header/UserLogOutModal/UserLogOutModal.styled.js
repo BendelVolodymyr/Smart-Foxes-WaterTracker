@@ -45,7 +45,7 @@ export const ButtonWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
-    justify-content: start;
+    justify-content: end;
   }
 `;
 
