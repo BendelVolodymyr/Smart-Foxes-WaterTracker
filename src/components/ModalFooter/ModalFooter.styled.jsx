@@ -60,12 +60,13 @@ export const BackdropWrapper = styled.div`
 
 export const ModalWrapper = styled.div`
   position: relative;
-  overflow: auto;
-  width: ${(p) => (p.$isWidth ? p.$isWidth : '280px')};
-  height: ${(p) => (p.$isHeight ? p.$isHeight : '80%')};
-  padding: 20px;
+  overflow: ${p => (p.$overflow ? p.$overflow : 'hidden')};
+  overflow-x: hidden;
+  max-width: 280px;
+  max-height: 80%;
+  padding: 32px 24px 32px 24px;
 
-  background-color: ${(p) => p.theme.colors.primary.bg};
+  background-color: ${p => p.theme.colors.primary.bg};
 
   border-radius: 10px;
 
@@ -84,15 +85,20 @@ export const ModalWrapper = styled.div`
     background-color: #555; /* Колір скролу при наведенні */
   }
 
-  @media (min-width: ${(p) => p.theme.screens.tab}) {
-    width: 720px;
+  @media (min-width: ${p => p.theme.screens.tab}) {
+    max-width: 720px;
   }
 `;
 
 export const IconClose = styled(IoMdClose)`
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 34px;
+  right: 24px;
+
+  width: 24px;
+  height: 24px;
+
+  color: ${p => p.theme.colors.primary.text};
 
   transition:
     transform 0.3s ease-in-out,
@@ -102,6 +108,6 @@ export const IconClose = styled(IoMdClose)`
 
   &:hover {
     transform: scale(1.1);
-    color: ${(p) => p.theme.colors.secondary.color4};
+    color: ${p => p.theme.colors.secondary.color4};
   }
 `;

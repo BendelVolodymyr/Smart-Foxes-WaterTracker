@@ -32,33 +32,42 @@ export const FooterWrapper = styled.footer`
   align-items: center;
   gap: 8px;
 
-  background-color: ${(p) => p.theme.colors.primary.bg};
+  background-color: ${p => p.theme.colors.primary.bg};
 `;
 
 export const Text = styled.p`
-  color: ${(p) => p.theme.colors.primary.text};
+  color: ${p => p.theme.colors.primary.text};
 `;
 
 export const ButtonTeam = styled.button`
-  color: ${(p) => p.theme.colors.primary.text};
+  color: ${p => p.theme.colors.primary.text};
 
   cursor: pointer;
+`;
+
+export const GlobalWrapperTeam = styled.div`
+  width: 156px;
+
+  @media (min-width: ${p => p.theme.screens.tab}) {
+    width: 720px;
+  }
 `;
 
 export const TitleModal = styled.h1`
   font-size: 20px;
   font-weight: 500;
   line-height: 20px;
-  color: ${(p) => p.theme.colors.primary.text};
+  color: ${p => p.theme.colors.primary.text};
 `;
 
 export const TextPositionModal = styled.h2`
   font-size: 16px;
   font-weight: 500;
   line-height: 16px;
-  color: ${(p) => p.theme.colors.primary.text};
+  color: ${p => p.theme.colors.primary.text};
+  text-align: center;
 
-  @media (min-width: ${(p) => p.theme.screens.tab}) {
+  @media (min-width: ${p => p.theme.screens.tab}) {
     font-size: 14px;
   }
 `;
@@ -68,7 +77,7 @@ export const TextGlobal = styled.h2`
   font-size: 16px;
   font-weight: 500;
   line-height: 16px;
-  color: ${(p) => p.theme.colors.primary.text};
+  color: ${p => p.theme.colors.primary.text};
 `;
 
 export const UlWrapper = styled.ul`
@@ -77,7 +86,7 @@ export const UlWrapper = styled.ul`
   flex-direction: column;
   gap: 20px;
 
-  @media (min-width: ${(p) => p.theme.screens.tab}) {
+  @media (min-width: ${p => p.theme.screens.tab}) {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
@@ -93,11 +102,10 @@ export const ListWrapper = styled.li`
 
   &:hover {
     transform: scale(1.1);
-    border: 1px solid rgba(64, 123, 255, 1);
     box-shadow: 0px 10px 10px -5px rgba(64, 123, 255, 1);
   }
 
-  @media (min-width: ${(p) => p.theme.screens.tab}) {
+  @media (min-width: ${p => p.theme.screens.tab}) {
     width: 156px;
   }
 `;
@@ -111,13 +119,13 @@ export const ImageWrapper = styled.img`
 
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  @media (min-width: ${(p) => p.theme.screens.tab}) {
+  @media (min-width: ${p => p.theme.screens.tab}) {
     height: 130px;
   }
 `;
 
 export const InfoTeamWrapper = styled.div`
-  width: 232px;
+  width: 100%;
   height: 107px;
   padding: 16px;
 
@@ -127,7 +135,7 @@ export const InfoTeamWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (min-width: ${(p) => p.theme.screens.tab}) {
+  @media (min-width: ${p => p.theme.screens.tab}) {
     width: 156px;
     gap: 10px;
   }
@@ -151,7 +159,7 @@ export const IconGitHub = styled(FaGithub)`
 
   &:hover {
     transform: scale(1.1);
-    color: ${(p) => p.theme.colors.primary.accent};
+    color: ${p => p.theme.colors.primary.accent};
   }
 `;
 
@@ -165,7 +173,7 @@ export const IconLinkedIn = styled(FaLinkedin)`
 
   &:hover {
     transform: scale(1.1);
-    color: ${(p) => p.theme.colors.primary.accent};
+    color: ${p => p.theme.colors.primary.accent};
   }
 `;
 
@@ -179,7 +187,7 @@ export const IconTelegram = styled(FaTelegram)`
 
   &:hover {
     transform: scale(1.1);
-    color: ${(p) => p.theme.colors.primary.accent};
+    color: ${p => p.theme.colors.primary.accent};
   }
 `;
 
@@ -187,10 +195,10 @@ export const TextTeamPosition = styled.p`
   font-size: 14px;
   font-weight: 400;
   line-height: 14px;
-  color: ${(p) => p.theme.colors.primary.text};
+  color: ${p => p.theme.colors.primary.text};
 `;
 
 export const IconLink = styled.a`
-  color: ${(p) => p.theme.colors.primary.text};
+  color: ${p => p.theme.colors.primary.text};
   text-decoration: none;
 `;

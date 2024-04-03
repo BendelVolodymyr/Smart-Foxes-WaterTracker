@@ -1,11 +1,12 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import { Loader } from './components/Loader/Loader.jsx';
 import { refreshUser } from './redux/auth/operations.js';
+import useAuth from './hooks/useAuth.js';
 // const Loader = lazy(() => import('./components/Loader/Loader.jsx'));
 
 const Main = lazy(() => import('./pages/Main/Main.jsx'));
@@ -16,25 +17,22 @@ const HomeWaterPage = lazy(() => import('./pages/HomeWaterPage.jsx'));
 
 function App() {
   const dispatch = useDispatch();
-  const [test, setTest] = useState(true);
-  // УСЕ ЩО ЗАКОМЕНТОВАНО ДОДАМ ПІСЛЯ НАЛАШТУВАННЯ REDUX
-  // const { isRefreshing } = useAuth();
-  // const dispatch = useDispatch();
+  const { isLoggedIn, isRefreshing } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  // isRefreshing ? 'spiner' : усе що знизу
-  // <Route index element={isAuth ? <HomeWaterPage /> : <Main />} />  це буде при авторизації
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route
             index
             element={
-              test ? <Navigate to="/welcome" /> : <Navigate to="/home" />
+              isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/welcome" />
             }
           />
           <Route
@@ -52,7 +50,12 @@ function App() {
               />
             }
           />
-          <Route path="/home" element={<HomeWaterPage />} />
+          <Route
+            path="/home"
+            element={
+              <RestrictedRoute redirectTo="/" component={<HomeWaterPage />} />
+            }
+          />
           <Route
             path="/welcome"
             element={
