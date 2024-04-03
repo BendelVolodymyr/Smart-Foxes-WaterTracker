@@ -7,8 +7,6 @@ import bottleImg from './LoginPage/image/bottleAuth.png';
 import * as Yup from 'yup';
 import { useFormik } from "formik";
 
-// import { useDispatch } from "react-redux";
-// import { signUp } from "../redux/auth/operations";
 const Registration = () => {
   const bottle = bottleImg;
   const {handleShowPassword, toggleIcon, type} = useVisiblePassword();
@@ -37,7 +35,6 @@ const Registration = () => {
 
   return (
     <LoginContainer>
- 
 <Form onSubmit={formik.handleSubmit}> 
  <AuthTitle>Sing Up</AuthTitle>
  <Label >
