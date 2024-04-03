@@ -5,7 +5,7 @@ import { ReactComponent as UnAuthUser } from '../../../assets/header-icons/UnAut
 const UserAuth = () => {
   return (
     <UserAuthWrapper>
-      <Link to="/login">
+      <Link to="/signin">
         <Text> Sigh In</Text>
       </Link>
       {/* <img className={css.user_avatar} src="#" alt="user_avatar" /> */}

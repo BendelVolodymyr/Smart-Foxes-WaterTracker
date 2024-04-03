@@ -45,7 +45,7 @@ export const ButtonWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
-    justify-content: start;
+    justify-content: end;
   }
 `;
 
@@ -62,8 +62,8 @@ export const LogoutButton = styled.button`
   line-height: 20px;
   text-align: center;
 
-  background-color: ${props => props.$background};
-  color: ${props => props.color};
+  background-color: ${(props) => props.$background};
+  color: ${(props) => props.color};
 
   @media screen and (min-width: 768px) {
     width: 160px;

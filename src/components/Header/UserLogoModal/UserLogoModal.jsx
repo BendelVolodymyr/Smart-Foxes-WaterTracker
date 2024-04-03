@@ -23,7 +23,7 @@ const UserLogoModal = () => {
     };
   }, []);
 
-  const handleOpenModal = modalContent => {
+  const handleOpenModal = (modalContent) => {
     if (windowWidth >= 768) {
       openModal(<>{modalContent}</>, '592px', '208px');
     }
