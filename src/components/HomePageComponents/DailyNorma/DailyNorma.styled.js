@@ -7,8 +7,10 @@ const DailyWaterWrapper = styled.div`
   flex-direction: column;
   gap: 12px;
   width: 164px;
+  margin-top: 30px;
+  margin-left: 73px;
   border-radius: 10px;
-  border-color: ${({ theme }) => `${theme.colors.secondary.color1}`};
+  border-color: ${(p) => p.theme.colors.secondary.color1};
 `;
 const DailyWrapper = styled.div`
   display: flex;
@@ -18,9 +20,9 @@ const DailyWrapper = styled.div`
 `;
 const DailyNormaP = styled.p`
   font-size: 18px;
-  font-weight: ${({ theme }) => `${theme.fontWeights.medium}`};
+  font-weight: ${(p) => p.theme.fontWeights.medium};
   line-height: 24px;
-  color: ${({ theme }) => `${theme.colors.primary.text}`};
+  color: ${(p) => p.theme.colors.primary.text};
   white-space: nowrap;
 `;
 
@@ -37,7 +39,7 @@ const NumberDailyNorma = styled.p`
   font-weight: 700;
   line-height: 24px;
   text-align: left;
-  color: ${({ theme }) => `${theme.colors.primary.accent}`};
+  color: ${(p) => p.theme.colors.primary.accent};
 `;
 
 export {
