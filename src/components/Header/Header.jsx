@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Container, HeaderWrapper } from './Header.styled';
 import Logo from './Logo/Logo';
 import UserAuth from './UserAuth/UserAuth';
-// import useAuth from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 import UserLogo from './UserLogo/UserLogo';
 // import testAvatar from '../../assets/header-icons/avatar-test.jpg';
 
@@ -12,9 +12,7 @@ import UserLogo from './UserLogo/UserLogo';
 // import UserLogo from './UserLogo/UserLogo';
 
 const Header = () => {
-  // const { isLoggedIn, user } = useAuth();
-
-  const isLoggedIn = true;
+  const { isLoggedIn, user } = useAuth();
 
   return (
     <header>
@@ -23,7 +21,7 @@ const Header = () => {
           <Link to="/">
             <Logo />
           </Link>
-          {isLoggedIn ? <UserLogo avatarUrl={null} /> : <UserAuth />}
+          {isLoggedIn ? <UserLogo avatarUrl={user.avatar} /> : <UserAuth />}
         </HeaderWrapper>
       </Container>
     </header>

@@ -1,41 +1,55 @@
 import { Button, Modal } from './UserLogoModal.styled';
-
+import { useContext, useEffect, useState } from 'react';
+import { ModalContext } from '../../../context';
 import { ReactComponent as LogOutIcon } from '../../../assets/header-icons/logout-icon.svg';
 import { ReactComponent as SettingIcon } from '../../../assets/header-icons/setting-icon.svg';
-import { useState } from 'react';
+import { Setting } from '../../SettingModal/SettingsModal/SettingModal';
 import LogoutModal from '../UserLogOutModal/UserLogOutModal';
-// import SettingModal from '../../SettingModal/SettingModal';
 
 const UserLogoModal = () => {
-  // const [settingIsOpen, setSettingIsOpen] = useState(false);
+  const { openModal } = useContext(ModalContext);
 
-  const [logoutgIsOpen, setLogoutIsOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  // const openSettingModal = () => {
-  //   setSettingIsOpen(true);
-  // };
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
 
-  const toggleLogoutModal = () => {
-    // setLogoutIsOpen((prevLogoutIsOpen) => !prevLogoutIsOpen);
-    // onCloseLogomodal();
-    setLogoutIsOpen(true);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const handleOpenModal = (modalContent) => {
+    if (windowWidth >= 768) {
+      openModal(<>{modalContent}</>, '592px', '208px');
+    }
+
+    if (windowWidth <= 767) {
+      openModal(<>{modalContent}</>, '280px', '280px');
+    }
   };
 
   return (
     <>
       <Modal>
-        <Button>
+        <Button
+          onClick={() => {
+            handleOpenModal(<Setting />);
+          }}
+        >
           <SettingIcon />
           Setting
         </Button>
 
-        <Button onClick={toggleLogoutModal}>
+        <Button onClick={() => handleOpenModal(<LogoutModal />)}>
           <LogOutIcon />
           Log Out
         </Button>
       </Modal>
-      {logoutgIsOpen && <LogoutModal onClose={toggleLogoutModal} />}
-      {/* {settingIsOpen && <SettingModal />} */}
     </>
   );
 };

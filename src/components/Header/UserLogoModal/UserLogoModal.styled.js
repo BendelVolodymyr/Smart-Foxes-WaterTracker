@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from '../../../styles/theme';
 
 export const Modal = styled.div`
   position: absolute;
@@ -16,25 +15,30 @@ export const Modal = styled.div`
   align-items: flex-start;
   gap: 16px;
 
-  background: white;
+  background-color: ${(p) => p.theme.colors.primary.bg};
+
   border-radius: 10px;
   box-shadow: 0px 4px 8px 0px #407bff33;
 `;
 
 export const Button = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-family: Roboto;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: ${(p) => p.theme.fontWeights.regular};
   line-height: 20px;
   text-align: left;
+
+  display: flex;
+
+  gap: 8px;
+
   &:focus {
     outline: none;
     box-shadow: none;
   }
 
-  color: navajowhite;
+  color: ${(p) => p.theme.colors.primary.accent};
+  /* z-index: 999; */
 `;
 
 // export const Button = styled.button``;

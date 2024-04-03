@@ -1,0 +1,70 @@
+import { createSlice } from '@reduxjs/toolkit';
+import * as API from './operations';
+
+const initialState = {
+  waterDayList: [], //portionList:[]
+  waterMounthList: [],
+  waterRate: null,
+  isLoading: false,
+  error: false,
+};
+
+const handlePending = (state) => {
+  state.isLoading = true;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
+const waterSlice = createSlice({
+  name: 'waterSlice',
+
+  initialState,
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(API.addPortion.pending, handlePending)
+      .addCase(API.addPortion.fulfilled, (state, action) => {
+        state.waterDayList.push(action.payload);
+      })
+      .addCase(API.addPortion.rejected, handleRejected)
+      .addCase(API.deletePortion.pending, handlePending)
+      .addCase(API.deletePortion.fulfilled, (state, action) => {
+        const idx = state.waterDayList.findIndex(
+          (data) => (data.id = action.payload.id)
+        );
+        state.waterDayList.splice(idx, 1);
+        state.isLoading = false;
+      })
+      .addCase(API.updatePortion.pending, handlePending)
+      .addCase(API.updatePortion.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.waterDayList = state.waterDayList.map((portion) => {
+          if (portion._id === action.payload._id) return action.payload;
+          return portion;
+        });
+      })
+      .addCase(API.updatePortion.rejected, handleRejected)
+      .addCase(API.updateWaterRate.pending, handlePending)
+      .addCase(API.updateWaterRate.fulfilled, (state, action) => {
+        state.waterRate = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(API.updateWaterRate.rejected, handleRejected)
+      .addCase(API.portionsPerDay.pending, handlePending)
+      .addCase(API.portionsPerDay.fulfilled, (state, action) => {
+        state.waterDayList = { ...action.payload };
+        state.isLoading = false;
+      })
+      .addCase(API.portionsPerDay.rejected, handleRejected)
+      .addCase(API.portionsPerMonth.pending, handlePending)
+      .addCase(API.portionsPerMonth.fulfilled, (state, action) => {
+        state.waterMounthList = { ...action.payload };
+      })
+      .addCase(API.portionsPerMonth.rejected, handleRejected);
+  },
+});
+
+export const waterReducer = waterSlice.reducer;
