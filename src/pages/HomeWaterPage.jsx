@@ -1,9 +1,9 @@
 import MonthStateTable from '../components/HomeWaterPageComponents/MonthStateTable/MonthStateTable';
 import { useEffect, useState } from 'react';
 import {
+  DailyNormaBoxWrapper,
   HomePageContainer,
-  LeftBoxWrapper,
-  RightBoxWrapper,
+  TodayAndCalendarWrapper,
 } from './HomeWaterPage.styled';
 
 import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
@@ -25,15 +25,15 @@ const HomeWaterPage = () => {
 
   return (
     <HomePageContainer>
-      <LeftBoxWrapper>
+      <DailyNormaBoxWrapper>
         <DailyNorma ModalEditWaterNorma={handleAddWaterClick}></DailyNorma>
-      </LeftBoxWrapper>
-      <RightBoxWrapper>
+      </DailyNormaBoxWrapper>
+      <TodayAndCalendarWrapper>
         <TodayWaterList
           handleAddWaterClick={handleAddWaterClick}
         ></TodayWaterList>
         <MonthStateTable></MonthStateTable>
-      </RightBoxWrapper>
+      </TodayAndCalendarWrapper>
       {/* {modalOpen && <TodayListModal />} розкоментую коли буде модалка */}
     </HomePageContainer>
   );

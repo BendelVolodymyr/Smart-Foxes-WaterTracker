@@ -1,3 +1,4 @@
+import { useContext, useState } from 'react';
 import formatTime from '../../../helpers/formatTime';
 import {
   AddWaterBtn,
@@ -14,6 +15,9 @@ import {
   TodayBoxWrapper,
 } from './TodayWaterList.styled';
 
+import TodayDelModal from '../TodayDelModal/TodayDelModal';
+import { ModalContext } from '../../../context';
+
 const TodayWaterList = ({ handleAddWaterClick }) => {
   //заглушка. замінити на дані зі стейту
   const waterPortions = [
@@ -24,13 +28,30 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
     { id: 5, portion: '250', date: '2024-03-30T19:00:00.000Z' },
     { id: 6, portion: '250', date: '2024-03-30T20:00:00.000Z' },
   ];
+  console.log(ModalContext);
+  const { openModal } = useContext(ModalContext);
+
+  console.log(openModal);
+  const [selectedPortion, setSelectedPortion] = useState(null);
+
   //заглушки для хендлерів
-  const handleDelete = (id) => {
-    console.log('delete', id);
+  const handleDelete = id => {
+    openModal(
+      <>
+        <TodayDelModal  id={id} />
+      </>
+    );
   };
 
-  const handleEdit = (portion) => {
-    console.log('edit', portion);
+  const handleEdit = portion => {
+    setSelectedPortion(portion);
+    console.log(selectedPortion);
+    // openModal(
+    //   <TodayEditModal
+    //     portion={portion}
+    //     onClose={() => setSelectedPortion(null)}
+    //   />
+    // );
   };
 
   return (
@@ -38,12 +59,12 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
       <h3>Today</h3>
       {waterPortions && waterPortions.length > 0 && (
         <PortionsList>
-          {waterPortions.map((portion) => (
+          {waterPortions.map(portion => (
             <li key={portion.id}>
               <ListContext>
                 <GlassSvg />
                 <Portion>{`${portion.portion} ml `}</Portion>
-                <span>{formatTime(portion.date)}</span>
+                <span>{formatTime(portion.date, true)}</span>
               </ListContext>
               <ListButtons>
                 <ButtonEdit onClick={() => handleEdit(portion)}>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'http://localhost:3000/api';
 
 const token = {
   set(token) {
@@ -17,7 +17,7 @@ export const signUp = createAsyncThunk(
   async (userData, thunkAPI) => {
     console.log(userData);
     try {
-      const response = await axios.post('/users/signup', userData);
+      const response = await axios.post('/users/register', userData);
       token.set(response.data.token);
       // console.log(response);
       return response.data;
@@ -40,7 +40,7 @@ export const signIn = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const logout = createAsyncThunk('/logout', async (_, thunkAPI) => {
   try {
     const response = await axios.post('/users/logout');
 
@@ -89,3 +89,38 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+export const uploadAvatar = createAsyncThunk(
+  'auth/avatar',
+  async (formData, thunkAPI) => {
+    try {
+      const {
+        data: { avatarURL },
+      } = await axios.patch('/users/avatars', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      return avatarURL;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+//!Второй вариант саки для аватарки
+
+// export const avatar = createAsyncThunk(
+//   'auth/avatar',
+//   async (data, thunkAPI) => {
+//     try {
+//       const formData = new FormData();
+//       formData.append('avatar', data); // Предполагается, что 'data' - это файл аватарки
+//       const response = await axios.patch('/users/login', formData);
+//       console.log(response);
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );

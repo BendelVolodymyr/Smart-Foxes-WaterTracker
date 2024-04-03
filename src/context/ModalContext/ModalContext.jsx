@@ -15,9 +15,11 @@ export const ModalProvider = ({ children }) => {
   const [width, setWidth] = useState(null);
   const [height, setHeight] = useState(null);
   const [themeShow, setThemeShow] = useState(true);
+  
   const toggleTheme = () => {
     setThemeShow(!themeShow);
   };
+
 
   const openModal = (modalConfig, width, height) => {
     setModalContent(modalConfig.props);
