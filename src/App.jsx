@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import { Loader } from './components/Loader/Loader.jsx';
 import { refreshUser } from './redux/auth/operations.js';
+import useAuth from './hooks/useAuth.js';
 // const Loader = lazy(() => import('./components/Loader/Loader.jsx'));
 
 const Main = lazy(() => import('./pages/Main/Main.jsx'));
@@ -16,7 +17,7 @@ const HomeWaterPage = lazy(() => import('./pages/HomeWaterPage.jsx'));
 
 function App() {
   const dispatch = useDispatch();
-  const [test, setTest] = useState(true);
+  const { isLoggedIn } = useAuth();
   // УСЕ ЩО ЗАКОМЕНТОВАНО ДОДАМ ПІСЛЯ НАЛАШТУВАННЯ REDUX
   // const { isRefreshing } = useAuth();
   // const dispatch = useDispatch();
@@ -34,7 +35,7 @@ function App() {
           <Route
             index
             element={
-              test ? <Navigate to="/welcome" /> : <Navigate to="/home" />
+              isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/welcome" />
             }
           />
           <Route
@@ -52,7 +53,12 @@ function App() {
               />
             }
           />
-          <Route path="/home" element={<HomeWaterPage />} />
+          <Route
+            path="/home"
+            element={
+              <RestrictedRoute redirectTo="/" component={<HomeWaterPage />} />
+            }
+          />
           <Route
             path="/welcome"
             element={
