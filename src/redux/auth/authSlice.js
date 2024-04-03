@@ -46,7 +46,7 @@ const authSlice = createSlice({
       .addCase(API.signIn.rejected, handleRejected)
       .addCase(API.logout.pending, handlePending)
       .addCase(API.logout.fulfilled, (state) => {
-        state.user = { name: null, email: null, gender: null, avatarUrl: null };
+        state.user = { name: null, email: null, gender: null, avatar: null };
         state.token = null;
         state.isLoggedIn = false;
         state.error = null;
@@ -73,14 +73,7 @@ const authSlice = createSlice({
       .addCase(API.refreshUser.rejected, (state) => {
         state.isRefreshing = false;
         state.isLoggedIn = false;
-      })
-      .addCase(API.updateUser.pending, handlePending)
-      .addCase(API.updateUser.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.user = { ...state.user, ...action.payload };
-      })
-      .addCase(API.updateUser.rejected, handleRejected);
+      });
   },
 });
 
