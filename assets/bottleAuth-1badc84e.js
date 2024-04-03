@@ -1,4 +1,4 @@
-import{f as e,t,N as d,r as a}from"./index-307f8d69.js";const p="/Smart-Foxes-WaterTracker/assets/backgroundMobile-0bf10f90.png",n="/Smart-Foxes-WaterTracker/assets/backgroundDesk-54c098d2.png",c="/Smart-Foxes-WaterTracker/assets/backgroundTab-345a663e.png",m=e.div`
+import{g as e,t,N as d,r as a}from"./index-462be552.js";const p="/Smart-Foxes-WaterTracker/assets/backgroundMobile-0bf10f90.png",n="/Smart-Foxes-WaterTracker/assets/backgroundDesk-54c098d2.png",c="/Smart-Foxes-WaterTracker/assets/backgroundTab-345a663e.png",g=e.div`
   @media (min-width: 320px) and (max-width: 768px) {
     padding: 24px 20px;
     display: flex;
@@ -36,7 +36,7 @@ import{f as e,t,N as d,r as a}from"./index-307f8d69.js";const p="/Smart-Foxes-Wa
   }
   background-color: #${t.lightTheme.colors.primary.bg};
   gap: 16px;
-`,g=e.h2`
+`,m=e.h2`
   color: ${t.lightTheme.colors.primary.text};
   font-size: 26px;
   font-weight: 500;
@@ -47,6 +47,8 @@ import{f as e,t,N as d,r as a}from"./index-307f8d69.js";const p="/Smart-Foxes-Wa
   justify-content: flex-start;
   align-items: flex-start;
   gap: 16px;
+  position: relative;
+  z-index: 25;
   @media (min-width: 390px) and (max-width: 768px) {
     width: 350px;
   }
@@ -131,6 +133,7 @@ import{f as e,t,N as d,r as a}from"./index-307f8d69.js";const p="/Smart-Foxes-Wa
   margin: 0 auto;
   @media (min-width: 620px) and (max-width: 700px) {
     position: relative;
+    z-index: -1;
     bottom: 95px;
     left: 0;
   }
@@ -156,4 +159,4 @@ import{f as e,t,N as d,r as a}from"./index-307f8d69.js";const p="/Smart-Foxes-Wa
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
-`,z=()=>{const[o,r]=a.useState(!0),[s,i]=a.useState("password");return{handleShowPassword:()=>{r(!o),i(o===!0?"text":"password")},toggleIcon:o,type:s}},I="/Smart-Foxes-WaterTracker/assets/bottleAuth-2545dd91.png";export{g as A,f as B,$ as E,h as F,w as I,m as L,b as a,u as b,k as c,T as d,y as e,v as f,I as g,z as u};
+`,z=()=>{const[o,r]=a.useState(!0),[s,i]=a.useState("password");return{handleShowPassword:()=>{r(!o),i(o===!0?"text":"password")},toggleIcon:o,type:s}},I="/Smart-Foxes-WaterTracker/assets/bottleAuth-2545dd91.png";export{m as A,f as B,$ as E,h as F,w as I,g as L,b as a,u as b,k as c,T as d,y as e,v as f,I as g,z as u};
