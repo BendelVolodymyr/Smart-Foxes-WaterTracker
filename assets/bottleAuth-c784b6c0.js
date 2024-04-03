@@ -1,4 +1,4 @@
-import{c as e,t,N as s,r as a}from"./index-a4511102.js";const p="/Smart-Foxes-WaterTracker/assets/backgroundMobile-0bf10f90.png",n="/Smart-Foxes-WaterTracker/assets/backgroundDesk-54c098d2.png",x="/Smart-Foxes-WaterTracker/assets/backgroundTab-345a663e.png",m=e.div`
+import{f as e,t,N as d,r as a}from"./index-3507b737.js";const p="/Smart-Foxes-WaterTracker/assets/backgroundMobile-0bf10f90.png",n="/Smart-Foxes-WaterTracker/assets/backgroundDesk-54c098d2.png",c="/Smart-Foxes-WaterTracker/assets/backgroundTab-345a663e.png",m=e.div`
   @media (min-width: 320px) and (max-width: 768px) {
     padding: 24px 20px;
     display: flex;
@@ -11,7 +11,7 @@ import{c as e,t,N as s,r as a}from"./index-a4511102.js";const p="/Smart-Foxes-Wa
     background-position: 1px 40px;
   }
   @media (min-width: 520px) and (max-width: 1200px) {
-    background-image: url(${x});
+    background-image: url(${c});
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -66,9 +66,10 @@ import{c as e,t,N as s,r as a}from"./index-a4511102.js";const p="/Smart-Foxes-Wa
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
-  position: relative;
   width: 100%;
-`,u=e.input`
+`,u=e.div`
+  position: relative;
+`,w=e.input`
   margin-top: 8px;
   width: 100%;
   height: 44px;
@@ -88,13 +89,13 @@ import{c as e,t,N as s,r as a}from"./index-a4511102.js";const p="/Smart-Foxes-Wa
   :focus {
     color: ${t.lightTheme.colors.primary.accent};
   }
-`,w=e.button`
+`,f=e.button`
   border: none;
   background: transparent;
   position: absolute;
-  left: 90%;
-  bottom: 15%;
-`,f=e.button`
+  left: 92%;
+  bottom: 20%;
+`,k=e.button`
   display: block;
   border-radius: 10px;
   padding: 8px 30px;
@@ -116,7 +117,7 @@ import{c as e,t,N as s,r as a}from"./index-a4511102.js";const p="/Smart-Foxes-Wa
     font-size: 18px;
     line-height: 1.33;
   }
-`,k=e(s)`
+`,T=e(d)`
   color: ${t.lightTheme.colors.primary.accent};
   font-size: 18px;
   font-weight: 400;
@@ -125,7 +126,7 @@ import{c as e,t,N as s,r as a}from"./index-a4511102.js";const p="/Smart-Foxes-Wa
   &:hover {
     color: ${t.lightTheme.colors.secondary.color4};
   }
-`,T=e.div`
+`,y=e.div`
   padding-top: 50px;
   margin: 0 auto;
   @media (min-width: 620px) and (max-width: 700px) {
@@ -139,12 +140,7 @@ import{c as e,t,N as s,r as a}from"./index-a4511102.js";const p="/Smart-Foxes-Wa
     left: 0;
   }
 
-  @media (min-width: 768px) and (max-width: 1440px) {
-    position: relative;
-    bottom: 311px;
-    padding-left: 135px;
-  }
-  @media (min-width: 768px) and (max-width: 1440px) {
+  @media (min-width: 768px) and (max-width: 1439px) {
     position: relative;
     bottom: 311px;
     padding-left: 135px;
@@ -155,4 +151,9 @@ import{c as e,t,N as s,r as a}from"./index-a4511102.js";const p="/Smart-Foxes-Wa
     padding-left: 0;
     margin: 0;
   }
-`,y=e.img``,v=()=>{const[o,r]=a.useState(!0),[d,i]=a.useState("password");return{handleShowPassword:()=>{r(!o),i(o===!0?"text":"password")},toggleIcon:o,type:d}},$="/Smart-Foxes-WaterTracker/assets/bottleAuth-2545dd91.png";export{g as A,w as B,h as F,u as I,m as L,b as a,f as b,k as c,T as d,y as e,$ as f,v as u};
+`,v=e.img``,$=e.p`
+  color: ${t.lightTheme.colors.secondary.color2};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+`,z=()=>{const[o,r]=a.useState(!0),[s,i]=a.useState("password");return{handleShowPassword:()=>{r(!o),i(o===!0?"text":"password")},toggleIcon:o,type:s}},I="/Smart-Foxes-WaterTracker/assets/bottleAuth-2545dd91.png";export{g as A,f as B,$ as E,h as F,w as I,m as L,b as a,u as b,k as c,T as d,y as e,v as f,I as g,z as u};
