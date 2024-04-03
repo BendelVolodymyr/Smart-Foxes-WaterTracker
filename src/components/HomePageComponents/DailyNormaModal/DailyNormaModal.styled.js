@@ -18,13 +18,13 @@ const Modal = styled.div`
   height: 712px;
   padding: 32px 24px 32px 24px;
   border-radius: 10px;
-  background-color: ${({ theme }) => `${theme.colors.primary.bg}`};
+  background-color: ${(p) => p.theme.colors.primary.bg};
 `;
 const Head = styled.h2`
   font-size: 26px;
   font-weight: 500;
   line-height: 32px;
-  color: ${({ theme }) => `${theme.colors.primary.text}`};
+  color: ${(p) => p.theme.colors.primary.text};
 `;
 const ContainerGender = styled.div`
   display: flex;
@@ -37,14 +37,14 @@ const GenderPargh = styled.p`
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
-  color: ${({ theme }) => `${theme.colors.primary.text}`};
+  color: ${(p) => p.theme.colors.primary.text};
 `;
 const GenderSpan = styled.span`
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
   text-align: left;
-  color: ${({ theme }) => `${theme.colors.primary.accent}`};
+  color: ${(p) => p.theme.colors.primary.accent};
 `;
 const InfoContainer = styled.div`
   width: 544px;
@@ -52,7 +52,7 @@ const InfoContainer = styled.div`
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 24px;
-  border-color: ${({ theme }) => `${theme.colors.secondary.color5}`};
+  border-color: ${(p) => p.theme.colors.secondary.color5};
 `;
 const InfoPargh = styled.p`
   font-size: 12px;
@@ -62,7 +62,7 @@ const InfoPargh = styled.p`
   color: #8f8f8f;
 `;
 const InfoSpan = styled.span`
-  color: ${({ theme }) => `${theme.colors.primary.accent}`};
+  color: ${(p) => p.theme.colors.primary.accent};
 `;
 const CalculateForm = styled.form`
   display: flex;
@@ -73,7 +73,7 @@ const CalculateHead = styled.h3`
   font-weight: 500;
   line-height: 20px;
   text-align: left;
-  color: ${({ theme }) => `${theme.colors.primary.text}`};
+  color: ${(p) => p.theme.colors.primary.text};
 `;
 const GenderLabel = styled.label`
   display: flex;
@@ -85,8 +85,8 @@ const GenderInput = styled.input`
   width: 14px;
   height: 14px;
   border: 1px solid;
-  border-color: ${({ theme }) => `${theme.colors.primary.accent}`};
-  color: ${({ theme }) => `${theme.colors.primary.bg}`};
+  border-color: ${(p) => p.theme.colors.primary.accent};
+  color: ${(p) => p.theme.colors.primary.bg};
   border-radius: 50%;
 `;
 const GenderContainer = styled.div`
@@ -104,12 +104,12 @@ const UserInputs = styled.input`
   border-radius: 6px;
   border: 1px solid;
   width: 100%;
-  color: ${({ theme }) => `${theme.colors.primary.accent}`};
+  color: ${(p) => p.theme.colors.primary.accent};
   padding: 12px 10px 12px 10px;
   background: transparent;
-  border-color: ${({ theme }) => `${theme.colors.secondary.color5}`};
+  border-color: ${(p) => p.theme.colors.secondary.color5};
   &::placeholder {
-    color: ${({ theme }) => `${theme.colors.primary.accent}`};
+    color: ${(p) => p.theme.colors.primary.accent};
   }
 `;
 const UserInputsContainer = styled.div`
@@ -129,8 +129,8 @@ const SaveButton = styled.button`
   border-radius: 10px;
   padding: 10px 30px;
   width: 160px;
-  color: ${({ theme }) => `${theme.colors.primary.bg}`};
-  background-color: ${({ theme }) => `${theme.colors.primary.accent}`};
+  color: ${(p) => p.theme.colors.primary.bg};
+  background-color: ${(p) => p.theme.colors.primary.accent};
 `;
 const ButtonContainer = styled.div`
   width: 544px;
@@ -148,10 +148,10 @@ const WaterAmountSpan = styled.span`
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;
-  color: ${({ theme }) => `${theme.colors.primary.accent}`};
+  color: ${(p) => p.theme.colors.primary.accent};
 `;
 const CloseIcon = styled.svg`
-background-color: ;
+  background-color:;
 `;
 
 export {

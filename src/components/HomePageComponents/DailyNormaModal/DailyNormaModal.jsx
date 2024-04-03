@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   CalculateHead,
   ContainerGender,
@@ -25,19 +25,19 @@ import {
   ModalContainer,
   CloseIcon,
 } from './DailyNormaModal.styled';
+import { useDispatch } from 'react-redux';
+import { updateWaterRate } from '../../../redux/waters/operations';
 
-export const DailyNormaModal = ({
-  onClose,
-  SaveWaterNorma,
-  dailyWaterNorma,
-}) => {
+export const DailyNormaModal = ({ onClose }) => {
+  const dispatch = useDispatch();
+  // const {female, male} = useSelector(gender);
   const woman = { weight: Number(0.03), activity: Number(0.04) };
   const man = { weight: Number(0.04), activity: Number(0.06) };
   const [genderOption, setGenderOption] = useState(woman);
-  const [userWeight, setUserWeight] = useState();
-  const [dailyNorma, setDailyNorma] = useState(dailyWaterNorma);
-  const [userSportsActivite, setUserSportsActivite] = useState();
-  const [userWaterPredict, setUserWaterPredict] = useState();
+  const [userWeight, setUserWeight] = useState('');
+  const [dailyNorma, setDailyNorma] = useState(''); //waterRate**selector
+  const [userSportsActivite, setUserSportsActivite] = useState('');
+  const [userWaterPredict, setUserWaterPredict] = useState('');
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -50,6 +50,54 @@ export const DailyNormaModal = ({
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose]);
+
+  const calculateWaterIntake = useCallback(() => {
+    if (!userWeight || !userSportsActivite) return;
+    const result = (
+      userWeight * genderOption.weight +
+      (userSportsActivite / 60) * genderOption.activity
+    ).toFixed(2);
+    setDailyNorma(result);
+  }, [genderOption, userWeight, userSportsActivite]);
+
+  useEffect(() => {
+    calculateWaterIntake();
+  }, [calculateWaterIntake]);
+
+  const handleWaterPredict = (e) => {
+    const value = e.target.value;
+    const newWaterPredict = parseFloat(value);
+
+    if (!isNaN(newWaterPredict) && newWaterPredict >= 1) {
+      setUserWaterPredict(newWaterPredict);
+    } else if (value === '') {
+      setUserWaterPredict('');
+    }
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    const parseDailyNorma = parseFloat(dailyNorma);
+    const isValid =
+      (userSportsActivite > 0 && userWeight > 0) || userWaterPredict > 0;
+    if (!isValid) {
+      alert('Fill all fields');
+      return;
+    }
+    if (isNaN(parseDailyNorma) || parseDailyNorma <= 0) {
+      alert('Enter a valid intake goal');
+    }
+    dispatch(
+      updateWaterRate(userWaterPredict ? userWaterPredict : parseDailyNorma)
+    ).then((data) => {
+      if (!data.error) {
+        onClose(),
+          setUserWeight(''),
+          setUserSportsActivite(''),
+          setUserWaterPredict('');
+      }
+    });
+  };
   return (
     <ModalContainer>
       <Modal>
@@ -83,7 +131,7 @@ export const DailyNormaModal = ({
             absence of these, you must set 0)
           </InfoPargh>
         </InfoContainer>
-        <CalculateForm onSubmit={SaveWaterNorma}>
+        <CalculateForm>
           <UserInputsContainer>
             <CalculateHead>Calculate your rate:</CalculateHead>
             <GenderContainer>
@@ -115,7 +163,7 @@ export const DailyNormaModal = ({
                 value={userWeight}
                 min={0}
                 max={250}
-                onChange={() => setUserWeight()}
+                onChange={(e) => setUserWeight(e.target.value)}
               />
             </UserLabel>
             <UserLabel>
@@ -129,12 +177,15 @@ export const DailyNormaModal = ({
                 placeholder="0"
                 value={userSportsActivite}
                 min={0}
-                onChange={() => setUserSportsActivite()}
+                onChange={(e) => setUserSportsActivite(e.target.value)}
               />
             </UserLabel>
             <GenderPargh>
               The required amount of water in liters per day:
-              <WaterAmountSpan> {dailyNorma} L</WaterAmountSpan>
+              <WaterAmountSpan>
+                {' '}
+                {dailyNorma ? dailyNorma : 2} L
+              </WaterAmountSpan>
             </GenderPargh>
           </UserInputsContainer>
           <UserWaterPredict>
@@ -147,11 +198,11 @@ export const DailyNormaModal = ({
               placeholder="0"
               value={userWaterPredict}
               min={0}
-              onChange={() => setUserWaterPredict()}
+              onChange={handleWaterPredict}
             />
           </UserWaterPredict>
           <ButtonContainer>
-            <SaveButton>Save</SaveButton>
+            <SaveButton onClick={handleSave}>Save</SaveButton>
           </ButtonContainer>
         </CalculateForm>
       </Modal>
