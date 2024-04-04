@@ -6,11 +6,11 @@ import {
   NumberDailyNorma,
   DailyWrapper,
 } from './DailyNorma.styled';
-
 import { DailyNormaModal } from '../DailyNormaModal/DailyNormaModal';
 
 const DailyNorma = () => {
-  const [dailyNorma, setDailyNorma] = useState(2);
+  // waterRate**selector
+
   const [modalOpen, setModalOpen] = useState(false);
   const handleEditButtonClick = () => {
     setModalOpen(true);
@@ -23,15 +23,10 @@ const DailyNorma = () => {
     <DailyWaterWrapper>
       <DailyNormaP>My daily norma</DailyNormaP>
       <DailyWrapper>
-        <NumberDailyNorma>{dailyNorma} L</NumberDailyNorma>
+        <NumberDailyNorma> {2} L</NumberDailyNorma>{/*waterRate*/}
         <ButtonEditNorma onClick={handleEditButtonClick}>Edit</ButtonEditNorma>
       </DailyWrapper>
-      {modalOpen && (
-        <DailyNormaModal
-          onClose={closeModal}
-          dailyWaterNorma={dailyNorma}
-        ></DailyNormaModal>
-      )}
+      {modalOpen && <DailyNormaModal onClose={closeModal}></DailyNormaModal>}
     </DailyWaterWrapper>
   );
 };

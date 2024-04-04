@@ -8,11 +8,16 @@ import {
   Title,
 } from './UserLogOutModal.styled';
 
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../redux/auth/operations';
+
 const UserLogOutModal = () => {
+  const dispatch = useDispatch();
   const { closeModal } = useContext(ModalContext);
 
   const logOut = () => {
-    console.log('DISPATCH LOG OUT');
+    dispatch(logout());
+    closeModal();
   };
 
   const handleCloseModal = () => {

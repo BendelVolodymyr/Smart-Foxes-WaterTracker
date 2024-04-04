@@ -11,14 +11,16 @@ import UserLogoModal from '../UserLogoModal/UserLogoModal';
 import formatEmail from '../../../helpers/formatEmail';
 import getFirstLetter from '../../../helpers/getFirstLetter';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
+import useAuth from '../../../hooks/useAuth';
 // import UserLogoModal from '../UserAuth/UserLogoModal/UserLogoModal';
 
 const UserLogo = ({ avatarUrl }) => {
+  const menuRef = useRef();
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const menuRef = useRef();
+  const { user } = useAuth();
 
-  const userEmail = 's.georgiymail@gmail.com';
+  const userEmail = user.email;
   const firstNameLetter = getFirstLetter('');
   const firstEmailLetter = getFirstLetter(userEmail);
 
@@ -26,7 +28,6 @@ const UserLogo = ({ avatarUrl }) => {
     setIsExpanded(!isExpanded);
   };
   const onCloseLogomodal = () => {
-    console.log('CLOSE USER MODAL');
     setIsExpanded(false);
   };
 

@@ -45,6 +45,14 @@ export const ButtonTeam = styled.button`
   cursor: pointer;
 `;
 
+export const GlobalWrapperTeam = styled.div`
+  width: 156px;
+
+  @media (min-width: ${p => p.theme.screens.tab}) {
+    width: 720px;
+  }
+`;
+
 export const TitleModal = styled.h1`
   font-size: 20px;
   font-weight: 500;
@@ -57,6 +65,7 @@ export const TextPositionModal = styled.h2`
   font-weight: 500;
   line-height: 16px;
   color: ${p => p.theme.colors.primary.text};
+  text-align: center;
 
   @media (min-width: ${p => p.theme.screens.tab}) {
     font-size: 14px;
@@ -93,7 +102,6 @@ export const ListWrapper = styled.li`
 
   &:hover {
     transform: scale(1.1);
-    border: 1px solid rgba(64, 123, 255, 1);
     box-shadow: 0px 10px 10px -5px rgba(64, 123, 255, 1);
   }
 
@@ -117,7 +125,7 @@ export const ImageWrapper = styled.img`
 `;
 
 export const InfoTeamWrapper = styled.div`
-  width: 232px;
+  width: 100%;
   height: 107px;
   padding: 16px;
 

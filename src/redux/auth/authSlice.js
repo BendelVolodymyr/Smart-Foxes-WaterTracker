@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import * as API from './operations';
 
 const initialState = {
-  user: { name: null, email: null, gender: null, avatar: null },
+  user: { name: null, email: null, gender: null, avatarUrl: null, norma: null },
   // isAuthenticated: false,
   token: null,
   isRefreshing: true,
-  isLoggedIn: true,
+  isLoggedIn: false,
   isLoading: false,
   error: null,
 };
@@ -37,11 +37,11 @@ const authSlice = createSlice({
       .addCase(API.signIn.pending, handlePending)
       .addCase(API.signIn.fulfilled, (state, action) => {
         console.log(action);
-        state.isLoading = false;
-        state.error = null;
-        state.user = action.payload.user;
+        state.user.email = action.payload.email;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(API.signIn.rejected, handleRejected)
       .addCase(API.logout.pending, handlePending)
@@ -64,7 +64,7 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(API.refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = { ...action.payload };
         state.isAuthenticated = true;
         state.isRefreshing = false;
         state.isLoggedIn = true;

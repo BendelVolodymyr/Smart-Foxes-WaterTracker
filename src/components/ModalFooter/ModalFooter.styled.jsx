@@ -60,10 +60,11 @@ export const BackdropWrapper = styled.div`
 
 export const ModalWrapper = styled.div`
   position: relative;
-  overflow: auto;
-  width: ${p => (p.$isWidth ? p.$isWidth : '280px')};
-  height: ${p => (p.$isHeight ? p.$isHeight : '80%')};
-  padding: 20px;
+  overflow: ${p => (p.$overflow ? p.$overflow : 'hidden')};
+  overflow-x: hidden;
+  max-width: 280px;
+  max-height: 80%;
+  padding: 32px 24px 32px 24px;
 
   background-color: ${p => p.theme.colors.primary.bg};
 
@@ -85,14 +86,19 @@ export const ModalWrapper = styled.div`
   }
 
   @media (min-width: ${p => p.theme.screens.tab}) {
-    width: 720px;
+    max-width: 720px;
   }
 `;
 
 export const IconClose = styled(IoMdClose)`
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 34px;
+  right: 24px;
+
+  width: 24px;
+  height: 24px;
+
+  color: ${p => p.theme.colors.primary.text};
 
   transition:
     transform 0.3s ease-in-out,

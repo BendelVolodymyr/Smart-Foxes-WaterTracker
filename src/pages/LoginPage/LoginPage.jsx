@@ -1,54 +1,66 @@
-import { useState } from "react";
-import { LoginContainer, AuthTitle, Button,Form, LinkTo, Label, Input, ButtonPassword, ImgWrapp, ImgBottle } from "./LoginPage.styled";
+import { LoginContainer, AuthTitle, Button, LinkTo, Label, Input, ButtonPassword, ImgWrapp, ImgBottle, Form, ErrorMessage, IconConteiner } from "./LoginPage.styled";
 import { HiOutlineEyeSlash } from "react-icons/hi2";
 import { PiEyeLight } from "react-icons/pi";
 import { useVisiblePassword } from "../../hooks/useVisiblePassword";
 import bottleImg from './image/bottleAuth.png'
-// import { useDispatch } from "react-redux";
-// import { signIn } from "../../redux/auth/operations";
+import {useFormik } from "formik";
+import * as Yup from 'yup';
+import { useDispatch } from "react-redux";
+import { signIn } from "../../redux/auth/operations";
 
 
 const LoginPage = () => {
-
 const {handleShowPassword, toggleIcon, type} = useVisiblePassword();
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-// const dispatch = useDispatch();
 const bottle = bottleImg;
+const dispatch = useDispatch();
 
+//commit
+//commit
 
-const handleChangeEmail = event => {
-  setEmail(event.target.value);
-};
+const SigninSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string().min(8, 'Password should be of minimum 8 characters length')
+  .max(64, 'Password should be of max 64 characters length')
+  .required('Password is required'),
+});
 
-const handleChangePassword = event => {
-  setPassword(event.target.value);
-};
-
-const handleSubmit = event =>{
-  event.preventDefault();
-  // dispatch(signIn(email, password));
-  setEmail("");
-  setPassword("");
-}
-
+const formik = useFormik({
+  initialValues: {
+    email: '',
+    password: '',
+  },
+  validationSchema: SigninSchema,
+  onSubmit: ({email, password}, { resetForm }) => {
+   dispatch(signIn({email:email, password:password}));
+    resetForm();
+  },
+});
 
   return (
   <LoginContainer>
-     
-<Form onSubmit={handleSubmit}> 
+      <Form onSubmit={formik.handleSubmit}> 
  <AuthTitle>Sing In</AuthTitle>
   <Label >
   Enter your email
-    <Input placeholder="E-mail" name="email" type="email" autoComplete="off" value={email} onChange={handleChangeEmail} />
+    <Input placeholder="E-mail" name="email" 
+    type="email"  
+    value={formik.values.email}
+    onChange={formik.handleChange} autoComplete="off" 
+    onBlur={formik.handleBlur} 
+ />
+  {formik.touched.email && formik.errors.email && <ErrorMessage>{formik.errors.email}</ErrorMessage>}
   </Label>
   <Label >
   Enter your password
-    <Input placeholder="Password" name="password" type={type} autoComplete="off" value={password} onChange={handleChangePassword} />
-    <ButtonPassword type="button" onClick={handleShowPassword}> 
+  <IconConteiner>
+      <Input placeholder="Password" name="password" type={type} autoComplete="off" value={formik.values.password}
+          onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+            <ButtonPassword type="button" onClick={handleShowPassword}> 
     {toggleIcon ? <HiOutlineEyeSlash size={16} color="#407BFF"/> : <PiEyeLight size={16} color="#407BFF"/>} 
     </ButtonPassword>
-    
+  </IconConteiner>
+  {formik.touched.password && formik.errors.password && <ErrorMessage>{formik.errors.password}</ErrorMessage>}
+
   </Label>
   <Button type="submit">
     Sing In
@@ -58,7 +70,10 @@ const handleSubmit = event =>{
 <ImgWrapp>
   <ImgBottle src={bottle} alt="bottle" />
 </ImgWrapp>
-  </LoginContainer>)
+  </LoginContainer>
+  )
+
 };
 
 export default LoginPage;
+

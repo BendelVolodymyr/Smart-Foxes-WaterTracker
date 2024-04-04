@@ -19,8 +19,8 @@ font-size: 16px;
 line-height: 1.25;
 
 }
-@media (min-width: ${({ theme }) => theme.screens.tab}){
-grid-template-columns: repeat(auto-fill, 34px);  
+@media (min-width: ${({ theme }) => theme.screens.desk}){
+ 
 gap: 20px 22px;
 
 }
