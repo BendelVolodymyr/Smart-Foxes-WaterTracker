@@ -4,13 +4,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 axios.defaults.baseURL =
   'https://smart-foxes-backend-watertracker.onrender.com/api';
 
+// axios.defaults.baseURL = 'http://localhost:3000/api';
+
 //const { waterVolume, date } = req.body;
 export const addPortion = createAsyncThunk(
   'water/add',
 
-  async ({ waterVolume, date }, thunkAPI) => {
+  async ({ portion, date }, thunkAPI) => {
     try {
-      const response = await axios.post('/waters/', { waterVolume, date });
+      const response = await axios.post('/waters', { portion, date });
 
       // console.log(response);
       return response.data;
@@ -56,34 +58,54 @@ export const updateWaterRate = createAsyncThunk(
   'water-rate/editDailyNorma',
   async (data, thunkApi) => {
     try {
-      const response = await axios.patch(`/water-rate/`, data);
+      const response = await axios.patch(`/water-rate`, data);
       return response.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error);
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );
 
 export const portionsPerDay = createAsyncThunk(
   'water/portionsPerDay',
-  async (data, thunkApi) => {
+  async (_, thunkApi) => {
     try {
-      const response = await axios.get(`/waters/today/`, data);
+      const date = new Date();
+      // const formattedDate = formatDate(date);
+      const response = await axios.get(`/waters/today?date=${date}`);
+      console.log(response);
       return response.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error);
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );
 
+// export const portionsPerDay = createAsyncThunk(
+//   'water/portionsPerDay',
+//   async (_, thunkApi) => {
+//     try {
+//       const date = new Date();
+//       const response = await axios.get(`/waters/today`, { date });
+//       console.log(response);
+//       return response.data;
+//     } catch (error) {
+//       return thunkApi.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const portionsPerMonth = createAsyncThunk(
   'water/portionsPerMonth',
-  async (data, thunkApi) => {
+  async ({ startDate, endDate }, thunkApi) => {
     try {
-      const response = await axios.get(`/waters/month/`, data);
+      const response = await axios.get(
+        `/waters/month?startDate=${startDate}&endDate=${endDate}`
+      );
+      console.log(response);
       return response.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error);
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );

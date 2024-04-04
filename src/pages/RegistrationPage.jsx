@@ -1,62 +1,70 @@
-import { useState } from "react";
-import { AuthTitle, Button, Input, Label, LinkTo, Form, LoginContainer, ImgWrapp, ImgBottle } from "./LoginPage/LoginPage.styled"
+import { AuthTitle, Button, Input, Label, LinkTo, LoginContainer, ImgWrapp, ImgBottle, Form, IconConteiner, ErrorMessage } from "./LoginPage/LoginPage.styled"
 import { HiOutlineEyeSlash } from "react-icons/hi2";
 import { PiEyeLight } from "react-icons/pi";
 import { ButtonPassword } from "./LoginPage/LoginPage.styled";
 import { useVisiblePassword } from "../hooks/useVisiblePassword";
-import bottleImg from './LoginPage/image/bottleAuth.png'
-// import { useDispatch } from "react-redux";
-// import { signUp } from "../redux/auth/operations";
+import bottleImg from './LoginPage/image/bottleAuth.png';
+import * as Yup from 'yup';
+import { useFormik } from "formik";
+import { signUp } from "../redux/auth/operations";
+import { useDispatch } from "react-redux";
+
 const Registration = () => {
   const bottle = bottleImg;
   const {handleShowPassword, toggleIcon, type} = useVisiblePassword();
+  const dispatch = useDispatch();
+  const SignupSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required('Email is required'),
+    password: Yup.string().min(8, 'Password should be of minimum 8 characters length')
+    .max(64, 'Password should be of max 64 characters length')
+    .required('Password is required'),
+    confirmPassword: Yup.string().required('Confirm Password is required').oneOf([Yup.ref('password'), null], 'Passwords does not match'),
+  });
 
- const [email, setEmail] = useState("");
- const [password, setPassword] = useState(""); 
- const [confirmPassword, setConfirmPassword] = useState("");
-//  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      confirmPassword:''
+    },
+    validationSchema: SignupSchema,
+    onSubmit: (values, { resetForm }) => {
+        dispatch(signUp(values));
+      resetForm();
+    },
+  });
   
- const handleChangeEmail = event => {
-  setEmail(event.target.value);
-};
-
-const handleChangePassword = event => {
-  setPassword(event.target.value);
-};
-
-const handleChangeConfirmPassword = event => {
-  setConfirmPassword(event.target.value);
-};
-
-const handleSubmit = event =>{
-    event.preventDefault();
-    // dispatch(signUp(email, password, confirmPassword))
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
-
-  }
-
 
   return (
     <LoginContainer>
- 
-<Form onSubmit={handleSubmit}> 
+<Form onSubmit={formik.handleSubmit}> 
  <AuthTitle>Sing Up</AuthTitle>
-<Label >
-Enter your email
-<Input placeholder="E-mail" name="email" type="email" autoComplete="off" value={email} onChange={handleChangeEmail}/>
-</Label>
+ <Label >
+  Enter your email
+    <Input placeholder="E-mail" name="email" type="email"  value={formik.values.email} 
+          onChange={formik.handleChange} autoComplete="off" />
+             {formik.touched.email && formik.errors.email && <ErrorMessage>{formik.errors.email}</ErrorMessage>}
+  </Label>
 <Label >
   Enter your password
-    <Input placeholder="Password" name="password" type={type} autoComplete="off" value={password} onChange={handleChangePassword}/>
-    <ButtonPassword type="button" onClick={handleShowPassword}> {toggleIcon ? <HiOutlineEyeSlash size={16} color="#407BFF"/> : <PiEyeLight size={16} color="#407BFF"/>} </ButtonPassword>
-    
+  <IconConteiner>
+      <Input placeholder="Password" name="password" type={type} autoComplete="off" value={formik.values.password} 
+          onChange={formik.handleChange} />
+            <ButtonPassword type="button" onClick={handleShowPassword}> 
+    {toggleIcon ? <HiOutlineEyeSlash size={16} color="#407BFF"/> : <PiEyeLight size={16} color="#407BFF"/>} 
+    </ButtonPassword>
+  </IconConteiner>
+  
+            {formik.touched.password && formik.errors.password && <ErrorMessage>{formik.errors.password}</ErrorMessage>}
   </Label>
 <Label >
 Repeat password
-<Input placeholder="Repeat password" name="confirmPassword" type={type} autoComplete="off" value={confirmPassword} onChange={handleChangeConfirmPassword}/>
+<IconConteiner>
+<Input placeholder="Repeat password" name="confirmPassword" type={type} autoComplete="off" value={formik.values.confirmPassword}  onChange={formik.handleChange}/>
 <ButtonPassword type="button" onClick={handleShowPassword}> {toggleIcon ? <HiOutlineEyeSlash size={16} color="#407BFF"/> : <PiEyeLight size={16} color="#407BFF"/>} </ButtonPassword>
+{formik.touched.confirmPassword && formik.errors.confirmPassword && <ErrorMessage>{formik.errors.confirmPassword}</ErrorMessage>}
+</IconConteiner>
+
 </Label>
 <Button type="submit">
 Sing Up

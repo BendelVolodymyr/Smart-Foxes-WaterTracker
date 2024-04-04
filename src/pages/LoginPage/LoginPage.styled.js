@@ -4,6 +4,7 @@ import theme from '../../styles/theme';
 import bgMob from './image/backgroundMobile.png';
 import bgDes from './image/backgroundDesk.png';
 import bgmobTab from './image/backgroundTab.png';
+// import TextField from '@mui/material/TextField';
 
 export const LoginContainer = styled.div`
   @media (min-width: 320px) and (max-width: 768px) {
@@ -58,6 +59,8 @@ export const Form = styled.form`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 16px;
+  position: relative;
+  z-index: 25;
   @media (min-width: 390px) and (max-width: 768px) {
     width: 350px;
   }
@@ -79,8 +82,11 @@ export const Label = styled.label`
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
-  position: relative;
   width: 100%;
+`;
+
+export const IconConteiner = styled.div`
+  position: relative;
 `;
 
 export const Input = styled.input`
@@ -109,8 +115,8 @@ export const ButtonPassword = styled.button`
   border: none;
   background: transparent;
   position: absolute;
-  left: 90%;
-  bottom: 15%;
+  left: 92%;
+  bottom: 20%;
 `;
 
 export const Button = styled.button`
@@ -153,6 +159,7 @@ export const ImgWrapp = styled.div`
   margin: 0 auto;
   @media (min-width: 620px) and (max-width: 700px) {
     position: relative;
+    z-index: -1;
     bottom: 95px;
     left: 0;
   }
@@ -162,12 +169,7 @@ export const ImgWrapp = styled.div`
     left: 0;
   }
 
-  @media (min-width: 768px) and (max-width: 1440px) {
-    position: relative;
-    bottom: 311px;
-    padding-left: 135px;
-  }
-  @media (min-width: 768px) and (max-width: 1440px) {
+  @media (min-width: 768px) and (max-width: 1439px) {
     position: relative;
     bottom: 311px;
     padding-left: 135px;
@@ -181,3 +183,10 @@ export const ImgWrapp = styled.div`
 `;
 
 export const ImgBottle = styled.img``;
+
+export const ErrorMessage = styled.p`
+  color: ${theme.lightTheme.colors.secondary.color2};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+`;

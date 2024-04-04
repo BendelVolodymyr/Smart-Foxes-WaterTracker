@@ -1,45 +1,38 @@
-import {
-  Button,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from '@mui/material';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { ModalContext } from '../../../context';
+import {
+  ButtonCns,
+  ButtonDlt,
+  DialogActions,
+  PortionDelModalWrapper,
+} from './TodayDelModal.styled';
+import { useDispatch } from 'react-redux';
+import { deletePortion } from '../../../redux/waters/operations';
 
 const TodayDelModal = ({ id }) => {
   const { closeModal } = useContext(ModalContext);
-  useEffect(() => {
-    console.log('я модалка для видалення');
-  }, []);
-
+  const dispatch = useDispatch();
+  console.log(id);
   const handleDelete = () => {
-    console.log(id);
-    console.log('їдемо на бек');
-
-    // Тут  логіка для виклику запиту на сервер для видалення
-
+    dispatch(deletePortion(id));
     closeModal();
   };
 
   return (
-    <>
-      <DialogTitle>Delete entry</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          Are you sure you want to delete the entry?
-        </DialogContentText>
-      </DialogContent>
+    <PortionDelModalWrapper>
+      <h3>Delete entry</h3>
+
+      <p>Are you sure you want to delete the entry?</p>
+
       <DialogActions>
-        <Button onClick={() => closeModal()} color="primary">
+        <ButtonCns type="button" onClick={() => closeModal()}>
           Cancel
-        </Button>
-        <Button onClick={handleDelete} $color="error">
+        </ButtonCns>
+        <ButtonDlt type="submit" onClick={handleDelete}>
           Delete
-        </Button>
+        </ButtonDlt>
       </DialogActions>
-    </>
+    </PortionDelModalWrapper>
   );
 };
 
