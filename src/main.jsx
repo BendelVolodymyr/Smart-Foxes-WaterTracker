@@ -8,6 +8,7 @@ import { ModalProvider } from './context/index.js';
 import { store, persistor } from './redux/store.js';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { GlobalStyle } from './styles/globalStyle.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/Smart-Foxes-WaterTracker">
           <ModalProvider>
+            <GlobalStyle />
             <App />
           </ModalProvider>
         </BrowserRouter>

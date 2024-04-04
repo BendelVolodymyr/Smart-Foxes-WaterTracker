@@ -5,7 +5,6 @@ import {
   FormStyled,
   InputContainer,
   Input,
-  Label,
   ErrorText,
   StyledAvatarSection,
   StyledAvatar,
@@ -54,24 +53,6 @@ export const AvatarsUploader = () => {
 
   return (
     <FormStyled onSubmit={formik.handleSubmit}>
-      <Label htmlFor="avatar">Your photo</Label>
-      <InputContainer>
-        <StyledAvatarSection>
-          {formik.values.avatar ? (
-            <StyledAvatar
-              src={URL.createObjectURL(formik.values.avatar)}
-              alt="Avatar"
-            />
-          ) : (
-            <StyledAvatar src="" alt="Avatar" />
-          )}
-          <StyledUploadButton>
-            <p>{formik.values.avatar ? 'Change photo' : 'Upload a photo'}</p>
-            <RiDownload2Line />
-            <Input type="file" name="avatar" onChange={handleChange} />
-          </StyledUploadButton>
-        </StyledAvatarSection>
-      </InputContainer>
       <ErrorText>
         {formik.touched.avatar && formik.errors.avatar && (
           <p style={{ color: 'red' }}>{formik.errors.avatar}</p>
