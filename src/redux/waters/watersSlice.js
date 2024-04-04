@@ -55,13 +55,13 @@ const waterSlice = createSlice({
       .addCase(API.updateWaterRate.rejected, handleRejected)
       .addCase(API.portionsPerDay.pending, handlePending)
       .addCase(API.portionsPerDay.fulfilled, (state, action) => {
-        state.waterDayList = { ...action.payload };
+        state.waterDayList = action.payload;
         state.isLoading = false;
       })
       .addCase(API.portionsPerDay.rejected, handleRejected)
       .addCase(API.portionsPerMonth.pending, handlePending)
       .addCase(API.portionsPerMonth.fulfilled, (state, action) => {
-        state.waterMounthList = { ...action.payload };
+        state.waterMounthList = action.payload;
       })
       .addCase(API.portionsPerMonth.rejected, handleRejected);
   },

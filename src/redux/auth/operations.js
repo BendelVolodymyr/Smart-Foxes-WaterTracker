@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL =
-  'https://smart-foxes-backend-watertracker.onrender.com/api';
+// axios.defaults.baseURL =
+//   'https://smart-foxes-backend-watertracker.onrender.com/api';
+
+axios.defaults.baseURL = 'http://localhost:3000/api';
 
 const token = {
   set(token) {
@@ -33,6 +35,7 @@ export const signIn = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post('/users/login', userData);
+      token.set(response.data.token);
       console.log(response);
       return response.data;
     } catch (error) {
@@ -45,6 +48,7 @@ export const logout = createAsyncThunk('/logout', async (_, thunkAPI) => {
   try {
     const response = await axios.post('/users/logout');
 
+    console.log(response);
     token.unset();
     return response.data;
   } catch (error) {
