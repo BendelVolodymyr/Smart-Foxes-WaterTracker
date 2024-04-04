@@ -40,9 +40,13 @@ const formik = useFormik({
  <AuthTitle>Sing In</AuthTitle>
   <Label >
   Enter your email
-    <Input placeholder="E-mail" name="email" type="email"  value={formik.values.email}
-          onChange={formik.handleChange} autoComplete="off" onBlur={formik.handleBlur} />
-          {formik.touched.email && formik.errors.email && <ErrorMessage>{formik.errors.email}</ErrorMessage>}
+    <Input placeholder="E-mail" name="email" 
+    type="email"  
+    value={formik.values.email}
+    onChange={formik.handleChange} autoComplete="off" 
+    onBlur={formik.handleBlur} 
+ />
+  {formik.touched.email && formik.errors.email && <ErrorMessage>{formik.errors.email}</ErrorMessage>}
   </Label>
   <Label >
   Enter your password
