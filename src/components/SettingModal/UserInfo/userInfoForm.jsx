@@ -17,7 +17,6 @@ import {
 } from './userinfoform.styled';
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
-import validationSchema from './validationSchema';
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../../redux/auth/operations';
 import { CircularProgress, Snackbar, Alert } from '@mui/material';
@@ -45,7 +44,6 @@ const UserInfoForm = () => {
         newPassword: '',
         repeatPassword: '',
       }}
-      validationSchema={validationSchema}
       onSubmit={(values) => {
         setIsLoading(true);
         dispatch(updateUser(values))

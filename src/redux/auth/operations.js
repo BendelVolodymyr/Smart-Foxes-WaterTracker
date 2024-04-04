@@ -4,8 +4,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 axios.defaults.baseURL =
   'https://smart-foxes-backend-watertracker.onrender.com/api';
 
-// axios.defaults.baseURL = 'http://localhost:3000/api';
-
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -35,7 +33,6 @@ export const signIn = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post('/users/login', userData);
-      token.set(response.data.token);
       console.log(response);
       return response.data;
     } catch (error) {
@@ -48,7 +45,6 @@ export const logout = createAsyncThunk('/logout', async (_, thunkAPI) => {
   try {
     const response = await axios.post('/users/logout');
 
-    console.log(response);
     token.unset();
     return response.data;
   } catch (error) {
@@ -56,24 +52,24 @@ export const logout = createAsyncThunk('/logout', async (_, thunkAPI) => {
   }
 });
 
-// export const current = createAsyncThunk('auth/current', async (_, thunkAPI) => {
-//   const state = thunkAPI.getState();
-//   const persistedToken = state.auth.token;
+export const current = createAsyncThunk('auth/current', async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const persistedToken = state.auth.token;
 
-//   if (persistedToken === null) {
-//     console.log('NO TOKEN');
-//     return thunkAPI.rejectWithValue('Unable to fetch user');
-//   }
-//   token.set(persistedToken);
-//   try {
-//     const response = await axios.get('users/current');
+  if (persistedToken === null) {
+    console.log('NO TOKEN');
+    return thunkAPI.rejectWithValue('Unable to fetch user');
+  }
+  token.set(persistedToken);
+  try {
+    const response = await axios.get('users/current');
 
-//     console.log(response.data);
-//     return response.data;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
 
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
@@ -129,3 +125,17 @@ export const uploadAvatar = createAsyncThunk(
 //     }
 //   }
 // );
+
+export const updateUser = createAsyncThunk(
+  'auth/update-user',
+  async (updatedData, thunkAPI) => {
+    const token = thunkAPI.getState().auth.token;
+    const response = await axios.patch('/users', updatedData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log('User information updated successfully:', response.data);
+    return response.data;
+  }
+);
