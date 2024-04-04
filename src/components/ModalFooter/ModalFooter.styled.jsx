@@ -47,6 +47,7 @@ export const BackdropWrapper = styled.div`
   left: 0;
   z-index: 100;
 
+  overflow-y: scroll;
   width: 100%;
   height: 100%;
   display: flex;
@@ -63,7 +64,8 @@ export const ModalWrapper = styled.div`
   overflow: ${p => (p.$overflow ? p.$overflow : 'hidden')};
   overflow-x: hidden;
   max-width: 280px;
-  max-height: 80%;
+  margin: auto;
+  height: auto;
   padding: 32px 24px 32px 24px;
 
   background-color: ${p => p.theme.colors.primary.bg};

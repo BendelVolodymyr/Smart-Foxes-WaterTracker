@@ -3,6 +3,7 @@ import { ModalFooter } from '../../components/ModalFooter/ModalFooter';
 import { ThemeProvider } from 'styled-components';
 
 import theme from '../../styles/theme';
+import { GlobalStyle } from '../../styles/globalStyle';
 
 export const ModalContext = createContext({
   openModal: () => {},
@@ -38,6 +39,7 @@ export const ModalProvider = ({ children }) => {
   return (
     <ModalContext.Provider value={valueModalProvider}>
       <ThemeProvider theme={themeShow ? theme.lightTheme : theme.nightTheme}>
+        <GlobalStyle $isVisibility={modalShowing ? 'hidden' : 'scroll'} />
         {modalShowing && (
           <ModalFooter {...modalContent} inOverflow={overflow} />
         )}
