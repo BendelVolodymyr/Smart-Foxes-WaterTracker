@@ -4,21 +4,22 @@ import theme from '../../styles/theme';
 import bgMob from './image/backgroundMobile.png';
 import bgDes from './image/backgroundDesk.png';
 import bgmobTab from './image/backgroundTab.png';
-// import TextField from '@mui/material/TextField';
 
 export const LoginContainer = styled.div`
-  @media (min-width: 320px) and (max-width: 768px) {
-    padding: 24px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    background-image: url(${bgMob});
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 1px 40px;
-  }
-  @media (min-width: 520px) and (max-width: 1200px) {
+  /* @media (min-width: 320px) and (max-width: 768px) {
+  width: 320px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: url(${bgMob});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 1px 40px;
+  } */
+  /* @media (min-width: 520px) and (max-width: 1200px) {
     background-image: url(${bgmobTab});
     background-repeat: no-repeat;
     background-size: cover;
@@ -31,7 +32,6 @@ export const LoginContainer = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
   }
-
   @media (min-width: 1440px) {
     padding: 49px 18px;
     display: flex;
@@ -41,9 +41,35 @@ export const LoginContainer = styled.div`
     background-image: url(${bgDes});
     background-repeat: no-repeat;
     background-size: cover;
+  } */
+
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: url(${bgMob});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 1px 40px;
+
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    background-image: url(${bgmobTab});
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 40px 32px;
   }
-  background-color: #${theme.lightTheme.colors.primary.bg};
-  gap: 16px;
+
+  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    background-image: url(${bgDes});
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 `;
 
 export const AuthTitle = styled.h2`
@@ -61,19 +87,17 @@ export const Form = styled.form`
   gap: 16px;
   position: relative;
   z-index: 25;
+
   @media (min-width: 390px) and (max-width: 768px) {
     width: 350px;
   }
-  @media (min-width: 768px) and (max-width: 1200px) {
+
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
     width: 336px;
-    overflow: hidden;
-  }
-  @media (min-width: 1200px) and (max-width: 1440px) {
-    width: 384px;
   }
 
-  @media (min-width: 1440px) {
-    padding-right: 198px;
+  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+    width: 384px;
   }
 `;
 
@@ -136,7 +160,7 @@ export const Button = styled.button`
   &:hover {
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
   }
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
     padding: 10px 30px;
     font-size: 18px;
     line-height: 1.33;
@@ -157,25 +181,22 @@ export const LinkTo = styled(NavLink)`
 export const ImgWrapp = styled.div`
   padding-top: 50px;
   margin: 0 auto;
+  z-index: -1;
+  position: relative;
   @media (min-width: 620px) and (max-width: 700px) {
-    position: relative;
-    z-index: -1;
     bottom: 95px;
     left: 0;
   }
   @media (min-width: 700px) and (max-width: 768px) {
-    position: relative;
     bottom: 120px;
     left: 0;
   }
 
   @media (min-width: 768px) and (max-width: 1439px) {
-    position: relative;
     bottom: 311px;
     padding-left: 135px;
   }
   @media (min-width: 1440px) {
-    position: relative;
     bottom: 0;
     padding-left: 0;
     margin: 0;
