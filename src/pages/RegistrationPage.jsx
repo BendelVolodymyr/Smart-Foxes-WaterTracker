@@ -28,8 +28,8 @@ const Registration = () => {
       confirmPassword:''
     },
     validationSchema: SignupSchema,
-    onSubmit: (values, { resetForm }) => {
-        dispatch(signUp(values));
+    onSubmit: ({email, password}, { resetForm }) => {
+        dispatch(signUp({email: email, password:password}));
       resetForm();
     },
   });
@@ -42,14 +42,14 @@ const Registration = () => {
  <Label >
   Enter your email
     <Input placeholder="E-mail" name="email" type="email"  value={formik.values.email} 
-          onChange={formik.handleChange} autoComplete="off" />
+          onChange={formik.handleChange} autoComplete="off" onBlur={formik.handleBlur}/>
              {formik.touched.email && formik.errors.email && <ErrorMessage>{formik.errors.email}</ErrorMessage>}
   </Label>
 <Label >
   Enter your password
   <IconConteiner>
       <Input placeholder="Password" name="password" type={type} autoComplete="off" value={formik.values.password} 
-          onChange={formik.handleChange} />
+          onChange={formik.handleChange} onBlur={formik.handleBlur}/>
             <ButtonPassword type="button" onClick={handleShowPassword}> 
     {toggleIcon ? <HiOutlineEyeSlash size={16} color="#407BFF"/> : <PiEyeLight size={16} color="#407BFF"/>} 
     </ButtonPassword>
@@ -60,11 +60,13 @@ const Registration = () => {
 <Label >
 Repeat password
 <IconConteiner>
-<Input placeholder="Repeat password" name="confirmPassword" type={type} autoComplete="off" value={formik.values.confirmPassword}  onChange={formik.handleChange}/>
-<ButtonPassword type="button" onClick={handleShowPassword}> {toggleIcon ? <HiOutlineEyeSlash size={16} color="#407BFF"/> : <PiEyeLight size={16} color="#407BFF"/>} </ButtonPassword>
-{formik.touched.confirmPassword && formik.errors.confirmPassword && <ErrorMessage>{formik.errors.confirmPassword}</ErrorMessage>}
+<Input placeholder="Repeat password" name="confirmPassword" type={type} autoComplete="off" value={formik.values.confirmPassword}  
+onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+<ButtonPassword type="button" onClick={handleShowPassword}> 
+{toggleIcon ? <HiOutlineEyeSlash size={16} color="#407BFF"/> : <PiEyeLight size={16} color="#407BFF"/>} 
+</ButtonPassword>
 </IconConteiner>
-
+{formik.touched.confirmPassword && formik.errors.confirmPassword && <ErrorMessage>{formik.errors.confirmPassword}</ErrorMessage>}
 </Label>
 <Button type="submit">
 Sing Up
