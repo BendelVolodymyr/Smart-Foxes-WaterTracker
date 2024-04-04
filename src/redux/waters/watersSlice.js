@@ -33,7 +33,7 @@ const waterSlice = createSlice({
       .addCase(API.deletePortion.pending, handlePending)
       .addCase(API.deletePortion.fulfilled, (state, action) => {
         const idx = state.waterDayList.findIndex(
-          (data) => (data.id = action.payload.id)
+          (data) => data._id === action.payload.id
         );
         state.waterDayList.splice(idx, 1);
         state.isLoading = false;
@@ -55,7 +55,8 @@ const waterSlice = createSlice({
       .addCase(API.updateWaterRate.rejected, handleRejected)
       .addCase(API.portionsPerDay.pending, handlePending)
       .addCase(API.portionsPerDay.fulfilled, (state, action) => {
-        state.waterDayList = action.payload;
+        // console.log(action.payload.portions);
+        state.waterDayList = action.payload.portions;
         state.isLoading = false;
       })
       .addCase(API.portionsPerDay.rejected, handleRejected)
