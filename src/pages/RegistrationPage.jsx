@@ -18,7 +18,7 @@ const Registration = () => {
     password: Yup.string().min(8, 'Password should be of minimum 8 characters length')
     .max(64, 'Password should be of max 64 characters length')
     .required('Password is required'),
-    confirmPassword:Yup.string().required('Password is required')
+    confirmPassword: Yup.string().required('Confirm Password is required').oneOf([Yup.ref('password'), null], 'Passwords does not match'),
   });
 
   const formik = useFormik({
@@ -29,7 +29,7 @@ const Registration = () => {
     },
     validationSchema: SignupSchema,
     onSubmit: (values, { resetForm }) => {
-     dispatch(signUp(values));
+        dispatch(signUp(values));
       resetForm();
     },
   });
@@ -41,14 +41,14 @@ const Registration = () => {
  <AuthTitle>Sing Up</AuthTitle>
  <Label >
   Enter your email
-    <Input placeholder="E-mail" name="email" type="email"  value={formik.values.email}
+    <Input placeholder="E-mail" name="email" type="email"  value={formik.values.email} 
           onChange={formik.handleChange} autoComplete="off" />
              {formik.touched.email && formik.errors.email && <ErrorMessage>{formik.errors.email}</ErrorMessage>}
   </Label>
 <Label >
   Enter your password
   <IconConteiner>
-      <Input placeholder="Password" name="password" type={type} autoComplete="off" value={formik.values.password}
+      <Input placeholder="Password" name="password" type={type} autoComplete="off" value={formik.values.password} 
           onChange={formik.handleChange} />
             <ButtonPassword type="button" onClick={handleShowPassword}> 
     {toggleIcon ? <HiOutlineEyeSlash size={16} color="#407BFF"/> : <PiEyeLight size={16} color="#407BFF"/>} 
