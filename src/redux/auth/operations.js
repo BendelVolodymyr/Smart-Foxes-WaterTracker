@@ -93,6 +93,7 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
 export const uploadAvatar = createAsyncThunk(
   'auth/avatar',
   async (formData, thunkAPI) => {
@@ -112,7 +113,20 @@ export const uploadAvatar = createAsyncThunk(
   }
 );
 
-//!Второй вариант саки для аватарки
+export const updateUserInfo = createAsyncThunk(
+  'auth/info',
+  async (formData, thunkAPI) => {
+    try {
+      const response = await axios.patch('/users', formData);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+//!Второй вариант саNки для аватарки
 
 // export const avatar = createAsyncThunk(
 //   'auth/avatar',

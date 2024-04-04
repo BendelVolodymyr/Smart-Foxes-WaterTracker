@@ -72,7 +72,17 @@ const authSlice = createSlice({
       .addCase(API.refreshUser.rejected, (state) => {
         state.isRefreshing = false;
         state.isLoggedIn = false;
-      });
+      })
+      .addCase(API.uploadAvatar.fulfilled, (state, action) => {
+        // console.log(action.payload);
+        state.user.avatar = action.payload;
+      })
+      .addCase(API.updateUserInfo.pending, handlePending)
+      .addCase(API.updateUserInfo.fulfilled, (state, action) => {
+        // console.log(action.payload);
+        state.user = { ...action.payload };
+      })
+      .addCase(API.updateUserInfo.rejected, handleRejected);
   },
 });
 
