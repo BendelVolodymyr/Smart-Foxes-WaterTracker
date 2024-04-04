@@ -64,7 +64,6 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(API.refreshUser.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.user = { ...action.payload };
         state.isAuthenticated = true;
         state.isRefreshing = false;
