@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// axios.defaults.baseURL =
-//   'https://smart-foxes-backend-watertracker.onrender.com/api';
+axios.defaults.baseURL =
+  'https://smart-foxes-backend-watertracker.onrender.com/api';
 
-axios.defaults.baseURL = 'http://localhost:3000/api';
+// axios.defaults.baseURL = 'http://localhost:3000/api';
 
 //const { waterVolume, date } = req.body;
 export const addPortion = createAsyncThunk(
@@ -58,7 +58,7 @@ export const updateWaterRate = createAsyncThunk(
   'water-rate/editDailyNorma',
   async (data, thunkApi) => {
     try {
-      const response = await axios.patch(`/water-rate/`, data);
+      const response = await axios.patch(`/water-rate`, data);
       return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
