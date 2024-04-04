@@ -34,11 +34,11 @@ const formik = useFormik({
   },
   validationSchema: SigninSchema,
   onSubmit: (values, { resetForm }) => {
-    console.log(values);
    dispatch(signIn(values));
     resetForm();
   },
 });
+
   return (
   <LoginContainer>
       <Form onSubmit={formik.handleSubmit}> 
