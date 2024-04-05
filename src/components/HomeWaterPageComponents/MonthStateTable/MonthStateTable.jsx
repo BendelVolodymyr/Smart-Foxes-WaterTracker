@@ -14,7 +14,7 @@ const MonthStateTable = () => {
   const [currentMonth, setCurrentMonth] = useState(selectedDate.getMonth());
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
-  const monthData = useWater().waterMonthList || [];
+  const monthData = useWater().waterMonthList;
 
   const handleClosePopover = () => {
     setAnchorEl(null);
