@@ -118,12 +118,18 @@ export const Input = styled.input`
   width: 100%;
   height: 44px;
   border-radius: 6px;
-  border: 1px solid ${theme.lightTheme.colors.secondary.color5};
-  color: ${theme.lightTheme.colors.primary.accent};
+  color: ${({ error }) =>
+    error
+      ? ` ${theme.lightTheme.colors.secondary.color2}`
+      : `${theme.lightTheme.colors.primary.accent}`};
   background: ${theme.lightTheme.colors.primary.bg};
   padding: 12px 10px;
   outline: none;
-
+  margin-bottom: 4px;
+  border: ${({ error }) =>
+    error
+      ? `1px solid ${theme.lightTheme.colors.secondary.color2}`
+      : `1px solid ${theme.lightTheme.colors.secondary.color5}`};
   &::placeholder {
     color: ${theme.lightTheme.colors.secondary.color3};
     font-size: 16px;
@@ -210,4 +216,16 @@ export const ErrorMessage = styled.p`
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
+`;
+
+export const ButtonGoogle = styled.button`
+  display: block;
+  padding: 5.5px 30px;
+  background-color: #407bff;
+  color: white;
+  font-size: 16px;
+  line-height: 1.25rem;
+  font-weight: 500;
+  width: 100%;
+  border-radius: 0.5rem;
 `;
