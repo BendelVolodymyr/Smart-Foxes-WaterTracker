@@ -10,9 +10,9 @@ axios.defaults.baseURL =
 export const addPortion = createAsyncThunk(
   'water/add',
 
-  async ({ portion, date }, thunkAPI) => {
+  async ({ waterVolume, date }, thunkAPI) => {
     try {
-      const response = await axios.post('/waters', { portion, date });
+      const response = await axios.post('/waters', { waterVolume, date });
 
       // console.log(response);
       return response.data;
@@ -26,8 +26,6 @@ export const deletePortion = createAsyncThunk(
   'water/delete',
 
   async (id, thunkAPI) => {
-    console.log(id);
-
     try {
       const response = await axios.delete(`/waters/${id}`);
 
@@ -71,10 +69,11 @@ export const portionsPerDay = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const date = new Date();
+      // const date = '2024-04-03';
       // const formattedDate = formatDate(date);
       const response = await axios.get(`/waters/today?date=${date}`);
-      console.log(response);
-      return response.data;
+      // console.log(response);
+      return response.data.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

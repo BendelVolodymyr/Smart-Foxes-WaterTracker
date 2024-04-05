@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import formatTime from '../../../helpers/formatTime';
 import {
   AddWaterBtn,
@@ -17,6 +17,9 @@ import {
 
 import TodayDelModal from '../TodayDelModal/TodayDelModal';
 import { ModalContext } from '../../../context';
+import useWater from '../../../hooks/useWaters';
+import { useDispatch } from 'react-redux';
+import { portionsPerDay } from '../../../redux/waters/operations';
 
 //заглушка для модалки
 const TodayEditModal = () => {
@@ -25,19 +28,34 @@ const TodayEditModal = () => {
 
 const TodayWaterList = ({ handleAddWaterClick }) => {
   //заглушка. замінити на дані зі стейту
-  const waterDayList = [
-    { id: 1, portion: '250', date: '2024-03-30T20:00:00.000Z' },
-    { id: 2, portion: '250', date: '2024-03-30T10:00:00.000Z' },
-    { id: 3, portion: '250', date: '2024-03-30T15:00:00.000Z' },
-    { id: 4, portion: '250', date: '2024-03-30T18:00:00.000Z' },
-    { id: 5, portion: '250', date: '2024-03-30T19:00:00.000Z' },
-    { id: 6, portion: '250', date: '2024-03-30T20:00:00.000Z' },
-  ];
+  // const waterDayList = [
+  //   {
+  //     _id: '660d1669c6da2477d73d6371',
+  //     dateAdded: '2024-04-13T02:40:00.000Z',
+  //     waterRate: 2000,
+  //     waterVolume: 200,
+  //     owner: '660d1669c6da2477d73d6371',
+  //     percentage: 80,
+  //   },
+  //   {
+  //     _id: '660d1669c6da2477d73d6372',
+  //     dateAdded: '2024-04-13T02:40:00.000Z',
+  //     waterRate: 2000,
+  //     waterVolume: 200,
+  //     owner: '660d1669c6da2477d73d6371',
+  //     percentage: 80,
+  //   },
+  // ];
 
   const { openModal } = useContext(ModalContext);
   const [selectedPortion, setSelectedPortion] = useState(null);
+  const waterDayData = useWater().waterDayList;
+  const dispatch = useDispatch();
 
-  //заглушки для хендлерів
+  useEffect(() => {
+    dispatch(portionsPerDay());
+  }, []);
+
   const handleDelete = (id) => {
     openModal(
       <>
@@ -49,7 +67,7 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
   const handleEdit = (portion) => {
     setSelectedPortion(portion);
     console.log(selectedPortion);
-
+    //тут поки що заглушка TodayEditModal
     openModal(
       <>
         <TodayEditModal portion={portion} />
@@ -60,20 +78,20 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
   return (
     <TodayBoxWrapper>
       <h3>Today</h3>
-      {waterDayList && waterDayList.length > 0 && (
+      {waterDayData && waterDayData.length > 0 && (
         <PortionsList>
-          {waterDayList.map((portion) => (
-            <li key={portion.id}>
+          {waterDayData.map((portion) => (
+            <li key={portion._id}>
               <ListContext>
                 <GlassSvg />
-                <Portion>{`${portion.portion} ml `}</Portion>
-                <span>{formatTime(portion.date, true)}</span>
+                <Portion>{`${portion.waterVolume} ml `}</Portion>
+                <span>{formatTime(portion.dateAdded, true)}</span>
               </ListContext>
               <ListButtons>
-                <ButtonEdit onClick={() => handleEdit(portion)}>
+                <ButtonEdit onClick={() => handleEdit(portion._id)}>
                   <EditSvg />
                 </ButtonEdit>
-                <ButtonDelete onClick={() => handleDelete(portion.id)}>
+                <ButtonDelete onClick={() => handleDelete(portion._id)}>
                   <DeleteSvg />
                 </ButtonDelete>
               </ListButtons>

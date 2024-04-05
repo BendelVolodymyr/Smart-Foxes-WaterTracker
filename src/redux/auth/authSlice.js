@@ -27,16 +27,17 @@ const authSlice = createSlice({
     builder
       .addCase(API.signUp.pending, handlePending)
       .addCase(API.signUp.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.user = action.payload.user;
+        state.user.email = action.payload.email;
+        state.user.avatarUrl = null;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(API.signUp.rejected, handleRejected)
       .addCase(API.signIn.pending, handlePending)
       .addCase(API.signIn.fulfilled, (state, action) => {
-        console.log(action);
+        // console.log(action);
         state.user.email = action.payload.email;
         state.token = action.payload.token;
         state.isLoggedIn = true;
@@ -46,7 +47,7 @@ const authSlice = createSlice({
       .addCase(API.signIn.rejected, handleRejected)
       .addCase(API.logout.pending, handlePending)
       .addCase(API.logout.fulfilled, (state) => {
-        state.user = { name: null, email: null, gender: null, avatar: null };
+        state.user = { name: null, email: null, gender: null, avatarUrl: null };
         state.token = null;
         state.isLoggedIn = false;
         state.error = null;
@@ -64,6 +65,7 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(API.refreshUser.fulfilled, (state, action) => {
+        // console.log(action.payload);
         state.user = { ...action.payload };
         state.isAuthenticated = true;
         state.isRefreshing = false;
@@ -72,7 +74,14 @@ const authSlice = createSlice({
       .addCase(API.refreshUser.rejected, (state) => {
         state.isRefreshing = false;
         state.isLoggedIn = false;
-      });
+      })
+      .addCase(API.updateUserInfo.pending, handlePending)
+      .addCase(API.updateUserInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.user = { ...state.user, ...action.payload };
+      })
+      .addCase(API.updateUserInfo.rejected, handleRejected);
   },
 });
 

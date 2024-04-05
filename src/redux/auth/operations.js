@@ -22,7 +22,7 @@ export const signUp = createAsyncThunk(
     try {
       const response = await axios.post('/users/register', userData);
       token.set(response.data.token);
-      console.log(response);
+      // console.log(response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -35,9 +35,8 @@ export const signIn = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post('/users/login', userData);
-
-      console.log(response);
       token.set(response.data.token);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -49,7 +48,6 @@ export const logout = createAsyncThunk('/logout', async (_, thunkAPI) => {
   try {
     const response = await axios.post('/users/logout');
 
-    console.log(response);
     token.unset();
     return response.data;
   } catch (error) {
@@ -103,6 +101,7 @@ export const uploadAvatar = createAsyncThunk(
       const {
         data: { avatarURL },
       } = await axios.patch('/users/avatars', formData);
+
       return avatarURL;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -110,15 +109,28 @@ export const uploadAvatar = createAsyncThunk(
   }
 );
 
-//!Второй вариант саки для аватарки
+export const updateUserInfo = createAsyncThunk(
+  'auth/info',
+  async (formData, thunkAPI) => {
+    try {
+      const response = await axios.patch('/users', formData);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+//!Второй вариант саNки для аватарки
 
 // export const avatar = createAsyncThunk(
 //   'auth/avatar',
 //   async (data, thunkAPI) => {
 //     try {
 //       const formData = new FormData();
-//       formData.append('avatar', data); // Предполагается, что 'data' - это файл аватарки
-//       const response = await axios.patch('/users/login', formData);
+//       formData.append('avatar', data); // 'data' - это файл аватарки
+//       const response = await axios.patch('/users/avatars', formData);
 //       console.log(response);
 //       return response.data;
 //     } catch (error) {
