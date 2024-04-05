@@ -13,7 +13,7 @@ import UserLogo from './UserLogo/UserLogo';
 
 const Header = () => {
   const { isLoggedIn, user } = useAuth();
-  console.log(isLoggedIn);
+
   return (
     <header>
       <Container>
