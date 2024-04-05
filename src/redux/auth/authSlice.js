@@ -64,6 +64,7 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(API.refreshUser.fulfilled, (state, action) => {
+        // console.log(action.payload);
         state.user = { ...action.payload };
         state.isAuthenticated = true;
         state.isRefreshing = false;
@@ -72,7 +73,14 @@ const authSlice = createSlice({
       .addCase(API.refreshUser.rejected, (state) => {
         state.isRefreshing = false;
         state.isLoggedIn = false;
-      });
+      })
+      .addCase(API.updateUserInfo.pending, handlePending)
+      .addCase(API.updateUserInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.user = { ...state.user, ...action.payload };
+      })
+      .addCase(API.updateUserInfo.rejected, handleRejected);
   },
 });
 
