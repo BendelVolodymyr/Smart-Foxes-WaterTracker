@@ -17,14 +17,16 @@ export const Wrapper = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-
-  @media only screen and (min-width: 768px) {
+  padding: 24px 20px 40px;
+  @media only screen and (min-width: ${({ theme }) => theme.screens.tab}) {
+    padding: 40px 32px 50px;
     background-image: image-set(
       url(${backgroundMainPageTab}) 1x,
       url(${backgroundMainPageTab2x}) 2x
     );
   }
   @media screen and (min-width: 1440px) {
+    padding: 80px 0 294px;
     background-image: image-set(
         url(${backgroundMainPageDesk}) 1x,
         url(${backgroundMainPageDesk2x}) 2x
@@ -33,6 +35,10 @@ export const Wrapper = styled.div`
         url(${backgroundElementMainPageDesk}) 1x,
         url(${backgroundElementMainPageDesk2x}) 2x
       );
+    background-size: contain;
+    background-position:
+      right bottom,
+      left 49px;
   }
 `;
 
@@ -40,7 +46,7 @@ export const WrapperContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding: 24px 20px 40px;
+
   width: 280px;
   justify-content: center;
   align-items: center;
@@ -48,13 +54,11 @@ export const WrapperContent = styled.div`
     width: 704px;
     align-items: flex-start;
     gap: 60px;
-    padding: 40px 32px 50px;
   }
   @media screen and (min-width: 1440px) {
     width: 1014px;
     flex-direction: row;
     align-items: flex-end;
     gap: 81px;
-    padding: 80px 0 294px;
   }
 `;
