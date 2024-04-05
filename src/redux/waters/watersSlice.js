@@ -3,7 +3,7 @@ import * as API from './operations';
 
 const initialState = {
   waterDayList: [], //portionList:[]
-  waterMounthList: [],
+  waterMonthList: [],
   waterRate: null,
   isLoading: false,
   error: false,
@@ -61,10 +61,7 @@ const waterSlice = createSlice({
       .addCase(API.portionsPerDay.rejected, handleRejected)
       .addCase(API.portionsPerMonth.pending, handlePending)
       .addCase(API.portionsPerMonth.fulfilled, (state, action) => {
-
-
-        state.waterMounthList = action.payload.data.mounthData;
-
+        state.waterMounthList = action.payload.data.monthData;
       })
       .addCase(API.portionsPerMonth.rejected, handleRejected);
   },
