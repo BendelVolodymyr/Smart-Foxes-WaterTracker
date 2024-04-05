@@ -29,8 +29,12 @@ const LoginPage = () => {
   const dispatch = useDispatch();
 
   const handleLogInWithPopUp = () => {
-    console.log('AUTH WITH GOOGLE');
+    window.location.assign('https://smart-foxes-backend-watertracker.onrender.com/api/auth/google');
   };
+
+  // const handleLogInWithPopUp = () => {
+  //   window.location.assign('http://localhost:3000/api/auth/google');
+  // };
 
   const SigninSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -112,6 +116,7 @@ const LoginPage = () => {
           <FcGoogle style={{ width: 25, height: 25 }} /> Google
         </ButtonGoogle>
         <LinkTo to="/signup">Sing up</LinkTo>
+        <LinkTo>Forgot Password</LinkTo>
       </Form>
       <ImgWrapp>
         <ImgBottle src={bottle} alt="bottle" />

@@ -220,12 +220,21 @@ export const ErrorMessage = styled.p`
 
 export const ButtonGoogle = styled.button`
   display: block;
-  padding: 5.5px 30px;
-  background-color: #407bff;
-  color: white;
+  padding: 8px 30px;
+  background: ${theme.lightTheme.colors.primary.accent};
+  color: ${theme.lightTheme.colors.primary.bg};
   font-size: 16px;
-  line-height: 1.25rem;
+  line-height: 1.25;
   font-weight: 500;
   width: 100%;
-  border-radius: 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    padding: 10px 30px;
+    font-size: 18px;
+    line-height: 1.33;
+  }
 `;

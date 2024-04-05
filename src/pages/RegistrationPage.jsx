@@ -10,6 +10,7 @@ import {
   Form,
   IconConteiner,
   ErrorMessage,
+  ButtonGoogle,
 } from './LoginPage/LoginPage.styled';
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
@@ -20,6 +21,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { signUp } from '../redux/auth/operations';
 import { useDispatch } from 'react-redux';
+import { FcGoogle } from 'react-icons/fc';
 
 const Registration = () => {
   const bottle = bottleImg;
@@ -48,6 +50,14 @@ const Registration = () => {
       resetForm();
     },
   });
+
+  const handleLogInWithPopUp = () => {
+    window.location.assign('https://smart-foxes-backend-watertracker.onrender.com/api/auth/google');
+  };
+
+  // const handleLogInWithPopUp = () => {
+  //   window.location.assign('http://localhost:3000/api/auth/google');
+  // };
 
   return (
     <LoginContainer>
@@ -120,6 +130,19 @@ const Registration = () => {
           )}
         </Label>
         <Button type="submit">Sing Up</Button>
+        <ButtonGoogle
+          name="google-auth"
+          onClick={handleLogInWithPopUp}
+          type="button"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 15,
+          }}
+        >
+          <FcGoogle style={{ width: 25, height: 25 }} /> Google
+        </ButtonGoogle>
         <LinkTo to="/signin">Sing in</LinkTo>
       </Form>
       <ImgWrapp>
