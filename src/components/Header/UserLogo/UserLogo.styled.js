@@ -11,9 +11,7 @@ export const UserName = styled.p`
   overflow: auto;
   font-size: 16px;
 
-  font-weight: ${(p) => {
-    p.theme.fontWeights.regular;
-  }};
+  font-weight: 500;
   line-height: 20px;
   text-align: right;
   margin-right: 8px;
