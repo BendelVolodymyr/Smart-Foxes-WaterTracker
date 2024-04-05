@@ -1,4 +1,4 @@
-import{h as o,t,N as c,r as n}from"./index-85a0d5d3.js";const r="/Smart-Foxes-WaterTracker/assets/backgroundMobile-0bf10f90.png",i="/Smart-Foxes-WaterTracker/assets/backgroundDesk-54c098d2.png",s="/Smart-Foxes-WaterTracker/assets/backgroundTab-345a663e.png",x=o.div`
+import{h as o,t,N as c,r as n}from"./index-f2bc562d.js";const r="/Smart-Foxes-WaterTracker/assets/backgroundMobile-0bf10f90.png",i="/Smart-Foxes-WaterTracker/assets/backgroundDesk-54c098d2.png",s="/Smart-Foxes-WaterTracker/assets/backgroundTab-345a663e.png",l=o.div`
   /* @media (min-width: 320px) and (max-width: 768px) {
   width: 320px;
   margin: 0 auto;
@@ -181,4 +181,23 @@ import{h as o,t,N as c,r as n}from"./index-85a0d5d3.js";const r="/Smart-Foxes-Wa
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
-`,z=()=>{const[e,d]=n.useState(!0),[p,a]=n.useState("password");return{handleShowPassword:()=>{d(!e),a(e===!0?"text":"password")},toggleIcon:e,type:p}},I="/Smart-Foxes-WaterTracker/assets/bottleAuth-2545dd91.png";export{m as A,f as B,v as E,h as F,w as I,x as L,u as a,b,k as c,y as d,$ as e,T as f,I as g,z as u};
+`,z=o.button`
+  display: block;
+  padding: 8px 30px;
+  background: ${t.lightTheme.colors.primary.accent};
+  color: ${t.lightTheme.colors.primary.bg};
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 500;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
+  @media (min-width: ${({theme:e})=>e.screens.tab}) {
+    padding: 10px 30px;
+    font-size: 18px;
+    line-height: 1.33;
+  }
+`,I=()=>{const[e,d]=n.useState(!0),[p,a]=n.useState("password");return{handleShowPassword:()=>{d(!e),a(e===!0?"text":"password")},toggleIcon:e,type:p}},S="/Smart-Foxes-WaterTracker/assets/bottleAuth-2545dd91.png";export{m as A,f as B,v as E,h as F,w as I,l as L,u as a,b,k as c,y as d,$ as e,T as f,S as g,z as h,I as u};
