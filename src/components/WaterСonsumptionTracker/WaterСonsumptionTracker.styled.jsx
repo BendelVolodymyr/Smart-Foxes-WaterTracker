@@ -133,6 +133,13 @@ export const Button = styled.button`
   font-style: normal;
   font-weight: 500;
   line-height: 125%;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
+  &:active {
+    box-shadow: none;
+  }
   @media only screen and (min-width: 768px) {
     width: 336px;
     padding: 10px 30px;
