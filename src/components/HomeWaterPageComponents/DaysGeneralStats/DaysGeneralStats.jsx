@@ -1,9 +1,13 @@
 import { format } from 'date-fns';
-import { PopoverContainer, PopoverDate, StatItem, StatsList } from './DaysGeneralStats.styled';
+import {
+  PopoverContainer,
+  PopoverDate,
+  StatItem,
+  StatsList,
+} from './DaysGeneralStats.styled';
 
-import useAuth from '../../../hooks/useAuth';
-
-const DaysGeneralStats = ({ selectedDate, selectedDayData }) => {
+const DaysGeneralStats = ({ selectedDate }) => {
+  console.log(selectedDate);
   const monthName = format(selectedDate, 'MMMM');
   const day = selectedDate.getDate();
 
@@ -27,13 +31,13 @@ const DaysGeneralStats = ({ selectedDate, selectedDayData }) => {
       </PopoverDate>
       <StatsList>
         <StatItem>
-          Daily Norma: <span>{currentWaterRate} L</span>
+          Daily Norma: <span>1.2 L</span>
         </StatItem>
         <StatItem>
-          Fulfillment of the daily norm: <span>{percentagePerDay}%</span>
+          Fulfillment of the daily norm: <span>100 %</span>
         </StatItem>
         <StatItem>
-          How many servings of water: <span>{totalPortions}</span>
+          How many servings of water: <span>6</span>
         </StatItem>
       </StatsList>
     </PopoverContainer>
