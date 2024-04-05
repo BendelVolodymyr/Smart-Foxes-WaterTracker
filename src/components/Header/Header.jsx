@@ -14,6 +14,8 @@ import UserLogo from './UserLogo/UserLogo';
 const Header = () => {
   const { isLoggedIn, user } = useAuth();
 
+  const avatarUrl = user.avatarUrl !== undefined ? user.avatarUrl : null;
+
   return (
     <header>
       <Container>
@@ -21,7 +23,7 @@ const Header = () => {
           <Link to="/">
             <Logo />
           </Link>
-          {isLoggedIn ? <UserLogo avatarUrl={user.avatar} /> : <UserAuth />}
+          {isLoggedIn ? <UserLogo avatarUrl={avatarUrl} /> : <UserAuth />}
         </HeaderWrapper>
       </Container>
     </header>
