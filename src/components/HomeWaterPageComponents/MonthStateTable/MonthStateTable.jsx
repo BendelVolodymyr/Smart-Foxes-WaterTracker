@@ -25,6 +25,7 @@ const MonthStateTable = () => {
 
   useEffect(() => {
     const startOfMonthDate = startOfMonth(selectedDate);
+
     const endOfMonthDate = endOfMonth(selectedDate);
 
     setCurrentMonth(selectedDate.getMonth());

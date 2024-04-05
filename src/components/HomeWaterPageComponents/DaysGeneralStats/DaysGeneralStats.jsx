@@ -10,10 +10,13 @@ const DaysGeneralStats = ({ selectedDate, selectedDayData }) => {
   const waterRate = useAuth().user.waterRate;
 
   const deyNorma = waterRate ? (waterRate / 1000).toFixed(1) : '0';
+
   const currentWaterRate = selectedDayData
     ? (selectedDayData.waterRate / 1000).toFixed(1)
     : deyNorma;
+
   const percentagePerDay = selectedDayData ? selectedDayData.percentagePerDay : '0';
+
   const totalPortions = selectedDayData ? selectedDayData.totalPortions : '0';
 
   return (
