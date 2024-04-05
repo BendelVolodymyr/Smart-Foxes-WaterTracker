@@ -4,18 +4,6 @@ export const FormStyled = styled.form`
   width: 100%;
 `;
 
-export const Label = styled.label`
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color: #2f2f2f;
-  font-family: Roboto;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.1em;
-`;
-
 export const Input = styled.input`
   position: absolute;
   left: 0;

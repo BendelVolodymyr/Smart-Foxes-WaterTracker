@@ -18,7 +18,7 @@ const UserLogoModal = () => {
       <Modal>
         <Button
           onClick={() => {
-            handleOpenModal(<Setting />);
+            handleOpenModal(<Setting />, 'auto');
           }}
         >
           <SettingIcon />
