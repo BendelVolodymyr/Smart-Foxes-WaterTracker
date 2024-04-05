@@ -45,8 +45,8 @@ const Registration = () => {
       confirmPassword: '',
     },
     validationSchema: SignupSchema,
-    onSubmit: ({ email, password }, { resetForm }) => {
-      dispatch(signUp({ email: email, password: password }));
+    onSubmit: ({email, password}, { resetForm }) => {
+        dispatch(signUp({email: email, password:password}));
       resetForm();
     },
   });

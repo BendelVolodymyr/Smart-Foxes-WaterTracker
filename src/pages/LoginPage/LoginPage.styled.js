@@ -118,18 +118,12 @@ export const Input = styled.input`
   width: 100%;
   height: 44px;
   border-radius: 6px;
-  color: ${({ error }) =>
-    error
-      ? ` ${theme.lightTheme.colors.secondary.color2}`
-      : `${theme.lightTheme.colors.primary.accent}`};
+  border: 1px solid ${theme.lightTheme.colors.secondary.color5};
+  color: ${theme.lightTheme.colors.primary.accent};
   background: ${theme.lightTheme.colors.primary.bg};
   padding: 12px 10px;
   outline: none;
-  margin-bottom: 4px;
-  border: ${({ error }) =>
-    error
-      ? `1px solid ${theme.lightTheme.colors.secondary.color2}`
-      : `1px solid ${theme.lightTheme.colors.secondary.color5}`};
+
   &::placeholder {
     color: ${theme.lightTheme.colors.secondary.color3};
     font-size: 16px;

@@ -1,32 +1,18 @@
-import {
-  LoginContainer,
-  AuthTitle,
-  Button,
-  LinkTo,
-  Label,
-  Input,
-  ButtonPassword,
-  ImgWrapp,
-  ImgBottle,
-  Form,
-  ErrorMessage,
-  IconConteiner,
-  ButtonGoogle,
-} from './LoginPage.styled';
-import { HiOutlineEyeSlash } from 'react-icons/hi2';
-import { PiEyeLight } from 'react-icons/pi';
-import { useVisiblePassword } from '../../hooks/useVisiblePassword';
-import bottleImg from './image/bottleAuth.png';
-import { useFormik } from 'formik';
+import { LoginContainer, AuthTitle, Button, LinkTo, Label, Input, ButtonPassword, ImgWrapp, ImgBottle, Form, ErrorMessage, IconConteiner } from "./LoginPage.styled";
+import { HiOutlineEyeSlash } from "react-icons/hi2";
+import { PiEyeLight } from "react-icons/pi";
+import { useVisiblePassword } from "../../hooks/useVisiblePassword";
+import bottleImg from './image/bottleAuth.png'
+import {useFormik } from "formik";
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { signIn } from '../../redux/auth/operations';
-import { FcGoogle } from 'react-icons/fc';
+import { useDispatch } from "react-redux";
+import { signIn } from "../../redux/auth/operations";
+
 
 const LoginPage = () => {
-  const { handleShowPassword, toggleIcon, type } = useVisiblePassword();
-  const bottle = bottleImg;
-  const dispatch = useDispatch();
+const {handleShowPassword, toggleIcon, type} = useVisiblePassword();
+const bottle = bottleImg;
+const dispatch = useDispatch();
 
   const handleLogInWithPopUp = () => {
     window.location.assign('https://smart-foxes-backend-watertracker.onrender.com/api/auth/google');
@@ -44,17 +30,17 @@ const LoginPage = () => {
       .required('Password is required'),
   });
 
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validationSchema: SigninSchema,
-    onSubmit: ({ email, password }, { resetForm }) => {
-      dispatch(signIn({ email: email, password: password }));
-      resetForm();
-    },
-  });
+const formik = useFormik({
+  initialValues: {
+    email: '',
+    password: '',
+  },
+  validationSchema: SigninSchema,
+  onSubmit: ({email, password}, { resetForm }) => {
+   dispatch(signIn({email:email, password:password}));
+    resetForm();
+  },
+});
 
   return (
     <LoginContainer>
@@ -123,6 +109,8 @@ const LoginPage = () => {
       </ImgWrapp>
     </LoginContainer>
   );
+
 };
 
 export default LoginPage;
+
