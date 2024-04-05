@@ -83,15 +83,42 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-//!Второй вариант саки для аватарки
+
+export const uploadAvatar = createAsyncThunk('auth/avatar', async (formData, thunkAPI) => {
+  try {
+    const {
+      data: { avatarURL },
+    } = await axios.patch('/users/avatars', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    return avatarURL;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const updateUserInfo = createAsyncThunk('auth/info', async (formData, thunkAPI) => {
+  try {
+    const response = await axios.patch('/users', formData);
+
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+//!Второй вариант саNки для аватарки
 
 // export const avatar = createAsyncThunk(
 //   'auth/avatar',
 //   async (data, thunkAPI) => {
 //     try {
 //       const formData = new FormData();
-//       formData.append('avatar', data); // Предполагается, что 'data' - это файл аватарки
-//       const response = await axios.patch('/users/login', formData);
+//       formData.append('avatar', data); // 'data' - это файл аватарки
+//       const response = await axios.patch('/users/avatars', formData);
 //       console.log(response);
 //       return response.data;
 //     } catch (error) {
