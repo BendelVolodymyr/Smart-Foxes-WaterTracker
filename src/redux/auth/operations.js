@@ -1,60 +1,53 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL =
-  'https://smart-foxes-backend-watertracker.onrender.com/api';
+axios.defaults.baseURL = 'https://smart-foxes-backend-watertracker.onrender.com/api';
 
 // axios.defaults.baseURL = 'http://localhost:3000/api';
 
 const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
+    set(token) {
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    },
+    unset() {
+        axios.defaults.headers.common.Authorization = '';
+    },
 };
 
-export const signUp = createAsyncThunk(
-  'auth/signup',
-  async (userData, thunkAPI) => {
+export const signUp = createAsyncThunk('auth/signup', async (userData, thunkAPI) => {
     console.log(userData);
     try {
-      const response = await axios.post('/users/register', userData);
-      token.set(response.data.token);
-      console.log(response);
-      return response.data;
+        const response = await axios.post('/users/register', userData);
+        token.set(response.data.token);
+        console.log(response);
+        return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+        return thunkAPI.rejectWithValue(error.message);
     }
-  }
-);
+});
 
-export const signIn = createAsyncThunk(
-  'auth/signin',
-  async (userData, thunkAPI) => {
+export const signIn = createAsyncThunk('auth/signin', async (userData, thunkAPI) => {
     try {
-      const response = await axios.post('/users/login', userData);
+        const response = await axios.post('/users/login', userData);
 
-      console.log(response);
-      token.set(response.data.token);
-      return response.data;
+        console.log(response);
+        token.set(response.data.token);
+        return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+        return thunkAPI.rejectWithValue(error.message);
     }
-  }
-);
+});
 
 export const logout = createAsyncThunk('/logout', async (_, thunkAPI) => {
-  try {
-    const response = await axios.post('/users/logout');
+    try {
+        const response = await axios.post('/users/logout');
 
-    console.log(response);
-    token.unset();
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
+        console.log(response);
+        token.unset();
+        return response.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+    }
 });
 
 // export const current = createAsyncThunk('auth/current', async (_, thunkAPI) => {
@@ -76,47 +69,43 @@ export const logout = createAsyncThunk('/logout', async (_, thunkAPI) => {
 //   }
 // });
 
-export const refreshUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
+export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
     if (!persistedToken) {
-      console.log('UNAUTHORIZED');
-      return thunkAPI.rejectWithValue('Unable to fetch user');
+        console.log('UNAUTHORIZED');
+        return thunkAPI.rejectWithValue('Unable to fetch user');
     }
     try {
-      token.set(persistedToken);
-      const result = await axios.get('/users/current');
-      return result.data;
+        token.set(persistedToken);
+        const result = await axios.get('/users/current');
+        return result.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+        return thunkAPI.rejectWithValue(error.message);
     }
-  }
-  );
+});
 
 export const uploadAvatar = createAsyncThunk('auth/avatar', async (formData, thunkAPI) => {
-  try {
-    const {
-      data: { avatarURL },
-    } = await axios.patch('/users/avatars', formData);
+    try {
+        const {
+            data: { avatarURL },
+        } = await axios.patch('/users/avatars', formData);
 
-    return avatarURL;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
+        return avatarURL;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+    }
 });
 
 export const updateUserInfo = createAsyncThunk('auth/info', async (formData, thunkAPI) => {
-  try {
-    const response = await axios.patch('/users', formData);
+    try {
+        const response = await axios.patch('/users', formData);
 
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
+        return response.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+    }
 });
-
 
 //!Второй вариант саки для аватарки
 
