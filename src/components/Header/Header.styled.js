@@ -28,3 +28,17 @@ export const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const ThemeWrapper = styled.div`
+  width: 56px;
+  height: 28px;
+  background-color: grey;
+  border-radius: 20px;
+`;
+
+export const ThemeButton = styled.button`
+  width: 28px;
+  height: 28px;
+  background-color: blue;
+  border-radius: 14px;
+`;
