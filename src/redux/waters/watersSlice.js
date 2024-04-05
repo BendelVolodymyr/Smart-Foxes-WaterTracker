@@ -27,13 +27,14 @@ const waterSlice = createSlice({
     builder
       .addCase(API.addPortion.pending, handlePending)
       .addCase(API.addPortion.fulfilled, (state, action) => {
-        console.log(action.payload);
-        state.waterDayList.push(action.payload.data);
+        state.waterDayList.push(action.payload);
       })
       .addCase(API.addPortion.rejected, handleRejected)
       .addCase(API.deletePortion.pending, handlePending)
       .addCase(API.deletePortion.fulfilled, (state, action) => {
-        const idx = state.waterDayList.findIndex((data) => data._id === action.payload.id);
+        const idx = state.waterDayList.findIndex(
+          (data) => (data.id = action.payload.id)
+        );
         state.waterDayList.splice(idx, 1);
         state.isLoading = false;
       })
@@ -54,14 +55,15 @@ const waterSlice = createSlice({
       .addCase(API.updateWaterRate.rejected, handleRejected)
       .addCase(API.portionsPerDay.pending, handlePending)
       .addCase(API.portionsPerDay.fulfilled, (state, action) => {
-        // console.log(action.payload.portions);
-        state.waterDayList = action.payload.portions ?? [];
+        state.waterDayList = action.payload;
         state.isLoading = false;
       })
       .addCase(API.portionsPerDay.rejected, handleRejected)
       .addCase(API.portionsPerMonth.pending, handlePending)
       .addCase(API.portionsPerMonth.fulfilled, (state, action) => {
+
         state.waterMounthList = action.payload.data.monthData;
+
       })
       .addCase(API.portionsPerMonth.rejected, handleRejected);
   },

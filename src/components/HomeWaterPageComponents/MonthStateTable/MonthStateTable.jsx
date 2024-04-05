@@ -1,20 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DatePaginator from '../DatePaginator/DatePaginator';
+
 import Popover from '@mui/material/Popover';
 import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
-import { startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
-import { useDispatch } from 'react-redux';
-import { MonthComponentWrapper, PaginatorBlock } from './MonthStateTable.styled';
-import { DayCell, DayCircle, DayNumber, DayPercentage, DaysGrid } from './DaygGreed.styled';
-import { portionsPerMonth } from '../../../redux/waters/operations';
-import useWater from '../../../hooks/useWaters';
+import {
+  MonthComponentWrapper,
+  PaginatorBlock,
+} from './MonthStateTable.styled';
+import DaysList from '../DayList/DayList';
 
 const MonthStateTable = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [currentMonth, setCurrentMonth] = useState(selectedDate.getMonth());
   const [anchorEl, setAnchorEl] = useState(null);
-  const dispatch = useDispatch();
-  const monthData = useWater().waterMonthList;
+
+  const handleDayClick = (event, date) => {
+    setSelectedDate(date);
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleClosePopover = () => {
     setAnchorEl(null);
@@ -23,69 +25,6 @@ const MonthStateTable = () => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
-  useEffect(() => {
-    const startOfMonthDate = startOfMonth(selectedDate);
-    const endOfMonthDate = endOfMonth(selectedDate);
-
-    setCurrentMonth(selectedDate.getMonth());
-    dispatch(portionsPerMonth({ startDate: startOfMonthDate, endDate: endOfMonthDate }));
-  }, [currentMonth]);
-
-  const handleDayClick = (event, date) => {
-    setSelectedDate(date);
-    setAnchorEl(event.currentTarget);
-  };
-
-  // const monthData = [
-  //   {
-  //     _id: '2024-04-01',
-  //     waterRate: 2000,
-  //     totalWaterDrunk: 4000,
-  //     totalPortions: 20,
-  //     date: '1, April',
-  //     percentagePerDay: 90,
-  //   },
-  //   {
-  //     _id: '2024-04-02',
-  //     waterRate: 2000,
-  //     totalWaterDrunk: 4000,
-  //     totalPortions: 20,
-  //     date: '2, April',
-  //     percentagePerDay: 85,
-  //   },
-  //   {
-  //     _id: '2024-04-03',
-  //     waterRate: 1500,
-  //     totalWaterDrunk: 4000,
-  //     totalPortions: 20,
-  //     date: '3, April',
-  //     percentagePerDay: 80,
-  //   },
-  //   {
-  //     _id: '2024-04-04',
-  //     waterRate: 2000,
-  //     totalWaterDrunk: 4000,
-  //     totalPortions: 20,
-  //     date: '4, April',
-  //     percentagePerDay: 75,
-  //   },
-  //   {
-  //     _id: '2024-04-05',
-  //     waterRate: 2000,
-  //     totalWaterDrunk: 4000,
-  //     totalPortions: 20,
-  //     date: '5, April',
-  //     percentagePerDay: 70,
-  //   },
-  // ];
-
-  const selectedDayData =
-    monthData &&
-    monthData.find((dayData) => {
-      const [dayOfMonth] = dayData.date.split(',');
-      return parseInt(dayOfMonth) === selectedDate.getDate();
-    });
-
   return (
     <MonthComponentWrapper>
       <PaginatorBlock>
@@ -93,35 +32,10 @@ const MonthStateTable = () => {
         <DatePaginator
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
-          setCurrentMonth={setCurrentMonth}
         />
       </PaginatorBlock>
 
-      {/* <DaysGrid>{days}</DaysGrid> */}
-
-      <DaysGrid>
-        {eachDayOfInterval({
-          start: startOfMonth(selectedDate),
-          end: endOfMonth(selectedDate),
-        }).map((day, index) => {
-          const dayOfMonth = day.getDate();
-          const dayData = monthData.find((data) => {
-            const [dayNum] = data.date.split(',');
-            return parseInt(dayNum) === dayOfMonth;
-          });
-          const percentagePerDay = dayData ? dayData.percentagePerDay : null;
-
-          return (
-            <DayCell key={index} onClick={(event) => handleDayClick(event, day)}>
-              <DayCircle percentage={percentagePerDay}>
-                <DayNumber>{dayOfMonth}</DayNumber>
-              </DayCircle>
-              <DayPercentage>{percentagePerDay || 0}%</DayPercentage>
-            </DayCell>
-          );
-        })}
-      </DaysGrid>
-
+      <DaysList selectedDate={selectedDate} onDayClick={handleDayClick} />
       <Popover
         id={id}
         open={open}
@@ -136,7 +50,7 @@ const MonthStateTable = () => {
           horizontal: 'right',
         }}
       >
-        <DaysGeneralStats selectedDate={selectedDate} selectedDayData={selectedDayData} />
+        <DaysGeneralStats selectedDate={selectedDate} />
       </Popover>
     </MonthComponentWrapper>
   );
