@@ -126,3 +126,34 @@ export const updateUserInfo = createAsyncThunk('auth/info', async (formData, thu
 //     }
 //   }
 // );
+export const uploadAvatar = createAsyncThunk('auth/uploadAvatar', async (formData, thunkAPI) => {
+  try {
+    if (!formData) {
+      throw new Error('No form data provided for avatar upload.');
+    }
+
+    const response = await axios.patch('/users/avatars', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    if (response.status !== 200) {
+      throw new Error('Failed to upload avatar.');
+    }
+
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const updateUserInfo = createAsyncThunk('auth/info', async (formData, thunkAPI) => {
+  try {
+    const response = await axios.patch('/users', formData);
+
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
