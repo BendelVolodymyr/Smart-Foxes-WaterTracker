@@ -7,23 +7,25 @@ import {
   DailyWrapper,
 } from './DailyNorma.styled';
 import { DailyNormaModal } from '../DailyNormaModal/DailyNormaModal';
+import useWater from '../../../hooks/useWaters';
 
 const DailyNorma = () => {
-  // waterRate**selector
-
   const [modalOpen, setModalOpen] = useState(false);
+  const { waterRate } = useWater();
   const handleEditButtonClick = () => {
     setModalOpen(true);
   };
   const closeModal = () => {
     setModalOpen(false);
   };
+  const calculateWaterRate = (waterRate / 1000).toFixed(1);
 
   return (
     <DailyWaterWrapper>
       <DailyNormaP>My daily norma</DailyNormaP>
       <DailyWrapper>
-        <NumberDailyNorma> {2} L</NumberDailyNorma>{/*waterRate*/}
+        <NumberDailyNorma> {calculateWaterRate ? calculateWaterRate : 2} L</NumberDailyNorma>
+        {/*waterRate*/}
         <ButtonEditNorma onClick={handleEditButtonClick}>Edit</ButtonEditNorma>
       </DailyWrapper>
       {modalOpen && <DailyNormaModal onClose={closeModal}></DailyNormaModal>}
