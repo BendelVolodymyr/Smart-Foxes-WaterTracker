@@ -17,13 +17,13 @@ const HomeWaterPage = lazy(() => import('./pages/HomeWaterPage.jsx'));
 
 function App() {
   const dispatch = useDispatch();
-  const { isLoggedIn, isRefreshing } = useAuth();
+  const { isLoading } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
+  return isLoading ? (
     <Loader />
   ) : (
     <Suspense fallback={<Loader />}>
@@ -32,7 +32,7 @@ function App() {
           <Route
             index
             element={
-              isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/welcome" />
+              isLoading ? <Navigate to="/home" /> : <Navigate to="/welcome" />
             }
           />
           <Route

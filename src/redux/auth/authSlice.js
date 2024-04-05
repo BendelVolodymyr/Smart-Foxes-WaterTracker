@@ -11,7 +11,7 @@ const initialState = {
   error: null,
 };
 
-const handlePending = (state) => {
+const handlePending = state => {
   state.isLoading = true;
 };
 
@@ -23,7 +23,7 @@ const handleRejected = (state, action) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(API.signUp.pending, handlePending)
       .addCase(API.signUp.fulfilled, (state, action) => {
@@ -31,25 +31,24 @@ const authSlice = createSlice({
         state.error = null;
         state.user = action.payload.user;
         state.token = action.payload.token;
-        state.isLoggedIn = true;
       })
       .addCase(API.signUp.rejected, handleRejected)
       .addCase(API.signIn.pending, handlePending)
       .addCase(API.signIn.fulfilled, (state, action) => {
-        console.log(action);
         state.user.email = action.payload.email;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        state.isLoading = false;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(API.signIn.rejected, handleRejected)
       .addCase(API.logout.pending, handlePending)
-      .addCase(API.logout.fulfilled, (state) => {
+      .addCase(API.logout.fulfilled, state => {
         state.user = { name: null, email: null, gender: null, avatar: null };
         state.token = null;
         state.isLoggedIn = false;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(API.logout.rejected, handleRejected)
       // .addCase(API.current.pending, handlePending)
@@ -60,7 +59,7 @@ const authSlice = createSlice({
       //   state.isLoading = false;
       // })
       // .addCase(API.current.rejected, handleRejected)
-      .addCase(API.refreshUser.pending, (state) => {
+      .addCase(API.refreshUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(API.refreshUser.fulfilled, (state, action) => {
@@ -69,7 +68,7 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.isLoggedIn = true;
       })
-      .addCase(API.refreshUser.rejected, (state) => {
+      .addCase(API.refreshUser.rejected, state => {
         state.isRefreshing = false;
         state.isLoggedIn = false;
       });

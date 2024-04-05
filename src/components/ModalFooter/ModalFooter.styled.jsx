@@ -66,7 +66,7 @@ export const ModalWrapper = styled.div`
   max-width: 280px;
   margin: auto;
   height: auto;
-  padding: 32px 24px 32px 24px;
+  padding: 32px 12px 32px 12px;
 
   background-color: ${p => p.theme.colors.primary.bg};
 

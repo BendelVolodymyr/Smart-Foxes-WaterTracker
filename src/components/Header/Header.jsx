@@ -1,10 +1,5 @@
 import { Link } from 'react-router-dom';
-import {
-  Container,
-  HeaderWrapper,
-  ThemeButton,
-  ThemeWrapper,
-} from './Header.styled';
+import { Container, HeaderWrapper } from './Header.styled';
 import Logo from './Logo/Logo';
 import UserAuth from './UserAuth/UserAuth';
 import useAuth from '../../hooks/useAuth';
@@ -18,7 +13,7 @@ import UserLogo from './UserLogo/UserLogo';
 
 const Header = () => {
   const { isLoggedIn, user } = useAuth();
-
+  console.log(isLoggedIn);
   return (
     <header>
       <Container>
@@ -26,9 +21,6 @@ const Header = () => {
           <Link to="/">
             <Logo />
           </Link>
-          <ThemeWrapper>
-            <ThemeButton />
-          </ThemeWrapper>
           {isLoggedIn ? <UserLogo avatarUrl={user.avatar} /> : <UserAuth />}
         </HeaderWrapper>
       </Container>
