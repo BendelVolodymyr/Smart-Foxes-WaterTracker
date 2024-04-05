@@ -22,7 +22,7 @@ export const signUp = createAsyncThunk(
     try {
       const response = await axios.post('/users/register', userData);
       token.set(response.data.token);
-      // console.log(response);
+      console.log(response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -35,8 +35,9 @@ export const signIn = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post('/users/login', userData);
-      token.set(response.data.token);
+
       console.log(response);
+      token.set(response.data.token);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -94,18 +95,14 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
 export const uploadAvatar = createAsyncThunk(
   'auth/avatar',
   async (formData, thunkAPI) => {
     try {
       const {
         data: { avatarURL },
-      } = await axios.patch('/users/avatars', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
+      } = await axios.patch('/users/avatars', formData);
       return avatarURL;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
