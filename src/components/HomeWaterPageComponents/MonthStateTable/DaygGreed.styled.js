@@ -4,12 +4,15 @@ import styled from 'styled-components';
 const DaysGrid = styled.ul`
   display: grid;
   justify-content: space-between;
+  align-content: start;
   grid-template-columns: repeat(auto-fill, 32px);
   gap: 16px 26px;
   
   font-size: 14px;
   font-weight: 400;
   line-height: 1.28;
+
+  min-height: 476px;
   
   @media (min-width: ${({ theme }) => theme.screens.tab}){
 grid-template-columns: repeat(auto-fill, 34px);  
@@ -17,6 +20,8 @@ gap: 20px 34px;
 
 font-size: 16px;
 line-height: 1.25;
+
+min-height: 292px;
 
 }
 @media (min-width: ${({ theme }) => theme.screens.desk}){
