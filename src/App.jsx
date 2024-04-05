@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Suspense, lazy, useEffect } from 'react';
 import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute.jsx';
 import { useDispatch } from 'react-redux';
 
 import SharedLayout from 'components/SharedLayout/SharedLayout';
@@ -17,12 +18,12 @@ const HomeWaterPage = lazy(() => import('./pages/HomeWaterPage.jsx'));
 
 function App() {
   const dispatch = useDispatch();
-  const { isLoading } = useAuth();
+  const { isLoading, isLoggedIn } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-
+  console.log(isLoggedIn);
   return isLoading ? (
     <Loader />
   ) : (
@@ -32,28 +33,28 @@ function App() {
           <Route
             index
             element={
-              isLoading ? <Navigate to="/home" /> : <Navigate to="/welcome" />
+              isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/welcome" />
             }
           />
           <Route
             path="/signin"
             element={
-              <RestrictedRoute redirectTo="/home" component={<LoginPage />} />
+              <PrivateRoute redirectTo="/home" component={<LoginPage />} />
             }
           />
           <Route
             path="/signup"
             element={
-              <RestrictedRoute
-                redirectTo="/home"
-                component={<Registration />}
-              />
+              <PrivateRoute redirectTo="/home" component={<Registration />} />
             }
           />
           <Route
             path="/home"
             element={
-              <RestrictedRoute redirectTo="/" component={<HomeWaterPage />} />
+              <RestrictedRoute
+                redirectTo="/welcome"
+                component={<HomeWaterPage />}
+              />
             }
           />
           <Route
