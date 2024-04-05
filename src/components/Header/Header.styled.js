@@ -30,15 +30,31 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const ThemeWrapper = styled.div`
-  width: 56px;
-  height: 28px;
+  width: 30px;
+  height: 15px;
+  display: flex;
+  justify-content: ${props => (props.$isActive ? 'end' : 'start')};
+  align-item: center;
+
+  border-radius: 8px;
   background-color: grey;
-  border-radius: 20px;
+
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
+    width: 56px;
+    height: 28px;
+    border-radius: 20px;
+  }
 `;
 
 export const ThemeButton = styled.button`
-  width: 28px;
-  height: 28px;
+  width: 15px;
+  height: 15px;
+  border-radius: 8px;
   background-color: blue;
-  border-radius: 14px;
+
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+  }
 `;

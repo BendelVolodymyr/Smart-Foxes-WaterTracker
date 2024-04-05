@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-  console.log(isLoggedIn);
+  console.log('app', isLoggedIn);
   return isLoading ? (
     <Loader />
   ) : (
@@ -39,20 +39,23 @@ function App() {
           <Route
             path="/signin"
             element={
-              <PrivateRoute redirectTo="/home" component={<LoginPage />} />
+              <RestrictedRoute redirectTo="/home" component={<LoginPage />} />
             }
           />
           <Route
             path="/signup"
             element={
-              <PrivateRoute redirectTo="/home" component={<Registration />} />
+              <RestrictedRoute
+                redirectTo="/home"
+                component={<Registration />}
+              />
             }
           />
           <Route
             path="/home"
             element={
-              <RestrictedRoute
-                redirectTo="/welcome"
+              <PrivateRoute
+                redirectTo="/signin"
                 component={<HomeWaterPage />}
               />
             }

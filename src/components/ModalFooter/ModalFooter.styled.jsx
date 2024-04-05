@@ -46,6 +46,7 @@ export const BackdropWrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 100;
+  padding: 40px;
 
   overflow-y: scroll;
   width: 100%;
