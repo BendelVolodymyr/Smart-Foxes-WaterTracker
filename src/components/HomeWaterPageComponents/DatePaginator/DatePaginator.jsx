@@ -6,6 +6,7 @@ const DatePaginator = ({ selectedDate, setSelectedDate, setCurrentMonth }) => {
   const currentYear = new Date().getFullYear();
 
   const isPrevDisabled = isBefore(selectedDate, addMonths(new Date(), -12));
+
   const isNextDisabled = isAfter(selectedDate, new Date(currentYear, currentMonth, 1));
 
   const monthName = format(selectedDate, 'MMMM');
