@@ -6,8 +6,9 @@ import {
   StatsList,
 } from './DaysGeneralStats.styled';
 
-const DaysGeneralStats = ({ selectedDate }) => {
-  console.log(selectedDate);
+import useAuth from '../../../hooks/useAuth';
+
+const DaysGeneralStats = ({ selectedDate, selectedDayData }) => {
   const monthName = format(selectedDate, 'MMMM');
   const day = selectedDate.getDate();
 
@@ -19,7 +20,9 @@ const DaysGeneralStats = ({ selectedDate }) => {
     ? (selectedDayData.waterRate / 1000).toFixed(1)
     : deyNorma;
 
-  const percentagePerDay = selectedDayData ? selectedDayData.percentagePerDay : '0';
+  const percentagePerDay = selectedDayData
+    ? selectedDayData.percentagePerDay
+    : '0';
 
   const totalPortions = selectedDayData ? selectedDayData.totalPortions : '0';
 
@@ -31,13 +34,13 @@ const DaysGeneralStats = ({ selectedDate }) => {
       </PopoverDate>
       <StatsList>
         <StatItem>
-          Daily Norma: <span>1.2 L</span>
+          Daily Norma: <span>{currentWaterRate} L</span>
         </StatItem>
         <StatItem>
-          Fulfillment of the daily norm: <span>100 %</span>
+          Fulfillment of the daily norm: <span>{percentagePerDay}%</span>
         </StatItem>
         <StatItem>
-          How many servings of water: <span>6</span>
+          How many servings of water: <span>{totalPortions}</span>
         </StatItem>
       </StatsList>
     </PopoverContainer>
