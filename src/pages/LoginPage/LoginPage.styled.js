@@ -211,3 +211,24 @@ export const ErrorMessage = styled.p`
   font-weight: 400;
   line-height: 18px;
 `;
+
+export const ButtonGoogle = styled.button`
+  display: block;
+  padding: 8px 30px;
+  background: ${theme.lightTheme.colors.primary.accent};
+  color: ${theme.lightTheme.colors.primary.bg};
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 500;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    padding: 10px 30px;
+    font-size: 18px;
+    line-height: 1.33;
+  }
+`;
