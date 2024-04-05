@@ -12,6 +12,24 @@ import DaysList from '../DayList/DayList';
 const MonthStateTable = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [anchorEl, setAnchorEl] = useState(null);
+  const dispatch = useDispatch();
+  const monthData = useWater().waterMonthList;
+
+  const handleClosePopover = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+  useEffect(() => {
+    const startOfMonthDate = startOfMonth(selectedDate);
+
+    const endOfMonthDate = endOfMonth(selectedDate);
+
+    setCurrentMonth(selectedDate.getMonth());
+    dispatch(portionsPerMonth({ startDate: startOfMonthDate, endDate: endOfMonthDate }));
+  }, [currentMonth]);
 
   const handleDayClick = (event, date) => {
     setSelectedDate(date);
