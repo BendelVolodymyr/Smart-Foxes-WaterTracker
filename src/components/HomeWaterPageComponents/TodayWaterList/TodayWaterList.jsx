@@ -18,6 +18,8 @@ import {
 import TodayDelModal from '../TodayDelModal/TodayDelModal';
 import { ModalContext } from '../../../context';
 import useWater from '../../../hooks/useWaters';
+import { useDispatch } from 'react-redux';
+import { portionsPerDay } from '../../../redux/waters/operations';
 
 //заглушка для модалки
 const TodayEditModal = () => {
@@ -48,10 +50,11 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
   const { openModal } = useContext(ModalContext);
   const [selectedPortion, setSelectedPortion] = useState(null);
   const waterDayData = useWater().waterDayList;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(waterDayData);
-  });
+    dispatch(portionsPerDay());
+  }, []);
 
   const handleDelete = (id) => {
     openModal(
