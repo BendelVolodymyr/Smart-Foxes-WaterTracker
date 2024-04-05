@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
   background-position: center;
   background-size: cover;
   padding: 24px 20px 40px;
-  @media only screen and (min-width: ${({ theme }) => theme.screens.tab}) {
+  @media only screen and (min-width: 768px) {
     padding: 40px 32px 50px;
     background-image: image-set(
       url(${backgroundMainPageTab}) 1x,
