@@ -60,6 +60,12 @@ export const AvatarWrapper = styled.div`
   align-items: center;
 `;
 
+export const AvatarToWrapper = styled.div`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+`;
+
 export const IconToAvatar = styled(RiDownload2Line)`
   width: 16px;
   height: 16px;
@@ -188,33 +194,4 @@ export const ButtonIcon = styled.button`
   transform: translateY(-50%);
   cursor: pointer;
   background: transparent;
-`;
-export const ErrorText = styled.div`
-  color: red;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 12px;
-`;
-export const StyledUploadButton = styled.div`
-  position: relative;
-  margin-left: 5px;
-  display: flex;
-  align-items: center;
-  font-family: Roboto;
-  font-weight: 500;
-  font-size: 15px;
-  color: #1e88e5;
-  stroke: #1e88e5;
-  outline: none;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  &:hover {
-    color: #1976d2;
-  }
-`;
-export const AvatarPreview = styled.img`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
 `;
