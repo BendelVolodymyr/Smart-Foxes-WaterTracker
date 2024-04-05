@@ -86,29 +86,33 @@ export const refreshUser = createAsyncThunk(
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
-    try {
-      token.set(persistedToken);
-      const result = await axios.get('/users/current');
-      return result.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
 
-export const uploadAvatar = createAsyncThunk(
-  'auth/avatar',
-  async (formData, thunkAPI) => {
-    try {
-      const {
-        data: { avatarURL },
-      } = await axios.patch('/users/avatars', formData);
-      return avatarURL;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const uploadAvatar = createAsyncThunk('auth/avatar', async (formData, thunkAPI) => {
+//   try {
+//     const {
+//       data: { avatarURL },
+//     } = await axios.patch('/users/avatars', formData, {
+//       headers: {
+//         'Content-Type': 'multipart/form-data',
+//       },
+//     });
+
+//     return avatarURL;
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(error.message);
+//   }
+// });
+
+// export const updateUserInfo = createAsyncThunk('auth/info', async (formData, thunkAPI) => {
+//   try {
+//     const response = await axios.patch('/users', formData);
+
+//     return response.data;
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(error.message);
+//   }
+// });
+
 
 //!Второй вариант саки для аватарки
 
