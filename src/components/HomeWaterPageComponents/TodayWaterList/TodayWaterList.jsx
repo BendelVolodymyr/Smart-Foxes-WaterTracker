@@ -20,15 +20,16 @@ import { ModalContext } from '../../../context';
 import useWater from '../../../hooks/useWaters';
 import { useDispatch } from 'react-redux';
 import { portionsPerDay } from '../../../redux/waters/operations';
+// import TodayEditModal from './TodayEditModal';
 
-//заглушка для модалки
+// заглушка для модалки
 const TodayEditModal = () => {
   return <div> Тут колись буде модалка TodayEditModal</div>;
 };
 
 const TodayWaterList = ({ handleAddWaterClick }) => {
   //заглушка. замінити на дані зі стейту
-  // const waterDayList = [
+  // const waterDayData = [
   //   {
   //     _id: '660d1669c6da2477d73d6371',
   //     dateAdded: '2024-04-13T02:40:00.000Z',
@@ -54,7 +55,7 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
 
   useEffect(() => {
     dispatch(portionsPerDay());
-  }, []);
+  }, [dispatch]);
 
   const handleDelete = (id) => {
     openModal(
@@ -88,7 +89,7 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
                 <span>{formatTime(portion.dateAdded, true)}</span>
               </ListContext>
               <ListButtons>
-                <ButtonEdit onClick={() => handleEdit(portion._id)}>
+                <ButtonEdit onClick={() => handleEdit(portion)}>
                   <EditSvg />
                 </ButtonEdit>
                 <ButtonDelete onClick={() => handleDelete(portion._id)}>
