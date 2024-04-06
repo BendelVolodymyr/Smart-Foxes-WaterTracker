@@ -9,11 +9,12 @@ import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList
 import DailyNorma from '../components/HomePageComponents/DailyNorma/DailyNorma';
 import { useContext } from 'react';
 import { ModalContext } from '../context';
+import { AddWaterModal } from '../components/HomePageComponents/AddWaterModal/AddWaterModal';
 
 //заглушка для модалки
-const AddWaterModal = () => {
-  return <div> Тут колись буде модалка AddWaterModal</div>;
-};
+// const AddWaterModal = () => {
+//   return <div> Тут колись буде модалка AddWaterModal</div>;
+// };
 
 const HomeWaterPage = () => {
   const { openModal } = useContext(ModalContext);
