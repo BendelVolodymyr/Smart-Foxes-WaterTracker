@@ -33,21 +33,16 @@ export const Mask = styled.div`
     0px 2px 0px rgba(255, 255, 255, 0.3);
   @-webkit-keyframes 'wave-animation' {
     0% {
-      background-position: 200px 10px;
+      background-position: 250px 22px;
     }
     50% {
-      background-position: 100px -20px;
+      background-position: 170px -29px;
     }
     100% {
-      background-position: 0px -40px;
+      background-position: 300px 22px;
     }
   }
-  background-image: -webkit-radial-gradient(
-    center 10px,
-    80px 100px,
-    #c1d2f8 50%,
-    #0051ff 51%
-  );
+  background-image: -webkit-radial-gradient(center 10px, 80px 100px, #c1d2f8 50%, #0051ff 51%);
 
   background-size: 40px 110px;
 
