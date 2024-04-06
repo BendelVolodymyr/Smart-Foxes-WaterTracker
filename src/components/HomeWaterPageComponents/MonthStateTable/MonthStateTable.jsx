@@ -12,8 +12,11 @@ import useWater from '../../../hooks/useWaters';
 const MonthStateTable = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(selectedDate.getMonth());
+
+  const [selectedDay, setSelectedDay] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
+
   const monthData = useWater().waterMonthList;
 
   const handleClosePopover = () => {
@@ -27,14 +30,17 @@ const MonthStateTable = () => {
     const startOfMonthDate = startOfMonth(selectedDate);
 
     const endOfMonthDate = endOfMonth(selectedDate);
+    console.log('currentMonth', currentMonth);
 
-    setCurrentMonth(selectedDate.getMonth());
-    dispatch(portionsPerMonth({ startDate: startOfMonthDate, endDate: endOfMonthDate }));
-  }, [currentMonth, dispatch, selectedDate]);
+    if (selectedDay === null) {
+      dispatch(portionsPerMonth({ startDate: startOfMonthDate, endDate: endOfMonthDate }));
+    }
+  }, [currentMonth, dispatch, selectedDate, selectedDay]);
 
   const handleDayClick = (event, date) => {
     setSelectedDate(date);
     setAnchorEl(event.currentTarget);
+    setSelectedDay(date.getDate());
   };
 
   const selectedDayData =
@@ -52,10 +58,9 @@ const MonthStateTable = () => {
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
           setCurrentMonth={setCurrentMonth}
+          setSelectedDay={setSelectedDay}
         />
       </PaginatorBlock>
-
-      {/* <DaysGrid>{days}</DaysGrid> */}
 
       <DaysGrid>
         {eachDayOfInterval({
