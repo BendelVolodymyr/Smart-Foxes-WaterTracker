@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import formatTime from '../../../helpers/formatTime';
 import {
   AddWaterBtn,
@@ -28,28 +28,8 @@ const TodayEditModal = () => {
 };
 
 const TodayWaterList = ({ handleAddWaterClick }) => {
-  //заглушка. замінити на дані зі стейту
-  // const waterDayData = [
-  //   {
-  //     _id: '660d1669c6da2477d73d6371',
-  //     dateAdded: '2024-04-13T02:40:00.000Z',
-  //     waterRate: 2000,
-  //     waterVolume: 200,
-  //     owner: '660d1669c6da2477d73d6371',
-  //     percentage: 80,
-  //   },
-  //   {
-  //     _id: '660d1669c6da2477d73d6372',
-  //     dateAdded: '2024-04-13T02:40:00.000Z',
-  //     waterRate: 2000,
-  //     waterVolume: 200,
-  //     owner: '660d1669c6da2477d73d6371',
-  //     percentage: 80,
-  //   },
-  // ];
-
   const { openModal } = useContext(ModalContext);
-  const [selectedPortion, setSelectedPortion] = useState(null);
+  // const [selectedPortion, setSelectedPortion] = useState(null);
   const waterDayData = useWater().waterDayList;
   const dispatch = useDispatch();
 
@@ -66,8 +46,8 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
   };
 
   const handleEdit = (portion) => {
-    setSelectedPortion(portion);
-    console.log(selectedPortion);
+    // setSelectedPortion(portion);
+
     //тут поки що заглушка TodayEditModal
     openModal(
       <>
