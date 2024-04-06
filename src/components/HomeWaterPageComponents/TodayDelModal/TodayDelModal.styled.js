@@ -12,16 +12,16 @@ flex-direction: column;
 
 
 gap: 24px;
-
+color: ${p => p.theme.colors.primary.text};
 h3{
-color: #2F2F2F;
+
 font-size: 26px;
 font-weight: 500;
 line-height: 1.23;
 }
 
 p{
-color: #2F2F2F;
+
 
 font-size: 18px;
 font-weight: 500;
@@ -56,14 +56,14 @@ const ButtonCns = styled.button`
 padding: 8px 30px;
 
 
-color: #407BFF;
+color: ${p => p.theme.colors.primary.accent};
 text-align: center;
 font-size: 16px;
 font-weight: 500;
 line-height: 1.25;
 
 border-radius: 10px;
-background:  #D7E3FF;
+background: ${p => p.theme.colors.secondary.color5};
 @media (min-width: ${({ theme }) => theme.screens.tab}){
     padding: 10px 30px;
     font-size: 18px;
@@ -77,7 +77,7 @@ const ButtonDlt = styled.button`
 padding: 8px 30px;
 
 
-color: #FFF;
+color: ${p => p.theme.colors.primary.bg};
 text-align: center;
 font-size: 16px;
 font-weight: 500;
@@ -85,7 +85,7 @@ line-height: 1.25;
 
 
 border-radius: 10px;
-background:#EF5050;
+background:${p => p.theme.colors.secondary.color2};
 box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
 
 @media (min-width: ${({ theme }) => theme.screens.tab}){
