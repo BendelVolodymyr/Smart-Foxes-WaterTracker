@@ -23,7 +23,7 @@ flex-direction:column;
 
 align-items: center;
 color:${p => p.theme.colors.primary.text};
-
+background-color: ${(p) => p.theme.colors.primary.bg};
 background-image: image-set(
         url(${bottleHomeMob}) 1x,
         url(${bottleHomeMob2x}) 2x
