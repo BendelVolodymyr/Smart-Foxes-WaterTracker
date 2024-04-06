@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import theme from '../../styles/theme';
 import bgMob from './image/backgroundMobile.png';
 import bgDes from './image/backgroundDesk.png';
 import bgmobTab from './image/backgroundTab.png';
+import theme from '../../styles/theme';
 
 export const LoginContainer = styled.div`
   /* @media (min-width: 320px) and (max-width: 768px) {
@@ -49,6 +49,7 @@ export const LoginContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   background-image: url(${bgMob});
+  background: ${(p) => p.theme.colors.primary.bg};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 1px 40px;
@@ -73,7 +74,7 @@ export const LoginContainer = styled.div`
 `;
 
 export const AuthTitle = styled.h2`
-  color: ${theme.lightTheme.colors.primary.text};
+  color: ${(p) => p.theme.colors.primary.text};
   font-size: 26px;
   font-weight: 500;
   line-height: 1.23;
@@ -102,7 +103,7 @@ export const Form = styled.form`
 `;
 
 export const Label = styled.label`
-  color: ${p => p.theme.colors.primary.text};
+  color: ${(p) => p.theme.colors.primary.text};
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
@@ -118,20 +119,27 @@ export const Input = styled.input`
   width: 100%;
   height: 44px;
   border-radius: 6px;
-  border: 1px solid ${p => p.theme.colors.secondary.color5};
-  color: ${p => p.theme.colors.primary.accent};
-  background: ${p => p.theme.colors.primary.bg};
+  border: ${({ error }) =>
+    error
+      ? `1px solid ${theme.lightTheme.colors.secondary.color2}`
+      : `1px solid ${theme.lightTheme.colors.secondary.color5}`};
+  color: ${({ error }) =>
+    error
+      ? ` ${theme.lightTheme.colors.secondary.color2}`
+      : `${theme.lightTheme.colors.primary.accent}`};
+
+  background: ${(p) => p.theme.colors.primary.bg};
   padding: 12px 10px;
   outline: none;
-
+  margin-bottom: 4px;
   &::placeholder {
-    color: ${p => p.theme.colors.secondary.color3};
+    color: ${(p) => p.theme.colors.secondary.color3};
     font-size: 16px;
     font-weight: 400;
     line-height: 1.25;
   }
   :focus {
-    color: ${p => p.theme.colors.primary.accent};
+    color: ${(p) => p.theme.colors.primary.accent};
   }
 `;
 
@@ -148,8 +156,8 @@ export const Button = styled.button`
   border-radius: 10px;
   padding: 8px 30px;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  background: ${p => p.theme.colors.primary.accent};
-  color: ${p => p.theme.colors.primary.bg};
+  background: ${(p) => p.theme.colors.primary.accent};
+  color: #ffff;
   text-align: center;
   font-size: 16px;
   font-weight: 500;
@@ -168,20 +176,20 @@ export const Button = styled.button`
 `;
 
 export const LinkTo = styled(NavLink)`
-  color: ${p => p.theme.colors.primary.accent};
+  color: ${(p) => p.theme.colors.primary.accent};
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
   transition: transform 150ms ease-in-out;
   &:hover {
-    color: ${p => p.theme.colors.secondary.color4};
+    color: ${(p) => p.theme.colors.secondary.color4};
   }
 `;
 
 export const ImgWrapp = styled.div`
   padding-top: 50px;
   margin: 0 auto;
-  z-index: -1;
+  z-index: 10;
   position: relative;
   @media (min-width: 620px) and (max-width: 700px) {
     bottom: 95px;
@@ -206,7 +214,7 @@ export const ImgWrapp = styled.div`
 export const ImgBottle = styled.img``;
 
 export const ErrorMessage = styled.p`
-  color: ${p => p.theme.colors.secondary.color2};
+  color: ${(p) => p.theme.colors.secondary.color2};
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
@@ -215,8 +223,8 @@ export const ErrorMessage = styled.p`
 export const ButtonGoogle = styled.button`
   display: block;
   padding: 8px 30px;
-  background: ${p => p.theme.colors.primary.accent};
-  color: ${p => p.theme.colors.primary.bg};
+  background: ${(p) => p.theme.colors.primary.accent};
+  color: #ffff;
   font-size: 16px;
   line-height: 1.25;
   font-weight: 500;
