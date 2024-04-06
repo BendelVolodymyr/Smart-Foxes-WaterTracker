@@ -1,5 +1,22 @@
 import styled from 'styled-components';
 
+
+import backgroundElementMainPageDesk from "../assets/backgroundWelcomePg/backgroundElementMainPageDesk.png";
+import backgroundElementMainPageDesk2x from "../assets/backgroundWelcomePg/backgroundElementMainPageDesk2x@2.png"
+import bottleHomeDesk from "../assets/backgroundHomePg/botleHomeDesk.png";
+import bottleHomeDesk2x from "../assets/backgroundHomePg/botlteHomeDesk2x.png"
+import backgroundHomeTab from "../assets/backgroundHomePg/backgroundHomeTab.png";
+import backgroundHomeTab2x from "../assets/backgroundHomePg/BackgroundHomeTab2x.png";
+import bottleHomeTab from "../assets/backgroundHomePg/bottleHomeTab.png";
+import bottleHomeTab2x from "../assets/backgroundHomePg/bottleHomeTab2x.png";
+
+import backgroundHomeMob from "../assets/backgroundHomePg/backgroundHomeMob.png";
+import backgroundHomeMob2x from "../assets/backgroundHomePg/backgroundHomeMob2x.png";
+import bottleHomeMob from "../assets/backgroundHomePg/bottleHomeMob.png";
+import bottleHomeMob2x from "../assets/backgroundHomePg/bottleHomeMob2x.png";
+
+
+
 const HomePageContainer = styled.div`
 display: flex;
 flex-direction:column;
@@ -7,14 +24,28 @@ flex-direction:column;
 align-items: center;
 color:${p => p.theme.colors.primary.text};
 
-background-image: url('/src/assets/backgroundHomePg/Bottle_Home_Mob.png'), url('/src/assets/backgroundHomePg/Background_Home_Mob.png');
+background-image: image-set(
+        url(${bottleHomeMob}) 1x,
+        url(${bottleHomeMob2x}) 2x
+      ),
+      image-set(
+        url(${backgroundHomeMob}) 1x,
+        url(${backgroundHomeMob2x}) 2x
+      );
 background-position: center 106px, center;
 background-size: auto, 100vw auto;
 background-repeat: no-repeat;
 
 
 @media (min-width: ${({ theme }) => theme.screens.tab}){
-  background-image: url('/src/assets/backgroundHomePg/Bottle_Home_Tab.png'), url('/src/assets/backgroundHomePg/Background_Home_Tab.png');
+  background-image: image-set(
+        url(${bottleHomeTab}) 1x,
+        url(${bottleHomeTab2x}) 2x
+      ),
+      image-set(
+        url(${backgroundHomeTab}) 1x,
+        url(${backgroundHomeTab2x}) 2x
+      );
 background-position: center 40px, center;
 
 }
@@ -24,7 +55,14 @@ background-position: center 40px, center;
     flex-direction:row;
     align-items: flex-start;
 
-    background-image: url('/src/assets/backgroundHomePg/Botle_Home_desk.png'),  url('/src/assets/backgroundWelcomePg/backgroundElementMainPageDesk.png');
+    background-image: image-set(
+        url(${bottleHomeDesk}) 1x,
+        url(${bottleHomeDesk2x}) 2x
+      ),
+      image-set(
+        url(${backgroundElementMainPageDesk}) 1x,
+        url(${backgroundElementMainPageDesk2x}) 2x
+      );
 background-position: left top, center;
   }
 `;
