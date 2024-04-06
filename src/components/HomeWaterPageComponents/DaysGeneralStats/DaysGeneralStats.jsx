@@ -8,10 +8,7 @@ const DaysGeneralStats = ({ selectedDate, selectedDayData }) => {
   const day = selectedDate.getDate();
 
   const waterRate = useAuth().user.waterRate;
-  console.log(waterRate);
-
   const deyNorma = waterRate ? (waterRate / 1000).toFixed(1) : '0';
-
   const currentWaterRate = selectedDayData
     ? (selectedDayData.waterRate / 1000).toFixed(1)
     : deyNorma;

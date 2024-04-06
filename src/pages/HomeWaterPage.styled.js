@@ -95,6 +95,7 @@ width: 280px;
 height:auto;
 padding: 24px 8px;
 margin: 0;
+margin-bottom:4px;
 
 
 @media (min-width: ${({ theme }) => theme.screens.tab}) {
