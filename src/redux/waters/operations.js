@@ -39,9 +39,9 @@ export const deletePortion = createAsyncThunk(
 export const updatePortion = createAsyncThunk(
   'water/update',
 
-  async ({ id, date, portion }, thunkAPI) => {
+  async ({ id, date, waterVolume }, thunkAPI) => {
     try {
-      const response = await axios.patch(`/waters/${id}`, { date, portion });
+      const response = await axios.patch(`/waters/${id}`, { date, waterVolume });
 
       // console.log(response);
       return response.data;
@@ -54,9 +54,11 @@ export const updatePortion = createAsyncThunk(
 export const updateWaterRate = createAsyncThunk(
   'water-rate/editDailyNorma',
   async (data, thunkApi) => {
+    console.log(data);
     try {
-      const response = await axios.patch(`/water-rate`, data);
-      return response.data;
+      const response = await axios.patch(`/water-rate`, { waterRate: data });
+
+      return response.data.waterRate;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

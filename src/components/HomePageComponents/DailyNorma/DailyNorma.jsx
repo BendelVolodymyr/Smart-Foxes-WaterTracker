@@ -7,11 +7,14 @@ import {
   DailyWrapper,
 } from './DailyNorma.styled';
 import { DailyNormaModal } from '../DailyNormaModal/DailyNormaModal';
-import useWater from '../../../hooks/useWaters';
+
+import useAuth from '../../../hooks/useAuth';
 
 const DailyNorma = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const { waterRate } = useWater();
+  const { user } = useAuth();
+  const waterRate = user.waterRate;
+
   const handleEditButtonClick = () => {
     setModalOpen(true);
   };
@@ -24,7 +27,10 @@ const DailyNorma = () => {
     <DailyWaterWrapper>
       <DailyNormaP>My daily norma</DailyNormaP>
       <DailyWrapper>
-        <NumberDailyNorma> {calculateWaterRate ? calculateWaterRate : 2} L</NumberDailyNorma>
+        <NumberDailyNorma>
+          {' '}
+          {calculateWaterRate ? calculateWaterRate : waterRate} L
+        </NumberDailyNorma>
         {/*waterRate*/}
         <ButtonEditNorma onClick={handleEditButtonClick}>Edit</ButtonEditNorma>
       </DailyWrapper>
