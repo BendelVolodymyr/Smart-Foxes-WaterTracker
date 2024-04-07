@@ -1,12 +1,7 @@
 import { useRef, useState } from 'react';
 
 import { ReactComponent as DownArrow } from '../../../assets/header-icons/down-arrow.svg';
-import {
-  UserLogoWrapper,
-  UserName,
-  AvatarBox,
-  Button,
-} from './UserLogo.styled';
+import { UserLogoWrapper, UserName, AvatarBox, Button, Span } from './UserLogo.styled';
 import UserLogoModal from '../UserLogoModal/UserLogoModal';
 import formatEmail from '../../../helpers/formatEmail';
 import getFirstLetter from '../../../helpers/getFirstLetter';
@@ -43,7 +38,7 @@ const UserLogo = ({ avatarUrl }) => {
           {avatarUrl ? (
             <img src={avatarUrl} alt="uer-avatar" />
           ) : (
-            firstNameLetter || firstEmailLetter
+            <Span>{firstNameLetter || firstEmailLetter}</Span>
           )}
         </AvatarBox>
         <Button onClick={handleToggleExpand}>

@@ -1,12 +1,6 @@
 import { useContext } from 'react';
 import { ModalContext } from '../../../context';
-import {
-  ButtonWrapper,
-  LogoutButton,
-  Modal,
-  Text,
-  Title,
-} from './UserLogOutModal.styled';
+import { ButtonWrapper, LogoutButton, Modal, Text, Title } from './UserLogOutModal.styled';
 
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../redux/auth/operations';
@@ -30,15 +24,11 @@ const UserLogOutModal = () => {
         <Text>Do you really want to leave?</Text>
       </div>
       <ButtonWrapper>
-        <LogoutButton $background={'#EF5050'} color={'#fff'} onClick={logOut}>
-          Log out
-        </LogoutButton>
-        <LogoutButton
-          $background={'#D7E3FF'}
-          color={'#407BFF'}
-          onClick={handleCloseModal}
-        >
+        <LogoutButton $background={'#D7E3FF'} $color={'#407BFF'} onClick={handleCloseModal}>
           Cancel
+        </LogoutButton>
+        <LogoutButton $background={'#EF5050'} $color={'#fff'} onClick={logOut}>
+          Log out
         </LogoutButton>
       </ButtonWrapper>
     </Modal>
