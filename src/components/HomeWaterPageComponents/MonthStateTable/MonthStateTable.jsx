@@ -30,7 +30,6 @@ const MonthStateTable = () => {
     const startOfMonthDate = startOfMonth(selectedDate);
 
     const endOfMonthDate = endOfMonth(selectedDate);
-    console.log('currentMonth', currentMonth);
 
     if (selectedDay === null) {
       dispatch(portionsPerMonth({ startDate: startOfMonthDate, endDate: endOfMonthDate }));
