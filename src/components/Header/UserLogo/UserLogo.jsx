@@ -15,6 +15,8 @@ const UserLogo = ({ avatarUrl }) => {
 
   const { user } = useAuth();
 
+  // console.log(user);
+
   const userEmail = user.email;
   const firstNameLetter = getFirstLetter('');
   const firstEmailLetter = getFirstLetter(userEmail);
