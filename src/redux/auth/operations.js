@@ -73,7 +73,6 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
   const state = thunkAPI.getState();
   const persistedToken = state.auth.token;
   if (!persistedToken) {
-    console.log('UNAUTHORIZED');
     return thunkAPI.rejectWithValue('Unable to fetch user');
   }
   try {
@@ -106,3 +105,17 @@ export const updateUserInfo = createAsyncThunk('auth/info', async (formData, thu
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const updateWaterRate = createAsyncThunk(
+  'water-rate/editDailyNorma',
+  async (data, thunkApi) => {
+    const waterRate = data.toString() * 1000;
+    try {
+      const response = await axios.patch(`/water-rate`, { waterRate });
+
+      return response.data.waterRate;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
