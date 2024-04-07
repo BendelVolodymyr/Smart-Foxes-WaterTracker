@@ -1,5 +1,5 @@
 import { format, addMonths, isBefore, isAfter } from 'date-fns';
-import { NextSvg, Paginator, PrevSvg } from './DatePaginator.styled';
+import { NextSvg, Paginator, PaginatorBtn, PrevSvg } from './DatePaginator.styled';
 
 const DatePaginator = ({ selectedDate, setSelectedDate, setCurrentMonth, setSelectedDay }) => {
   const currentMonth = new Date().getMonth();
@@ -27,13 +27,13 @@ const DatePaginator = ({ selectedDate, setSelectedDate, setCurrentMonth, setSele
 
   return (
     <Paginator>
-      <button onClick={handlePrevClick} disabled={isPrevDisabled}>
-        <PrevSvg disabled={isPrevDisabled} />
-      </button>
+      <PaginatorBtn onClick={handlePrevClick} disabled={isPrevDisabled}>
+        <PrevSvg />
+      </PaginatorBtn>
       <span>{`${monthName}, ${year}`}</span>
-      <button onClick={handleNextClick} disabled={isNextDisabled}>
-        <NextSvg disabled={isNextDisabled} />
-      </button>
+      <PaginatorBtn onClick={handleNextClick} disabled={isNextDisabled}>
+        <NextSvg />
+      </PaginatorBtn>
     </Paginator>
   );
 };
