@@ -65,7 +65,7 @@ export const Footer = () => {
               <ImageWrapper src={Natalia} alt="Natalia" />
               <InfoTeamWrapper>
                 <TextPositionModal>Nataliia Filina</TextPositionModal>
-                <TextTeamPosition>Developer</TextTeamPosition>
+                <TextTeamPosition>Scrum Master</TextTeamPosition>
                 <IconsWrapper>
                   <IconLink href="https://github.com/NataFilina">
                     <IconGitHub />

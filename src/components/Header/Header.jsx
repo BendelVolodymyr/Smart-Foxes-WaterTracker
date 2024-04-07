@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom';
 import {
   Container,
+  Glow,
   HeaderWrapper,
-  ThemeButton,
+  Moon,
+  RayFour,
+  RayOne,
+  RayThree,
+  RayTwo,
+  SpinnerThemeWrapper,
+  Stars,
+  Sun,
   ThemeWrapper,
 } from './Header.styled';
 import Logo from './Logo/Logo';
@@ -36,8 +44,22 @@ const Header = () => {
           <Link to="/">
             <Logo />
           </Link>
-          <ThemeWrapper $isActive={buttonActive}>
-            <ThemeButton onClick={handleClickTheme}></ThemeButton>
+          <ThemeWrapper
+            onClick={handleClickTheme}
+            $isActive={buttonActive}
+            $themeEnabled={buttonActive}
+          >
+            <Glow />
+            <Stars />
+            <SpinnerThemeWrapper>
+              <Sun>
+                <RayOne />
+                <RayTwo />
+                <RayThree />
+                <RayFour />
+              </Sun>
+              <Moon></Moon>
+            </SpinnerThemeWrapper>
           </ThemeWrapper>
           {isLoggedIn ? <UserLogo avatarUrl={user.avatar} /> : <UserAuth />}
         </HeaderWrapper>

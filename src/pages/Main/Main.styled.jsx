@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 import backgroundMainPageMob from '../../assets/backgroundWelcomePg/backgroundMainPageMob.png';
 import backgroundMainPageMob2x from '../../assets/backgroundWelcomePg/backgroundMainPageMob2x@2.png';
@@ -13,12 +13,15 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: image-set(url(${backgroundMainPageMob}) 1x, url(${backgroundMainPageMob2x}) 2x);
+  background-image: image-set(
+    url(${backgroundMainPageMob}) 1x,
+    url(${backgroundMainPageMob2x}) 2x
+  );
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   padding: 24px 20px 40px;
-  @media only screen and (min-width: 768px) {
+  @media (min-width: ${p => p.theme.screens.tab}) {
     padding: 40px 32px 50px;
     background-image: image-set(
       url(${backgroundMainPageTab}) 1x,
