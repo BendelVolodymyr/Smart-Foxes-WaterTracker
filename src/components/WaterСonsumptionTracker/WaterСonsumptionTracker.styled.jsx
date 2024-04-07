@@ -1,28 +1,28 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 280px;
   align-items: flex-start;
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: ${(p) => p.theme.screens.tab}) {
     width: 704px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${(p) => p.theme.screens.desk}) {
     width: 439px;
   }
 `;
 
 export const Title = styled.h1`
   width: 246px;
-  color: #2f2f2f;
+  color: ${(p) => p.theme.colors.primary.text};
   font-family: Roboto;
   font-size: 28px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${(p) => p.theme.fontWeights.bolt};
   line-height: 114.286%;
   margin-bottom: 16px;
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: ${(p) => p.theme.screens.tab}) {
     width: 439px;
     font-size: 36px;
     line-height: 116.667%;
@@ -31,19 +31,19 @@ export const Title = styled.h1`
 
 export const Subtitle = styled.p`
   width: 197px;
-  color: #2f2f2f;
+  color: ${(p) => p.theme.colors.primary.text};
   font-family: Roboto;
   font-size: 24px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${(p) => p.theme.fontWeights.regular};
   line-height: 125%;
   margin-bottom: 24px;
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: ${(p) => p.theme.screens.tab}) {
     width: 404px;
     font-size: 26px;
     line-height: 123.077%;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${(p) => p.theme.screens.desk}) {
     width: 439px;
   }
 `;
@@ -58,11 +58,11 @@ export const Blok = styled.div`
 `;
 
 export const BlokTitle = styled.div`
-  color: #2f2f2f;
+  color: ${(p) => p.theme.colors.primary.text};
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: ${(p) => p.theme.fontWeights.medium};
   line-height: 111.111%;
 `;
 
@@ -72,12 +72,12 @@ export const BlokList = styled.ul`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: ${(p) => p.theme.screens.tab}) {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${(p) => p.theme.screens.desk}) {
     width: 439px;
     flex-direction: column;
     align-items: start;
@@ -91,10 +91,10 @@ export const BlokListItems = styled.li`
   justify-content: start;
   align-items: center;
   flex-direction: row;
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: ${(p) => p.theme.screens.tab}) {
     width: 224px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${(p) => p.theme.screens.desk}) {
     width: 248px;
   }
 `;
@@ -102,18 +102,18 @@ export const BlokListItems = styled.li`
 export const BlokListItemsContainer = styled.div`
   width: 32px;
   height: 32px;
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: ${(p) => p.theme.screens.tab}) {
     width: 40px;
     height: 40px;
   }
 `;
 
 export const BlokListItemsText = styled.div`
-  color: #2f2f2f;
+  color: ${(p) => p.theme.colors.primary.text};
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${(p) => p.theme.fontWeights.regular};
   line-height: 125%;
 `;
 
@@ -121,17 +121,17 @@ export const Button = styled.button`
   width: 280px;
   padding: 8px 30px;
   border-radius: 10px;
-  background: #407bff;
+  background: ${(p) => p.theme.colors.primary.accent};
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: ${(p) => p.theme.colors.primary.bg};
   text-align: center;
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: ${(p) => p.theme.fontWeights.medium};
   line-height: 125%;
   cursor: pointer;
   &:hover {
@@ -140,13 +140,13 @@ export const Button = styled.button`
   &:active {
     box-shadow: none;
   }
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: ${(p) => p.theme.screens.tab}) {
     width: 336px;
     padding: 10px 30px;
     font-size: 18px;
     line-height: 133.333%;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${(p) => p.theme.screens.desk}) {
     width: 384px;
   }
 `;

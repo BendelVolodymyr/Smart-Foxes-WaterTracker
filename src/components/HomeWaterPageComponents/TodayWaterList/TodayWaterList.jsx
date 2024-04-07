@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import formatTime from '../../../helpers/formatTime';
 import {
   AddWaterBtn,
@@ -21,40 +21,22 @@ import useWater from '../../../hooks/useWaters';
 import { useDispatch } from 'react-redux';
 import { portionsPerDay } from '../../../redux/waters/operations';
 
-//заглушка для модалки
+// import TodayEditModal from './TodayEditModal';
+
+// заглушка для модалки
 const TodayEditModal = () => {
   return <div> Тут колись буде модалка TodayEditModal</div>;
 };
 
 const TodayWaterList = ({ handleAddWaterClick }) => {
-  //заглушка. замінити на дані зі стейту
-  // const waterDayList = [
-  //   {
-  //     _id: '660d1669c6da2477d73d6371',
-  //     dateAdded: '2024-04-13T02:40:00.000Z',
-  //     waterRate: 2000,
-  //     waterVolume: 200,
-  //     owner: '660d1669c6da2477d73d6371',
-  //     percentage: 80,
-  //   },
-  //   {
-  //     _id: '660d1669c6da2477d73d6372',
-  //     dateAdded: '2024-04-13T02:40:00.000Z',
-  //     waterRate: 2000,
-  //     waterVolume: 200,
-  //     owner: '660d1669c6da2477d73d6371',
-  //     percentage: 80,
-  //   },
-  // ];
-
   const { openModal } = useContext(ModalContext);
-  const [selectedPortion, setSelectedPortion] = useState(null);
+  // const [selectedPortion, setSelectedPortion] = useState(null);
   const waterDayData = useWater().waterDayList;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(portionsPerDay());
-  }, []);
+  }, [dispatch]);
 
   const handleDelete = (id) => {
     openModal(
@@ -65,8 +47,8 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
   };
 
   const handleEdit = (portion) => {
-    setSelectedPortion(portion);
-    console.log(selectedPortion);
+    // setSelectedPortion(portion);
+
     //тут поки що заглушка TodayEditModal
     openModal(
       <>
@@ -88,7 +70,7 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
                 <span>{formatTime(portion.dateAdded, true)}</span>
               </ListContext>
               <ListButtons>
-                <ButtonEdit onClick={() => handleEdit(portion._id)}>
+                <ButtonEdit onClick={() => handleEdit(portion)}>
                   <EditSvg />
                 </ButtonEdit>
                 <ButtonDelete onClick={() => handleDelete(portion._id)}>
