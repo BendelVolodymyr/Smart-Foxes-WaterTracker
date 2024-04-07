@@ -1,4 +1,4 @@
-import{u as n,G as d,j as t,H as l,a as x,L as h,F as i}from"./index-b27e4378.js";import{b as m,a as p}from"./backgroundElementMainPageDesk2x@2-f75c1b59.js";const g=n.div`
+import{u as n,G as d,j as t,H as l,a as x,L as h,F as i}from"./index-60473ba6.js";import{b as m,a as p}from"./backgroundElementMainPageDesk2x@2-f75c1b59.js";const g=n.div`
   display: flex;
   flex-direction: column;
   width: 280px;
@@ -176,7 +176,10 @@ import{u as n,G as d,j as t,H as l,a as x,L as h,F as i}from"./index-b27e4378.js
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: image-set(url(${z}) 1x, url(${v}) 2x);
+  background-image: image-set(
+    url(${z}) 1x,
+    url(${v}) 2x
+  );
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
