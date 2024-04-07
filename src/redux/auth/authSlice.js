@@ -101,7 +101,14 @@ const authSlice = createSlice({
       .addCase(API.updateUserInfo.fulfilled, (state, { payload }) => {
         state.user = { ...state.user, ...payload };
       })
-      .addCase(API.updateUserInfo.rejected, handleRejected);
+      .addCase(API.updateUserInfo.rejected, handleRejected)
+      .addCase(API.updateWaterRate.pending, handlePending)
+      .addCase(API.updateWaterRate.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.user = { ...state.user, ...payload };
+        state.isLoading = false;
+      })
+      .addCase(API.updateWaterRate.rejected, handleRejected);
   },
 });
 
