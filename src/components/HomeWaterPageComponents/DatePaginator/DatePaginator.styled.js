@@ -19,11 +19,14 @@ const Paginator = styled.div`
   line-height: 20px;
  
   color: ${p => p.theme.colors.primary.accent};
-  button {
+  button > svg {
     
     background: transparent;
     border: none;
-    cursor: pointer;
+    cursor: ${p => (p.disabled ? "default" : "pointer")};
+   
+    pointer-events: ${p => (p.disabled ? "none" : "auto")};
+    /* cursor: pointer; */
    
     margin: 0;
   }
@@ -35,9 +38,20 @@ const Paginator = styled.div`
 
 `;
 
+const PaginatorBtn = styled.button`
+ background: transparent;
+    border: none;
+    cursor: ${p => (p.disabled ? "default" : "pointer")};
+    visibility: ${p => (p.disabled ? "hidden" : "visible")};
+    pointer-events: ${p => (p.disabled ? "none" : "auto")};
+  
+   
+    margin: 0;
+`
+
 const PrevSvg = styled(PrevIcon)`
 
-fill: ${p => (p.disabled ? p.theme.colors.primary.bg : p.theme.colors.primary.accent)};
+fill: ${p => p.theme.colors.primary.accent};
   width: 14px;
   height: auto;
 
@@ -45,11 +59,11 @@ fill: ${p => (p.disabled ? p.theme.colors.primary.bg : p.theme.colors.primary.ac
 `
 const NextSvg = styled(NextIcon)`
 
-fill: ${p => (p.disabled ? p.theme.colors.primary.bg : p.theme.colors.primary.accent)};
+fill: ${p => p.theme.colors.primary.accent};
   width: 14px;
   height: auto;
-
-
+ 
+ 
 `
 
 
@@ -57,5 +71,6 @@ fill: ${p => (p.disabled ? p.theme.colors.primary.bg : p.theme.colors.primary.ac
 export {
   Paginator,
   PrevSvg,
-  NextSvg
+  NextSvg,
+  PaginatorBtn
 }
