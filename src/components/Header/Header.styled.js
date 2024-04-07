@@ -36,6 +36,10 @@ const float = keyframes`
   }
 `;
 
+export const MainHeader = styled.header`
+  background: ${(p) => p.theme.colors.primary.bg};
+`;
+
 export const Container = styled.div`
   width: 280px;
   margin: 0 auto;
@@ -63,14 +67,14 @@ export const ThemeWrapper = styled.div`
   width: 16px;
   height: 30px;
   display: flex;
-  justify-content: ${props => (props.$isActive ? 'end' : 'start')};
+  justify-content: ${(props) => (props.$isActive ? 'end' : 'start')};
   align-items: center;
   background: linear-gradient(#3f006c, #750050, #b10042, #da4837, #f7bb38);
   transform: translate(-50%, -50%);
   border-radius: 8px;
   animation: ${colors} 12s infinite forwards;
 
-  @media screen and (min-width: ${p => p.theme.screens.tab}) {
+  @media screen and (min-width: ${(p) => p.theme.screens.tab}) {
     width: 56px;
     height: 28px;
     border-radius: 20px;

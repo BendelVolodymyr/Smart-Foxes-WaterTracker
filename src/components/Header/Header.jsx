@@ -3,6 +3,7 @@ import {
   Container,
   Glow,
   HeaderWrapper,
+  MainHeader,
   Moon,
   RayFour,
   RayOne,
@@ -38,7 +39,7 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <MainHeader>
       <Container>
         <HeaderWrapper>
           <Link to="/">
@@ -64,7 +65,7 @@ const Header = () => {
           {isLoggedIn ? <UserLogo avatarUrl={user.avatar} /> : <UserAuth />}
         </HeaderWrapper>
       </Container>
-    </header>
+    </MainHeader>
   );
 };
 

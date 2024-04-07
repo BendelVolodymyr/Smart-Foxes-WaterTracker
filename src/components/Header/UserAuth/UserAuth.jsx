@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Text, UserAuthWrapper } from './UserAuth.styled';
-import { ReactComponent as UnAuthUser } from '../../../assets/header-icons/UnAuthUser-Logo.svg';
+import { Text, UserAuthWrapper, UserIcon, UserIconWrapper } from './UserAuth.styled';
 
 const UserAuth = () => {
   return (
@@ -8,8 +7,10 @@ const UserAuth = () => {
       <Link to="/signin">
         <Text> Sigh In</Text>
       </Link>
-      {/* <img className={css.user_avatar} src="#" alt="user_avatar" /> */}
-      <UnAuthUser />
+
+      <UserIconWrapper>
+        <UserIcon />
+      </UserIconWrapper>
     </UserAuthWrapper>
   );
 };
