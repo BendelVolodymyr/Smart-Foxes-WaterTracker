@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { ModalContext } from '../../../context';
 import { ReactComponent as LogOutIcon } from '../../../assets/header-icons/logout-icon.svg';
 import { ReactComponent as SettingIcon } from '../../../assets/header-icons/setting-icon.svg';
-import { SettingsModal } from '../../SettingsModal/SettingsModal';
+import { Setting } from '../../SettingsModal/SettingsModal';
 import LogoutModal from '../UserLogOutModal/UserLogOutModal';
 
 const UserLogoModal = () => {
@@ -18,7 +18,7 @@ const UserLogoModal = () => {
       <Modal>
         <Button
           onClick={() => {
-            handleOpenModal(<SettingsModal />, 'auto');
+            handleOpenModal(<Setting />, 'auto');
           }}
         >
           <SettingIcon />

@@ -29,7 +29,7 @@ import {
   ButtonIcon,
   SaveButton,
 } from './settings.styled';
-export const SettingsModal = () => {
+export const Setting = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
