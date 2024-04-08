@@ -1,0 +1,1 @@
+import{j as t}from"./index-d658924a.js";const e="/Smart-Foxes-WaterTracker/assets/uG73t6y3S6obzxxr4w-66dc3bf5.gif",r=()=>t.jsx(t.Fragment,{children:t.jsx("img",{style:{display:"flex",alignItems:"center",margin:"auto",width:"500px",height:"auto"},src:e,alt:"NotFound"})});export{r as default};
