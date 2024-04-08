@@ -6,6 +6,7 @@ import {
   selectIsRefreshing,
   selectIsLoggedIn,
   selectIsLoading,
+  secectcreatedAt,
 } from '../redux/auth/selectors.js';
 
 const useAuth = () => {
@@ -14,6 +15,7 @@ const useAuth = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector(selectIsLoading);
+  const createdAt = useSelector(secectcreatedAt);
 
   return {
     isLoggedIn,
@@ -21,6 +23,7 @@ const useAuth = () => {
     isRefreshing,
     user,
     isLoading,
+    createdAt,
   };
 };
 
