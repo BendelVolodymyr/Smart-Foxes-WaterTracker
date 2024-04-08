@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-  console.log('app', isLoggedIn);
+
   return isLoading ? (
     <Loader />
   ) : (
