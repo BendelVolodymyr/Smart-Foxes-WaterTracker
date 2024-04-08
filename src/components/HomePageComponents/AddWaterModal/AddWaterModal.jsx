@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   ButtonSave,
@@ -14,7 +14,6 @@ import {
   RecordingTimeInput,
   RecordingTimeLabel,
   RecordingTimeSpan,
-  WaterAmountInput,
   WaterAmountLabel,
   WaterAmountSpan,
   WaterInputed,
@@ -25,19 +24,24 @@ import {
 } from './AddWaterModal.styled';
 import useWater from '../../../hooks/useWaters';
 import { formatDate } from '../../../helpers/formatedDate';
-import { format } from 'date-fns';
-import { addPortion } from '../../../redux/waters/operations';
 
-export const AddWaterModal = ({ firstValue, firstTime, isEditing, onClose}) => {
-  const waterList = useWater().waterDayList.portions;
-  
-  const [waterUsed, setWaterUsed] = useState(firstValue || 0);
-  const [time, setTime] = useState(
-    isEditing && firstValue ? format(new Date(firstTime), 'HH:mm') : format(new Date(), 'HH:mm')
-  );
-  const [list, setList] = useState(waterList ? waterList : null);
+import { addPortion, portionsPerDay, updatePortion } from '../../../redux/waters/operations';
+import {
+  GlassSvg,
+  ListContext,
+  Portion,
+} from '../../HomeWaterPageComponents/TodayWaterList/TodayWaterList.styled';
+import formatTime from '../../../helpers/formatTime';
+
+export const AddWaterModal = ({ portion }) => {
   const dispatch = useDispatch();
+  const { waterDayList } = useWater();
+  const [waterUsed, setWaterUsed] = useState(portion.waterVolume ? portion.waterVolume : 0);
+  const [time, setTime] = useState(portion.dateAdded ? portion.dateAdded : '');
 
+  const list = waterDayList;
+
+  //введення юзером
   const handleWaterUsedChange = (e) => {
     const WaterParse = parseFloat(e.target.value);
     if (WaterParse > 3000) {
@@ -46,9 +50,8 @@ export const AddWaterModal = ({ firstValue, firstTime, isEditing, onClose}) => {
     }
     setWaterUsed(WaterParse);
   };
-
+  // віднімання/додавння
   const handleToggle = (e) => {
-    console.log(e.currentTarget.id);
     switch (e.currentTarget.id) {
       case 'increment':
         setWaterUsed((prevValue) => prevValue + 50);
@@ -61,51 +64,67 @@ export const AddWaterModal = ({ firstValue, firstTime, isEditing, onClose}) => {
     }
   };
 
-  const handleSave = (e) => {
+  //відправлення порції води
+  const handleSave = async (e) => {
     e.preventDefault();
-    const currentDate = new Date();
-    const todayDay = formatDate(currentDate);
-    const isValidTime = list
-      ? list.find((item) => {
-          item.time !== time;
-        })
-      : time;
-    const date = todayDay + 'T' + isValidTime;
-    const data = {
-      waterVolume: waterUsed,
-      date,
-    };
-    dispatch(addPortion(data)).thne;
-    try {
-      const dataSend = dispatch(addPortion(data));
-      if (!dataSend.error) {
-        onClose();
-        setWaterUsed('');
+    if (portion) {
+      const dataToUpdate = {
+        id: portion._id,
+        date: time,
+        waterVolume: waterUsed,
+      };
+      dispatch(updatePortion(dataToUpdate));
+      handleCloseModal();
+      dispatch(portionsPerDay());
+    } else {
+      const currentDate = new Date();
+      const todayDay = formatDate(currentDate);
+      const isValidTime = list
+        ? list.find((item) => {
+            item.dateAdded === time;
+          })
+        : time;
+      console.log(isValidTime);
+      if (isValidTime) {
+        alert('Не можна в один той самий час');
         setTime('');
-      } else {
-        throw new Error();
+        return;
       }
-    } catch (error) {
-      console.error(error);
-      alert('Something went wrong');
-      onClose();
+      const date = todayDay + 'T' + isValidTime;
+      const data = {
+        waterVolume: waterUsed,
+        date,
+      };
+
+      try {
+        const dataSend = dispatch(addPortion(data));
+        if (!dataSend.error) {
+          setWaterUsed(0);
+          setTime('');
+        } else {
+          throw new Error();
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Something went wrong');
+      }
     }
   };
-  useEffect(() => {
-    if (isEditing) {
-      setWaterUsed(firstValue || 0);
-      setTime(format(firstTime, 'HH:mm'));
-    } else {
-      setWaterUsed(0);
-      setTime(format(new Date(), 'HH:mm'));
-    }
-  }, [isEditing, firstValue, firstTime]);
+  const title = portion ? 'Edit the entered amount of water' : 'Add water';
+  const dataTitle = portion ? 'Correct entered data: ' : 'Choose a value:';
+
   return (
     <ModalContainer>
-      <HeadModal> Add water</HeadModal>
-      {/* {Water added ? water added : <span>no notes yet</span>} */}
+      <HeadModal> {title}</HeadModal>
+      {portion && (
+        <ListContext>
+          <GlassSvg />
+          <Portion>{`${portion.waterVolume} ml `}</Portion>
+          <span>{formatTime(portion.dateAdded, true)}</span>
+        </ListContext>
+      )}
       <Container>
-        <ChooseSpan>Choose a value:</ChooseSpan>
+        <ChooseSpan>{dataTitle}</ChooseSpan>
         <WaterAmountLabel>
           <WaterAmountSpan>Amount of water:</WaterAmountSpan>
           <CalculateWater>

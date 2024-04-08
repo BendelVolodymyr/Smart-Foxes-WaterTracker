@@ -20,6 +20,7 @@ import { ModalContext } from '../../../context';
 import useWater from '../../../hooks/useWaters';
 import { useDispatch } from 'react-redux';
 import { portionsPerDay } from '../../../redux/waters/operations';
+import { AddWaterModal } from '../../HomePageComponents/AddWaterModal/AddWaterModal';
 
 // import TodayEditModal from './TodayEditModal';
 
@@ -52,7 +53,7 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
     //тут поки що заглушка TodayEditModal
     openModal(
       <>
-        <TodayEditModal portion={portion} />
+        <AddWaterModal portion={portion} />
       </>
     );
   };
