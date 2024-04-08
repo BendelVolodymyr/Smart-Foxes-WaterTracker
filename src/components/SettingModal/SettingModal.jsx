@@ -28,7 +28,7 @@ import {
   ButtonContainer,
   ButtonIcon,
   SaveButton,
-} from './setting-modal.styled';
+} from './settingModal.styled';
 export const SettingModal = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
