@@ -29,7 +29,6 @@ const HomeWaterPage = () => {
       <DailyNormaBoxWrapper>
         <DailyNorma></DailyNorma>
         <WaterRatioPanel handleAddWaterClick={handleAddWaterClick}></WaterRatioPanel>
-        {/* <WaterRatioPanel andleAddWaterClick={handleAddWaterClick}></WaterRatioPanel> */}
       </DailyNormaBoxWrapper>
       <TodayAndCalendarWrapper>
         <TodayWaterList handleAddWaterClick={handleAddWaterClick}></TodayWaterList>
