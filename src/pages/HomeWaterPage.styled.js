@@ -22,7 +22,7 @@ display: flex;
 flex-direction:column;
 
 align-items: center;
-max-width: 1216px;
+
 color:${p => p.theme.colors.primary.text};
 background-color: ${(p) => p.theme.colors.primary.bg};
 background-image: image-set(
@@ -55,7 +55,7 @@ background-position: center 40px, center;
 @media (min-width: ${({ theme }) => theme.screens.desk}) {
     flex-direction:row;
     align-items: flex-start;
-
+    padding: 0px 112px;
     background-image: image-set(
         url(${bottleHomeDesk}) 1x,
         url(${bottleHomeDesk2x}) 2x
@@ -72,6 +72,8 @@ background-position: left top, center;
 const DailyNormaBoxWrapper = styled.section`
 display: flex;
 flex-direction: column;
+align-items: flex-start;
+gap: 240px;
 
 width: 280px;
 height: 507px;
@@ -79,6 +81,12 @@ height: 507px;
 
 @media (min-width: ${({ theme }) => theme.screens.tab}) {
   width: 704px;
+  gap: 326px;
+}
+
+@media (min-width: ${({ theme }) => theme.screens.desk}) {
+
+  gap: 466px;
 }
 
 `;
@@ -105,7 +113,7 @@ margin-bottom:4px;
 }
 
 @media (min-width: ${({ theme }) => theme.screens.desk}) {
-  width: 592px;
+  min-width: 592px;
   
 }
 
