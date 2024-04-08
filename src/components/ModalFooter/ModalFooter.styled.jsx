@@ -62,7 +62,7 @@ export const BackdropWrapper = styled.div`
 
 export const ModalWrapper = styled.div`
   position: relative;
-  overflow: ${p => (p.$overflow ? p.$overflow : 'hidden')};
+  overflow-y: ${p => (p.$overflow ? p.$overflow : 'hidden')};
   overflow-x: hidden;
   max-width: 280px;
   margin: auto;
