@@ -56,6 +56,7 @@ background-position: center 40px, center;
     flex-direction:row;
     align-items: flex-start;
     padding: 0px 112px;
+  
     background-image: image-set(
         url(${bottleHomeDesk}) 1x,
         url(${bottleHomeDesk2x}) 2x
