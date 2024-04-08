@@ -88,9 +88,9 @@ export const DailyNormaModal = ({ onClose }) => {
       alert('Fill all fields');
       return;
     }
-    if (isNaN(parseDailyNorma) || parseDailyNorma <= 0) {
-      alert('Enter a valid intake goal');
-    }
+    // if (!isNaN(parseDailyNorma) || parseDailyNorma <= 0) {
+    //   alert('Enter a valid intake goal');
+    // }
     dispatch(updateWaterRate(userWaterPredict ? userWaterPredict : parseDailyNorma)).then(
       (data) => {
         if (!data.error) {
@@ -145,6 +145,7 @@ export const DailyNormaModal = ({ onClose }) => {
                   name="gender"
                   value="woman"
                   onChange={() => setGenderOption(woman)}
+                  checked={user.gender === 'famale'}
                 />
                 <GenderPargh>For woman</GenderPargh>
               </GenderLabel>
@@ -154,6 +155,7 @@ export const DailyNormaModal = ({ onClose }) => {
                   name="gender"
                   value="man"
                   onChange={() => setGenderOption(man)}
+                  checked={user.gender === 'male'}
                 />
                 <GenderPargh>For man</GenderPargh>
               </GenderLabel>
