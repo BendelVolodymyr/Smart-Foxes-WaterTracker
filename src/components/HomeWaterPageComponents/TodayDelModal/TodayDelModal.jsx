@@ -7,15 +7,15 @@ import {
   PortionDelModalWrapper,
 } from './TodayDelModal.styled';
 import { useDispatch } from 'react-redux';
-import { deletePortion } from '../../../redux/waters/operations';
+import { deletePortion, portionsPerDay } from '../../../redux/waters/operations';
 
 const TodayDelModal = ({ id }) => {
   const { closeModal } = useContext(ModalContext);
   const dispatch = useDispatch();
-  console.log(id);
-  const handleDelete = () => {
-    dispatch(deletePortion(id));
+  const handleDelete = async () => {
+    await dispatch(deletePortion(id));
     closeModal();
+    dispatch(portionsPerDay());
   };
 
   return (
