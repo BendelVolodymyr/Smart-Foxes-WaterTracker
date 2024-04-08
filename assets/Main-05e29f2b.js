@@ -1,4 +1,4 @@
-import{u as n,G as d,j as t,H as l,a as x,L as h,F as i}from"./index-ce295530.js";import{b as m,a as p}from"./backgroundElementMainPageDesk2x@2-f75c1b59.js";const g=n.div`
+import{u as n,G as d,j as t,H as l,a as x,L as h,F as i}from"./index-1b894b2a.js";import{b as m,a as p}from"./backgroundElementMainPageDesk2x@2-f75c1b59.js";const g=n.div`
   display: flex;
   flex-direction: column;
   width: 280px;
