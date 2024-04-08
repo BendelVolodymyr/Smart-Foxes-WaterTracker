@@ -54,14 +54,14 @@ export const LoginContainer = styled.div`
   background-size: cover;
   background-position: 1px 40px;
 
-  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+  @media (min-width: ${(p) => p.theme.screens.tab}) {
     background-image: url(${bgmobTab});
     background-repeat: no-repeat;
     background-size: cover;
     padding: 40px 32px;
   }
 
-  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+  @media (min-width: ${(p) => p.theme.screens.desk}) {
     padding: 40px 32px;
     display: flex;
     flex-direction: row-reverse;
@@ -93,11 +93,11 @@ export const Form = styled.form`
     width: 350px;
   }
 
-  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+  @media (min-width: ${(p) => p.theme.screens.tab}) {
     width: 336px;
   }
 
-  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+  @media (min-width: ${(p) => p.theme.screens.desk}) {
     width: 384px;
   }
 `;
@@ -168,7 +168,7 @@ export const Button = styled.button`
   &:hover {
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
   }
-  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+  @media (min-width: ${(p) => p.theme.screens.tab}) {
     padding: 10px 30px;
     font-size: 18px;
     line-height: 1.33;
@@ -223,6 +223,7 @@ export const ErrorMessage = styled.p`
 export const ButtonGoogle = styled.button`
   display: block;
   padding: 8px 30px;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   background: ${(p) => p.theme.colors.primary.accent};
   color: #ffff;
   font-size: 16px;
@@ -234,7 +235,7 @@ export const ButtonGoogle = styled.button`
   &:hover {
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
   }
-  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+  @media (min-width: ${(p) => p.theme.screens.tab}) {
     padding: 10px 30px;
     font-size: 18px;
     line-height: 1.33;

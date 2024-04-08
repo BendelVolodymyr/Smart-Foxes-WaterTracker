@@ -7,21 +7,13 @@ import {
 } from './HomeWaterPage.styled';
 import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
 import DailyNorma from '../components/HomePageComponents/DailyNorma/DailyNorma';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { ModalContext } from '../context';
 import { AddWaterModal } from '../components/HomePageComponents/AddWaterModal/AddWaterModal';
-import { useDispatch } from 'react-redux';
-import { refreshUser } from '../redux/auth/operations';
-// import { refreshUser } from '../redux/auth/operations';
 
-//заглушка для модалки
-// const AddWaterModal = () => {
-//   return <div> Тут колись буде модалка AddWaterModal</div>;
-// };
+import { WaterRatioPanel } from '../components/HomePageComponents/WaterRatioPanel/WaterRationPanel';
 
 const HomeWaterPage = () => {
-  const dispatch = useDispatch();
-
   const { openModal } = useContext(ModalContext);
 
   const handleAddWaterClick = () => {
@@ -31,15 +23,12 @@ const HomeWaterPage = () => {
       </>
     );
   };
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
 
   return (
     <HomePageContainer>
       <DailyNormaBoxWrapper>
         <DailyNorma></DailyNorma>
-        {/* <WaterRatioPanel andleAddWaterClick={handleAddWaterClick}></WaterRatioPanel> */}
+        <WaterRatioPanel handleAddWaterClick={handleAddWaterClick}></WaterRatioPanel>
       </DailyNormaBoxWrapper>
       <TodayAndCalendarWrapper>
         <TodayWaterList handleAddWaterClick={handleAddWaterClick}></TodayWaterList>

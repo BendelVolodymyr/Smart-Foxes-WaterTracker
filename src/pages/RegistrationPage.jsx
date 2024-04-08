@@ -22,11 +22,15 @@ import { useFormik } from 'formik';
 import { signUp } from '../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import { FcGoogle } from 'react-icons/fc';
+// import ModalUser from './LoginPage/ModalUser/ModalUser';
+// import { ModalContext } from '../context';
+// import { useContext } from 'react';
 
 const Registration = () => {
     const bottle = bottleImg;
     const { handleShowPassword, toggleIcon, type } = useVisiblePassword();
     const dispatch = useDispatch();
+    // const { openModal } = useContext(ModalContext);
     const SignupSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('Email is required'),
         password: Yup.string()
@@ -47,6 +51,9 @@ const Registration = () => {
         validationSchema: SignupSchema,
         onSubmit: ({ email, password }, { resetForm }) => {
             dispatch(signUp({ email: email, password: password }));
+            // openModal(<>
+            // <ModalUser/>
+            // </>);
             resetForm();
         },
     });
@@ -62,6 +69,7 @@ const Registration = () => {
     // };
 
     return (
+    
         <LoginContainer>
             <Form onSubmit={formik.handleSubmit}>
                 <AuthTitle>Sing Up</AuthTitle>
@@ -151,6 +159,8 @@ const Registration = () => {
                 <ImgBottle src={bottle} alt="bottle" />
             </ImgWrapp>
         </LoginContainer>
+       
+       
     );
 };
 
