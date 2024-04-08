@@ -1,44 +1,20 @@
 import styled, { keyframes } from 'styled-components';
 
-const colors = keyframes`
-  0% {
-    background: linear-gradient(#3f006c, #750050, #b10042, #da4837, #f7bb38);
-  }
-
-  100% {
-    background: linear-gradient(#14045f, #331a99,  #282bce, #1555ec, #1e84f7);
-  }
-`;
-
-const spin = keyframes`
-  10% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(180deg);
-  }
-`;
-
-const twinkle = keyframes`
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0.7;
-  }
-`;
-
 const float = keyframes`
-  50% {
-    transform: translateY(1px);
-  }
-`;
+50%{
+  transform: translateY(2px);
+}`;
 
 export const Container = styled.div`
   width: 280px;
+  /* padding: 0 20px; */
+
+  /* outline: auto; */
   margin: 0 auto;
+
+  /* @media screen and (min-width: 375px) {
+    max-width: 280px;
+  } */
 
   @media screen and (min-width: 768px) {
     width: 768px;
@@ -63,17 +39,33 @@ export const ThemeWrapper = styled.div`
   width: 16px;
   height: 30px;
   display: flex;
-  justify-content: ${props => (props.$isActive ? 'end' : 'start')};
-  align-items: center;
-  background: linear-gradient(#3f006c, #750050, #b10042, #da4837, #f7bb38);
-  transform: translate(-50%, -50%);
+  align-item: center;
+
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(31, 91, 240, 1) 0%,
+    rgba(31, 141, 240, 0.768032212885154) 25%,
+    rgba(240, 167, 31, 1) 75%,
+    rgba(226, 96, 15, 0.017331932773109293) 100%
+  );
+  transition: background 1s ease-in-out;
+
   border-radius: 8px;
-  animation: ${colors} 12s infinite forwards;
+
+  &:hover {
+    -webkit-box-shadow: 0px 0px 20px 3px rgba(158, 187, 255, 1);
+    -moz-box-shadow: 0px 0px 20px 3px rgba(158, 187, 255, 1);
+    box-shadow: 0px 0px 20px 3px rgba(158, 187, 255, 1);
+  }
+
+  &.show {
+    background: linear-gradient(#14045f, #331a99, #282bce, #1555ec, #1e84f7);
+  }
 
   @media screen and (min-width: ${p => p.theme.screens.tab}) {
-    width: 56px;
-    height: 28px;
-    border-radius: 20px;
+    width: 20px;
+    height: 40px;
   }
 `;
 
@@ -85,14 +77,15 @@ export const Glow = styled.div`
   width: 10px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  animation: ${float} 5s infinite;
 
+  animation: ${float} 5s infinite;
   &::before,
   &::after {
     position: absolute;
     content: '';
     height: 100%;
     width: 100%;
+
     background-color: inherit;
     border-radius: 50%;
   }
@@ -106,6 +99,31 @@ export const Glow = styled.div`
     top: -1px;
     left: 4px;
   }
+
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
+    top: 35px;
+    left: 5px;
+    &::before,
+    &::after {
+      position: absolute;
+      content: '';
+      height: 100%;
+      width: 100%;
+
+      background-color: inherit;
+      border-radius: 50%;
+    }
+
+    &:before {
+      top: -3px;
+      left: -8px;
+    }
+
+    &:after {
+      top: -3px;
+      left: 8px;
+    }
+  }
 `;
 
 export const Stars = styled.div`
@@ -115,13 +133,33 @@ export const Stars = styled.div`
   height: 0.5px;
   width: 0.5px;
   background-color: #fff;
+
+  opacity: 0;
+
   border-radius: 50%;
   box-shadow:
     6px 15px #fff,
     -3px 18px #fff,
     -5px 10px #fff,
     4px 7px #fff;
-  animation: ${twinkle} 12s infinite forwards;
+
+  &.show {
+    opacity: 0.7;
+    transition: opacity 5s ease;
+  }
+
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
+    box-shadow:
+      8px 14px #fff,
+      -2px 19px #fff,
+      -7px 12px #fff,
+      5px 24px #fff;
+
+    &.show {
+      opacity: 0.6;
+      transition: opacity 6s ease;
+    }
+  }
 `;
 
 export const SpinnerThemeWrapper = styled.div`
@@ -131,7 +169,21 @@ export const SpinnerThemeWrapper = styled.div`
   position: absolute;
   top: 10px;
   left: -8px;
-  animation: ${spin} 1s infinite forwards;
+
+  transition: transform 0.3s ease-in-out;
+
+  &.show {
+    transform: rotate(180deg);
+  }
+
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    position: absolute;
+    top: 12px;
+    left: -13px;
+  }
 `;
 
 export const Sun = styled.div`
@@ -141,13 +193,14 @@ export const Sun = styled.div`
   height: 8px;
   width: 8px;
   border-radius: 50%;
-  background-color: #f7f7de;
+  background-color: #ffcc33;
+  z-index: 1;
 
   &::after,
   &::before {
     position: absolute;
     content: '';
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 204, 51, 0.1);
     border-radius: 50%;
   }
 
@@ -164,6 +217,27 @@ export const Sun = styled.div`
     top: -3px;
     left: -3px;
   }
+
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
+    top: -5px;
+    left: 16px;
+    height: 10px;
+    width: 10px;
+
+    &:before {
+      height: 13px;
+      width: 13px;
+      top: -1.5px;
+      left: -1.5px;
+    }
+
+    &:after {
+      height: 16px;
+      width: 16px;
+      top: -3px;
+      left: -3px;
+    }
+  }
 `;
 
 export const Moon = styled.div`
@@ -172,7 +246,7 @@ export const Moon = styled.div`
   left: 8px;
   height: 8px;
   width: 8px;
-  box-shadow: 3px -2px 0 0 #f7f7de;
+  box-shadow: 3px -2px 0 0 #f7f7de; //
   border-radius: 50%;
 
   &::after,
@@ -196,6 +270,42 @@ export const Moon = styled.div`
     top: -5px;
     left: 0.5px;
   }
+
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
+    bottom: -7px;
+    left: 12px;
+    height: 10px;
+    width: 10px;
+
+    &:before {
+      height: 13px;
+      width: 13px;
+      top: -4px;
+      left: 2px;
+    }
+
+    &:after {
+      height: 16px;
+      width: 16px;
+      top: -5px;
+      left: 1px;
+    }
+  }
+`;
+
+export const ThemeButton = styled.button`
+  width: 15px;
+  height: 15px;
+  border-radius: 8px;
+  background-color: blue;
+
+  overflow: hidden;
+
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+  }
 `;
 
 export const RayOne = styled.div`
@@ -203,9 +313,10 @@ export const RayOne = styled.div`
   top: -4px;
   left: -1px;
   transform: rotate(130deg);
+
   height: 0;
   width: 1px;
-  border-bottom: 10px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 10px solid rgba(255, 204, 51, 0.1);
   border-left: 2px solid transparent;
   border-right: 2px solid transparent;
 `;
@@ -215,9 +326,10 @@ export const RayTwo = styled.div`
   top: -5px;
   left: 6px;
   transform: rotate(220deg);
+
   height: 0;
   width: 1px;
-  border-bottom: 10px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 10px solid rgba(255, 204, 51, 0.1);
   border-left: 2px solid transparent;
   border-right: 2px solid transparent;
 `;
@@ -227,9 +339,10 @@ export const RayThree = styled.div`
   top: 3px;
   left: -1px;
   transform: rotate(40deg);
+
   height: 0;
   width: 1px;
-  border-bottom: 10px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 10px solid rgba(255, 204, 51, 0.1);
   border-left: 2px solid transparent;
   border-right: 2px solid transparent;
 `;
@@ -239,9 +352,10 @@ export const RayFour = styled.div`
   top: 3px;
   left: 6px;
   transform: rotate(320deg);
+
   height: 0;
   width: 1px;
-  border-bottom: 10px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 10px solid rgba(255, 204, 51, 0.1);
   border-left: 2px solid transparent;
   border-right: 2px solid transparent;
 `;

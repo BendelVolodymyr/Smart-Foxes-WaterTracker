@@ -27,14 +27,16 @@ import { ModalContext } from '../../context';
 // import UserLogo from './UserLogo/UserLogo';
 
 const Header = () => {
-  const [buttonActive, setButtonActive] = useState();
+  const { toggleTheme } = useContext(ModalContext);
+  const [themeShow, setThemeShow] = useState(
+    JSON.parse(localStorage.getItem('theme')) || false
+  );
 
   const { isLoggedIn, user } = useAuth();
-  const { toggleTheme } = useContext(ModalContext);
 
   const handleClickTheme = () => {
-    setButtonActive(!buttonActive);
     toggleTheme();
+    setThemeShow(!themeShow);
   };
 
   return (
@@ -46,19 +48,18 @@ const Header = () => {
           </Link>
           <ThemeWrapper
             onClick={handleClickTheme}
-            $isActive={buttonActive}
-            $themeEnabled={buttonActive}
+            className={themeShow ? 'show' : ''}
           >
             <Glow />
-            <Stars />
-            <SpinnerThemeWrapper>
+            <Stars className={themeShow ? 'show' : ''} />
+            <SpinnerThemeWrapper className={themeShow ? 'show' : ''}>
               <Sun>
                 <RayOne />
                 <RayTwo />
                 <RayThree />
                 <RayFour />
               </Sun>
-              <Moon></Moon>
+              <Moon />
             </SpinnerThemeWrapper>
           </ThemeWrapper>
           {isLoggedIn ? <UserLogo avatarUrl={user.avatar} /> : <UserAuth />}
