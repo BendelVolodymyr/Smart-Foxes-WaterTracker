@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import PasswordStrengthBar from 'react-password-strength-bar';
 import { useDispatch } from 'react-redux';
-import { updateUserInfo, uploadAvatar } from '../../../redux/auth/operations';
-import useAuth from '../../../hooks/useAuth';
+import { updateUserInfo, uploadAvatar } from '../../redux/auth/operations';
+import useAuth from '../../hooks/useAuth';
 import { Snackbar, Alert, Avatar, Tooltip, Chip } from '@mui/material';
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
@@ -29,8 +29,7 @@ import {
   ButtonIcon,
   SaveButton,
 } from './settings.styled';
-
-export const Setting = () => {
+export const SettingsModal = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
@@ -40,12 +39,9 @@ export const Setting = () => {
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarStatus, setSnackbarStatus] = useState('success');
-
   const defaultAvatarUrl = './default-avatar.jpg';
-
   const { user } = useAuth();
   const dispatch = useDispatch();
-
   const formik = useFormik({
     initialValues: {
       gender: user.gender,
@@ -58,7 +54,6 @@ export const Setting = () => {
     },
     onSubmit: async (values, actions) => {
       setIsSubmitting(true);
-
       try {
         if (values.newPassword !== values.repeatPassword) {
           setPasswordMismatchError("Passwords don't match");
@@ -74,7 +69,6 @@ export const Setting = () => {
         } else {
           setPasswordMismatchError('');
         }
-
         const formData = new FormData();
         formData.append('email', values.email);
         formData.append('name', values.name);
@@ -106,7 +100,6 @@ export const Setting = () => {
       }
     },
   });
-
   const handleAvatarChange = (event) => {
     const file = event.currentTarget.files[0];
     formik.setFieldValue('avatar', file);
@@ -119,17 +112,9 @@ export const Setting = () => {
     }
   };
 
-  useEffect(() => {
-    if (formik.values.newPassword !== formik.values.repeatPassword) {
-      setPasswordMismatchError("Passwords don't match");
-    } else {
-      setPasswordMismatchError('');
-    }
-  }, [formik.values.newPassword, formik.values.repeatPassword]);
-
   return (
     <StyledContainer>
-      <StyledTitle>Setting</StyledTitle>
+      <StyledTitle>Settings</StyledTitle>
       <FormWrapper>
         <FormTitle>Your photo</FormTitle>
         <AvatarWrapper>
