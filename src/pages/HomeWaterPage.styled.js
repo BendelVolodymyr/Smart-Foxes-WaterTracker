@@ -22,6 +22,7 @@ display: flex;
 flex-direction:column;
 
 align-items: center;
+max-width: 1216px;
 color:${p => p.theme.colors.primary.text};
 background-color: ${(p) => p.theme.colors.primary.bg};
 background-image: image-set(
