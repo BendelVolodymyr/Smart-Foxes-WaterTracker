@@ -18,6 +18,7 @@ const MonthStateTable = () => {
   const dispatch = useDispatch();
 
   const monthData = useWater().waterMonthList;
+  const dayList = useWater().waterDayList;
 
   const handleClosePopover = () => {
     setAnchorEl(null);
@@ -34,7 +35,7 @@ const MonthStateTable = () => {
     if (selectedDay === null) {
       dispatch(portionsPerMonth({ startDate: startOfMonthDate, endDate: endOfMonthDate }));
     }
-  }, [currentMonth, dispatch, selectedDate, selectedDay]);
+  }, [currentMonth, dispatch, selectedDate, selectedDay, dayList]);
 
   const handleDayClick = (event, date) => {
     setSelectedDate(date);
