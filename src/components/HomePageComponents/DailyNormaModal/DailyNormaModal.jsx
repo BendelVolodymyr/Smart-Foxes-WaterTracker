@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   CalculateHead,
   ContainerGender,
@@ -26,20 +26,20 @@ import {
   CloseIcon,
 } from './DailyNormaModal.styled';
 import { useDispatch } from 'react-redux';
-import { updateWaterRate } from '../../../redux/waters/operations';
+import { updateWaterRate } from '../../../redux/auth/operations.js';
 
-import useWater from '../../../hooks/useWaters.js';
+import useAuth from '../../../hooks/useAuth.js';
 
 export const DailyNormaModal = ({ onClose }) => {
   const dispatch = useDispatch();
-  const { waterRate } = useWater();
+  const { user } = useAuth();
   const woman = { weight: Number(0.03), activity: Number(0.04) };
   const man = { weight: Number(0.04), activity: Number(0.06) };
   const [genderOption, setGenderOption] = useState(woman);
   const [userWeight, setUserWeight] = useState('');
-  const [dailyNorma, setDailyNorma] = useState((waterRate / 1000).toFixed(1)); //(waterRate / 1000).toFixed(1) waterRate**selector
   const [userSportsActivite, setUserSportsActivite] = useState('');
   const [userWaterPredict, setUserWaterPredict] = useState('');
+  const waterRate = user.waterRate;
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -59,11 +59,11 @@ export const DailyNormaModal = ({ onClose }) => {
       userWeight * genderOption.weight +
       (userSportsActivite / 60) * genderOption.activity
     ).toFixed(1);
-    setDailyNorma(result);
+    return result;
   }, [genderOption, userWeight, userSportsActivite]);
 
-  useEffect(() => {
-    calculateWaterIntake();
+  const dailyNorma = useMemo(() => {
+    return calculateWaterIntake();
   }, [calculateWaterIntake]);
 
   const handleWaterPredict = (e) => {
@@ -79,8 +79,11 @@ export const DailyNormaModal = ({ onClose }) => {
 
   const handleSave = (e) => {
     e.preventDefault();
+
     const parseDailyNorma = parseFloat(dailyNorma);
+
     const isValid = (userSportsActivite > 0 && userWeight > 0) || userWaterPredict > 0;
+
     if (!isValid) {
       alert('Fill all fields');
       return;
@@ -99,6 +102,7 @@ export const DailyNormaModal = ({ onClose }) => {
       }
     );
   };
+
   return (
     <ModalContainer>
       <Modal>
@@ -109,9 +113,9 @@ export const DailyNormaModal = ({ onClose }) => {
               <path
                 d="M6 18L18 6M6 6L18 18"
                 stroke="#407BFF"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </CloseIcon>
           </CloseModalButton>
@@ -182,7 +186,10 @@ export const DailyNormaModal = ({ onClose }) => {
             </UserLabel>
             <GenderPargh>
               The required amount of water in liters per day:
-              <WaterAmountSpan> {dailyNorma ? dailyNorma : 2} L</WaterAmountSpan>
+              <WaterAmountSpan>
+                {' '}
+                {dailyNorma ? dailyNorma : (waterRate / 1000).toFixed(1)} L
+              </WaterAmountSpan>
             </GenderPargh>
           </UserInputsContainer>
           <UserWaterPredict>

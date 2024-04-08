@@ -17,7 +17,7 @@ import bottleHomeMob2x from "../assets/backgroundHomePg/bottleHomeMob2x.png";
 
 
 
-const HomePageContainer = styled.div`
+const HomePageContainer = styled.main`
 display: flex;
 flex-direction:column;
 
@@ -68,7 +68,7 @@ background-position: left top, center;
 `;
 
 //змінити, коли буде контекст
-const DailyNormaBoxWrapper = styled.div`
+const DailyNormaBoxWrapper = styled.section`
 display: flex;
 flex-direction: column;
 
@@ -82,7 +82,7 @@ height: 507px;
 
 `;
 
-const TodayAndCalendarWrapper = styled.div`
+const TodayAndCalendarWrapper = styled.section`
 display: flex;
 flex-direction: column;
 align-items: center;

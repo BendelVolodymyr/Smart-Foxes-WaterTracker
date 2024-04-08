@@ -5,6 +5,10 @@ const float = keyframes`
   transform: translateY(2px);
 }`;
 
+export const MainHeader = styled.header`
+  background: ${(p) => p.theme.colors.primary.bg};
+`;
+
 export const Container = styled.div`
   width: 280px;
   /* padding: 0 20px; */
@@ -50,7 +54,7 @@ export const ThemeWrapper = styled.div`
     rgba(226, 96, 15, 0.017331932773109293) 100%
   );
   transition: background 1s ease-in-out;
-
+  
   border-radius: 8px;
 
   &:hover {
@@ -62,6 +66,7 @@ export const ThemeWrapper = styled.div`
   &.show {
     background: linear-gradient(#14045f, #331a99, #282bce, #1555ec, #1e84f7);
   }
+
 
   @media screen and (min-width: ${p => p.theme.screens.tab}) {
     width: 20px;

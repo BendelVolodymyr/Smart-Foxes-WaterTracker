@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import theme from '../../../styles/theme';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -18,6 +17,7 @@ export const Modal = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
+  background-color: ${(p) => p.theme.colors.primary.bg};
 `;
 
 export const Title = styled.h4`
@@ -27,6 +27,7 @@ export const Title = styled.h4`
   line-height: 32px;
   text-align: left;
   margin-bottom: 24px;
+  color: ${(p) => p.theme.colors.primary.text};
 `;
 
 export const Text = styled.p`
@@ -36,6 +37,7 @@ export const Text = styled.p`
   line-height: 20px;
   text-align: left;
   margin-bottom: 24px;
+  color: ${(p) => p.theme.colors.primary.text};
 `;
 
 export const ButtonWrapper = styled.div`
