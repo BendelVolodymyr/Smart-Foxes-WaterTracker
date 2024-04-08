@@ -28,8 +28,8 @@ import {
   ButtonContainer,
   ButtonIcon,
   SaveButton,
-} from './settings.styled';
-export const Setting = () => {
+} from './settingModal.styled';
+export const SettingModal = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
@@ -124,10 +124,15 @@ export const Setting = () => {
             sx={{ width: 64, height: 64 }}
           />
           <AvatarLabel>
-            <TextToAvatar>
-              <UploadIcon />
-              Upload a photo
-            </TextToAvatar>
+            <Tooltip
+              title="There is default avatar. It shows up if something went wrong or you're didn't pick the avatar."
+              placement="top"
+            >
+              <TextToAvatar>
+                <UploadIcon />
+                Upload a photo
+              </TextToAvatar>
+            </Tooltip>
             <input
               type="file"
               name="avatarSelector"
@@ -171,7 +176,9 @@ export const Setting = () => {
               onChange={formik.handleChange}
               value={formik.values.name}
             />
-            <Label htmlFor="email">Your email address</Label>
+            <Tooltip title="Your email should be secure and yours. Enter email which you have access to.">
+              <Label htmlFor="email">Your email address</Label>
+            </Tooltip>
             <Input
               type="text"
               name="email"
@@ -184,7 +191,10 @@ export const Setting = () => {
           </Wrapper>
           <Wrapper>
             {!isSubmitting && (
-              <Tooltip title="Service notification that helps you to remember when password was changed">
+              <Tooltip
+                title="Service notification that helps you to remember when password was changed. It's disappear after reloading the page."
+                placement="top"
+              >
                 <div>
                   {passwordChangedAt && (
                     <Chip
@@ -197,7 +207,9 @@ export const Setting = () => {
                 </div>
               </Tooltip>
             )}
-            <Title>Password</Title>
+            <Tooltip title="Your password should be secure for preventing unauthorized access to your data">
+              <Title>Password</Title>
+            </Tooltip>
             <Label className="subtleLabel">Current password:</Label>
             <InputContainer>
               <Input
