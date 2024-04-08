@@ -101,7 +101,7 @@ export const IconClose = styled(IoMdClose)`
   width: 24px;
   height: 24px;
 
-  color: ${p => p.theme.colors.primary.text};
+  color: ${p => p.theme.colors.primary.accent};
 
   transition:
     transform 0.3s ease-in-out,
