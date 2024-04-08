@@ -50,6 +50,7 @@ export const GlobalWrapperTeam = styled.div`
 
   @media (min-width: ${p => p.theme.screens.tab}) {
     width: 100%;
+    padding: 0 12px;
   }
 `;
 
