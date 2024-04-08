@@ -1,7 +1,11 @@
 import { format, addMonths, isBefore, isAfter } from 'date-fns';
 import { NextSvg, Paginator, PaginatorBtn, PrevSvg } from './DatePaginator.styled';
+// import useAuth from '../../../hooks/useAuth';
 
 const DatePaginator = ({ selectedDate, setSelectedDate, setCurrentMonth, setSelectedDay }) => {
+  // const [createdAt] = useAuth().createdAt;
+  // const createUserMonth = createdAt.getMonth();
+  // console.log(createdAt);
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
 
