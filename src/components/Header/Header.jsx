@@ -29,12 +29,10 @@ import { ModalContext } from '../../context';
 
 const Header = () => {
   const { toggleTheme } = useContext(ModalContext);
-  const [themeShow, setThemeShow] = useState(
-    JSON.parse(localStorage.getItem('theme')) || false
-  );
-
+  const [themeShow, setThemeShow] = useState(JSON.parse(localStorage.getItem('theme')) || false);
+  const BASE_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
   const { isLoggedIn, user } = useAuth();
-
+  const avatarURL = `${BASE_URL}${user.avatarURL}`;
   const handleClickTheme = () => {
     toggleTheme();
     setThemeShow(!themeShow);
@@ -47,10 +45,7 @@ const Header = () => {
           <Link to="/">
             <Logo />
           </Link>
-          <ThemeWrapper
-            onClick={handleClickTheme}
-            className={themeShow ? 'show' : ''}
-          >
+          <ThemeWrapper onClick={handleClickTheme} className={themeShow ? 'show' : ''}>
             <Glow />
             <Stars className={themeShow ? 'show' : ''} />
             <SpinnerThemeWrapper className={themeShow ? 'show' : ''}>
@@ -63,7 +58,7 @@ const Header = () => {
               <Moon />
             </SpinnerThemeWrapper>
           </ThemeWrapper>
-          {isLoggedIn ? <UserLogo avatarUrl={user.avatar} /> : <UserAuth />}
+          {isLoggedIn ? <UserLogo avatarUrl={avatarURL} /> : <UserAuth />}
         </HeaderWrapper>
       </Container>
     </MainHeader>

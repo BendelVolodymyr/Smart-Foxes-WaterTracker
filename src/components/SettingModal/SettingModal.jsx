@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import PasswordStrengthBar from 'react-password-strength-bar';
 import { useDispatch } from 'react-redux';
@@ -8,6 +8,7 @@ import { Snackbar, Alert, Avatar, Tooltip, Chip } from '@mui/material';
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
 import { RiDownload2Line as UploadIcon } from 'react-icons/ri';
+import { ReactComponent as DefaultAvatar } from '../../assets/header-icons/uer-avatar-icon.svg';
 import {
   StyledContainer,
   StyledTitle,
@@ -28,20 +29,28 @@ import {
   ButtonContainer,
   ButtonIcon,
   SaveButton,
+  AvatarPreview,
+  LabelAvatar,
 } from './settingModal.styled';
+import { ModalContext } from '../../context';
+
 export const SettingModal = () => {
+  const dispatch = useDispatch();
+  const { closeModal } = useContext(ModalContext);
+  const BASE_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
+  // const BASE_URL = 'http://localhost:3000/';
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
   const [passwordMismatchError, setPasswordMismatchError] = useState('');
   const [passwordChangedAt, setPasswordChangedAt] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [avatarPreview, setAvatarPreview] = useState(null);
+  // const [avatarPreview, setAvatarPreview] = useState(null);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarStatus, setSnackbarStatus] = useState('success');
-  const defaultAvatarUrl = './default-avatar.jpg';
+
   const { user } = useAuth();
-  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       gender: user.gender,
@@ -75,10 +84,7 @@ export const SettingModal = () => {
         formData.append('gender', values.gender);
         formData.append('oldPassword', values.oldPassword);
         formData.append('newPassword', values.newPassword);
-        if (values.avatar) {
-          formData.append('avatar', values.avatar);
-          await dispatch(uploadAvatar(values));
-        }
+
         await dispatch(
           updateUserInfo({
             name: values.name,
@@ -87,10 +93,12 @@ export const SettingModal = () => {
             newPassword: values.newPassword,
           })
         );
+
         actions.resetForm();
         setOpenSnackbar(true);
         setSnackbarStatus('success');
         setPasswordChangedAt(new Date().toLocaleString());
+        closeModal();
       } catch (error) {
         console.error('Update error:', error);
         setOpenSnackbar(true);
@@ -100,16 +108,11 @@ export const SettingModal = () => {
       }
     },
   });
-  const handleAvatarChange = (event) => {
-    const file = event.currentTarget.files[0];
-    formik.setFieldValue('avatar', file);
 
-    if (file) {
-      const objectURL = URL.createObjectURL(file);
-      setAvatarPreview(objectURL);
-    } else {
-      setAvatarPreview(defaultAvatarUrl);
-    }
+  const onChangeAvatar = ({ target: { files } }) => {
+    const formData = new FormData();
+    formData.append('avatar', files[0]);
+    dispatch(uploadAvatar(formData));
   };
 
   return (
@@ -118,30 +121,26 @@ export const SettingModal = () => {
       <FormWrapper>
         <FormTitle>Your photo</FormTitle>
         <AvatarWrapper>
-          <Avatar
-            src={avatarPreview || defaultAvatarUrl}
-            alt="Avatar Preview or Default Avatar"
-            sx={{ width: 64, height: 64 }}
-          />
-          <AvatarLabel>
-            <Tooltip
-              title="There is default avatar. It shows up if something went wrong or you're didn't pick the avatar."
-              placement="top"
-            >
-              <TextToAvatar>
-                <UploadIcon />
-                Upload a photo
-              </TextToAvatar>
-            </Tooltip>
+          {user.avatarURL ? (
+            <AvatarPreview src={`${BASE_URL}${user.avatarURL}`} alt="avatar" />
+          ) : (
+            <DefaultAvatar style={{ width: 64, height: 64 }} />
+          )}
+
+          <LabelAvatar>
+            <TextToAvatar>
+              <UploadIcon />
+              Upload a photo
+            </TextToAvatar>
             <input
               type="file"
-              name="avatarSelector"
-              className="avatarSelector"
-              accept=".jpg, .jpeg"
-              onChange={handleAvatarChange}
+              name="upload_photo"
+              className="photo-input"
+              accept=".png, .jpg, .jpeg"
+              onChange={onChangeAvatar}
               style={{ opacity: 0, width: '1px' }}
             />
-          </AvatarLabel>
+          </LabelAvatar>
         </AvatarWrapper>
         <FlexWrapper>
           <Wrapper>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const StyledContainer = styled.div`
   flex-direction: column;
   gap: 24px;
@@ -37,12 +38,17 @@ export const FormWrapper = styled.form`
   width: 100%;
   gap: 24px;
 `;
-
+// !=
 export const AvatarWrapper = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
   margin-bottom: 24px;
+`;
+export const LabelAvatar = styled.label`
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
 `;
 
 export const TextToAvatar = styled.div`

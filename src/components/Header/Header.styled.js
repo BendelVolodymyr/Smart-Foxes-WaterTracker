@@ -32,7 +32,7 @@ export const Container = styled.div`
 `;
 
 export const HeaderWrapper = styled.div`
-  padding-top: 8px;
+  padding-top: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
