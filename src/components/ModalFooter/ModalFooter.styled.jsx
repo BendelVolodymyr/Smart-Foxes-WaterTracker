@@ -62,7 +62,7 @@ export const BackdropWrapper = styled.div`
 
 export const ModalWrapper = styled.div`
   position: relative;
-  overflow-y: ${p => (p.$overflow ? p.$overflow : 'hidden')};
+  overflow: ${p => (p.$overflow ? p.$overflow : 'hidden')};
   overflow-x: hidden;
   max-width: 280px;
   margin: auto;
@@ -101,7 +101,7 @@ export const IconClose = styled(IoMdClose)`
   width: 24px;
   height: 24px;
 
-  color: ${p => p.theme.colors.primary.text};
+  color: ${p => p.theme.colors.primary.accent};
 
   transition:
     transform 0.3s ease-in-out,

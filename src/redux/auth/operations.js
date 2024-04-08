@@ -15,13 +15,17 @@ const token = {
 };
 
 export const signUp = createAsyncThunk('auth/signup', async (userData, thunkAPI) => {
-  console.log(userData);
   try {
     const response = await axios.post('/users/register', userData);
     token.set(response.data.token);
-    console.log(response);
+
     return response.data;
   } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    alert(message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -34,6 +38,11 @@ export const signIn = createAsyncThunk('auth/signin', async (userData, thunkAPI)
     token.set(response.data.token);
     return response.data;
   } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    alert(message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
