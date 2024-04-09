@@ -28,7 +28,7 @@ const DailyNorma = () => {
       <DailyNormaP>My daily norma</DailyNormaP>
       <DailyWrapper>
         <NumberDailyNorma>
-          {' '}
+          
           {calculateWaterRate ? calculateWaterRate : waterRate} L
         </NumberDailyNorma>
         {/*waterRate*/}
