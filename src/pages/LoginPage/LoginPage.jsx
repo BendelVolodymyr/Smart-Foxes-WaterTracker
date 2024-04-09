@@ -24,6 +24,8 @@ import { FcGoogle } from 'react-icons/fc';
 import { useContext } from 'react';
 import { ModalContext } from '../../context/ModalContext/ModalContext';
 import ModalUser from './ModalUser/ModalUser';
+import { InputPassword } from '../Registration.styled';
+
 
 
 const LoginPage = () => {
@@ -69,6 +71,7 @@ const LoginPage = () => {
   });
 
   return (
+
     <LoginSection>
       <Container>
     <LoginContainer>
@@ -93,7 +96,7 @@ const LoginPage = () => {
         <Label>
           Enter your password
           <IconConteiner>
-            <Input
+            <InputPassword
               placeholder="Password"
               name="password"
               type={type}
@@ -129,11 +132,14 @@ const LoginPage = () => {
         >
           <FcGoogle style={{ width: 25, height: 25 }} /> Google
         </ButtonGoogle>
+        <LinkTo to="/forgotPassword">Forgot password?</LinkTo>
         <LinkTo to="/signup">Sing up</LinkTo>
       </Form>
     </LoginContainer>
     </Container>
     </LoginSection>
+   
+  
   );
 };
 

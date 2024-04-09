@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import theme from '../styles/theme';
 import botleTab from './LoginPage/image/bgFortab.png';
 import bottleTab2 from './LoginPage/image/bgForTab@2x.png';
 
@@ -50,5 +50,34 @@ export const Form = styled.form`
     margin-right: 198px;
     padding-bottom: 135px;
     padding-top: 122px;
+  }
+`;
+
+export const InputPassword = styled.input`
+  margin-top: 8px;
+  width: 100%;
+  height: 44px;
+  border-radius: 6px;
+  border: ${({ error }) =>
+    error
+      ? `1px solid ${theme.lightTheme.colors.secondary.color2}`
+      : `1px solid ${theme.lightTheme.colors.secondary.color5}`};
+  color: ${({ error }) =>
+    error
+      ? ` ${theme.lightTheme.colors.secondary.color2}`
+      : `${theme.lightTheme.colors.primary.accent}`};
+
+  background: ${(p) => p.theme.colors.primary.bg};
+  padding: 12px 36px 12px 10px;
+  outline: none;
+  margin-bottom: 4px;
+  &::placeholder {
+    color: ${(p) => p.theme.colors.secondary.color3};
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+  :focus {
+    color: ${(p) => p.theme.colors.primary.accent};
   }
 `;

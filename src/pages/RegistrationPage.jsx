@@ -20,7 +20,7 @@ import { signUp } from '../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import { FcGoogle } from 'react-icons/fc';
 import PasswordStrengthBar from 'react-password-strength-bar';
-import { SingUpContainer,Form } from './Registration.styled';
+import { SingUpContainer,Form, InputPassword } from './Registration.styled';
 
 const Registration = () => {
   const { handleShowPassword, toggleIcon, type } = useVisiblePassword();
@@ -82,7 +82,7 @@ const Registration = () => {
         <Label>
           Enter your password
           <IconConteiner>
-            <Input
+            <InputPassword
               placeholder="Password"
               name="password"
               type={type}
@@ -111,7 +111,7 @@ const Registration = () => {
         <Label>
           Repeat password
           <IconConteiner>
-            <Input
+            <InputPassword
               placeholder="Repeat password"
               name="confirmPassword"
               type={type}
