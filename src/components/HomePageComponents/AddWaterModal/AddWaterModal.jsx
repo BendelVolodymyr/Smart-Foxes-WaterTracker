@@ -138,7 +138,7 @@ export const AddWaterModal = ({ portion }) => {
             <ButtonToggle onClick={handleToggle} id="decrement">
               <MinusSvg />
             </ButtonToggle>
-            <WaterUsedValue> {waterUsed ? waterUsed : 0} L</WaterUsedValue>
+            <WaterUsedValue> {waterUsed ? waterUsed : 0} ml</WaterUsedValue>
             <ButtonToggle onClick={handleToggle} id="increment">
               <PlusSvg />
             </ButtonToggle>
@@ -160,7 +160,7 @@ export const AddWaterModal = ({ portion }) => {
         />
       </WaterUsedLabel>
       <ContainerSaveResult>
-        <WaterInputed> {waterUsed ? waterUsed : 0} Ml</WaterInputed>
+        <WaterInputed> {waterUsed ? waterUsed : 0} ml</WaterInputed>
         <ButtonSave onClick={handleSave}>Save</ButtonSave>
       </ContainerSaveResult>
     </ModalContainer>
