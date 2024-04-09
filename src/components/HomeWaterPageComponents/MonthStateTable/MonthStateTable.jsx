@@ -8,6 +8,7 @@ import { MonthComponentWrapper, PaginatorBlock } from './MonthStateTable.styled'
 import { DayCell, DayCircle, DayNumber, DayPercentage, DaysGrid } from './DayGreed.styled';
 import { portionsPerMonth } from '../../../redux/waters/operations';
 import useWater from '../../../hooks/useWaters';
+import useAuth from '../../../hooks/useAuth';
 
 const MonthStateTable = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -19,7 +20,7 @@ const MonthStateTable = () => {
 
   const monthData = useWater().waterMonthList;
   const dayList = useWater().waterDayList;
-
+  const waterRate = useAuth().user.waterRate;
   const handleClosePopover = () => {
     setAnchorEl(null);
   };
@@ -68,11 +69,14 @@ const MonthStateTable = () => {
           end: endOfMonth(selectedDate),
         }).map((day, index) => {
           const dayOfMonth = day.getDate();
+          console.log('monthData', monthData);
           const dayData = monthData.find((data) => {
             const [dayNum] = data.date.split(',');
             return parseInt(dayNum) === dayOfMonth;
           });
-          const percentagePerDay = dayData ? dayData.percentagePerDay : null;
+
+          const waterDrunk = dayData ? dayData.totalWaterDrunk : 0;
+          const percentagePerDay = waterRate ? Math.round((waterDrunk / waterRate) * 100) : 0;
 
           return (
             <DayCell key={index} onClick={(event) => handleDayClick(event, day)}>
