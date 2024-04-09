@@ -39,8 +39,10 @@ import { ModalContext } from '../../context';
 export const SettingModal = () => {
   const dispatch = useDispatch();
   const { closeModal } = useContext(ModalContext);
-  const BASE_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
-  // const BASE_URL = 'http://localhost:3000/';
+
+  // const BASE_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
+
+  const BASE_URL = 'http://localhost:3000/';
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);

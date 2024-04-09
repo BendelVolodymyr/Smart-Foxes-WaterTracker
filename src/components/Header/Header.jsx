@@ -31,8 +31,9 @@ const Header = () => {
   const { toggleTheme } = useContext(ModalContext);
   const [themeShow, setThemeShow] = useState(JSON.parse(localStorage.getItem('theme')) || false);
   const { isLoggedIn, user } = useAuth();
-  const BASE_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
-  // const BASE_URL = 'http://localhost:3000/';
+
+  // const BASE_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
+  const BASE_URL = 'http://localhost:3000/';
 
   const avatarURL = user.avatarURL ? `${BASE_URL}${user.avatarURL}` : null;
 
