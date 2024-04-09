@@ -1,4 +1,4 @@
-import{u as p,c as k,d as P,j as e,e as l,P as c,_ as m,f as C}from"./index-43ff6c35.js";import{m as y,j as B,k as S,l as $,n as v,o as F,u as E,c as L,a as r,p as z,L as I,C as q,A as U,d as a,I as n,E as i,e as u,B as h,f as R,g as T,h as D,i as G}from"./index-0b478a82.js";import"./BackgroundHomeTab2x-a86d5447.js";const A=p.div`
+import{u as p,c as k,d as P,j as e,e as l,P as c,_ as m,f as C}from"./index-6f1fb78c.js";import{m as y,j as B,k as S,l as $,n as v,o as F,u as E,c as L,a as r,p as z,L as I,C as q,A as U,d as a,I as n,E as i,e as u,B as h,f as R,g as T,h as D,i as G}from"./index-683323c0.js";import"./BackgroundHomeTab2x-a86d5447.js";const A=p.div`
   display: flex;
   flex-direction: column;
   background-image: image-set(url(${y}) 1x, url(${B}) 2x);
