@@ -1,3 +1,5 @@
+import FadeLoader from 'react-spinners/ClipLoader';
+
 import { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import PasswordStrengthBar from 'react-password-strength-bar';
@@ -48,6 +50,7 @@ export const SettingModal = () => {
   // const [avatarPreview, setAvatarPreview] = useState(null);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarStatus, setSnackbarStatus] = useState('success');
+  const [avatarLoading, setAvatarLoading] = useState(false);
 
   const { user } = useAuth();
 
@@ -109,10 +112,17 @@ export const SettingModal = () => {
     },
   });
 
-  const onChangeAvatar = ({ target: { files } }) => {
-    const formData = new FormData();
-    formData.append('avatar', files[0]);
-    dispatch(uploadAvatar(formData));
+  const onChangeAvatar = async ({ target: { files } }) => {
+    try {
+      setAvatarLoading(true);
+      const formData = new FormData();
+      formData.append('avatar', files[0]);
+      await dispatch(uploadAvatar(formData));
+    } catch (error) {
+      console.error('Avatar upload error:', error);
+    } finally {
+      setAvatarLoading(false);
+    }
   };
 
   return (
@@ -121,12 +131,13 @@ export const SettingModal = () => {
       <FormWrapper>
         <FormTitle>Your photo</FormTitle>
         <AvatarWrapper>
-          {user.avatarURL ? (
+          {avatarLoading ? (
+            <FadeLoader color="#407BFF" />
+          ) : user.avatarURL ? (
             <AvatarPreview src={`${BASE_URL}${user.avatarURL}`} alt="avatar" />
           ) : (
             <DefaultAvatar style={{ width: 64, height: 64 }} />
           )}
-
           <LabelAvatar>
             <TextToAvatar>
               <UploadIcon />

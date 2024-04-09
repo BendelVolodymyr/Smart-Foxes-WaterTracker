@@ -33,7 +33,6 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
   const { openModal } = useContext(ModalContext);
   // const [selectedPortion, setSelectedPortion] = useState(null);
   const waterDayData = useWater().waterDayList;
-
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -11,7 +11,7 @@ import {
   Label,
   LinkTo,
   LoginContainer,
-} from '../LoginPage.styled';
+} from './LoginPage.styled';
 import bottleImg from './image/bottleAuth.png';
 
 const ForgotPassword = () => {

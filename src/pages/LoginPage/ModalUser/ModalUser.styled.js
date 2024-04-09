@@ -1,14 +1,24 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
-import bgTab from '../../../assets/backgroundHomePg/backgroundHomeTab.png';
-import bgTab2x from '../../../assets/backgroundHomePg/BackgroundHomeTab2x.png';
+import bgTab from '../image/backgroundTab.png';
 
 export const Container = styled.div`
   padding: 20px;
-  background-image: image-set(url(${bgTab}) 1x, url(${bgTab2x}) 2x);
-  background-position: bottom;
-  background-size: 50vw auto;
+  background-image: url(${bgTab});
   background-repeat: no-repeat;
+  background-size: cover;
+  @media (min-width: 320px) and (max-width: 374px) {
+    background-position: 37px -168px;
+  }
+  @media (min-width: ${(p) => p.theme.screens.mob}) {
+    background-position: -3px -195px;
+  }
+  @media (min-width: ${(p) => p.theme.screens.tab}) {
+    background-position: 52px -50px;
+  }
+  @media (min-width: ${(p) => p.theme.screens.desk}) {
+    background-position: 56px -210px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -31,37 +41,31 @@ export const Title = styled.h2`
 `;
 
 export const Span = styled.span`
+  display: block;
   text-align: center;
   margin: 0;
   color: #407bff;
-  word-break: break-all;
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.33;
   @media (min-width: 320px) and (max-width: 374px) {
-    font-size: 13px;
-  }
-  @media (min-width: ${(p) => p.theme.screens.mob}) {
-    font-size: 14px;
-  }
-  @media (min-width: ${(p) => p.theme.screens.tab}) {
-    font-size: 18px;
+    font-size: 16px;
   }
 `;
 
-export const Button = styled.button`
-  display: block;
+export const Link = styled(NavLink)`
+  text-decoration: none;
   border-radius: 10px;
   padding: 8px 30px;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  background: ${(p) => p.theme.colors.primary.accent};
+  background: #407bff;
   color: #ffff;
   text-align: center;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
   width: 100%;
-  cursor: pointer;
-  transition: transform 150ms ease-in-out;
+  transition: box-shadow 150ms ease-in-out;
   &:hover {
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
   }
@@ -74,8 +78,19 @@ export const MOdalContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-image: image-set(url(${bgTab}) 1x, url(${bgTab2x}) 2x);
-  background-position: center;
-  background-size: 40vw auto;
+  background-image: url(${bgTab});
   background-repeat: no-repeat;
+  background-size: cover;
+  @media (min-width: 320px) and (max-width: 374px) {
+    background-position: 19px -86px;
+  }
+  @media (min-width: ${(p) => p.theme.screens.mob}) {
+    background-position: 12px -79px;
+  }
+  @media (min-width: ${(p) => p.theme.screens.tab}) {
+    background-position: 22px -114px;
+  }
+  @media (min-width: ${(p) => p.theme.screens.desk}) {
+    background-position: 15px -240px;
+  }
 `;
