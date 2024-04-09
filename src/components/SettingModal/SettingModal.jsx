@@ -35,6 +35,7 @@ import {
   LabelAvatar,
 } from './settingModal.styled';
 import { ModalContext } from '../../context';
+import { flexbox } from '@mui/system';
 
 export const SettingModal = () => {
   const dispatch = useDispatch();
@@ -120,6 +121,7 @@ export const SettingModal = () => {
       setAvatarLoading(true);
       const formData = new FormData();
       formData.append('avatar', files[0]);
+
       await dispatch(uploadAvatar(formData));
     } catch (error) {
       console.error('Avatar upload error:', error);
@@ -134,13 +136,24 @@ export const SettingModal = () => {
       <FormWrapper>
         <FormTitle>Your photo</FormTitle>
         <AvatarWrapper>
-          {avatarLoading ? (
-            <FadeLoader color="#407BFF" />
-          ) : user.avatarURL ? (
-            <AvatarPreview src={`${BASE_AVATAR_URL}${user.avatarURL}`} alt="avatar" />
-          ) : (
-            <DefaultAvatar style={{ width: 64, height: 64 }} />
-          )}
+          <div
+            style={{
+              // paddingTop: 24,
+              width: 80,
+              height: 80,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            {avatarLoading ? (
+              <FadeLoader color="#407BFF" />
+            ) : user.avatarURL ? (
+              <AvatarPreview src={`${BASE_AVATAR_URL}${user.avatarURL}`} alt="avatar" />
+            ) : (
+              <DefaultAvatar style={{ width: 64, height: 64 }} />
+            )}
+          </div>
           <LabelAvatar>
             <TextToAvatar>
               <UploadIcon />

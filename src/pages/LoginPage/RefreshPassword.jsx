@@ -1,7 +1,8 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import bottleImg from './image/bottleAuth.png';
-import { useVisiblePassword } from '../../hooks/useVisiblePassword';
+
+import { useVisiblePassword } from '../../../hooks/useVisiblePassword';
+
 import {
   AuthTitle,
   Button,
@@ -9,8 +10,6 @@ import {
   ErrorMessage,
   Form,
   IconConteiner,
-  ImgBottle,
-  ImgWrapp,
   Input,
   Label,
   LoginContainer,
@@ -18,7 +17,6 @@ import {
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
 const RefreshPassword = () => {
-  const bottle = bottleImg;
   const { handleShowPassword, toggleIcon, type } = useVisiblePassword();
 
   const RefreshingPassword = Yup.object().shape({
@@ -99,9 +97,6 @@ const RefreshPassword = () => {
         </Label>
         <Button type="submit">Reset password</Button>
       </Form>
-      <ImgWrapp>
-        <ImgBottle src={bottle} alt="bottle" />
-      </ImgWrapp>
     </LoginContainer>
   );
 };

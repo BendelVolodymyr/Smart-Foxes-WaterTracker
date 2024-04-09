@@ -6,17 +6,16 @@ import {
   Label,
   Input,
   ButtonPassword,
-  ImgWrapp,
-  ImgBottle,
   Form,
   ErrorMessage,
   IconConteiner,
   ButtonGoogle,
+  LoginSection,
+  Container,
 } from './LoginPage.styled';
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
 import { useVisiblePassword } from '../../hooks/useVisiblePassword';
-import bottleImg from './image/bottleAuth.png';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
@@ -25,10 +24,11 @@ import { FcGoogle } from 'react-icons/fc';
 import { useContext } from 'react';
 import { ModalContext } from '../../context/ModalContext/ModalContext';
 import ModalUser from './ModalUser/ModalUser';
+import { InputPassword } from '../Registration.styled';
+
 
 const LoginPage = () => {
   const { handleShowPassword, toggleIcon, type } = useVisiblePassword();
-  const bottle = bottleImg;
   const dispatch = useDispatch();
   const { openModal } = useContext(ModalContext);
   const handleLogInWithPopUp = () => {
@@ -55,16 +55,20 @@ const LoginPage = () => {
     validationSchema: SigninSchema,
     onSubmit: ({ email, password }, { resetForm }) => {
       dispatch(signIn({ email: email, password: password }));
-      openModal(
+      setTimeout(() => {
+        openModal(
         <>
           <ModalUser />
         </>
       );
+    }, 1000);
       resetForm();
     },
   });
 
   return (
+    <LoginSection>
+    <Container>
     <LoginContainer>
       <Form onSubmit={formik.handleSubmit}>
         <AuthTitle>Sing In</AuthTitle>
@@ -87,7 +91,7 @@ const LoginPage = () => {
         <Label>
           Enter your password
           <IconConteiner>
-            <Input
+            <InputPassword
               placeholder="Password"
               name="password"
               type={type}
@@ -123,13 +127,12 @@ const LoginPage = () => {
         >
           <FcGoogle style={{ width: 25, height: 25 }} /> Google
         </ButtonGoogle>
+        <LinkTo to="/forgotPassword">Forgot password?</LinkTo>
         <LinkTo to="/signup">Sing up</LinkTo>
-        <LinkTo>Forgot Password</LinkTo>
       </Form>
-      <ImgWrapp>
-        <ImgBottle src={bottle} alt="bottle" />
-      </ImgWrapp>
     </LoginContainer>
+    </Container>
+    </LoginSection>
   );
 };
 
