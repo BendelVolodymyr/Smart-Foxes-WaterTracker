@@ -134,13 +134,14 @@ export const SettingModal = () => {
       <FormWrapper>
         <FormTitle>Your photo</FormTitle>
         <AvatarWrapper>
-          {avatarLoading ? (
+          <AvatarPreview src={`${BASE_AVATAR_URL}${user.avatarURL}`} alt="avatar" />
+          {/* {avatarLoading ? (
             <FadeLoader color="#407BFF" />
           ) : user.avatarURL ? (
             <AvatarPreview src={`${BASE_AVATAR_URL}${user.avatarURL}`} alt="avatar" />
           ) : (
             <DefaultAvatar style={{ width: 64, height: 64 }} />
-          )}
+          )} */}
           <LabelAvatar>
             <TextToAvatar>
               <UploadIcon />

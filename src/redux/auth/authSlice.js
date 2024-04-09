@@ -48,7 +48,8 @@ const authSlice = createSlice({
         state.user.email = payload.user.email;
         state.user.name = payload.user.name;
         state.user.gender = payload.user.gender;
-        state.user.avatarURL = payload.user.avatarURL;
+        // state.user.avatarURL = payload.user.avatarURL;
+        state.user.avatarURL = null;
         state.user.waterRate = payload.user.waterRate;
         state.user.createdAt = payload.user.createdAt;
         state.token = payload.token;
@@ -86,6 +87,7 @@ const authSlice = createSlice({
       })
       .addCase(API.refreshUser.fulfilled, (state, { payload }) => {
         state.user = { ...state.user, ...payload };
+        // state.user.avatarURL = null;
         state.isAuthenticated = true;
         state.isRefreshing = false;
         state.isLoggedIn = true;
