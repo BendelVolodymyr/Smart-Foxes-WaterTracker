@@ -52,7 +52,6 @@ export const Form = styled.form`
     padding-top: 122px;
   }
 `;
-
 export const InputPassword = styled.input`
   margin-top: 8px;
   width: 100%;
