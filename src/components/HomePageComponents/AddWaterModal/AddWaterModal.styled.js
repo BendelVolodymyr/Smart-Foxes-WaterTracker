@@ -8,11 +8,19 @@ const ModalContainer = styled.div`
   gap: 24px;
   align-items: flex-start;
   justify-content: center;
+  width: 256px;
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    width: 656px;
+  }
+  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+    width: 544px;
+  }
 `;
 const HeadModal = styled.h3`
   font-size: 26px;
   font-weight: ${(p) => p.theme.fontWeights.medium};
   line-height: 32px;
+  width: 100%;
 `;
 const ChooseSpan = styled.span`
   font-size: 18px;
@@ -23,19 +31,22 @@ const ChooseSpan = styled.span`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 const WaterAmountLabel = styled.label`
   display: flex;
   justify-content: flex-start;
   gap: 12px;
   flex-direction: column;
+  width: 100%;
 `;
 const CalculateWater = styled.div`
   display: flex;
   flex-direction: row;
   gap: 7px;
+  width: 100%;
 `;
-const WaterAmountInput = styled.input``;
+
 const WaterAmountSpan = styled.span`
   font-size: 16px;
   font-weight: ${(p) => p.theme.fontWeights.regular};
@@ -45,33 +56,50 @@ const RecordingTimeLabel = styled.label`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 100%;
 `;
-const RecordingTimeSpan = styled.span``;
+const RecordingTimeSpan = styled.span`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: ${(p) => p.theme.colors.primary.text};
+`;
 const RecordingTimeInput = styled.input`
-  width: 544px;
   padding: 12px 10px;
   border-radius: 6px;
   border: 1px solid ${(p) => p.theme.colors.secondary.color5};
 `;
 const WaterUsedLabel = styled.label`
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 12px;
 `;
-const WaterUsedSpan = styled.span``;
+const WaterUsedSpan = styled.span`
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  color: ${(p) => p.theme.colors.primary.text};
+`;
 const WaterUsedInput = styled.input`
   padding: 12px 10px;
   border-radius: 6px;
   border: 1px solid ${(p) => p.theme.colors.secondary.color5};
-  width: 544px;
 `;
 const ContainerSaveResult = styled.div`
   display: flex;
-  width: 544px;
+  width: 100%;
   align-items: center;
+  flex-direction: column;
   justify-content: flex-end;
-  gap: 24px;
+  gap: 16px;
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    gap: 16px;
+    flex-direction: row;
+  }
+  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+  }
 `;
 const WaterUsedValue = styled.span`
   display: flex;
@@ -99,11 +127,15 @@ const ButtonSave = styled.button`
     box-shadow: 0 6px 12px 0 ${(p) => p.theme.colors.secondary.accent};
   }
   display: block;
-  width: 160px;
+  width: 100%;
   height: 44px;
   border-radius: 10px;
   padding: 10px 30px;
   background-color: ${(p) => p.theme.colors.primary.accent};
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    width: 160px;
+  }
+ 
 `;
 const ButtonToggle = styled.button`
   display: flex;
@@ -149,7 +181,6 @@ const WaterInputed = styled.span`
   line-height: 24px;
   text-align: center;
   color: ${(p) => p.theme.colors.primary.accent};
-
 `;
 
 export {
@@ -161,7 +192,6 @@ export {
   CalculateWater,
   ButtonToggle,
   WaterAmountLabel,
-  WaterAmountInput,
   WaterAmountSpan,
   MinusSvg,
   RecordingTimeLabel,

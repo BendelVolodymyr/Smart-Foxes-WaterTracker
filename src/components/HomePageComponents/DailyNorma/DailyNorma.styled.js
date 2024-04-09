@@ -8,7 +8,6 @@ const DailyWaterWrapper = styled.div`
   gap: 12px;
   width: 164px;
   margin-top: 30px;
-  margin-left: 73px;
   border-radius: 10px;
   border-color: ${(p) => p.theme.colors.secondary.color1};
 `;
@@ -42,10 +41,4 @@ const NumberDailyNorma = styled.p`
   color: ${(p) => p.theme.colors.primary.accent};
 `;
 
-export {
-  DailyWaterWrapper,
-  DailyNormaP,
-  ButtonEditNorma,
-  DailyWrapper,
-  NumberDailyNorma,
-};
+export { DailyWaterWrapper, DailyNormaP, ButtonEditNorma, DailyWrapper, NumberDailyNorma };

@@ -1,24 +1,13 @@
 import styled from 'styled-components';
 
-const ModalContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1200;
-  background: rgba(0, 0, 0, 0.8);
-`;
-
 const Modal = styled.div`
-  width: 592px;
-  height: 712px;
-  padding: 32px 24px 32px 24px;
-  border-radius: 10px;
-  background-color: ${(p) => p.theme.colors.primary.bg};
+  width: 256px;
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    width: 656px;
+  }
+  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+    width: 544px;
+  }
 `;
 const Head = styled.h2`
   font-size: 26px;
@@ -28,10 +17,17 @@ const Head = styled.h2`
 `;
 const ContainerGender = styled.div`
   display: flex;
-  flex-direction: row;
-  gap: 24px;
+  flex-direction: column;
+  gap: 16px;
   margin-top: 24px;
   margin-bottom: 12px;
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    flex-direction: row;
+    gap: 24px;
+  }
+  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+   widht: 100%;
+  }
 `;
 const GenderPargh = styled.p`
   font-size: 16px;
@@ -39,26 +35,40 @@ const GenderPargh = styled.p`
   line-height: 20px;
   color: ${(p) => p.theme.colors.primary.text};
 `;
+const WaterAmountParagh = styled.p`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: ${(p) => p.theme.colors.primary.text};
+  width: 255px;
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    width: 100%;
+  }
+  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+    width: 100%;
+  }
+`;
 const GenderSpan = styled.span`
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
-  text-align: left;
   color: ${(p) => p.theme.colors.primary.accent};
 `;
 const InfoContainer = styled.div`
-  width: 544px;
+  width: 256px;
   border: 1px solid;
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 24px;
   border-color: ${(p) => p.theme.colors.secondary.color5};
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    width: 100%;
+  }
 `;
 const InfoPargh = styled.p`
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
-  text-align: left;
   color: #8f8f8f;
 `;
 const InfoSpan = styled.span`
@@ -95,10 +105,16 @@ const GenderContainer = styled.div`
   gap: 24px;
 `;
 const UserLabel = styled.label`
-  width: 544px;
+  width: 100%;
   display: flex;
   gap: 8px;
   flex-direction: column;
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    width: 100%;
+  }
+  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+    width: 100%;
+  }
 `;
 const UserInputs = styled.input`
   border-radius: 6px;
@@ -119,30 +135,51 @@ const UserInputsContainer = styled.div`
   margin-bottom: 24px;
 `;
 const UserWaterPredict = styled.label`
-  width: 544px;
+  width: 100%;
   display: flex;
   gap: 16px;
   flex-direction: column;
   margin-bottom: 24px;
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    width: 100%;
+  }
+  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+    width: 100%;
+  }
 `;
 const SaveButton = styled.button`
   border-radius: 10px;
   padding: 10px 30px;
-  width: 160px;
+  width: 100%;
   color: ${(p) => p.theme.colors.primary.bg};
   background-color: ${(p) => p.theme.colors.primary.accent};
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    width: 160px;
+  }
 `;
 const ButtonContainer = styled.div`
-  width: 544px;
+  width: 100%;
   display: flex;
   justify-content: end;
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    width: 100%;
+  }
+  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+    width: 100%;
+  }
 `;
-const CloseModalButton = styled.button``;
+
 const HeadContainer = styled.div`
-  width: 544px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media (min-width: ${({ theme }) => theme.screens.tab}) {
+    width: 100%;
+  }
+  @media (min-width: ${({ theme }) => theme.screens.desk}) {
+    width: 100%;
+  }
 `;
 const WaterAmountSpan = styled.span`
   font-size: 18px;
@@ -159,7 +196,6 @@ export {
   CloseIcon,
   Head,
   ButtonContainer,
-  CloseModalButton,
   HeadContainer,
   ContainerGender,
   WaterAmountSpan,
@@ -178,5 +214,5 @@ export {
   UserInputs,
   CalculateForm,
   UserInputsContainer,
-  ModalContainer,
+  WaterAmountParagh,
 };
