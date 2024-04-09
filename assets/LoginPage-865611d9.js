@@ -1,4 +1,4 @@
-import{u as n,b as S,r as x,M as g,j as e,c as z,d as v,e as B,P as I,s as P}from"./index-dd92c98e.js";import{u as E,c as F,a as i,L,C as M,b as T,F as q,A as H,d as l,I as d,E as c,e as O,B as A,f as G,g as W,h as U,i as V}from"./index-6e59b655.js";import{b,a as w}from"./BackgroundHomeTab2x-a86d5447.js";const h=n.div`
+import{u as n,b as S,r as x,M as g,j as e,c as z,d as v,e as B,P as I,s as P}from"./index-43ff6c35.js";import{u as E,c as F,a as i,L,C as M,b as T,F as q,A as H,d as l,I as d,E as c,e as O,B as A,f as G,g as W,h as U,i as V}from"./index-0b478a82.js";import{b,a as w}from"./BackgroundHomeTab2x-a86d5447.js";const h=n.div`
   padding: 20px;
   background-image: image-set(url(${b}) 1x, url(${w}) 2x);
   background-position: bottom;
