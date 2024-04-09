@@ -1,11 +1,19 @@
+import {
+  AddWaterBtn,
+  PlusSvg,
+  WaterPanelContainer,
+  WaterRatio,
+  WaterRatioContainer,
+  WaterRatioSpan,
+} from './WaterRatioPanel.styled';
 
-import { AddWaterBtn, PlusSvg, WaterRatio, WaterRatioContainer } from './WaterRatioPanel.styled';
-
-
-export const WaterRatioPanel = ({ handleAddWaterClick }) => {
+export const WaterRatioPanel = ({ handleAddWaterClick, calcRange }) => {
   return (
     <WaterRatioContainer>
-      <WaterRatio type="range" />
+      <WaterPanelContainer>
+        <WaterRatioSpan>Today</WaterRatioSpan>
+        <WaterRatio type="range" min="0" max="100" value={calcRange ? calcRange : 0} readOnly />
+      </WaterPanelContainer>
       <AddWaterBtn onClick={handleAddWaterClick}>
         <PlusSvg /> Add water
       </AddWaterBtn>

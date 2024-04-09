@@ -12,9 +12,18 @@ import { ModalContext } from '../context';
 import { AddWaterModal } from '../components/HomePageComponents/AddWaterModal/AddWaterModal';
 
 import { WaterRatioPanel } from '../components/HomePageComponents/WaterRatioPanel/WaterRationPanel';
+import useWater from '../hooks/useWaters';
+import { DailyNormaModal } from '../components/HomePageComponents/DailyNormaModal/DailyNormaModal';
 
 const HomeWaterPage = () => {
   const { openModal } = useContext(ModalContext);
+  const water = useWater().waterDayList;
+  const waterPercentageArr = water.map((item) => item.percentage);
+  let sumPercentage = 0;
+
+  waterPercentageArr.forEach((percentage) => {
+    sumPercentage += percentage;
+  });
 
   const handleAddWaterClick = () => {
     openModal(
@@ -23,12 +32,21 @@ const HomeWaterPage = () => {
       </>
     );
   };
-
+  const handleDailyNormaModal = () => {
+    openModal(
+      <>
+        <DailyNormaModal />
+      </>
+    );
+  };
   return (
     <HomePageContainer>
       <DailyNormaBoxWrapper>
-        <DailyNorma></DailyNorma>
-        <WaterRatioPanel handleAddWaterClick={handleAddWaterClick}></WaterRatioPanel>
+        <DailyNorma handleDailyNormaModal={handleDailyNormaModal}></DailyNorma>
+        <WaterRatioPanel
+          handleAddWaterClick={handleAddWaterClick}
+          calcRange={sumPercentage}
+        ></WaterRatioPanel>
       </DailyNormaBoxWrapper>
       <TodayAndCalendarWrapper>
         <TodayWaterList handleAddWaterClick={handleAddWaterClick}></TodayWaterList>
