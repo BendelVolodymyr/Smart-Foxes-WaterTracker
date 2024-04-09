@@ -44,23 +44,24 @@ export const AddWaterModal = ({ portion }) => {
   );
   const [timeError, setTimeError] = useState('');
   const [waterUsedError, setWaterUsedError] = useState('');
-
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const { closeModal } = useContext(ModalContext);
   const { waterDayList } = useWater();
   const list = waterDayList || [];
 
   const handleWaterUsedChange = (e) => {
-    console.log('e.target.value)', e.target.value);
-    const WaterParse = e.target.value;
-    // console.log(WaterParse);
-    // if (WaterParse > 3000) {
-    //   setWaterUsedError('Не більше 3000 мл');
-    // } else {
-    //   setWaterUsedError('');
-    // }
-    setWaterUsed(WaterParse);
+    setWaterUsed(e.target.value);
+  };
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+    setTimeError('');
+    setWaterUsedError('');
   };
 
+  const handleInputBlur = (e) => {
+    setIsInputFocused(false);
+    setWaterUsed(e.target.value);
+  };
   const handleToggle = (e) => {
     switch (e.currentTarget.id) {
       case 'increment':
@@ -81,6 +82,14 @@ export const AddWaterModal = ({ portion }) => {
     const date = todayDay + 'T' + time;
     const isoDate = new Date(date).toISOString();
 
+    if (!waterUsed || waterUsed < 50) {
+      setWaterUsedError('  Введіть кількість випитої води  ');
+      return;
+    }
+    if (waterUsed > 3000) {
+      setWaterUsedError(' Не більше 3000 мл');
+      return;
+    }
     //кейс для editModal
     if (portion) {
       const dataToUpdate = {
@@ -89,56 +98,32 @@ export const AddWaterModal = ({ portion }) => {
         waterVolume: waterUsed,
       };
       await dispatch(updatePortion(dataToUpdate));
+      setWaterUsed(0);
       closeModal();
       dispatch(portionsPerDay());
     }
     //кейс для addModal
     else {
       const isValidTime = list ? list.find((portion) => portion.dateAdded === isoDate) : isoDate;
-      console.log(isValidTime);
-      if (isValidTime) {
-        setTimeError('Не можна в один той самий час');
-        return;
-      }
-      if (!waterUsed || waterUsed < 50) {
-        setWaterUsedError('Введіть кількість випитої води  ');
-        return;
-      }
-      if (waterUsed > 3000) {
-        setWaterUsedError('Не більше 3000 мл ');
-        return;
-      }
 
+      if (isValidTime) {
+        setTimeError(' Не можна в один той самий час');
+        return;
+      }
       const data = {
         waterVolume: waterUsed,
         date: isoDate,
       };
 
       await dispatch(addPortion(data));
+      setWaterUsed(0);
       closeModal();
       dispatch(portionsPerDay());
-
-      //     try {
-      //       const dataSend = await dispatch(addPortion(data));
-      //       if (!dataSend.error) {
-      //         closeModal();
-      //         setWaterUsed(0);
-      //         setTime('');
-      //       } else {
-      //         throw new Error();
-      //       }
-      //     } catch (error) {
-      //       console.error(error);
-      //       alert('Something went wrong');
-      //       closeModal();
-      //     }
     }
   };
 
   const title = portion ? 'Edit the entered amount of water' : 'Add water';
   const dataTitle = portion ? 'Correct entered data: ' : 'Choose a value:';
-
-  // const noNotesInfo = list ? 'No notes yet' : '';
 
   return (
     <ModalContainer>
@@ -172,7 +157,7 @@ export const AddWaterModal = ({ portion }) => {
       <RecordingTimeLabel>
         <RecordingTimeSpan>Recording time:</RecordingTimeSpan>
         <RecordingTimeInput type="time" value={time} onChange={(e) => setTime(e.target.value)} />
-        <ErrorText>{timeError}</ErrorText>
+        {timeError && <ErrorText>&#9888; {timeError}</ErrorText>}
       </RecordingTimeLabel>
       <WaterUsedLabel>
         <WaterUsedSpan>Enter the value of the water used:</WaterUsedSpan>
@@ -180,10 +165,14 @@ export const AddWaterModal = ({ portion }) => {
           type="number"
           value={waterUsed}
           onChange={handleWaterUsedChange}
-          placeholder="0"
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          pattern="[0-9]*"
           required
         />
-        {waterUsedError && <ErrorText>{waterUsedError}</ErrorText>}
+        {waterUsedError && (
+          <ErrorText hideOnError={isInputFocused}> &#9888; {waterUsedError}</ErrorText>
+        )}
       </WaterUsedLabel>
       <ContainerSaveResult>
         <WaterInputed> {waterUsed ? waterUsed : 0} ml</WaterInputed>

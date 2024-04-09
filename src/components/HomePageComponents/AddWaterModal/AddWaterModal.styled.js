@@ -53,6 +53,7 @@ const WaterAmountSpan = styled.span`
   line-height: 20px;
 `;
 const RecordingTimeLabel = styled.label`
+position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -70,6 +71,7 @@ const RecordingTimeInput = styled.input`
   border: 1px solid ${(p) => p.theme.colors.secondary.color5};
 `;
 const WaterUsedLabel = styled.label`
+position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -176,6 +178,7 @@ const MinusSvg = styled(HiMinus)`
   }
 `;
 const WaterInputed = styled.span`
+
   font-size: 18px;
   font-weight: ${(p) => p.theme.fontWeights.bolt};
   line-height: 24px;
@@ -184,6 +187,13 @@ const WaterInputed = styled.span`
 `;
 
 const ErrorText = styled.span`
+  position: absolute;
+bottom:-16px;
+  color: red;
+  font-size: 10px;
+  line-height: 1.5;
+  display: block;
+  display: ${(props) => (props.hideOnError ? 'none' : 'block')};
 `
 
 export {
