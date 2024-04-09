@@ -109,7 +109,6 @@ const authSlice = createSlice({
       .addCase(API.updateUserInfo.rejected, handleRejected)
       .addCase(API.updateWaterRate.pending, handlePending)
       .addCase(API.updateWaterRate.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.user.waterRate = payload;
         state.isLoading = false;
       })

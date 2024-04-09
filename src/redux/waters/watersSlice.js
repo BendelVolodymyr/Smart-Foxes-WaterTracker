@@ -62,7 +62,6 @@ const waterSlice = createSlice({
       .addCase(API.portionsPerMonth.rejected, handleRejected)
       .addCase(API.updateWaterRate.pending, handlePending)
       .addCase(API.updateWaterRate.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.user = { ...state.user, ...payload };
         state.isLoading = false;
       })

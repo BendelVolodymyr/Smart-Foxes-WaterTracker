@@ -1,3 +1,4 @@
+import { Report } from 'notiflix/build/notiflix-report-aio';
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -24,8 +25,7 @@ export const signUp = createAsyncThunk('auth/signup', async (userData, thunkAPI)
     const message =
       (error.response && error.response.data && error.response.data.message) ||
       error.message ||
-      error.toString();
-    alert(message);
+      Report.failure(message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -34,7 +34,6 @@ export const signIn = createAsyncThunk('auth/signin', async (userData, thunkAPI)
   try {
     const response = await axios.post('/users/login', userData);
 
-    console.log(response);
     token.set(response.data.token);
     return response.data;
   } catch (error) {
@@ -42,7 +41,7 @@ export const signIn = createAsyncThunk('auth/signin', async (userData, thunkAPI)
       (error.response && error.response.data && error.response.data.message) ||
       error.message ||
       error.toString();
-    alert(message);
+    Report.failure(message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -58,25 +57,6 @@ export const logout = createAsyncThunk('/logout', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
-// export const current = createAsyncThunk('auth/current', async (_, thunkAPI) => {
-//   const state = thunkAPI.getState();
-//   const persistedToken = state.auth.token;
-
-//   if (persistedToken === null) {
-//     console.log('NO TOKEN');
-//     return thunkAPI.rejectWithValue('Unable to fetch user');
-//   }
-//   token.set(persistedToken);
-//   try {
-//     const response = await axios.get('users/current');
-
-//     console.log(response.data);
-//     return response.data;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// });
 
 export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
