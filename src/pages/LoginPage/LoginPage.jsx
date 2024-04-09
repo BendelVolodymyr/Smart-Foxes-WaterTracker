@@ -6,17 +6,16 @@ import {
   Label,
   Input,
   ButtonPassword,
-  ImgWrapp,
-  ImgBottle,
   Form,
   ErrorMessage,
   IconConteiner,
   ButtonGoogle,
+  LoginSection,
+  Container,
 } from './LoginPage.styled';
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
 import { useVisiblePassword } from '../../hooks/useVisiblePassword';
-import bottleImg from './image/bottleAuth.png';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
@@ -30,7 +29,6 @@ import { InputPassword } from '../Registration.styled';
 
 const LoginPage = () => {
   const { handleShowPassword, toggleIcon, type } = useVisiblePassword();
-  const bottle = bottleImg;
   const dispatch = useDispatch();
   const { openModal } = useContext(ModalContext);
   const handleLogInWithPopUp = () => {
@@ -57,17 +55,20 @@ const LoginPage = () => {
     validationSchema: SigninSchema,
     onSubmit: ({ email, password }, { resetForm }) => {
       dispatch(signIn({ email: email, password: password }));
-      openModal(
+      setTimeout(() => {
+        openModal(
         <>
           <ModalUser />
         </>
       );
+    }, 1000);
       resetForm();
     },
   });
 
   return (
-
+    <LoginSection>
+    <Container>
     <LoginContainer>
       <Form onSubmit={formik.handleSubmit}>
         <AuthTitle>Sing In</AuthTitle>
@@ -128,12 +129,10 @@ const LoginPage = () => {
         </ButtonGoogle>
         <LinkTo to="/forgotPassword">Forgot password?</LinkTo>
         <LinkTo to="/signup">Sing up</LinkTo>
-        <LinkTo>Forgot Password</LinkTo>
       </Form>
-      <ImgWrapp>
-        <ImgBottle src={bottle} alt="bottle" />
-      </ImgWrapp>
     </LoginContainer>
+    </Container>
+    </LoginSection>
   );
 };
 
