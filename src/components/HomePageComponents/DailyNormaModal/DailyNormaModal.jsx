@@ -145,7 +145,7 @@ export const DailyNormaModal = ({ onClose }) => {
                   name="gender"
                   value="woman"
                   onChange={() => setGenderOption(woman)}
-                  checked={user.gender === 'famale'}
+                  // checked={user.gender === 'famale'}
                 />
                 <GenderPargh>For woman</GenderPargh>
               </GenderLabel>
@@ -155,7 +155,7 @@ export const DailyNormaModal = ({ onClose }) => {
                   name="gender"
                   value="man"
                   onChange={() => setGenderOption(man)}
-                  checked={user.gender === 'male'}
+                  // checked={user.gender === 'male'}
                 />
                 <GenderPargh>For man</GenderPargh>
               </GenderLabel>
