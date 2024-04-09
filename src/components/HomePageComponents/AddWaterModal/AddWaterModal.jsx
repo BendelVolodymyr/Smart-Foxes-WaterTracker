@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   ButtonSave,
@@ -32,19 +32,15 @@ import {
   Portion,
 } from '../../HomeWaterPageComponents/TodayWaterList/TodayWaterList.styled';
 import formatTime from '../../../helpers/formatTime';
-import { ModalContext } from '../../../context';
 
 export const AddWaterModal = ({ portion }) => {
   const dispatch = useDispatch();
-
-  const [waterUsed, setWaterUsed] = useState(portion ? portion.waterVolume : 0);
-  const [time, setTime] = useState(
-    portion ? formatTime(portion.dateAdded) : formatTime(new Date())
-  );
-  const { closeModal } = useContext(ModalContext);
   const { waterDayList } = useWater();
+  const [waterUsed, setWaterUsed] = useState(portion.waterVolume ? portion.waterVolume : 0);
+  const [time, setTime] = useState(portion.dateAdded ? portion.dateAdded : '');
 
   const list = waterDayList;
+
   //введення юзером
   const handleWaterUsedChange = (e) => {
     const WaterParse = parseFloat(e.target.value);
@@ -71,39 +67,38 @@ export const AddWaterModal = ({ portion }) => {
   //відправлення порції води
   const handleSave = async (e) => {
     e.preventDefault();
-    const currentDate = new Date();
-    const todayDay = formatDate(currentDate);
-    const date = todayDay + 'T' + time;
-    const isoDate = new Date(date).toISOString();
     if (portion) {
       const dataToUpdate = {
         id: portion._id,
-        date: isoDate,
+        date: time,
         waterVolume: waterUsed,
       };
-      await dispatch(updatePortion(dataToUpdate));
-      closeModal();
+      dispatch(updatePortion(dataToUpdate));
+      handleCloseModal();
       dispatch(portionsPerDay());
     } else {
+      const currentDate = new Date();
+      const todayDay = formatDate(currentDate);
       const isValidTime = list
-        ? list.find((portion) => {
-            portion.dateAdded === isoDate;
+        ? list.find((item) => {
+            item.dateAdded === time;
           })
-        : isoDate;
+        : time;
+      console.log(isValidTime);
       if (isValidTime) {
         alert('Не можна в один той самий час');
         setTime('');
         return;
       }
+      const date = todayDay + 'T' + isValidTime;
       const data = {
         waterVolume: waterUsed,
-        date: isoDate,
+        date,
       };
 
       try {
-        const dataSend = await dispatch(addPortion(data));
+        const dataSend = dispatch(addPortion(data));
         if (!dataSend.error) {
-          closeModal();
           setWaterUsed(0);
           setTime('');
         } else {
@@ -111,9 +106,7 @@ export const AddWaterModal = ({ portion }) => {
         }
       } catch (error) {
         console.error(error);
-
         alert('Something went wrong');
-        closeModal();
       }
     }
   };
@@ -138,7 +131,7 @@ export const AddWaterModal = ({ portion }) => {
             <ButtonToggle onClick={handleToggle} id="decrement">
               <MinusSvg />
             </ButtonToggle>
-            <WaterUsedValue> {waterUsed ? waterUsed : 0} ml</WaterUsedValue>
+            <WaterUsedValue> {waterUsed ? waterUsed : 0} L</WaterUsedValue>
             <ButtonToggle onClick={handleToggle} id="increment">
               <PlusSvg />
             </ButtonToggle>
@@ -160,7 +153,7 @@ export const AddWaterModal = ({ portion }) => {
         />
       </WaterUsedLabel>
       <ContainerSaveResult>
-        <WaterInputed> {waterUsed ? waterUsed : 0} ml</WaterInputed>
+        <WaterInputed> {waterUsed ? waterUsed : 0} Ml</WaterInputed>
         <ButtonSave onClick={handleSave}>Save</ButtonSave>
       </ContainerSaveResult>
     </ModalContainer>

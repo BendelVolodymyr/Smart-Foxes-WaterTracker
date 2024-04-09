@@ -35,15 +35,11 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route
             index
-            element={
-              isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/welcome" />
-            }
+            element={isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/welcome" />}
           />
           <Route
             path="/signin"
-            element={
-              <RestrictedRoute redirectTo="/home" component={<LoginPage />} />
-            }
+            element={<RestrictedRoute redirectTo="/home" component={<LoginPage />} />}
           />
           
           {/* <Route
@@ -57,27 +53,15 @@ element={<RefreshPassword />}
 
           <Route
             path="/signup"
-            element={
-              <RestrictedRoute
-                redirectTo="/home"
-                component={<Registration />}
-              />
-            }
+            element={<RestrictedRoute redirectTo="/home" component={<Registration />} />}
           />
           <Route
             path="/home"
-            element={
-              <PrivateRoute
-                redirectTo="/signin"
-                component={<HomeWaterPage />}
-              />
-            }
+            element={<PrivateRoute redirectTo="/signin" component={<HomeWaterPage />} />}
           />
           <Route
             path="/welcome"
-            element={
-              <RestrictedRoute redirectTo="/home" component={<Main />} />
-            }
+            element={<RestrictedRoute redirectTo="/home" component={<Main />} />}
           />
         </Route>
         <Route path="*" element={<NotFoundPage />} />

@@ -1,6 +1,8 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
 import { useVisiblePassword } from '../../../hooks/useVisiblePassword';
+
 import {
   AuthTitle,
   Button,
@@ -11,7 +13,7 @@ import {
   Input,
   Label,
   LoginContainer,
-} from '../LoginPage.styled';
+} from './LoginPage.styled';
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
 const RefreshPassword = () => {

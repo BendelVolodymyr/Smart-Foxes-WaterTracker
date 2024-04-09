@@ -22,18 +22,10 @@ import { useDispatch } from 'react-redux';
 import { portionsPerDay } from '../../../redux/waters/operations';
 import { AddWaterModal } from '../../HomePageComponents/AddWaterModal/AddWaterModal';
 
-// import TodayEditModal from './TodayEditModal';
-
-// заглушка для модалки
-const TodayEditModal = () => {
-  return <div> Тут колись буде модалка TodayEditModal</div>;
-};
-
 const TodayWaterList = ({ handleAddWaterClick }) => {
   const { openModal } = useContext(ModalContext);
-  // const [selectedPortion, setSelectedPortion] = useState(null);
-  const waterDayData = useWater().waterDayList;
 
+  const waterDayData = useWater().waterDayList;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,9 +41,6 @@ const TodayWaterList = ({ handleAddWaterClick }) => {
   };
 
   const handleEdit = (portion) => {
-    // setSelectedPortion(portion);
-
-    //тут поки що заглушка TodayEditModal
     openModal(
       <>
         <AddWaterModal portion={portion} />

@@ -1,83 +1,75 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import bgMob from './image/backgroundMobile.png';
-import bgMob2x from './image/backgroundMobile@2x.png';
-
-import bgTab from '../../assets/backgroundHomePg/backgroundHomeTab.png';
-import bgTab2x from '../../assets/backgroundHomePg/BackgroundHomeTab2x.png';
-
-import bgDesk from './image/deskBg.png';
-import bgDesk2x from './image/deskBg@2x.png';
-
-import mobileBotl from './image/mobile_bottle.png';
-import mobileBotl2x from './image/mobile_bottle@2x.png';
-
-import botleTab from './image/bgFortab.png';
-import bottleTab2 from './image/bgForTab@2x.png';
-
-import bottleDesk from './image/desk_bottle.png';
-import bottleDesk2x from './image/desk_bottle@2x.png';
-
+import bgDes from './image/backgroundDesk.png';
+import bgmobTab from './image/backgroundTab.png';
 import theme from '../../styles/theme';
 
-export const LoginSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: ${(p) => p.theme.colors.primary.bg};
-  background-image: image-set(url(${bgMob}) 1x, url(${bgMob2x}) 2x);
-  background-position: top;
-  background-size: 100vw auto;
-  background-repeat: no-repeat;
-
-  @media (min-width: ${({ theme }) => theme.screens.tab}) {
-    background-image: image-set(url(${bgTab}) 1x, url(${bgTab2x}) 2x);
-    background-position: center 32px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.screens.desk}) {
-    background-image: image-set(url(${bgDesk}) 1x, url(${bgDesk2x}) 2x);
-    background-position: center 10px;
-    align-items: center;
-  }
-`;
-
-export const Container = styled.div`
-  width: 280px;
-  padding: 24px 0;
-
-  @media (min-width: ${({ theme }) => theme.screens.tab}) {
-    width: 768px;
-    padding: 40px 32px 0 32px;
-  }
-
-  @media (min-width: ${(p) => p.theme.screens.desk}) {
-    width: 1440px;
-    padding: 40px 18px;
-  }
-`;
-
 export const LoginContainer = styled.div`
+  /* @media (min-width: 320px) and (max-width: 768px) {
+  width: 320px;
+  margin: 0 auto;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
-  background-image: image-set(url(${mobileBotl}) 1x, url(${mobileBotl2x}) 2x);
-  background-position: center bottom 3px;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: url(${bgMob});
   background-repeat: no-repeat;
-  background-size: auto;
-  @media (min-width: ${(p) => p.theme.screens.tab}) {
-    justify-content: space-between;
-    background-image: image-set(url(${botleTab}) 1x, url(${bottleTab2}) 2x);
-    background-position: bottom 15px right -58px;
-    background-size: cover;
+  background-size: cover;
+  background-position: 1px 40px;
+  } */
+  /* @media (min-width: 520px) and (max-width: 1200px) {
+    background-image: url(${bgmobTab});
     background-repeat: no-repeat;
+    background-size: cover;
+  }
+  @media (min-width: 768px) and (max-width: 1440px) {
+    padding: 40px 32px;
+  }
+  @media (min-width: 1200px) and (max-width: 1440px) {
+    background-image: url(${bgDes});
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  @media (min-width: 1440px) {
+    padding: 49px 18px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    background-image: url(${bgDes});
+    background-repeat: no-repeat;
+    background-size: cover;
+  } */
+
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: url(${bgMob});
+  background: ${(p) => p.theme.colors.primary.bg};
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 1px 40px;
+
+  @media (min-width: ${(p) => p.theme.screens.tab}) {
+    background-image: url(${bgmobTab});
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 40px 32px;
   }
 
   @media (min-width: ${(p) => p.theme.screens.desk}) {
-    background-image: image-set(url(${bottleDesk}) 1x, url(${bottleDesk2x}) 2x);
-    background-position: left;
-    background-size: auto;
-    background-repeat: no-repeat;
+    padding: 40px 32px;
+    display: flex;
     flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    background-image: url(${bgDes});
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 `;
 
@@ -91,20 +83,22 @@ export const AuthTitle = styled.h2`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 16px;
-  width: 280px;
-  padding-bottom: 276px;
+  position: relative;
+  z-index: 25;
+
+  @media (min-width: 390px) and (max-width: 768px) {
+    width: 350px;
+  }
 
   @media (min-width: ${(p) => p.theme.screens.tab}) {
     width: 336px;
-    padding-bottom: 180px;
   }
 
   @media (min-width: ${(p) => p.theme.screens.desk}) {
     width: 384px;
-    margin-right: 198px;
-    padding-bottom: 135px;
-    padding-top: 122px;
   }
 `;
 
@@ -183,14 +177,41 @@ export const Button = styled.button`
 
 export const LinkTo = styled(NavLink)`
   color: ${(p) => p.theme.colors.primary.accent};
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1.25;
+  line-height: 1.33;
   transition: transform 150ms ease-in-out;
   &:hover {
     color: ${(p) => p.theme.colors.secondary.color4};
   }
 `;
+
+export const ImgWrapp = styled.div`
+  padding-top: 50px;
+  margin: 0 auto;
+  z-index: 10;
+  position: relative;
+  @media (min-width: 620px) and (max-width: 700px) {
+    bottom: 95px;
+    left: 0;
+  }
+  @media (min-width: 700px) and (max-width: 768px) {
+    bottom: 120px;
+    left: 0;
+  }
+
+  @media (min-width: 768px) and (max-width: 1439px) {
+    bottom: 311px;
+    padding-left: 135px;
+  }
+  @media (min-width: 1440px) {
+    bottom: 0;
+    padding-left: 0;
+    margin: 0;
+  }
+`;
+
+export const ImgBottle = styled.img``;
 
 export const ErrorMessage = styled.p`
   color: ${(p) => p.theme.colors.secondary.color2};
@@ -200,7 +221,7 @@ export const ErrorMessage = styled.p`
 `;
 
 export const ButtonGoogle = styled.button`
-  /* display: block; */
+  display: block;
   padding: 8px 30px;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   background: ${(p) => p.theme.colors.primary.accent};

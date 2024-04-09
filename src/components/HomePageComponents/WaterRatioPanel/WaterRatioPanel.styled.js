@@ -1,7 +1,12 @@
 import styled from 'styled-components';
-import { CiCirclePlus } from 'react-icons/ci';
+import { CiCirclePlus } from "react-icons/ci";
 
 const WaterRatio = styled.input`
+  width: 280px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
 `;
 const WaterRatioContainer = styled.div`
   display: flex;

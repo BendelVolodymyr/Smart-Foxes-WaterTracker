@@ -30,9 +30,13 @@ import { ModalContext } from '../../context';
 const Header = () => {
   const { toggleTheme } = useContext(ModalContext);
   const [themeShow, setThemeShow] = useState(JSON.parse(localStorage.getItem('theme')) || false);
-  const BASE_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
   const { isLoggedIn, user } = useAuth();
-  const avatarURL = `${BASE_URL}${user.avatarURL}`;
+
+  const BASE_AVATAR_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
+  // const BASE_AVATAR_URL = 'http://localhost:3000/';
+
+  const avatarURL = user.avatarURL ? `${BASE_AVATAR_URL}${user.avatarURL}` : null;
+
   const handleClickTheme = () => {
     toggleTheme();
     setThemeShow(!themeShow);
