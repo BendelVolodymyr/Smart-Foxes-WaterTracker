@@ -22,9 +22,7 @@ import { useFormik } from 'formik';
 import { signUp } from '../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import { FcGoogle } from 'react-icons/fc';
-// import ModalUser from './LoginPage/ModalUser/ModalUser';
-// import { ModalContext } from '../context';
-// import { useContext } from 'react';
+import { InputPassword } from './Registration.styled';
 
 const Registration = () => {
   const bottle = bottleImg;
@@ -89,7 +87,7 @@ const Registration = () => {
         <Label>
           Enter your password
           <IconConteiner>
-            <Input
+            <InputPassword
               placeholder="Password"
               name="password"
               type={type}
@@ -114,7 +112,7 @@ const Registration = () => {
         <Label>
           Repeat password
           <IconConteiner>
-            <Input
+            <InputPassword
               placeholder="Repeat password"
               name="confirmPassword"
               type={type}

@@ -4,10 +4,13 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute.jsx';
 import { useDispatch } from 'react-redux';
 
+
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import { Loader } from './components/Loader/Loader.jsx';
 import { refreshUser } from './redux/auth/operations.js';
 import useAuth from './hooks/useAuth.js';
+// import ForgotPassword from './pages/LoginPage/ForgotPassword/ForgotPassword.jsx';
+// import RefreshPassword from './pages/LoginPage/ForgotPassword/RefreshPassword.jsx';
 // const Loader = lazy(() => import('./components/Loader/Loader.jsx'));
 
 const Main = lazy(() => import('./pages/Main/Main.jsx'));
@@ -38,6 +41,16 @@ function App() {
             path="/signin"
             element={<RestrictedRoute redirectTo="/home" component={<LoginPage />} />}
           />
+          
+          {/* <Route
+          path="/forgotPassword"
+          element={<ForgotPassword />}
+          /> */}
+{/* <Route
+path="/signin/:userId/:temporaryId" 
+element={<RefreshPassword />}
+/> */}
+
           <Route
             path="/signup"
             element={<RestrictedRoute redirectTo="/home" component={<Registration />} />}
