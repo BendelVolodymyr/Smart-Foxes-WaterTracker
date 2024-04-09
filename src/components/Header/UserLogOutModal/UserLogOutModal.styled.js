@@ -65,10 +65,15 @@ export const LogoutButton = styled.button`
   text-align: center;
 
   background-color: ${(props) => props.$background};
-  color: ${(props) => props.color};
+  color: ${(props) => props.$color};
 
   @media screen and (min-width: 768px) {
     width: 160px;
     height: 44px;
+  }
+
+  :hover {
+    box-shadow: 0px 4px 14px 0px #407bff8a;
+    background-color: red;
   }
 `;

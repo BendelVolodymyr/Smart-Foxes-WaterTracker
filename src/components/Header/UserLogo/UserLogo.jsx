@@ -38,7 +38,7 @@ const UserLogo = ({ avatarUrl }) => {
         <UserName>{formatEmail(userEmail)}</UserName>
         <AvatarBox>
           {avatarUrl ? (
-            <img src={avatarUrl} alt="uer-avatar" />
+            <img src={avatarUrl} alt="uer-avatar" style={{ borderRadius: '50%' }} />
           ) : (
             <Span>{firstNameLetter || firstEmailLetter}</Span>
           )}

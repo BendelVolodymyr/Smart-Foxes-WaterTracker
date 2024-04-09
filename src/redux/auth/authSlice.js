@@ -87,6 +87,7 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
         state.isRefreshing = false;
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(API.refreshUser.rejected, (state) => {
         state.isRefreshing = false;
@@ -95,11 +96,13 @@ const authSlice = createSlice({
       .addCase(API.uploadAvatar.pending, handlePending)
       .addCase(API.uploadAvatar.fulfilled, (state, { payload }) => {
         state.user.avatarURL = payload;
+        state.isLoading = false;
       })
       .addCase(API.uploadAvatar.rejected, handleRejected)
       .addCase(API.updateUserInfo.pending, handlePending)
       .addCase(API.updateUserInfo.fulfilled, (state, { payload }) => {
         state.user = { ...state.user, ...payload };
+        state.isLoading = false;
       })
       .addCase(API.updateUserInfo.rejected, handleRejected)
       .addCase(API.updateWaterRate.pending, handlePending)
