@@ -21,6 +21,7 @@ import {
   WaterUsedLabel,
   WaterUsedSpan,
   WaterUsedValue,
+  ErrorText,
 } from './AddWaterModal.styled';
 import useWater from '../../../hooks/useWaters';
 import { formatDate } from '../../../helpers/formatedDate';
@@ -41,20 +42,25 @@ export const AddWaterModal = ({ portion }) => {
   const [time, setTime] = useState(
     portion ? formatTime(portion.dateAdded) : formatTime(new Date())
   );
+  const [timeError, setTimeError] = useState('');
+  const [waterUsedError, setWaterUsedError] = useState('');
+
   const { closeModal } = useContext(ModalContext);
   const { waterDayList } = useWater();
+  const list = waterDayList || [];
 
-  const list = waterDayList;
-  //введення юзером
   const handleWaterUsedChange = (e) => {
-    const WaterParse = parseFloat(e.target.value);
-    if (WaterParse > 3000) {
-      alert('не більше 3000 мл');
-      return;
-    }
+    console.log('e.target.value)', e.target.value);
+    const WaterParse = e.target.value;
+    // console.log(WaterParse);
+    // if (WaterParse > 3000) {
+    //   setWaterUsedError('Не більше 3000 мл');
+    // } else {
+    //   setWaterUsedError('');
+    // }
     setWaterUsed(WaterParse);
   };
-  // віднімання/додавння
+
   const handleToggle = (e) => {
     switch (e.currentTarget.id) {
       case 'increment':
@@ -68,13 +74,14 @@ export const AddWaterModal = ({ portion }) => {
     }
   };
 
-  //відправлення порції води
   const handleSave = async (e) => {
     e.preventDefault();
     const currentDate = new Date();
     const todayDay = formatDate(currentDate);
     const date = todayDay + 'T' + time;
     const isoDate = new Date(date).toISOString();
+
+    //кейс для editModal
     if (portion) {
       const dataToUpdate = {
         id: portion._id,
@@ -84,52 +91,68 @@ export const AddWaterModal = ({ portion }) => {
       await dispatch(updatePortion(dataToUpdate));
       closeModal();
       dispatch(portionsPerDay());
-    } else {
-      const isValidTime = list
-        ? list.find((portion) => {
-            portion.dateAdded === isoDate;
-          })
-        : isoDate;
+    }
+    //кейс для addModal
+    else {
+      const isValidTime = list ? list.find((portion) => portion.dateAdded === isoDate) : isoDate;
+      console.log(isValidTime);
       if (isValidTime) {
-        alert('Не можна в один той самий час');
-        setTime('');
+        setTimeError('Не можна в один той самий час');
         return;
       }
+      if (!waterUsed || waterUsed < 50) {
+        setWaterUsedError('Введіть кількість випитої води  ');
+        return;
+      }
+      if (waterUsed > 3000) {
+        setWaterUsedError('Не більше 3000 мл ');
+        return;
+      }
+
       const data = {
         waterVolume: waterUsed,
         date: isoDate,
       };
 
-      try {
-        const dataSend = await dispatch(addPortion(data));
-        if (!dataSend.error) {
-          closeModal();
-          setWaterUsed(0);
-          setTime('');
-        } else {
-          throw new Error();
-        }
-      } catch (error) {
-        console.error(error);
+      await dispatch(addPortion(data));
+      closeModal();
+      dispatch(portionsPerDay());
 
-        alert('Something went wrong');
-        closeModal();
-      }
+      //     try {
+      //       const dataSend = await dispatch(addPortion(data));
+      //       if (!dataSend.error) {
+      //         closeModal();
+      //         setWaterUsed(0);
+      //         setTime('');
+      //       } else {
+      //         throw new Error();
+      //       }
+      //     } catch (error) {
+      //       console.error(error);
+      //       alert('Something went wrong');
+      //       closeModal();
+      //     }
     }
   };
+
   const title = portion ? 'Edit the entered amount of water' : 'Add water';
   const dataTitle = portion ? 'Correct entered data: ' : 'Choose a value:';
 
+  // const noNotesInfo = list ? 'No notes yet' : '';
+
   return (
     <ModalContainer>
-      <HeadModal> {title}</HeadModal>
+      <HeadModal>{title}</HeadModal>
       {portion && (
         <ListContext>
           <GlassSvg />
-          <Portion>${portion.waterVolume} ml</Portion>
+          <Portion>{`${portion.waterVolume} ml `}</Portion>
           <span>{formatTime(portion.dateAdded, true)}</span>
         </ListContext>
       )}
+
+      {list.length === 0 && <p>No notes yet</p>}
+
       <Container>
         <ChooseSpan>{dataTitle}</ChooseSpan>
         <WaterAmountLabel>
@@ -149,6 +172,7 @@ export const AddWaterModal = ({ portion }) => {
       <RecordingTimeLabel>
         <RecordingTimeSpan>Recording time:</RecordingTimeSpan>
         <RecordingTimeInput type="time" value={time} onChange={(e) => setTime(e.target.value)} />
+        <ErrorText>{timeError}</ErrorText>
       </RecordingTimeLabel>
       <WaterUsedLabel>
         <WaterUsedSpan>Enter the value of the water used:</WaterUsedSpan>
@@ -157,7 +181,9 @@ export const AddWaterModal = ({ portion }) => {
           value={waterUsed}
           onChange={handleWaterUsedChange}
           placeholder="0"
+          required
         />
+        {waterUsedError && <ErrorText>{waterUsedError}</ErrorText>}
       </WaterUsedLabel>
       <ContainerSaveResult>
         <WaterInputed> {waterUsed ? waterUsed : 0} ml</WaterInputed>

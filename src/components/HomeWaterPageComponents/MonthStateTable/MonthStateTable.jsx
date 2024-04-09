@@ -69,7 +69,7 @@ const MonthStateTable = () => {
           end: endOfMonth(selectedDate),
         }).map((day, index) => {
           const dayOfMonth = day.getDate();
-          console.log('monthData', monthData);
+
           const dayData = monthData.find((data) => {
             const [dayNum] = data.date.split(',');
             return parseInt(dayNum) === dayOfMonth;

@@ -183,6 +183,9 @@ const WaterInputed = styled.span`
   color: ${(p) => p.theme.colors.primary.accent};
 `;
 
+const ErrorText = styled.span`
+`
+
 export {
   HeadModal,
   ModalContainer,
@@ -204,4 +207,5 @@ export {
   ContainerSaveResult,
   WaterUsedValue,
   ButtonSave,
+  ErrorText
 };
