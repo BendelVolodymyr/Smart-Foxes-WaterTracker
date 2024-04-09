@@ -38,6 +38,8 @@ const authSlice = createSlice({
         state.error = null;
         state.user = payload.user;
         state.token = payload.token;
+        state.isRefreshing = true;
+        state.isLoggedIn = true;
       })
       .addCase(API.signUp.rejected, handleRejected)
       .addCase(API.signIn.pending, handlePending)
