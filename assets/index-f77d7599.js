@@ -1,4 +1,4 @@
-import{u as g,t as N,N as Oe,r as le,g as De,G as Ae}from"./index-69a380d7.js";const ce="/Smart-Foxes-WaterTracker/assets/backgroundMobile-0bf10f90.png",B="/Smart-Foxes-WaterTracker/assets/backgroundDesk-54c098d2.png",fe="/Smart-Foxes-WaterTracker/assets/backgroundTab-345a663e.png",At=g.div`
+import{u as g,t as N,N as Oe,r as le,g as De,G as Ae}from"./index-12ed607b.js";const ce="/Smart-Foxes-WaterTracker/assets/backgroundMobile-0bf10f90.png",B="/Smart-Foxes-WaterTracker/assets/backgroundDesk-54c098d2.png",fe="/Smart-Foxes-WaterTracker/assets/backgroundTab-345a663e.png",At=g.div`
   /* @media (min-width: 320px) and (max-width: 768px) {
   width: 320px;
   margin: 0 auto;
