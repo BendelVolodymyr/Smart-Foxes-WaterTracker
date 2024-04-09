@@ -40,9 +40,10 @@ export const SettingModal = () => {
   const dispatch = useDispatch();
   const { closeModal } = useContext(ModalContext);
 
-  // const BASE_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
+  const BASE_AVATAR_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
 
-  const BASE_URL = 'http://localhost:3000/';
+  // const BASE_AVATAR_URL = 'http://localhost:3000/';
+
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
@@ -136,7 +137,7 @@ export const SettingModal = () => {
           {avatarLoading ? (
             <FadeLoader color="#407BFF" />
           ) : user.avatarURL ? (
-            <AvatarPreview src={`${BASE_URL}${user.avatarURL}`} alt="avatar" />
+            <AvatarPreview src={`${BASE_AVATAR_URL}${user.avatarURL}`} alt="avatar" />
           ) : (
             <DefaultAvatar style={{ width: 64, height: 64 }} />
           )}
