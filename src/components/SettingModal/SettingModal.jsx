@@ -47,7 +47,7 @@ export const SettingModal = () => {
   const [snackbarStatus, setSnackbarStatus] = useState('success');
   const [avatarLoading, setAvatarLoading] = useState(false);
 
-  const { user } = useAuth();
+  const { user, avatarURL } = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -162,8 +162,8 @@ export const SettingModal = () => {
           >
             {avatarLoading ? (
               <FadeLoader color="#407BFF" />
-            ) : user.avatarURL ? (
-              <AvatarPreview src={`${BASE_AVATAR_URL}${user.avatarURL}`} alt="avatar" />
+            ) : avatarURL ? (
+              <AvatarPreview src={`${BASE_AVATAR_URL}${avatarURL}`} alt="avatar" />
             ) : (
               <DefaultAvatar style={{ width: 64, height: 64 }} />
             )}

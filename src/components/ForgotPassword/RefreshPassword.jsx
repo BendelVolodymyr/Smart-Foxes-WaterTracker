@@ -11,6 +11,7 @@ import {
   Label,
   LoginSection,
 } from '../../pages/LoginPage/LoginPage.styled';
+import PasswordStrengthBar from 'react-password-strength-bar';
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
 import { useVisiblePassword } from '../../hooks/useVisiblePassword';
@@ -72,6 +73,10 @@ const RefreshPassword = () => {
           {formik.touched.password && formik.errors.password && (
             <ErrorMessage>{formik.errors.password}</ErrorMessage>
           )}
+           <PasswordStrengthBar
+              password={formik.values.password}
+              minLength={8}
+            />
         </Label>
         <Label>
           Confirm password
@@ -97,6 +102,10 @@ const RefreshPassword = () => {
           {formik.touched.refreshPassword && formik.errors.refreshPassword && (
             <ErrorMessage>{formik.errors.refreshPassword}</ErrorMessage>
           )}
+            <PasswordStrengthBar
+              password={formik.values.refreshPassword}
+              minLength={8}
+            />
         </Label>
         <Button type="submit">Reset password</Button>
       </Form>
