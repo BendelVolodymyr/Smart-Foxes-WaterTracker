@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { GoPlus } from 'react-icons/go';
 import { HiMinus } from 'react-icons/hi2';
+import { ListContext } from '../../HomeWaterPageComponents/TodayWaterList/TodayWaterList.styled';
 
 const ModalContainer = styled.div`
   display: flex;
@@ -9,6 +10,7 @@ const ModalContainer = styled.div`
   align-items: flex-start;
   justify-content: center;
   width: 256px;
+
   @media (min-width: ${({ theme }) => theme.screens.tab}) {
     width: 656px;
   }
@@ -32,6 +34,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  
 `;
 const WaterAmountLabel = styled.label`
   display: flex;
@@ -66,9 +70,15 @@ const RecordingTimeSpan = styled.span`
   color: ${(p) => p.theme.colors.primary.text};
 `;
 const RecordingTimeInput = styled.input`
+display: flex;
+justify-content: flex-start;
   padding: 12px 10px;
   border-radius: 6px;
   border: 1px solid ${(p) => p.theme.colors.secondary.color5};
+  outline: transparent;
+  &:focus {
+    border-color: ${(p) => p.theme.colors.primary.accent};
+  }
 `;
 const WaterUsedLabel = styled.label`
 position: relative;
@@ -88,6 +98,11 @@ const WaterUsedInput = styled.input`
   padding: 12px 10px;
   border-radius: 6px;
   border: 1px solid ${(p) => p.theme.colors.secondary.color5};
+  outline: transparent;
+  &:focus {
+    border-color: ${(p) => p.theme.colors.primary.accent};
+  }
+   
 `;
 const ContainerSaveResult = styled.div`
   display: flex;
@@ -197,6 +212,16 @@ left: 10px;
   display: ${(props) => (props.hideonerror ? 'none' : 'block')};
 `
 
+const ModalPortionInfo = styled(ListContext)`
+  display: flex;
+  justify-content: flex-start;
+  width: 254px;
+  border-radius: 10px;
+  background: ${p => p.theme.colors.secondary.color1};
+  padding: 8px 24px;
+  
+`
+
 export {
   HeadModal,
   ModalContainer,
@@ -218,5 +243,6 @@ export {
   ContainerSaveResult,
   WaterUsedValue,
   ButtonSave,
-  ErrorText
+  ErrorText,
+  ModalPortionInfo
 };

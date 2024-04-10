@@ -22,6 +22,7 @@ import {
   WaterUsedSpan,
   WaterUsedValue,
   ErrorText,
+  ModalPortionInfo,
 } from './AddWaterModal.styled';
 import useWater from '../../../hooks/useWaters';
 import { formatDate } from '../../../helpers/formatedDate';
@@ -29,7 +30,6 @@ import { formatDate } from '../../../helpers/formatedDate';
 import { addPortion, portionsPerDay, updatePortion } from '../../../redux/waters/operations';
 import {
   GlassSvg,
-  ListContext,
   Portion,
 } from '../../HomeWaterPageComponents/TodayWaterList/TodayWaterList.styled';
 import formatTime from '../../../helpers/formatTime';
@@ -51,7 +51,10 @@ export const AddWaterModal = ({ portion }) => {
   const list = waterDayList || [];
 
   const handleWaterUsedChange = (e) => {
-    setWaterUsed(e.target.value);
+    const value = parseFloat(e.target.value);
+    const roundedValue = Math.round(value);
+
+    setWaterUsed(roundedValue);
   };
   const handleInputFocus = () => {
     setIsInputFocused(true);
@@ -66,7 +69,7 @@ export const AddWaterModal = ({ portion }) => {
   const handleToggle = (e) => {
     switch (e.currentTarget.id) {
       case 'increment': {
-        const incrementedWater = waterUsed + 50;
+        const incrementedWater = Math.min(waterUsed + 50, 3000);
         setWaterUsed(incrementedWater);
         setNewWoter(incrementedWater);
         break;
@@ -136,11 +139,11 @@ export const AddWaterModal = ({ portion }) => {
     <ModalContainer>
       <HeadModal>{title}</HeadModal>
       {portion && (
-        <ListContext>
+        <ModalPortionInfo>
           <GlassSvg />
           <Portion>{`${portion.waterVolume} ml `}</Portion>
           <span>{formatTime(portion.dateAdded, true)}</span>
-        </ListContext>
+        </ModalPortionInfo>
       )}
 
       {list.length === 0 && <p>No notes yet</p>}
@@ -169,12 +172,15 @@ export const AddWaterModal = ({ portion }) => {
       <WaterUsedLabel>
         <WaterUsedSpan>Enter the value of the water used:</WaterUsedSpan>
         <WaterUsedInput
+          name="waterUsed"
           type="number"
+          step={50}
           value={waterUsed}
           onChange={handleWaterUsedChange}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
-          pattern="[0-9]*"
+          pattern="[0-9]{1,4}"
+          max={3000}
           required
         />
         {waterUsedError && (
