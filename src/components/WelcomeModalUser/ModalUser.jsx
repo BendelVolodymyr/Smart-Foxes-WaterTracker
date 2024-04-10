@@ -1,8 +1,8 @@
 
-import useAuth from "../../../hooks/useAuth";
+import { ModalContext } from '../../context/ModalContext/ModalContext';
 import { useContext } from "react";
 import { Button, Container, MOdalContainer, Span, Title } from "./ModalUser.styled";
-import { ModalContext } from "../../../context";
+import useAuth from '../../hooks/useAuth';
 
 const ModalUser = () => {
  const {user,isLoggedIn } = useAuth();

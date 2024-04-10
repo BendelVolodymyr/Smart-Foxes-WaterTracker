@@ -1,22 +1,23 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import bgMob from './image/backgroundMobile.png';
-import bgMob2x from './image/backgroundMobile@2x.png';
+
+import bgMob from '../../assets/imageSingPg/backgroundMobile.png';
+import bgMob2x from '../../assets/imageSingPg/backgroundMobile@2x.png';
 
 import bgTab from '../../assets/backgroundHomePg/backgroundHomeTab.png';
 import bgTab2x from '../../assets/backgroundHomePg/BackgroundHomeTab2x.png';
 
-import bgDesk from './image/deskBg.png';
-import bgDesk2x from './image/deskBg@2x.png';
+import bgDesk from '../../assets/imageSingPg/deskBg.png';
+import bgDesk2x from '../../assets/imageSingPg/deskBg@2x.png';
 
-import mobileBotl from './image/mobile_bottle.png';
-import mobileBotl2x from './image/mobile_bottle@2x.png';
+import mobileBotl from '../../assets/imageSingPg/mobile_bottle.png';
+import mobileBotl2x from '../../assets/imageSingPg/mobile_bottle@2x.png';
 
-import botleTab from './image/bgFortab.png';
-import bottleTab2 from './image/bgForTab@2x.png';
+import botleTab from '../../assets/imageSingPg/bgFortab.png';
+import bottleTab2 from '../../assets/imageSingPg/bgForTab@2x.png';
 
-import bottleDesk from './image/desk_bottle.png';
-import bottleDesk2x from './image/desk_bottle@2x.png';
+import bottleDesk from '../../assets/imageSingPg/desk_bottle.png';
+import bottleDesk2x from '../../assets/imageSingPg/desk_bottle@2x.png';
 import theme from '../../styles/theme';
 
 export const LoginSection = styled.section`
@@ -45,7 +46,7 @@ export const Container = styled.div`
 
   @media (min-width: ${({ theme }) => theme.screens.tab}) {
     width: 768px;
-    padding: 40px 32px 0 32px;
+    padding: 40px 0 0 32px;
   }
   @media (min-width: ${(p) => p.theme.screens.desk}) {
     width: 1440px;
@@ -63,8 +64,8 @@ export const LoginContainer = styled.div`
   @media (min-width: ${(p) => p.theme.screens.tab}) {
     justify-content: space-between;
     background-image: image-set(url(${botleTab}) 1x, url(${bottleTab2}) 2x);
-    background-position: bottom 15px right -58px;
-    background-size: cover;
+    background-position: bottom 15px right -12px;
+    background-size: contain;
     background-repeat: no-repeat;
   }
   @media (min-width: ${(p) => p.theme.screens.desk}) {
@@ -92,7 +93,7 @@ export const Form = styled.form`
 
   @media (min-width: ${(p) => p.theme.screens.tab}) {
     width: 336px;
-    padding-bottom: 180px;
+    padding-bottom: 150px;
   }
 
   @media (min-width: ${(p) => p.theme.screens.desk}) {

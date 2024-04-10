@@ -54,6 +54,7 @@ background-position: center 40px, center;
 
 @media (min-width: ${({ theme }) => theme.screens.desk}) {
     flex-direction:row;
+    gap: 32px;
     align-items: flex-start;
     padding: 0px 112px;
   
@@ -69,17 +70,18 @@ background-position: left top, center;
   }
 `;
 
-//змінити, коли буде контекст
+
 const DailyNormaBoxWrapper = styled.section`
 display: flex;
 flex-direction: column;
 align-items: flex-start;
+justify-content: space-between;
 gap: 240px;
 
 width: 280px;
 height: 507px;
 
-
+margin-bottom:40px;
 @media (min-width: ${({ theme }) => theme.screens.tab}) {
   width: 704px;
   gap: 326px;

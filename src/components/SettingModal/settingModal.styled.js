@@ -45,11 +45,6 @@ export const AvatarWrapper = styled.div`
   align-items: center;
   margin-bottom: 24px;
 `;
-export const LabelAvatar = styled.label`
-  display: flex;
-  gap: 8px;
-  cursor: pointer;
-`;
 
 export const TextToAvatar = styled.div`
   color: #407bff;
@@ -60,6 +55,13 @@ export const TextToAvatar = styled.div`
   display: flex;
   gap: 8px;
   color: ${(p) => p.theme.colors.primary.text};
+`;
+
+export const AvatarPreview = styled.img`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  outline: auto;
 `;
 
 export const AvatarLabel = styled.label`
@@ -156,13 +158,6 @@ export const Label = styled.label`
     font-weight: 400;
     line-height: 1.25em;
   }
-`;
-
-export const AvatarPreview = styled.img`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  outline: auto;
 `;
 
 export const SelectorGroup = styled.div`

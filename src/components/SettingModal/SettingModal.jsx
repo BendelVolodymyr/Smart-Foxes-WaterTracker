@@ -1,16 +1,15 @@
-import FadeLoader from 'react-spinners/ClipLoader';
-
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import PasswordStrengthBar from 'react-password-strength-bar';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo, uploadAvatar } from '../../redux/auth/operations';
 import useAuth from '../../hooks/useAuth';
-import { Snackbar, Alert, Avatar, Tooltip, Chip } from '@mui/material';
+import { Snackbar, Alert, Tooltip, Chip } from '@mui/material';
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
 import { RiDownload2Line as UploadIcon } from 'react-icons/ri';
 import { ReactComponent as DefaultAvatar } from '../../assets/header-icons/uer-avatar-icon.svg';
+import FadeLoader from 'react-spinners/ClipLoader';
 import {
   StyledContainer,
   StyledTitle,
@@ -18,6 +17,7 @@ import {
   FormWrapper,
   AvatarWrapper,
   TextToAvatar,
+  AvatarPreview,
   AvatarLabel,
   InputContainer,
   Input,
@@ -31,19 +31,11 @@ import {
   ButtonContainer,
   ButtonIcon,
   SaveButton,
-  AvatarPreview,
-  LabelAvatar,
 } from './settingModal.styled';
-import { ModalContext } from '../../context';
-import { flexbox } from '@mui/system';
-
 export const SettingModal = () => {
   const dispatch = useDispatch();
-  const { closeModal } = useContext(ModalContext);
 
   const BASE_AVATAR_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
-
-  // const BASE_AVATAR_URL = 'http://localhost:3000/';
 
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -51,12 +43,11 @@ export const SettingModal = () => {
   const [passwordMismatchError, setPasswordMismatchError] = useState('');
   const [passwordChangedAt, setPasswordChangedAt] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // const [avatarPreview, setAvatarPreview] = useState(null);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarStatus, setSnackbarStatus] = useState('success');
   const [avatarLoading, setAvatarLoading] = useState(false);
 
-  const { user } = useAuth();
+  const { user, avatarURL } = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -71,45 +62,68 @@ export const SettingModal = () => {
     onSubmit: async (values, actions) => {
       setIsSubmitting(true);
       try {
+        const dataToUpdate = {};
+        if (values.name !== user.name) {
+          dataToUpdate.name = values.name;
+        }
+        if (values.gender !== user.gender) {
+          dataToUpdate.gender = values.gender;
+        }
+        if (values.email !== user.email) {
+          dataToUpdate.email = values.email;
+        }
+        if (
+          values.newPassword &&
+          values.newPassword.length >= 8 &&
+          values.newPassword === values.repeatPassword
+        ) {
+          dataToUpdate.oldPassword = values.oldPassword;
+          dataToUpdate.newPassword = values.newPassword;
+          setPasswordChangedAt(new Date().toLocaleString());
+        }
+
+        if (Object.keys(dataToUpdate).length === 0) {
+          setIsSubmitting(false);
+          setOpenSnackbar(true);
+          setSnackbarStatus('info');
+          actions.resetForm();
+          return;
+        }
+
         if (values.newPassword !== values.repeatPassword) {
           setPasswordMismatchError("Passwords don't match");
           setIsSubmitting(false);
           return;
-        } else {
-          setPasswordMismatchError('');
         }
-        if (values.newPassword.length < 8) {
-          setPasswordMismatchError('Password must be at least 8 characters long');
-          setIsSubmitting(false);
-          return;
-        } else {
-          setPasswordMismatchError('');
+
+        await dispatch(updateUserInfo(dataToUpdate));
+
+        if (values.avatar) {
+          await dispatch(uploadAvatar(values));
         }
-        const formData = new FormData();
-        formData.append('email', values.email);
-        formData.append('name', values.name);
-        formData.append('gender', values.gender);
-        formData.append('oldPassword', values.oldPassword);
-        formData.append('newPassword', values.newPassword);
-
-        await dispatch(
-          updateUserInfo({
-            name: values.name,
-            email: values.email,
-            oldPassword: values.oldPassword,
-            newPassword: values.newPassword,
-          })
-        );
-
-        actions.resetForm();
-        setOpenSnackbar(true);
-        setSnackbarStatus('success');
-        setPasswordChangedAt(new Date().toLocaleString());
-        closeModal();
+        if (Object.keys(dataToUpdate).length > 0) {
+          setOpenSnackbar(true);
+          setSnackbarStatus('success');
+          actions.resetForm();
+        } else {
+          setOpenSnackbar(true);
+          setSnackbarStatus('info');
+          actions.resetForm();
+        }
       } catch (error) {
         console.error('Update error:', error);
-        setOpenSnackbar(true);
-        setSnackbarStatus('error');
+        if (
+          error.response &&
+          error.response.status === 401 &&
+          error.response.data.error === 'Incorrect current password'
+        ) {
+          console.error('Unauthorized: Incorrect current password');
+          setPasswordMismatchError('Incorrect current password');
+          setSnackbarStatus('error');
+        } else {
+          setOpenSnackbar(true);
+          setSnackbarStatus('error');
+        }
       } finally {
         setIsSubmitting(false);
       }
@@ -148,13 +162,13 @@ export const SettingModal = () => {
           >
             {avatarLoading ? (
               <FadeLoader color="#407BFF" />
-            ) : user.avatarURL ? (
-              <AvatarPreview src={`${BASE_AVATAR_URL}${user.avatarURL}`} alt="avatar" />
+            ) : avatarURL ? (
+              <AvatarPreview src={`${BASE_AVATAR_URL}${avatarURL}`} alt="avatar" />
             ) : (
               <DefaultAvatar style={{ width: 64, height: 64 }} />
             )}
           </div>
-          <LabelAvatar>
+          <AvatarLabel>
             <TextToAvatar>
               <UploadIcon />
               Upload a photo
@@ -167,7 +181,7 @@ export const SettingModal = () => {
               onChange={onChangeAvatar}
               style={{ opacity: 0, width: '1px' }}
             />
-          </LabelAvatar>
+          </AvatarLabel>
         </AvatarWrapper>
         <FlexWrapper>
           <Wrapper>
@@ -178,7 +192,8 @@ export const SettingModal = () => {
                   type="radio"
                   name="gender"
                   value="female"
-                  defaultChecked={formik.values.gender === 'female'}
+                  checked={formik.values.gender === 'female'}
+                  onChange={formik.handleChange}
                 />
                 Female
               </SelectorLabel>
@@ -187,7 +202,8 @@ export const SettingModal = () => {
                   type="radio"
                   name="gender"
                   value="male"
-                  defaultChecked={formik.values.gender === 'male'}
+                  checked={formik.values.gender === 'male'}
+                  onChange={formik.handleChange}
                 />
                 Male
               </SelectorLabel>

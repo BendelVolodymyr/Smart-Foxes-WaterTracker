@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import bgTab from '../../../assets/backgroundHomePg/backgroundHomeTab.png';
-import bgTab2x from '../../../assets/backgroundHomePg/BackgroundHomeTab2x.png';
+
+import bgTab from '../../assets/backgroundHomePg/backgroundHomeTab.png';
+import bgTab2x from '../../assets/backgroundHomePg/BackgroundHomeTab2x.png';
 
 export const Container = styled.div`
   padding: 20px;
