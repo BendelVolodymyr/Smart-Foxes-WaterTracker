@@ -23,6 +23,7 @@ import {
   WaterUsedValue,
   ErrorText,
   ModalPortionInfo,
+  NoPortion,
 } from './AddWaterModal.styled';
 import useWater from '../../../hooks/useWaters';
 import { formatDate } from '../../../helpers/formatedDate';
@@ -146,7 +147,7 @@ export const AddWaterModal = ({ portion }) => {
         </ModalPortionInfo>
       )}
 
-      {list.length === 0 && <p>No notes yet</p>}
+      {list.length === 0 && <NoPortion>No notes yet</NoPortion>}
 
       <Container>
         <ChooseSpan>{dataTitle}</ChooseSpan>

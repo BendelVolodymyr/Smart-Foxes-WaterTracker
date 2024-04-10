@@ -10,7 +10,7 @@ const ModalContainer = styled.div`
   align-items: flex-start;
   justify-content: center;
   width: 256px;
-
+  color: ${(p) => p.theme.colors.primary.text};
   @media (min-width: ${({ theme }) => theme.screens.tab}) {
     width: 656px;
   }
@@ -176,6 +176,9 @@ const PlusSvg = styled(GoPlus)`
   width: 16px;
   height: 16px;
 
+  & :focus{
+    outline: transparent;}
+
   @media (min-width: ${({ theme }) => theme.screens.tab}) {
     width: 24px;
     height: 24px;
@@ -186,6 +189,9 @@ const MinusSvg = styled(HiMinus)`
   stroke: ${(p) => p.theme.colors.primary.accent};
   width: 16px;
   height: 16px;
+  & :focus{
+    outline: transparent;
+  }
 
   @media (min-width: ${({ theme }) => theme.screens.tab}) {
     width: 24px;
@@ -219,7 +225,15 @@ const ModalPortionInfo = styled(ListContext)`
   border-radius: 10px;
   background: ${p => p.theme.colors.secondary.color1};
   padding: 8px 24px;
+
   
+`
+
+
+const NoPortion = styled.p`
+
+color:  ${(p) => p.theme.colors.primary.accent};
+font-weight:400px;
 `
 
 export {
@@ -244,5 +258,6 @@ export {
   WaterUsedValue,
   ButtonSave,
   ErrorText,
-  ModalPortionInfo
+  ModalPortionInfo,
+  NoPortion
 };
