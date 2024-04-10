@@ -24,12 +24,14 @@ const WaterRatioContainer = styled.div`
   gap: 16px;
   @media (min-width: ${({ theme }) => theme.screens.tab}) {
     flex-direction: row;
+    
     gap: 12px;
   }
   @media (min-width: ${({ theme }) => theme.screens.desk}) {
     gap: 23px;
     width: 600px;
-    margin-left: 70px;
+    
+    justify-content: flex-start;
   }
 `;
 const WaterPanelContainer = styled.div`

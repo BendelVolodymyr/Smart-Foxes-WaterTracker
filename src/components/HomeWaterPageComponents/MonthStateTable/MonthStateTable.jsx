@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import DatePaginator from '../DatePaginator/DatePaginator';
 import Popover from '@mui/material/Popover';
 import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
-import { startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
+import { startOfMonth, endOfMonth, eachDayOfInterval, isToday } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { MonthComponentWrapper, PaginatorBlock } from './MonthStateTable.styled';
 import { DayCell, DayCircle, DayNumber, DayPercentage, DaysGrid } from './DayGreed.styled';
@@ -77,10 +77,10 @@ const MonthStateTable = () => {
 
           const waterDrunk = dayData ? dayData.totalWaterDrunk : 0;
           const percentagePerDay = waterRate ? Math.round((waterDrunk / waterRate) * 100) : 0;
-
+          const isCurrentDay = isToday(day);
           return (
             <DayCell key={index} onClick={(event) => handleDayClick(event, day)}>
-              <DayCircle percentage={percentagePerDay}>
+              <DayCircle percentage={percentagePerDay} isToday={isCurrentDay}>
                 <DayNumber>{dayOfMonth}</DayNumber>
               </DayCircle>
               <DayPercentage>{percentagePerDay || 0}%</DayPercentage>

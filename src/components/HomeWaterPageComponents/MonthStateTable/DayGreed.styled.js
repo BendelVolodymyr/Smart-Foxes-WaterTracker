@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 const DaysGrid = styled.ul`
   display: grid;
   justify-content: space-between;
@@ -48,18 +49,19 @@ const DayCircle = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${p => p.theme.colors.primary.bg};
-
+  background-color: ${(p) => (p.isToday ? 'hsl(39deg 100% 68% / 23%);' : p.theme.colors.primary.bg)};
   border: 2px solid
     ${({ theme, percentage }) =>
-      percentage < 100
-        ? theme.colors.secondary.color4
-        : theme.colors.primary.bg};
+    percentage < 100
+      ? theme.colors.secondary.color4
+      : theme.colors.primary.bg};
 `;
 
 const DayNumber = styled.p`
   z-index: 1;
   margin: 0;
 `;
+
 
 const DayPercentage = styled.p`
   margin: 0;
