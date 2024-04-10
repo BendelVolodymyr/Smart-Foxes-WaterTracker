@@ -32,15 +32,6 @@ const showModal = keyframes`
 transform: translateY(0px);
 `;
 
-// const hiddenModal = keyframes`0% {
-//   opacity: 1;
-//   transform: translateY(0px);
-// }
-
-// 100% {
-//   opacity: 0;
-// transform: translateY(200px);`;
-
 export const BackdropWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -62,7 +53,7 @@ export const BackdropWrapper = styled.div`
 
 export const ModalWrapper = styled.div`
   position: relative;
-  overflow: ${p => (p.$overflow ? p.$overflow : 'hidden')};
+  overflow-y: ${p => (p.$overflow ? p.$overflow : 'hidden')};
   overflow-x: hidden;
   max-width: 280px;
   margin: auto;

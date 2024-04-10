@@ -17,6 +17,8 @@
     "@mui/icons-material": "^5.15.14",
     "@mui/material": "^5.15.14",
     "@reduxjs/toolkit": "^2.2.2",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.3.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "axios": "^1.6.8",
     "date-fns": "^3.6.0",
