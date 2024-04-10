@@ -14,7 +14,6 @@ import {
 } from 'redux-persist';
 
 import storage from 'redux-persist/lib/storage';
-// import { passwordReducer } from './forgotPassword/passwordSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -26,7 +25,6 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     water: waterReducer,
-    // refreshPassword: passwordReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
