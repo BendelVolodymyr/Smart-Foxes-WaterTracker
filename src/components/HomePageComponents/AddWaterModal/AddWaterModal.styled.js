@@ -215,7 +215,7 @@ left: 10px;
   font-size: 12px;
   line-height: 1.5;
   display: block;
-  display: ${(props) => (props.hideonerror ? 'none' : 'block')};
+  display: ${(props) => (props.hideonerror === "true" ? 'none' : 'block')};
 `
 
 const ModalPortionInfo = styled(ListContext)`
