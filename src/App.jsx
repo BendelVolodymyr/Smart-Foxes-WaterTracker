@@ -4,7 +4,6 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute.jsx';
 import { useDispatch } from 'react-redux';
 
-
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import { Loader } from './components/Loader/Loader.jsx';
 import { refreshUser } from './redux/auth/operations.js';
@@ -35,31 +34,49 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route
             index
-            element={isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/welcome" />}
+            element={
+              isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/welcome" />
+            }
           />
           <Route
             path="/signin"
-            element={<RestrictedRoute redirectTo="/home" component={<LoginPage />} />}
+            element={
+              <RestrictedRoute redirectTo="/home" component={<LoginPage />} />
+            }
           />
-     
-          <Route path="/forgotPassword" element={<ForgotPassword />}/>
-          <Route path="/forgotPassword/:userId/:temporaryId"  element={<RefreshPassword/>}/> 
 
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
+          <Route
+            path="/forgotPassword/:userId/:temporaryId"
+            element={<RefreshPassword />}
+          />
 
           <Route
             path="/signup"
-            element={<RestrictedRoute redirectTo="/home" component={<Registration />} />}
+            element={
+              <RestrictedRoute
+                redirectTo="/home"
+                component={<Registration />}
+              />
+            }
           />
           <Route
             path="/home"
-            element={<PrivateRoute redirectTo="/signin" component={<HomeWaterPage />} />}
+            element={
+              <PrivateRoute
+                redirectTo="/signin"
+                component={<HomeWaterPage />}
+              />
+            }
           />
           <Route
             path="/welcome"
-            element={<RestrictedRoute redirectTo="/home" component={<Main />} />}
+            element={
+              <RestrictedRoute redirectTo="/home" component={<Main />} />
+            }
           />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );

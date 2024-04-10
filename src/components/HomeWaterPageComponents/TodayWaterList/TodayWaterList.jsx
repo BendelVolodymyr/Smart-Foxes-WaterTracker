@@ -1,5 +1,14 @@
 import { useContext, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import formatTime from '../../../helpers/formatTime';
+import { ModalContext } from '../../../context';
+import useWater from '../../../hooks/useWaters';
+import { portionsPerDay } from '../../../redux/waters/operations';
+
+import TodayDelModal from '../TodayDelModal/TodayDelModal';
+import { AddWaterModal } from '../../HomePageComponents/AddWaterModal/AddWaterModal';
+
 import {
   AddWaterBtn,
   ButtonDelete,
@@ -14,13 +23,6 @@ import {
   PortionsList,
   TodayBoxWrapper,
 } from './TodayWaterList.styled';
-
-import TodayDelModal from '../TodayDelModal/TodayDelModal';
-import { ModalContext } from '../../../context';
-import useWater from '../../../hooks/useWaters';
-import { useDispatch } from 'react-redux';
-import { portionsPerDay } from '../../../redux/waters/operations';
-import { AddWaterModal } from '../../HomePageComponents/AddWaterModal/AddWaterModal';
 
 const TodayWaterList = ({ handleAddWaterClick }) => {
   const { openModal } = useContext(ModalContext);

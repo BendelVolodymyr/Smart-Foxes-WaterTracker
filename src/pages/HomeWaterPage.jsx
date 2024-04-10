@@ -1,20 +1,20 @@
+import { useContext } from 'react';
+
 import MonthStateTable from '../components/HomeWaterPageComponents/MonthStateTable/MonthStateTable';
+import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
+import DailyNorma from '../components/HomePageComponents/DailyNorma/DailyNorma';
+import { AddWaterModal } from '../components/HomePageComponents/AddWaterModal/AddWaterModal';
+import { WaterRatioPanel } from '../components/HomePageComponents/WaterRatioPanel/WaterRationPanel';
+import { DailyNormaModal } from '../components/HomePageComponents/DailyNormaModal/DailyNormaModal';
+
+import { ModalContext } from '../context';
+import useWater from '../hooks/useWaters';
 
 import {
   DailyNormaBoxWrapper,
   HomePageContainer,
   TodayAndCalendarWrapper,
 } from './HomeWaterPage.styled';
-import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
-import DailyNorma from '../components/HomePageComponents/DailyNorma/DailyNorma';
-import { useContext,  useMemo } from 'react';
-import { ModalContext } from '../context';
-import { AddWaterModal } from '../components/HomePageComponents/AddWaterModal/AddWaterModal';
-
-import { WaterRatioPanel } from '../components/HomePageComponents/WaterRatioPanel/WaterRationPanel';
-import useWater from '../hooks/useWaters';
-import { DailyNormaModal } from '../components/HomePageComponents/DailyNormaModal/DailyNormaModal';
-import useAuth from '../hooks/useAuth';
 
 const HomeWaterPage = () => {
   const { openModal } = useContext(ModalContext);

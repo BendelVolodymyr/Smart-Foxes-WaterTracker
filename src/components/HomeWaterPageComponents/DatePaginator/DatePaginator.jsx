@@ -1,24 +1,16 @@
 import { format, addMonths, isBefore, isAfter } from 'date-fns';
 import { NextSvg, Paginator, PaginatorBtn, PrevSvg } from './DatePaginator.styled';
-// import useAuth from '../../../hooks/useAuth';
 
 const DatePaginator = ({ selectedDate, setSelectedDate, setCurrentMonth, setSelectedDay }) => {
-  // const [createdAt] = useAuth().createdAt;
-  // const createUserMonth = createdAt.getMonth();
-  // console.log(createdAt);
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
-
   const isPrevDisabled = isBefore(selectedDate, addMonths(new Date(), -12));
-
   const isNextDisabled = isAfter(selectedDate, new Date(currentYear, currentMonth, 1));
-
   const monthName = format(selectedDate, 'MMMM');
   const year = selectedDate.getFullYear();
 
   const handlePrevClick = () => {
     setSelectedDate(addMonths(selectedDate, -1));
-
     setSelectedDay(null);
     setCurrentMonth((currentMonth) => currentMonth - 1);
   };

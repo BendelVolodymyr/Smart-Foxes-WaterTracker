@@ -6,7 +6,7 @@ const float = keyframes`
 }`;
 
 export const MainHeader = styled.header`
-  background: ${(p) => p.theme.colors.primary.bg};
+  background: ${p => p.theme.colors.primary.bg};
 `;
 
 export const Container = styled.div`
@@ -39,12 +39,15 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const ThemeWrapper = styled.div`
-  position: relative;
+  position: fixed;
+  bottom: 50px;
+  left: 20px;
   width: 16px;
   height: 30px;
   display: flex;
   align-items: center;
 
+  z-index: 100;
   overflow: hidden;
   background: linear-gradient(
     180deg,
@@ -67,7 +70,9 @@ export const ThemeWrapper = styled.div`
     background: linear-gradient(#14045f, #331a99, #282bce, #1555ec, #1e84f7);
   }
 
-  @media screen and (min-width: ${(p) => p.theme.screens.tab}) {
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
+    bottom: 70px;
+    left: 40px;
     width: 20px;
     height: 40px;
   }
@@ -104,7 +109,7 @@ export const Glow = styled.div`
     left: 4px;
   }
 
-  @media screen and (min-width: ${(p) => p.theme.screens.tab}) {
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
     top: 35px;
     left: 5px;
     &::before,
@@ -152,7 +157,7 @@ export const Stars = styled.div`
     transition: opacity 5s ease;
   }
 
-  @media screen and (min-width: ${(p) => p.theme.screens.tab}) {
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
     box-shadow:
       8px 14px #fff,
       -2px 19px #fff,
@@ -180,7 +185,7 @@ export const SpinnerThemeWrapper = styled.div`
     transform: rotate(180deg);
   }
 
-  @media screen and (min-width: ${(p) => p.theme.screens.tab}) {
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -222,7 +227,7 @@ export const Sun = styled.div`
     left: -3px;
   }
 
-  @media screen and (min-width: ${(p) => p.theme.screens.tab}) {
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
     top: -5px;
     left: 16px;
     height: 10px;
@@ -275,7 +280,7 @@ export const Moon = styled.div`
     left: 0.5px;
   }
 
-  @media screen and (min-width: ${(p) => p.theme.screens.tab}) {
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
     bottom: -7px;
     left: 12px;
     height: 10px;
@@ -305,7 +310,7 @@ export const ThemeButton = styled.button`
 
   overflow: hidden;
 
-  @media screen and (min-width: ${(p) => p.theme.screens.tab}) {
+  @media screen and (min-width: ${p => p.theme.screens.tab}) {
     width: 28px;
     height: 28px;
     border-radius: 14px;
