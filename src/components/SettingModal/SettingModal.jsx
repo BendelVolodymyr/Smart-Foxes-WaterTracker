@@ -10,6 +10,7 @@ import { PiEyeLight } from 'react-icons/pi';
 import { RiDownload2Line as UploadIcon } from 'react-icons/ri';
 import { ReactComponent as DefaultAvatar } from '../../assets/header-icons/uer-avatar-icon.svg';
 import FadeLoader from 'react-spinners/ClipLoader';
+import Notiflix from 'notiflix';
 import {
   StyledContainer,
   StyledTitle,
@@ -46,6 +47,8 @@ export const SettingModal = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarStatus, setSnackbarStatus] = useState('success');
   const [avatarLoading, setAvatarLoading] = useState(false);
+  const [passwordMessage, setPasswordMessage] = useState('');
+  const [passwordTouched, setPasswordTouched] = useState(false);
 
   const { user, avatarURL } = useAuth();
 
@@ -105,6 +108,9 @@ export const SettingModal = () => {
           setOpenSnackbar(true);
           setSnackbarStatus('success');
           actions.resetForm();
+          Notiflix.Notify.success(
+            'Maybe you should reload the page for applying your recent changes'
+          );
         } else {
           setOpenSnackbar(true);
           setSnackbarStatus('info');
@@ -144,30 +150,56 @@ export const SettingModal = () => {
     }
   };
 
+  const handlePasswordChange = (event) => {
+    const { name, value } = event.target;
+    formik.handleChange(event);
+    setPasswordTouched(true);
+    setPasswordMessage((prevMessage) => ({
+      ...prevMessage,
+      [name]: value,
+    }));
+  };
+
+  const handleSaveInfo = () => {
+    Notiflix.Confirm.show(
+      'Save Information',
+      'Are you sure you want to save the information?',
+      'Yes',
+      'No',
+      async function () {
+        await formik.handleSubmit();
+      }
+    );
+  };
+
   return (
     <StyledContainer>
       <StyledTitle>Settings</StyledTitle>
       <FormWrapper>
         <FormTitle>Your photo</FormTitle>
         <AvatarWrapper>
-          <div
-            style={{
-              // paddingTop: 24,
-              width: 80,
-              height: 80,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
+          <Tooltip
+            title="This is your avatar, if you haven't selected a photo yet, the default image will be displayed here. Choose your favorite photo to add uniqueness to your profile."
+            placement="top"
           >
-            {avatarLoading ? (
-              <FadeLoader color="#407BFF" />
-            ) : avatarURL ? (
-              <AvatarPreview src={`${BASE_AVATAR_URL}${avatarURL}`} alt="avatar" />
-            ) : (
-              <DefaultAvatar style={{ width: 64, height: 64 }} />
-            )}
-          </div>
+            <div
+              style={{
+                width: 80,
+                height: 80,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {avatarLoading ? (
+                <FadeLoader color="#407BFF" />
+              ) : avatarURL ? (
+                <AvatarPreview src={`${BASE_AVATAR_URL}${avatarURL}`} alt="avatar" />
+              ) : (
+                <DefaultAvatar style={{ width: 64, height: 64 }} />
+              )}
+            </div>
+          </Tooltip>
           <AvatarLabel>
             <TextToAvatar>
               <UploadIcon />
@@ -175,8 +207,8 @@ export const SettingModal = () => {
             </TextToAvatar>
             <input
               type="file"
-              name="upload_photo"
-              className="photo-input"
+              name="avatars-upload"
+              className="avatars-input"
               accept=".png, .jpg, .jpeg"
               onChange={onChangeAvatar}
               style={{ opacity: 0, width: '1px' }}
@@ -185,7 +217,26 @@ export const SettingModal = () => {
         </AvatarWrapper>
         <FlexWrapper>
           <Wrapper>
-            <Title id="gender">Your gender</Title>
+            {!isSubmitting && (
+              <Tooltip
+                title="Service notification that helps you to remember when password was changed. It's disappear after reloading the page."
+                placement="top"
+              >
+                <div>
+                  {passwordChangedAt && (
+                    <Chip
+                      label={`Password changed at ${passwordChangedAt}`}
+                      color="primary"
+                      placement="top"
+                      sx={{ marginBottom: 2 }}
+                    />
+                  )}
+                </div>
+              </Tooltip>
+            )}
+            <Tooltip title="Choose your gender for better personalization.">
+              <Title id="gender">Your gender</Title>
+            </Tooltip>
             <SelectorGroup role="group">
               <SelectorLabel>
                 <GenderSelector
@@ -208,7 +259,9 @@ export const SettingModal = () => {
                 Male
               </SelectorLabel>
             </SelectorGroup>
-            <Label htmlFor="name">Your full name</Label>
+            <Tooltip title="Enter your name to personalize your profile.">
+              <Label htmlFor="name">Your full name</Label>
+            </Tooltip>
             <Input
               type="text"
               name="name"
@@ -249,7 +302,7 @@ export const SettingModal = () => {
                 </div>
               </Tooltip>
             )}
-            <Tooltip title="Your password should be secure for preventing unauthorized access to your data">
+            <Tooltip title="Your password should be secure for preventing unauthorized access to your data.">
               <Title>Password</Title>
             </Tooltip>
             <Label className="subtleLabel">Current password:</Label>
@@ -275,7 +328,7 @@ export const SettingModal = () => {
                 id="newPassword"
                 title="Enter your new password"
                 placeholder="New password"
-                onChange={formik.handleChange}
+                onChange={handlePasswordChange}
                 value={formik.values.newPassword}
               />
               <ButtonIcon type="button" onClick={() => setShowNewPassword(!showNewPassword)}>
@@ -291,7 +344,7 @@ export const SettingModal = () => {
                 id="repeatPassword"
                 title="Enter your repeat password"
                 placeholder="Repeat password"
-                onChange={formik.handleChange}
+                onChange={handlePasswordChange}
                 value={formik.values.repeatPassword}
               />
               <ButtonIcon
@@ -301,6 +354,13 @@ export const SettingModal = () => {
                 {showRepeatedPassword ? <PiEyeLight /> : <HiOutlineEyeSlash />}
               </ButtonIcon>
             </InputContainer>
+            {passwordTouched &&
+            (formik.values.oldPassword === '' ||
+              formik.values.newPassword === '' ||
+              formik.values.repeatPassword === '') &&
+            (passwordMessage.newPassword || passwordMessage.repeatPassword) ? (
+              <Alert severity="info">All fields should be filled!</Alert>
+            ) : null}
             {passwordMismatchError && <Alert severity="error">{passwordMismatchError}</Alert>}
           </Wrapper>
         </FlexWrapper>
@@ -308,7 +368,7 @@ export const SettingModal = () => {
           <SaveButton
             type="button"
             style={{ marginTop: 40, marginLeft: 'auto' }}
-            onClick={formik.handleSubmit}
+            onClick={handleSaveInfo}
             disabled={passwordMismatchError || isSubmitting}
           >
             {isSubmitting ? 'Loading...' : 'Save'}
