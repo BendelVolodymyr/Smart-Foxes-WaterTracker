@@ -38,6 +38,7 @@ import { ModalContext } from '../../../context';
 export const AddWaterModal = ({ portion }) => {
   const dispatch = useDispatch();
 
+  const [newWoter, setNewWoter] = useState(0);
   const [waterUsed, setWaterUsed] = useState(portion ? portion.waterVolume : 0);
   const [time, setTime] = useState(
     portion ? formatTime(portion.dateAdded) : formatTime(new Date())
@@ -58,18 +59,24 @@ export const AddWaterModal = ({ portion }) => {
     setWaterUsedError('');
   };
 
-  const handleInputBlur = (e) => {
+  const handleInputBlur = () => {
     setIsInputFocused(false);
-    setWaterUsed(e.target.value);
+    setNewWoter(waterUsed);
   };
   const handleToggle = (e) => {
     switch (e.currentTarget.id) {
-      case 'increment':
-        setWaterUsed((prevValue) => prevValue + 50);
+      case 'increment': {
+        const incrementedWater = waterUsed + 50;
+        setWaterUsed(incrementedWater);
+        setNewWoter(incrementedWater);
         break;
-      case 'decrement':
-        setWaterUsed((prevValue) => (prevValue > 0 ? prevValue - 50 : 0));
+      }
+      case 'decrement': {
+        const decrementedWater = waterUsed > 0 ? waterUsed - 50 : 0;
+        setWaterUsed(decrementedWater);
+        setNewWoter(decrementedWater);
         break;
+      }
       default:
         break;
     }
@@ -83,11 +90,11 @@ export const AddWaterModal = ({ portion }) => {
     const isoDate = new Date(date).toISOString();
 
     if (!waterUsed || waterUsed < 50) {
-      setWaterUsedError('  Введіть кількість випитої води  ');
+      setWaterUsedError('Please enter the amount of water consumed.');
       return;
     }
     if (waterUsed > 3000) {
-      setWaterUsedError(' Не більше 3000 мл');
+      setWaterUsedError('Maximum allowed is 3000 ml.');
       return;
     }
     //кейс для editModal
@@ -95,7 +102,7 @@ export const AddWaterModal = ({ portion }) => {
       const dataToUpdate = {
         id: portion._id,
         date: isoDate,
-        waterVolume: waterUsed,
+        waterVolume: newWoter,
       };
       await dispatch(updatePortion(dataToUpdate));
       setWaterUsed(0);
@@ -107,11 +114,11 @@ export const AddWaterModal = ({ portion }) => {
       const isValidTime = list ? list.find((portion) => portion.dateAdded === isoDate) : isoDate;
 
       if (isValidTime) {
-        setTimeError(' Не можна в один той самий час');
+        setTimeError(' A portion already exists for this time.');
         return;
       }
       const data = {
-        waterVolume: waterUsed,
+        waterVolume: newWoter,
         date: isoDate,
       };
 
@@ -171,11 +178,11 @@ export const AddWaterModal = ({ portion }) => {
           required
         />
         {waterUsedError && (
-          <ErrorText hideOnError={isInputFocused}> &#9888; {waterUsedError}</ErrorText>
+          <ErrorText hideonerror={isInputFocused}> &#9888; {waterUsedError}</ErrorText>
         )}
       </WaterUsedLabel>
       <ContainerSaveResult>
-        <WaterInputed> {waterUsed ? waterUsed : 0} ml</WaterInputed>
+        <WaterInputed> {newWoter ? newWoter : 0} ml</WaterInputed>
         <ButtonSave onClick={handleSave}>Save</ButtonSave>
       </ContainerSaveResult>
     </ModalContainer>
