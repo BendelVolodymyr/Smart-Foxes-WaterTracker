@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 
 import MonthStateTable from '../components/HomeWaterPageComponents/MonthStateTable/MonthStateTable';
 import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
@@ -15,6 +15,7 @@ import {
   HomePageContainer,
   TodayAndCalendarWrapper,
 } from './HomeWaterPage.styled';
+import useAuth from '../hooks/useAuth';
 
 const HomeWaterPage = () => {
   const { openModal } = useContext(ModalContext);

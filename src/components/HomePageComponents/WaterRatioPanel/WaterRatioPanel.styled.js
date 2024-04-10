@@ -2,22 +2,23 @@ import styled from 'styled-components';
 import { CiCirclePlus } from 'react-icons/ci';
 
 const WaterRatio = styled.input`
-  background: ${(p) => p.theme.colors.secondary.color5};
-  -webkit-appearance: none;
-  appearance: none;
-  border-radius: 10px;
-  width: 256px;
-  margin-left: 11px;
-  @media (min-width: ${({ theme }) => theme.screens.tab}) {
-    width: 325px;
+  &[type='range'] {
+    appearance: none;
+    height: 8px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: ${(p) => p.theme.colors.secondary.color5};
+    background-image: linear-gradient(
+      ${(p) => p.theme.colors.secondary.color3},
+      ${(p) => p.theme.colors.secondary.color3}
+    );
+    background-repeat: no-repeat;
   }
-  @media (min-width: ${({ theme }) => theme.screens.desk}) {
-    width: 360px;
+
+  &[type='range']:focus {
+    outline: none;
   }
-  :after{
-    background: red;
-  }
- 
+
   &[type='range']::-webkit-slider-runnable-track {
     width: 100%;
     height: 8px;
@@ -26,20 +27,21 @@ const WaterRatio = styled.input`
     -webkit-appearance: none;
     box-shadow: none;
     border: none;
-    background: skyblue;
+    // background: ${(p) => p.theme.colors.secondary.color3};
   }
 
   &[type='range']::-webkit-slider-thumb {
     height: 14px;
     width: 14px;
     border-radius: 50%;
-    background: black;
-    border: solid 1px skyblue;
+    background: ${(p) => p.theme.colors.primary.bg};
+    border: solid 1px ${(p) => p.theme.colors.primary.accent};
     -webkit-appearance: none;
     margin-top: -4px;
   }
 `;
-
+// заполненое${(p) => p.theme.colors.secondary.color3}
+//не заполненое color5
 const WaterRatioContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -63,6 +65,9 @@ const WaterPanelContainer = styled.div`
   position: relative;
   width: 280px;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 7px;
   height: 82px;
   @media (min-width: ${({ theme }) => theme.screens.tab}) {
     width: 356px;
@@ -102,17 +107,16 @@ const AddWaterBtn = styled.button`
   line-height: 20px;
   width: 280px;
   justify-content: center;
-  color: ${(p) => p.theme.colors.primary.bg};
-  background-color: ${(p) => p.theme.colors.primary.accent};
+  color: ${(p) => p.theme.colors.primary.text};
+  background-color: rgba(64, 123, 255, 0.3);
   border: 1px;
   border-radius: 10px;
+  z-index: 1;
   padding: 10px 30px;
-  border-r &:hover {
-    color: ${(p) => p.theme.colors.secondary.color4};
-    ${PlusSvg} {
-      fill: ${(p) => p.theme.colors.secondary.color4};
-      stroke: ${(p) => p.theme.colors.secondary.color4};
-    }
+  position: relative;
+  ${PlusSvg} {
+    fill: ${(p) => p.theme.colors.primary.text};
+    stroke: ${(p) => p.theme.colors.primary.accent};
   }
 
   @media (min-width: ${({ theme }) => theme.screens.tab}) {
@@ -123,7 +127,89 @@ const AddWaterBtn = styled.button`
   @media (min-width: ${({ theme }) => theme.screens.desk}) {
     width: 178px;
   }
+  &:hover::before {
+    height: 100%;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: ${(p) => p.theme.colors.primary.accent};
+    z-index: -1;
+
+    transition: 0.8s;
+  }
+  &:before {
+    bottom: 0;
+    border-radius: 10px;
+  }
 `;
+
+const MarksContainer = styled.div`
+  height: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+const LeftMark = styled.span`
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: ${(p) => p.theme.colors.primary.accent};
+
+  &::before {
+    content: '|';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    color: ${(p) => p.theme.colors.secondary.color5};
+  }
+`;
+const RightMark = styled.span`
+  transform: translateX(45%);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: ${(p) => p.theme.colors.primary.accent};
+
+  &::before {
+    content: '|';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: ${(p) => p.theme.colors.secondary.color5};
+  }
+`;
+const Mark = styled.span`
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  margin-bottom: 4px;
+  gap: 4px;
+  color: ${(p) => p.theme.colors.primary.accent};
+
+  &::before {
+    content: '|';
+    justify-content: center;
+    align-items: center;
+    color: ${(p) => p.theme.colors.secondary.color5};
+  }
+`;
+
+//${(p) => p.theme.colors.primary.accent}back
 export {
   WaterRatio,
   WaterPanelContainer,
@@ -131,4 +217,8 @@ export {
   PlusSvg,
   WaterRatioContainer,
   AddWaterBtn,
+  MarksContainer,
+  LeftMark,
+  RightMark,
+  Mark,
 };
