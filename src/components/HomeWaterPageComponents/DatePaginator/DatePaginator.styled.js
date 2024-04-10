@@ -26,7 +26,7 @@ const Paginator = styled.div`
     cursor: ${p => (p.disabled ? "default" : "pointer")};
    
     pointer-events: ${p => (p.disabled ? "none" : "auto")};
-    /* cursor: pointer; */
+    
    
     margin: 0;
   }
@@ -46,9 +46,13 @@ const PaginatorBtn = styled.button`
     pointer-events: ${p => (p.disabled ? "none" : "auto")};
     margin: 0;
 
-    & :focus{
-      outline: transparent;
+    
+    &:hover {
+  
+    & > svg {
+      fill: ${p => p.theme.colors.secondary.color4}; 
     }
+  }
 `
 
 const PrevSvg = styled(PrevIcon)`
@@ -57,18 +61,15 @@ fill: ${p => p.theme.colors.primary.accent};
   width: 14px;
   height: auto;
 
-
 `
+
+
 const NextSvg = styled(NextIcon)`
 
 fill: ${p => p.theme.colors.primary.accent};
   width: 14px;
   height: auto;
- 
- 
-`
-
-
+ `
 
 export {
   Paginator,
