@@ -83,7 +83,7 @@ const MonthStateTable = () => {
           const isCurrentDay = isToday(day);
           return (
             <DayCell key={index} onClick={(event) => handleDayClick(event, day)}>
-              <DayCircle percentage={percentagePerDay} isToday={isCurrentDay}>
+              <DayCircle $percentage={percentagePerDay} $istoday={isCurrentDay ? 'true' : 'false'}>
                 <DayNumber>{dayOfMonth}</DayNumber>
               </DayCircle>
               <DayPercentage>{percentagePerDay || 0}%</DayPercentage>
