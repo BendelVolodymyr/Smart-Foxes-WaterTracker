@@ -3,19 +3,21 @@ import * as Yup from 'yup';
 import {
   AuthTitle,
   Button,
+  Container,
   ErrorMessage,
   Form,
-  ImgBottle,
-  ImgWrapp,
   Input,
   Label,
   LinkTo,
-  LoginContainer,
-} from '../LoginPage.styled';
-import bottleImg from './image/bottleAuth.png';
+  LoginSection,
+} from '../../pages/LoginPage/LoginPage.styled';
+import { usePasswordReset } from '../../hooks/usePasswordReset';
+import { ForgotContainer } from './ForgotPassword.styled';
+
+
 
 const ForgotPassword = () => {
-  const bottle = bottleImg;
+  const { resetPassword} = usePasswordReset();
 
   const ForgotSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -27,13 +29,15 @@ const ForgotPassword = () => {
     },
     validationSchema: ForgotSchema,
     onSubmit: ({ email }, { resetForm }) => {
-      console.log({ email: email });
+      resetPassword({email: email });
       resetForm();
     },
   });
 
   return (
-    <LoginContainer>
+    <LoginSection>
+    <Container>
+    <ForgotContainer>
       <Form onSubmit={formik.handleSubmit}>
         <AuthTitle>Forgot Password</AuthTitle>
         <Label>
@@ -53,12 +57,12 @@ const ForgotPassword = () => {
           )}
         </Label>
         <Button type="submit">Send</Button>
+        <LinkTo to="/forgotPassword/:userId/:temporaryId">New Password</LinkTo>
         <LinkTo to="/signin">Sing in</LinkTo>
       </Form>
-      <ImgWrapp>
-        <ImgBottle src={bottle} alt="bottle" />
-      </ImgWrapp>
-    </LoginContainer>
+    </ForgotContainer>
+    </Container>
+    </LoginSection>
   );
 };
 

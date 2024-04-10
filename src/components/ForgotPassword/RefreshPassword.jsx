@@ -1,24 +1,25 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
-import { useVisiblePassword } from '../../../hooks/useVisiblePassword';
-
 import {
   AuthTitle,
   Button,
   ButtonPassword,
+  Container,
   ErrorMessage,
   Form,
   IconConteiner,
-  Input,
   Label,
-  LoginContainer,
-} from './LoginPage.styled';
+  LoginSection,
+} from '../../pages/LoginPage/LoginPage.styled';
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
+import { useVisiblePassword } from '../../hooks/useVisiblePassword';
+import { usePasswordUpdate } from '../../hooks/usePasswordReset';
+import { RefreshContainer } from './ForgotPassword.styled';
+import { InputPassword } from '../../pages/SingUp/Registration.styled';
 const RefreshPassword = () => {
   const { handleShowPassword, toggleIcon, type } = useVisiblePassword();
-
+ const {  passwordUpdate} = usePasswordUpdate();
   const RefreshingPassword = Yup.object().shape({
     password: Yup.string()
       .min(8, 'Password should be of minimum 8 characters length')
@@ -35,20 +36,22 @@ const RefreshPassword = () => {
       refreshPassword: '',
     },
     validationSchema: RefreshingPassword,
-    onSubmit: ({ password, refreshPassword }, { resetForm }) => {
-      console.log({ password: password, refreshPassword: refreshPassword });
+    onSubmit: ({ password}, { resetForm }) => {
+      passwordUpdate({password: password});
       resetForm();
     },
   });
 
   return (
-    <LoginContainer>
+    <LoginSection>
+    <Container>
+    <RefreshContainer>
       <Form onSubmit={formik.handleSubmit}>
         <AuthTitle>Change Password</AuthTitle>
         <Label>
           New password
           <IconConteiner>
-            <Input
+            <InputPassword
               placeholder="Password"
               name="password"
               type={type}
@@ -73,7 +76,7 @@ const RefreshPassword = () => {
         <Label>
           Confirm password
           <IconConteiner>
-            <Input
+            <InputPassword
               placeholder="Confirm password"
               name="refreshPassword"
               type={type}
@@ -97,7 +100,9 @@ const RefreshPassword = () => {
         </Label>
         <Button type="submit">Reset password</Button>
       </Form>
-    </LoginContainer>
+    </RefreshContainer>
+    </Container>
+    </LoginSection>
   );
 };
 

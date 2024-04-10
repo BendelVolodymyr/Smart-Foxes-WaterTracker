@@ -9,13 +9,13 @@ import SharedLayout from 'components/SharedLayout/SharedLayout';
 import { Loader } from './components/Loader/Loader.jsx';
 import { refreshUser } from './redux/auth/operations.js';
 import useAuth from './hooks/useAuth.js';
-// import ForgotPassword from './pages/LoginPage/ForgotPassword/ForgotPassword.jsx';
-// import RefreshPassword from './pages/LoginPage/ForgotPassword/RefreshPassword.jsx';
+import ForgotPassword from './components/ForgotPassword/ForgotPassword.jsx';
+import RefreshPassword from './components/ForgotPassword/RefreshPassword.jsx';
 // const Loader = lazy(() => import('./components/Loader/Loader.jsx'));
 
 const Main = lazy(() => import('./pages/Main/Main.jsx'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
-const Registration = lazy(() => import('./pages/RegistrationPage.jsx'));
+const Registration = lazy(() => import('./pages/SingUp/RegistrationPage.jsx'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 const HomeWaterPage = lazy(() => import('./pages/HomeWaterPage.jsx'));
 
@@ -41,15 +41,10 @@ function App() {
             path="/signin"
             element={<RestrictedRoute redirectTo="/home" component={<LoginPage />} />}
           />
-          
-          {/* <Route
-          path="/forgotPassword"
-          element={<ForgotPassword />}
-          /> */}
-{/* <Route
-path="/signin/:userId/:temporaryId" 
-element={<RefreshPassword />}
-/> */}
+     
+          <Route path="/forgotPassword" element={<ForgotPassword />}/>
+          <Route path="/forgotPassword/:userId/:temporaryId"  element={<RefreshPassword/>}/> 
+
 
           <Route
             path="/signup"
