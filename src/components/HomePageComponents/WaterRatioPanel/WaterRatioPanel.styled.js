@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { CiCirclePlus } from 'react-icons/ci';
 
 const WaterRatio = styled.input`
-  // background: ${(p) => p.theme.colors.secondary.color5};
-  // -webkit-appearance: none;
-  // appearance: none;
-  // border-radius: 10px;
+  background: ${(p) => p.theme.colors.secondary.color5};
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 10px;
   width: 256px;
   margin-left: 11px;
   @media (min-width: ${({ theme }) => theme.screens.tab}) {
@@ -13,6 +13,30 @@ const WaterRatio = styled.input`
   }
   @media (min-width: ${({ theme }) => theme.screens.desk}) {
     width: 360px;
+  }
+  :after{
+    background: red;
+  }
+ 
+  &[type='range']::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    animation: 0.2s;
+    border-radius: 10px;
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: skyblue;
+  }
+
+  &[type='range']::-webkit-slider-thumb {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background: black;
+    border: solid 1px skyblue;
+    -webkit-appearance: none;
+    margin-top: -4px;
   }
 `;
 
@@ -24,13 +48,13 @@ const WaterRatioContainer = styled.div`
   gap: 16px;
   @media (min-width: ${({ theme }) => theme.screens.tab}) {
     flex-direction: row;
-    
+
     gap: 12px;
   }
   @media (min-width: ${({ theme }) => theme.screens.desk}) {
     gap: 23px;
     width: 600px;
-    
+
     justify-content: flex-start;
   }
 `;
