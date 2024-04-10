@@ -1,26 +1,29 @@
 import { useEffect, useState } from 'react';
 import DatePaginator from '../DatePaginator/DatePaginator';
 import Popover from '@mui/material/Popover';
-import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
 import { startOfMonth, endOfMonth, eachDayOfInterval, isToday } from 'date-fns';
 import { useDispatch } from 'react-redux';
-import { MonthComponentWrapper, PaginatorBlock } from './MonthStateTable.styled';
-import { DayCell, DayCircle, DayNumber, DayPercentage, DaysGrid } from './DayGreed.styled';
+
 import { portionsPerMonth } from '../../../redux/waters/operations';
 import useWater from '../../../hooks/useWaters';
 import useAuth from '../../../hooks/useAuth';
 
+import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
+
+import { MonthComponentWrapper, PaginatorBlock } from './MonthStateTable.styled';
+import { DayCell, DayCircle, DayNumber, DayPercentage, DaysGrid } from './DayGreed.styled';
+
 const MonthStateTable = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(selectedDate.getMonth());
-
   const [selectedDay, setSelectedDay] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const monthData = useWater().waterMonthList;
   const dayList = useWater().waterDayList;
   const waterRate = useAuth().user.waterRate;
+
   const handleClosePopover = () => {
     setAnchorEl(null);
   };
