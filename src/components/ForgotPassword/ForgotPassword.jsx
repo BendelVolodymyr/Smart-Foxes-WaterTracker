@@ -9,10 +9,10 @@ import {
   Input,
   Label,
   LinkTo,
-  LoginContainer,
   LoginSection,
-} from './LoginPage.styled';
+} from '../../pages/LoginPage/LoginPage.styled';
 import { usePasswordReset } from '../../hooks/usePasswordReset';
+import { ForgotContainer } from './ForgotPassword.styled';
 
 
 
@@ -37,7 +37,7 @@ const ForgotPassword = () => {
   return (
     <LoginSection>
     <Container>
-    <LoginContainer>
+    <ForgotContainer>
       <Form onSubmit={formik.handleSubmit}>
         <AuthTitle>Forgot Password</AuthTitle>
         <Label>
@@ -60,7 +60,7 @@ const ForgotPassword = () => {
         <LinkTo to="/forgotPassword/:userId/:temporaryId">New Password</LinkTo>
         <LinkTo to="/signin">Sing in</LinkTo>
       </Form>
-    </LoginContainer>
+    </ForgotContainer>
     </Container>
     </LoginSection>
   );

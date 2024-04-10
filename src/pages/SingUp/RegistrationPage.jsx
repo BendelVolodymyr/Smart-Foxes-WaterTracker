@@ -9,14 +9,14 @@ import {
   ButtonGoogle,
   LoginSection,
   Container,
-} from './LoginPage/LoginPage.styled';
+} from '../LoginPage/LoginPage.styled';
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
-import { ButtonPassword } from './LoginPage/LoginPage.styled';
-import { useVisiblePassword } from '../hooks/useVisiblePassword';
+import { ButtonPassword } from '../LoginPage/LoginPage.styled';
+import { useVisiblePassword } from '../../hooks/useVisiblePassword';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { signUp } from '../redux/auth/operations';
+import { signUp } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import { FcGoogle } from 'react-icons/fc';
 import PasswordStrengthBar from 'react-password-strength-bar';
