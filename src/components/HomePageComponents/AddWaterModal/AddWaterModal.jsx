@@ -22,6 +22,7 @@ import {
   WaterUsedSpan,
   WaterUsedValue,
   ErrorText,
+  ModalPortionInfo,
 } from './AddWaterModal.styled';
 import useWater from '../../../hooks/useWaters';
 import { formatDate } from '../../../helpers/formatedDate';
@@ -29,7 +30,6 @@ import { formatDate } from '../../../helpers/formatedDate';
 import { addPortion, portionsPerDay, updatePortion } from '../../../redux/waters/operations';
 import {
   GlassSvg,
-  ListContext,
   Portion,
 } from '../../HomeWaterPageComponents/TodayWaterList/TodayWaterList.styled';
 import formatTime from '../../../helpers/formatTime';
@@ -38,6 +38,7 @@ import { ModalContext } from '../../../context';
 export const AddWaterModal = ({ portion }) => {
   const dispatch = useDispatch();
 
+  const [newWoter, setNewWoter] = useState(0);
   const [waterUsed, setWaterUsed] = useState(portion ? portion.waterVolume : 0);
   const [time, setTime] = useState(
     portion ? formatTime(portion.dateAdded) : formatTime(new Date())
@@ -50,7 +51,10 @@ export const AddWaterModal = ({ portion }) => {
   const list = waterDayList || [];
 
   const handleWaterUsedChange = (e) => {
-    setWaterUsed(e.target.value);
+    const value = parseFloat(e.target.value);
+    const roundedValue = Math.round(value);
+
+    setWaterUsed(roundedValue);
   };
   const handleInputFocus = () => {
     setIsInputFocused(true);
@@ -58,18 +62,24 @@ export const AddWaterModal = ({ portion }) => {
     setWaterUsedError('');
   };
 
-  const handleInputBlur = (e) => {
+  const handleInputBlur = () => {
     setIsInputFocused(false);
-    setWaterUsed(e.target.value);
+    setNewWoter(waterUsed);
   };
   const handleToggle = (e) => {
     switch (e.currentTarget.id) {
-      case 'increment':
-        setWaterUsed((prevValue) => prevValue + 50);
+      case 'increment': {
+        const incrementedWater = Math.min(waterUsed + 50, 3000);
+        setWaterUsed(incrementedWater);
+        setNewWoter(incrementedWater);
         break;
-      case 'decrement':
-        setWaterUsed((prevValue) => (prevValue > 0 ? prevValue - 50 : 0));
+      }
+      case 'decrement': {
+        const decrementedWater = waterUsed > 0 ? waterUsed - 50 : 0;
+        setWaterUsed(decrementedWater);
+        setNewWoter(decrementedWater);
         break;
+      }
       default:
         break;
     }
@@ -83,11 +93,11 @@ export const AddWaterModal = ({ portion }) => {
     const isoDate = new Date(date).toISOString();
 
     if (!waterUsed || waterUsed < 50) {
-      setWaterUsedError('  Введіть кількість випитої води  ');
+      setWaterUsedError('Please enter the amount of water consumed.');
       return;
     }
     if (waterUsed > 3000) {
-      setWaterUsedError(' Не більше 3000 мл');
+      setWaterUsedError('Maximum allowed is 3000 ml.');
       return;
     }
     //кейс для editModal
@@ -95,7 +105,7 @@ export const AddWaterModal = ({ portion }) => {
       const dataToUpdate = {
         id: portion._id,
         date: isoDate,
-        waterVolume: waterUsed,
+        waterVolume: newWoter,
       };
       await dispatch(updatePortion(dataToUpdate));
       setWaterUsed(0);
@@ -107,11 +117,11 @@ export const AddWaterModal = ({ portion }) => {
       const isValidTime = list ? list.find((portion) => portion.dateAdded === isoDate) : isoDate;
 
       if (isValidTime) {
-        setTimeError(' Не можна в один той самий час');
+        setTimeError(' A portion already exists for this time.');
         return;
       }
       const data = {
-        waterVolume: waterUsed,
+        waterVolume: newWoter,
         date: isoDate,
       };
 
@@ -129,11 +139,11 @@ export const AddWaterModal = ({ portion }) => {
     <ModalContainer>
       <HeadModal>{title}</HeadModal>
       {portion && (
-        <ListContext>
+        <ModalPortionInfo>
           <GlassSvg />
           <Portion>{`${portion.waterVolume} ml `}</Portion>
           <span>{formatTime(portion.dateAdded, true)}</span>
-        </ListContext>
+        </ModalPortionInfo>
       )}
 
       {list.length === 0 && <p>No notes yet</p>}
@@ -162,20 +172,23 @@ export const AddWaterModal = ({ portion }) => {
       <WaterUsedLabel>
         <WaterUsedSpan>Enter the value of the water used:</WaterUsedSpan>
         <WaterUsedInput
+          name="waterUsed"
           type="number"
+          step={50}
           value={waterUsed}
           onChange={handleWaterUsedChange}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
-          pattern="[0-9]*"
+          pattern="[0-9]{1,4}"
+          max={3000}
           required
         />
         {waterUsedError && (
-          <ErrorText hideOnError={isInputFocused}> &#9888; {waterUsedError}</ErrorText>
+          <ErrorText hideonerror={isInputFocused}> &#9888; {waterUsedError}</ErrorText>
         )}
       </WaterUsedLabel>
       <ContainerSaveResult>
-        <WaterInputed> {waterUsed ? waterUsed : 0} ml</WaterInputed>
+        <WaterInputed> {newWoter ? newWoter : 0} ml</WaterInputed>
         <ButtonSave onClick={handleSave}>Save</ButtonSave>
       </ContainerSaveResult>
     </ModalContainer>
