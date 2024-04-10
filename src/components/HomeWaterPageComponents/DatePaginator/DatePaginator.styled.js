@@ -44,9 +44,11 @@ const PaginatorBtn = styled.button`
     cursor: ${p => (p.disabled ? "default" : "pointer")};
     visibility: ${p => (p.disabled ? "hidden" : "visible")};
     pointer-events: ${p => (p.disabled ? "none" : "auto")};
-  
-   
     margin: 0;
+
+    & :focus{
+      outline: transparent;
+    }
 `
 
 const PrevSvg = styled(PrevIcon)`
