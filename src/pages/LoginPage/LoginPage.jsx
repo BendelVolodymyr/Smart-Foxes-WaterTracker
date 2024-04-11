@@ -27,7 +27,6 @@ import { ModalContext } from '../../context/ModalContext/ModalContext';
 import ModalUser from '../../components/WelcomeModalUser/ModalUser';
 import { InputPassword } from '../SingUp/Registration.styled';
 
-
 const LoginPage = () => {
   const { handleShowPassword, toggleIcon, type } = useVisiblePassword();
   const dispatch = useDispatch();
@@ -35,7 +34,7 @@ const LoginPage = () => {
   const handleLogInWithPopUp = () => {
     window.location.assign('https://smart-foxes-backend-watertracker.onrender.com/api/auth/google');
   };
-  
+
   const SigninSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string()
@@ -54,81 +53,81 @@ const LoginPage = () => {
       dispatch(signIn({ email: email, password: password }));
       setTimeout(() => {
         openModal(
-        <>
-          <ModalUser />
-        </>
-      );
-    }, 1000);
+          <>
+            <ModalUser />
+          </>
+        );
+      }, 1000);
       resetForm();
     },
   });
 
   return (
     <LoginSection>
-    <Container>
-    <LoginContainer>
-      <Form onSubmit={formik.handleSubmit}>
-        <AuthTitle>Sing In</AuthTitle>
-        <Label>
-          Enter your email
-          <Input
-            placeholder="E-mail"
-            name="email"
-            type="email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            autoComplete="off"
-            onBlur={formik.handleBlur}
-            error={formik.touched.email && formik.errors.email}
-          />
-          {formik.touched.email && formik.errors.email && (
-            <ErrorMessage>{formik.errors.email}</ErrorMessage>
-          )}
-        </Label>
-        <Label>
-          Enter your password
-          <IconConteiner>
-            <InputPassword
-              placeholder="Password"
-              name="password"
-              type={type}
-              autoComplete="off"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.password && formik.errors.password}
-            />
-            <ButtonPassword type="button" onClick={handleShowPassword}>
-              {toggleIcon ? (
-                <HiOutlineEyeSlash size={16} color="#407BFF" />
-              ) : (
-                <PiEyeLight size={16} color="#407BFF" />
+      <Container>
+        <LoginContainer>
+          <Form onSubmit={formik.handleSubmit}>
+            <AuthTitle>Sing In</AuthTitle>
+            <Label>
+              Enter your email
+              <Input
+                placeholder="E-mail"
+                name="email"
+                type="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                autoComplete="off"
+                onBlur={formik.handleBlur}
+                error={formik.touched.email && formik.errors.email}
+              />
+              {formik.touched.email && formik.errors.email && (
+                <ErrorMessage>{formik.errors.email}</ErrorMessage>
               )}
-            </ButtonPassword>
-          </IconConteiner>
-          {formik.touched.password && formik.errors.password && (
-            <ErrorMessage>{formik.errors.password}</ErrorMessage>
-          )}
-        </Label>
-        <Button type="submit">Sing In</Button>
-        <ButtonGoogle
-          name="google-auth"
-          onClick={handleLogInWithPopUp}
-          type="button"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 15,
-          }}
-        >
-          <FcGoogle style={{ width: 25, height: 25 }} /> Google
-        </ButtonGoogle>
-        <LinkTo to="/forgotPassword">Forgot password?</LinkTo>
-        <LinkTo to="/signup">Sing up</LinkTo>
-      </Form>
-    </LoginContainer>
-    </Container>
+            </Label>
+            <Label>
+              Enter your password
+              <IconConteiner>
+                <InputPassword
+                  placeholder="Password"
+                  name="password"
+                  type={type}
+                  autoComplete="off"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.password && formik.errors.password}
+                />
+                <ButtonPassword type="button" onClick={handleShowPassword}>
+                  {toggleIcon ? (
+                    <HiOutlineEyeSlash size={16} color="#407BFF" />
+                  ) : (
+                    <PiEyeLight size={16} color="#407BFF" />
+                  )}
+                </ButtonPassword>
+              </IconConteiner>
+              {formik.touched.password && formik.errors.password && (
+                <ErrorMessage>{formik.errors.password}</ErrorMessage>
+              )}
+            </Label>
+            <Button type="submit">Sing In</Button>
+            <ButtonGoogle
+              name="google-auth"
+              onClick={handleLogInWithPopUp}
+              type="button"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 15,
+              }}
+            >
+              <FcGoogle style={{ width: 25, height: 25 }} /> Google
+            </ButtonGoogle>
+            <LinkTo to="/forgotPassword">Forgot password?</LinkTo>
+            <LinkTo to="/signup">Sing up</LinkTo>
+          </Form>
+        </LoginContainer>
+      </Container>
     </LoginSection>
   );
 };
