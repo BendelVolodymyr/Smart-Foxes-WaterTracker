@@ -1,5 +1,5 @@
-import { Report } from 'notiflix/build/notiflix-report-aio';
 import axios from 'axios';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://smart-foxes-backend-watertracker.onrender.com/api';
@@ -48,7 +48,6 @@ export const logout = createAsyncThunk('/logout', async (_, thunkAPI) => {
   try {
     const response = await axios.post('/users/logout');
 
-    console.log(response);
     token.unset();
     return response.data;
   } catch (error) {
@@ -72,7 +71,6 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
 });
 
 export const uploadAvatar = createAsyncThunk('auth/avatar', async (formData, thunkAPI) => {
-  console.log(formData);
   try {
     const {
       data: { avatarURL },

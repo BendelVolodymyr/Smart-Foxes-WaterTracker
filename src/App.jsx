@@ -2,8 +2,8 @@ import {
   Navigate,
   Route,
   Routes,
-  useNavigate,
   useSearchParams,
+  useNavigate,
 } from 'react-router-dom';
 import { Suspense, lazy, useEffect } from 'react';
 import { RestrictedRoute } from './RestrictedRoute';
@@ -17,7 +17,6 @@ import useAuth from './hooks/useAuth.js';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword.jsx';
 import RefreshPassword from './components/ForgotPassword/RefreshPassword.jsx';
 import { setToken } from './redux/auth/authSlice.js';
-
 // const Loader = lazy(() => import('./components/Loader/Loader.jsx'));
 
 const Main = lazy(() => import('./pages/Main/Main.jsx'));
@@ -28,12 +27,12 @@ const HomeWaterPage = lazy(() => import('./pages/HomeWaterPage.jsx'));
 
 function App() {
   const dispatch = useDispatch();
+  const { isLoading, isLoggedIn } = useAuth();
   const searchParam = useSearchParams();
   const token = searchParam[0].get('token');
   const navigate = useNavigate();
-  const { isLoading, isLoggedIn, token: data } = useAuth();
+  console.log(token);
 
-  console.log('hook', data);
   useEffect(() => {
     if (token) {
       try {

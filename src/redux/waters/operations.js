@@ -48,7 +48,6 @@ export const updatePortion = createAsyncThunk(
 export const updateWaterRate = createAsyncThunk(
   'water-rate/editDailyNorma',
   async (data, thunkApi) => {
-    console.log(data);
     try {
       const response = await axios.patch(`/water-rate`, { waterRate: data });
 
