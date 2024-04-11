@@ -16,7 +16,7 @@ import { refreshUser } from './redux/auth/operations.js';
 import useAuth from './hooks/useAuth.js';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword.jsx';
 import RefreshPassword from './components/ForgotPassword/RefreshPassword.jsx';
-import { setToken } from './redux/auth/authActions.js';
+import { setToken } from './redux/auth/authSlice.js';
 
 const Main = lazy(() => import('./pages/Main/Main.jsx'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));

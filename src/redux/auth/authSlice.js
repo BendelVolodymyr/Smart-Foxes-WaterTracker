@@ -30,6 +30,11 @@ const handleRejected = (state, { payload }) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    setToken: (state, { payload }) => {
+      state.token = payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(API.signUp.pending, handlePending)
@@ -112,4 +117,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { setToken } = authSlice.actions;
 export const authReducer = authSlice.reducer;
