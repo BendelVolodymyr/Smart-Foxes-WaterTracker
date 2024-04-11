@@ -23,6 +23,7 @@ import {
   WaterUsedValue,
   ErrorText,
   ModalPortionInfo,
+  NoPortion,
 } from './AddWaterModal.styled';
 import useWater from '../../../hooks/useWaters';
 import { formatDate } from '../../../helpers/formatedDate';
@@ -75,7 +76,7 @@ export const AddWaterModal = ({ portion }) => {
         break;
       }
       case 'decrement': {
-        const decrementedWater = waterUsed > 0 ? waterUsed - 50 : 0;
+        const decrementedWater = Math.max(0, waterUsed - 50);
         setWaterUsed(decrementedWater);
         setNewWoter(decrementedWater);
         break;
@@ -92,7 +93,7 @@ export const AddWaterModal = ({ portion }) => {
     const date = todayDay + 'T' + time;
     const isoDate = new Date(date).toISOString();
 
-    if (!waterUsed || waterUsed < 50) {
+    if (!waterUsed || waterUsed < 1) {
       setWaterUsedError('Please enter the amount of water consumed.');
       return;
     }
@@ -146,7 +147,7 @@ export const AddWaterModal = ({ portion }) => {
         </ModalPortionInfo>
       )}
 
-      {list.length === 0 && <p>No notes yet</p>}
+      {list.length === 0 && <NoPortion>No notes yet</NoPortion>}
 
       <Container>
         <ChooseSpan>{dataTitle}</ChooseSpan>
@@ -184,7 +185,10 @@ export const AddWaterModal = ({ portion }) => {
           required
         />
         {waterUsedError && (
-          <ErrorText hideonerror={isInputFocused}> &#9888; {waterUsedError}</ErrorText>
+          <ErrorText hideonerror={isInputFocused ? 'true' : 'false'}>
+            {' '}
+            &#9888; {waterUsedError}
+          </ErrorText>
         )}
       </WaterUsedLabel>
       <ContainerSaveResult>
