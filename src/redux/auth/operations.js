@@ -21,6 +21,16 @@ export const signUp = createAsyncThunk(
       const response = await axios.post('/users/register', userData);
       token.set(response.data.token);
 
+<<<<<<< HEAD
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    Report.failure(message);
+    return thunkAPI.rejectWithValue(error.message);
+=======
       return response.data;
     } catch (error) {
       const message =
@@ -52,6 +62,7 @@ export const signIn = createAsyncThunk(
       Report.failure(message);
       return thunkAPI.rejectWithValue(error.message);
     }
+>>>>>>> main
   }
 );
 
