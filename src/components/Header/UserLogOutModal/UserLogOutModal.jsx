@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { ModalContext } from '../../../context';
-import { ButtonWrapper, LogoutButton, Modal, Text, Title } from './UserLogOutModal.styled';
-
 import { useDispatch } from 'react-redux';
+import { ModalContext } from '../../../context';
+
+import { ButtonWrapper, LogoutButton, Modal, Text, Title } from './UserLogOutModal.styled';
 import { logout } from '../../../redux/auth/operations';
 
 const UserLogOutModal = () => {
@@ -17,6 +17,7 @@ const UserLogOutModal = () => {
   const handleCloseModal = () => {
     closeModal();
   };
+
   return (
     <Modal>
       <div>

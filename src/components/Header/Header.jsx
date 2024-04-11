@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { ModalContext } from '../../context';
+
 import {
   Container,
   Glow,
@@ -14,12 +17,11 @@ import {
   Sun,
   ThemeWrapper,
 } from './Header.styled';
+
 import Logo from './Logo/Logo';
 import UserAuth from './UserAuth/UserAuth';
 import useAuth from '../../hooks/useAuth';
 import UserLogo from './UserLogo/UserLogo';
-import { useContext, useState } from 'react';
-import { ModalContext } from '../../context';
 
 const Header = () => {
   const { toggleTheme } = useContext(ModalContext);
