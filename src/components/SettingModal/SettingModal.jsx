@@ -4,7 +4,7 @@ import PasswordStrengthBar from 'react-password-strength-bar';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo, uploadAvatar } from '../../redux/auth/operations';
 import useAuth from '../../hooks/useAuth';
-import { Snackbar, Alert, Tooltip, Chip } from '@mui/material';
+import { Snackbar, Alert, Tooltip } from '@mui/material';
 import { HiOutlineEyeSlash } from 'react-icons/hi2';
 import { PiEyeLight } from 'react-icons/pi';
 import { RiDownload2Line as UploadIcon } from 'react-icons/ri';
@@ -33,6 +33,7 @@ import {
   ButtonIcon,
   SaveButton,
 } from './settingModal.styled';
+
 export const SettingModal = () => {
   const dispatch = useDispatch();
 
@@ -40,7 +41,6 @@ export const SettingModal = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
   const [passwordMismatchError, setPasswordMismatchError] = useState('');
-  const [passwordChangedAt, setPasswordChangedAt] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarStatus, setSnackbarStatus] = useState('success');
@@ -78,9 +78,17 @@ export const SettingModal = () => {
           values.newPassword.length >= 8 &&
           values.newPassword === values.repeatPassword
         ) {
+          if (values.oldPassword === values.newPassword) {
+            Notiflix.Notify.failure('New password must be different from the current password.');
+            setIsSubmitting(false);
+            return;
+          }
           dataToUpdate.oldPassword = values.oldPassword;
           dataToUpdate.newPassword = values.newPassword;
-          setPasswordChangedAt(new Date().toLocaleString());
+        } else if (values.newPassword !== values.repeatPassword) {
+          Notiflix.Notify.failure("Passwords don't match.");
+          setIsSubmitting(false);
+          return;
         }
 
         if (Object.keys(dataToUpdate).length === 0) {
@@ -88,12 +96,6 @@ export const SettingModal = () => {
           setOpenSnackbar(true);
           setSnackbarStatus('info');
           actions.resetForm();
-          return;
-        }
-
-        if (values.newPassword !== values.repeatPassword) {
-          setPasswordMismatchError("Passwords don't match");
-          setIsSubmitting(false);
           return;
         }
 
@@ -215,23 +217,6 @@ export const SettingModal = () => {
         </AvatarWrapper>
         <FlexWrapper>
           <Wrapper>
-            {!isSubmitting && (
-              <Tooltip
-                title="Service notification that helps you to remember when password was changed. It's disappear after reloading the page."
-                placement="top"
-              >
-                <div>
-                  {passwordChangedAt && (
-                    <Chip
-                      label={`Password changed at ${passwordChangedAt}`}
-                      color="primary"
-                      placement="top"
-                      sx={{ marginBottom: 2 }}
-                    />
-                  )}
-                </div>
-              </Tooltip>
-            )}
             <Tooltip title="Choose your gender for better personalization.">
               <Title id="gender">Your gender</Title>
             </Tooltip>
@@ -283,23 +268,6 @@ export const SettingModal = () => {
             />
           </Wrapper>
           <Wrapper>
-            {!isSubmitting && (
-              <Tooltip
-                title="Service notification that helps you to remember when password was changed. It's disappear after reloading the page."
-                placement="top"
-              >
-                <div>
-                  {passwordChangedAt && (
-                    <Chip
-                      label={`Password changed at ${passwordChangedAt}`}
-                      color="primary"
-                      placement="top"
-                      sx={{ marginBottom: 2 }}
-                    />
-                  )}
-                </div>
-              </Tooltip>
-            )}
             <Tooltip title="Your password should be secure for preventing unauthorized access to your data.">
               <Title>Password</Title>
             </Tooltip>
