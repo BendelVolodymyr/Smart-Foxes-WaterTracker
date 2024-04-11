@@ -54,9 +54,7 @@ const Registration = () => {
     window.location.assign('https://smart-foxes-backend-watertracker.onrender.com/api/auth/google');
   };
 
-  // const handleLogInWithPopUp = () => {
-  //   window.location.assign('http://localhost:3000/api/auth/google');
-  // };
+ 
 
  return (
     <LoginSection>

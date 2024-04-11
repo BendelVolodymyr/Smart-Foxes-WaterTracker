@@ -20,22 +20,11 @@ import useAuth from '../../hooks/useAuth';
 import UserLogo from './UserLogo/UserLogo';
 import { useContext, useState } from 'react';
 import { ModalContext } from '../../context';
-// import testAvatar from '../../assets/header-icons/avatar-test.jpg';
-
-// import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
-// import { Link } from 'react-router-dom';
-// import UserAuth from './UserAuth/UserAuth';
-// import UserLogo from './UserLogo/UserLogo';
 
 const Header = () => {
   const { toggleTheme } = useContext(ModalContext);
   const [themeShow, setThemeShow] = useState(JSON.parse(localStorage.getItem('theme')) || false);
-  const { isLoggedIn, avatarURL, user } = useAuth();
-
-  const BASE_AVATAR_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
-  // const BASE_AVATAR_URL = 'http://localhost:3000/';
-
-  const avatar = avatarURL ? `${BASE_AVATAR_URL}${avatarURL}` : null;
+  const { isLoggedIn, avatarURL } = useAuth();
 
   const handleClickTheme = () => {
     toggleTheme();
@@ -62,7 +51,7 @@ const Header = () => {
               <Moon />
             </SpinnerThemeWrapper>
           </ThemeWrapper>
-          {isLoggedIn ? <UserLogo avatarUrl={avatar} /> : <UserAuth />}
+          {isLoggedIn ? <UserLogo avatarUrl={avatarURL} /> : <UserAuth />}
         </HeaderWrapper>
       </Container>
     </MainHeader>

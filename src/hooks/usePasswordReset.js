@@ -35,6 +35,7 @@ export const usePasswordUpdate = () => {
         `/users/passwordUpdate/${userId}/${temporaryId}`,
         password
       );
+      Notify.success(response.data.message);
       return response.data;
     } catch (error) {
       setError('something wrong(');

@@ -1,23 +1,23 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import bgMob from '../../assets/imageSingPg/backgroundMobile.png';
-import bgMob2x from '../../assets/imageSingPg/backgroundMobile@2x.png';
+import bgMob from '../../assets/imageSingPg/webp/backgroundMobile.webp';
+import bgMob2x from '../../assets/imageSingPg/webp/backgroundMobile@2x.webp';
 
-import bgTab from '../../assets/backgroundHomePg/backgroundHomeTab.png';
-import bgTab2x from '../../assets/backgroundHomePg/BackgroundHomeTab2x.png';
+import bgTab from '../../assets/imageSingPg/webp/backgroundHomeTab.webp';
+import bgTab2x from '../../assets/imageSingPg/webp/backgroundHomeTab@2x.webp';
 
-import bgDesk from '../../assets/imageSingPg/deskBg.png';
-import bgDesk2x from '../../assets/imageSingPg/deskBg@2x.png';
+import bgDesk from '../../assets/imageSingPg/webp/deskBg.webp';
+import bgDesk2x from '../../assets/imageSingPg/webp/deskBg@2x.webp';
 
-import mobileBotl from '../../assets/imageSingPg/mobile_bottle.png';
-import mobileBotl2x from '../../assets/imageSingPg/mobile_bottle@2x.png';
+import mobileBotl from '../../assets/imageSingPg/webp/mobile_bottle.webp';
+import mobileBotl2x from '../../assets/imageSingPg/webp/mobile_bottle@2x.webp';
 
-import botleTab from '../../assets/imageSingPg/bgFortab.png';
-import bottleTab2 from '../../assets/imageSingPg/bgForTab@2x.png';
+import botleTab from '../../assets/imageSingPg/webp/bgFortab.webp';
+import bottleTab2 from '../../assets/imageSingPg/webp/bgFortab@2x.webp';
 
-import bottleDesk from '../../assets/imageSingPg/desk_bottle.png';
-import bottleDesk2x from '../../assets/imageSingPg/desk_bottle@2x.png';
+import bottleDesk from '../../assets/imageSingPg/webp/desk_bottle.webp';
+import bottleDesk2x from '../../assets/imageSingPg/webp/desk_bottle@2x.webp';
 import theme from '../../styles/theme';
 
 export const LoginSection = styled.section`
