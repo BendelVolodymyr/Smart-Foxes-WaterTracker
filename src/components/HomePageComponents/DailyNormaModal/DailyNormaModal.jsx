@@ -29,6 +29,8 @@ import { updateWaterRate } from '../../../redux/auth/operations.js';
 import useAuth from '../../../hooks/useAuth.js';
 import { ModalContext } from '../../../context/index.js';
 
+import Notiflix from 'notiflix';
+
 export const DailyNormaModal = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
@@ -73,7 +75,8 @@ export const DailyNormaModal = () => {
     const isValid = (userSportsActivite > 0 && userWeight > 0) || userWaterPredict > 0;
 
     if (!isValid) {
-      alert('Fill all fields');
+      Notiflix.Notify.warning('Fill all fields');
+
       return;
     }
 
@@ -83,7 +86,7 @@ export const DailyNormaModal = () => {
           closeModal(), setUserWeight(''), setUserSportsActivite(''), setUserWaterPredict('');
         } else {
           console.log(data.error);
-          alert('Something went wrong ');
+          Notiflix.Notify.failure('Something went wrong');
         }
       }
     );
