@@ -17,6 +17,7 @@ import useAuth from './hooks/useAuth.js';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword.jsx';
 import RefreshPassword from './components/ForgotPassword/RefreshPassword.jsx';
 import { setToken } from './redux/auth/authSlice.js';
+// const Loader = lazy(() => import('./components/Loader/Loader.jsx'));
 
 const Main = lazy(() => import('./pages/Main/Main.jsx'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
@@ -32,8 +33,11 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('token', token);
-    if (token) {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (token !== null) {
       try {
         dispatch(setToken(token));
         dispatch(refreshUser()).then(data => {
