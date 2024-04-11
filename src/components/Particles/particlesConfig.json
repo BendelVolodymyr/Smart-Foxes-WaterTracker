@@ -73,7 +73,7 @@
       },
       "bubble": {
         "distance": 200,
-        "duration": 0.4,
+        "duration": 0.6,
         "mix": false
       },
       "connect": {
@@ -163,7 +163,7 @@
       }
     },
     "color": {
-      "value": "#fff",
+      "value": "#9EBBFF",
       "animation": {
         "h": {
           "count": 0,
@@ -435,7 +435,7 @@
     "links": {
       "blink": false,
       "color": {
-        "value": "#fff"
+        "value": "#2f9bcbff"
       },
       "consent": false,
       "distance": 100,
@@ -471,7 +471,7 @@
   "smooth": false,
   "style": {},
   "themes": [],
-  "zLayers": 100,
+  "zLayers": 1000,
   "name": "Snow",
   "motion": {
     "disable": false,
