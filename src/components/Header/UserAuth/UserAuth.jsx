@@ -5,7 +5,7 @@ const UserAuth = () => {
   return (
     <UserAuthWrapper>
       <Link to="/signin">
-        <Text> Sigh In</Text>
+        <Text> Sign in</Text>
       </Link>
 
       <UserIconWrapper>
