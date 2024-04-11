@@ -89,6 +89,14 @@ export const DailyNormaModal = () => {
     );
   };
 
+  const toggleGender = (e) => {
+    if (e.target.value === 'woman') {
+      setGenderOption(woman);
+    } else {
+      setGenderOption(man);
+    }
+  };
+
   return (
     <Modal>
       <HeadContainer>
@@ -118,8 +126,8 @@ export const DailyNormaModal = () => {
                 type="radio"
                 name="gender"
                 value="woman"
-                onChange={() => setGenderOption(woman)}
-                checked
+                onChange={toggleGender}
+                // checked
               />
               <GenderPargh>For woman</GenderPargh>
             </GenderLabel>
@@ -128,7 +136,7 @@ export const DailyNormaModal = () => {
                 type="radio"
                 name="gender"
                 value="man"
-                onChange={() => setGenderOption(man)}
+                onChange={toggleGender}
                 // checked={user.gender === 'male'}
               />
               <GenderPargh>For man</GenderPargh>

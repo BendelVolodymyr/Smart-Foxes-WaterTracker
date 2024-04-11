@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 
 import MonthStateTable from '../components/HomeWaterPageComponents/MonthStateTable/MonthStateTable';
 import TodayWaterList from '../components/HomeWaterPageComponents/TodayWaterList/TodayWaterList';
@@ -15,16 +15,18 @@ import {
   HomePageContainer,
   TodayAndCalendarWrapper,
 } from './HomeWaterPage.styled';
+import useAuth from '../hooks/useAuth';
 
 const HomeWaterPage = () => {
   const { openModal } = useContext(ModalContext);
-  const water = useWater().waterDayList;
-  const waterPercentageArr = water.map((item) => item.percentage);
-  let sumPercentage = 0;
-
-  waterPercentageArr.forEach((percentage) => {
-    sumPercentage += percentage;
-  });
+  const user = useAuth().user;
+  const waterDayData = useWater().waterDayList;
+  const percentageWaterPanel = useMemo(() => {
+    const waterVolumeArr = waterDayData.map((item) => item.waterVolume);
+    let sumWaterVolume = waterVolumeArr.reduce((total, currentValue) => total + currentValue, 0);
+    return Math.round((100 * sumWaterVolume) / user.waterRate);
+  }, [user, waterDayData]);
+  console.log(percentageWaterPanel);
 
   const handleAddWaterClick = () => {
     openModal(
@@ -46,7 +48,7 @@ const HomeWaterPage = () => {
         <DailyNorma handleDailyNormaModal={handleDailyNormaModal}></DailyNorma>
         <WaterRatioPanel
           handleAddWaterClick={handleAddWaterClick}
-          calcRange={sumPercentage}
+          calcRange={percentageWaterPanel}
         ></WaterRatioPanel>
       </DailyNormaBoxWrapper>
       <TodayAndCalendarWrapper>

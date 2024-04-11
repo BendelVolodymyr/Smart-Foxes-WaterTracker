@@ -26,11 +26,47 @@ const DailyNormaP = styled.p`
 `;
 
 const ButtonEditNorma = styled.button`
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 400;
   line-height: 20px;
-  text-align: left;
-  color: #8baeff;
+  position: relative;
+  color: transparent;
+  -webkit-text-stroke: 0.5px ${(p) => p.theme.colors.primary.accent};
+`;
+const SpanEditForEffect = styled.span`
+  position: absolute;
+  color: ${(p) => p.theme.colors.primary.accent};
+  animation: animate 4s ease-in-out infinite;
+  @keyframes animate {
+    0%,
+    100% {
+      clip-path: polygon(
+        0% 45%,
+        15% 44%,
+        32% 50%,
+        44% 60%,
+        70% 61%,
+        84% 59%,
+        100% 52%,
+        100% 100%,
+        0% 100%
+      );
+    }
+
+    50% {
+      clip-path: polygon(
+        0 60%,
+        16% 65%,
+        34% 66%,
+        51% 62%,
+        67% 50%,
+        84% 45%,
+        100% 46%,
+        100% 100%,
+        0% 100%
+      );
+    }
+  }
 `;
 
 const NumberDailyNorma = styled.p`
@@ -41,4 +77,11 @@ const NumberDailyNorma = styled.p`
   color: ${(p) => p.theme.colors.primary.accent};
 `;
 
-export { DailyWaterWrapper, DailyNormaP, ButtonEditNorma, DailyWrapper, NumberDailyNorma };
+export {
+  SpanEditForEffect,
+  DailyWaterWrapper,
+  DailyNormaP,
+  ButtonEditNorma,
+  DailyWrapper,
+  NumberDailyNorma,
+};
