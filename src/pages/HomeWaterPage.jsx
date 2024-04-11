@@ -26,7 +26,6 @@ const HomeWaterPage = () => {
     let sumWaterVolume = waterVolumeArr.reduce((total, currentValue) => total + currentValue, 0);
     return Math.round((100 * sumWaterVolume) / user.waterRate);
   }, [user, waterDayData]);
-  console.log(percentageWaterPanel);
 
   const handleAddWaterClick = () => {
     openModal(
