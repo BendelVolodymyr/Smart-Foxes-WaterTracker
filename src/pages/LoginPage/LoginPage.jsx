@@ -67,7 +67,7 @@ const LoginPage = () => {
       <Container>
         <LoginContainer>
           <Form onSubmit={formik.handleSubmit}>
-            <AuthTitle>Sing In</AuthTitle>
+            <AuthTitle>Sign In</AuthTitle>
             <Label>
               Enter your email
               <Input
@@ -109,7 +109,7 @@ const LoginPage = () => {
                 <ErrorMessage>{formik.errors.password}</ErrorMessage>
               )}
             </Label>
-            <Button type="submit">Sing In</Button>
+            <Button type="submit">Sign In</Button>
             <ButtonGoogle
               name="google-auth"
               onClick={handleLogInWithPopUp}
@@ -124,7 +124,7 @@ const LoginPage = () => {
               <FcGoogle style={{ width: 25, height: 25 }} /> Google
             </ButtonGoogle>
             <LinkTo to="/forgotPassword">Forgot password?</LinkTo>
-            <LinkTo to="/signup">Sing up</LinkTo>
+            <LinkTo to="/signup">Sign up</LinkTo>
           </Form>
         </LoginContainer>
       </Container>
