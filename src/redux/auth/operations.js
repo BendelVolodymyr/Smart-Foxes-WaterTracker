@@ -4,8 +4,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://smart-foxes-backend-watertracker.onrender.com/api';
 
-// axios.defaults.baseURL = 'http://localhost:3000/api';
-
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -74,10 +72,11 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
 });
 
 export const uploadAvatar = createAsyncThunk('auth/avatar', async (formData, thunkAPI) => {
+  console.log(formData);
   try {
     const {
       data: { avatarURL },
-    } = await axios.patch('/users/avatars', formData);
+    } = await axios.post('/users/avatars', formData);
 
     return avatarURL;
   } catch (error) {
