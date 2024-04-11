@@ -23,7 +23,8 @@ export const signUp = createAsyncThunk('auth/signup', async (userData, thunkAPI)
     const message =
       (error.response && error.response.data && error.response.data.message) ||
       error.message ||
-      Report.failure(message);
+      error.toString();
+    Report.failure(message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
