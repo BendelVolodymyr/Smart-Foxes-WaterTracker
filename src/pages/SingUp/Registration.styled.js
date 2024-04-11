@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 
-import botleTab from '../../assets/imageSingPg/bgFortab.png';
-import bottleTab2 from '../../assets/imageSingPg/bgForTab@2x.png';
+import botleTab from '../../assets/imageSingPg/webp/bgFortab.webp';
+import bottleTab2 from '../../assets/imageSingPg/webp/bgFortab@2x.webp';
 
-import mobileBotl from '../../assets/imageSingPg/mobile_bottle.png';
-import mobileBotl2x from '../../assets/imageSingPg/mobile_bottle@2x.png';
+import mobileBotl from '../../assets/imageSingPg/webp/mobile_bottle.webp';
+import mobileBotl2x from '../../assets/imageSingPg/webp/mobile_bottle@2x.webp';
 
-import bottleDesk from '../../assets/imageSingPg/desk_bottle.png';
-import bottleDesk2x from '../../assets/imageSingPg/desk_bottle@2x.png';
+import bottleDesk from '../../assets/imageSingPg/webp/desk_bottle.webp';
+import bottleDesk2x from '../../assets/imageSingPg/webp/desk_bottle@2x.webp';
 
 export const SingUpContainer = styled.div`
   display: flex;
