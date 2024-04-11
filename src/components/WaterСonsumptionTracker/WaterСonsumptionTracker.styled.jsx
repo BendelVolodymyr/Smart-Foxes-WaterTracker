@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Title = styled.h1`
+export const Title = styled.div`
   width: 246px;
   color: ${(p) => p.theme.colors.primary.text};
   font-family: Roboto;
@@ -29,7 +29,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const Subtitle = styled.p`
+export const Subtitle = styled.div`
   width: 197px;
   color: ${(p) => p.theme.colors.primary.text};
   font-family: Roboto;
