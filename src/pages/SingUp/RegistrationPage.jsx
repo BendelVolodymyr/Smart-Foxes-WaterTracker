@@ -58,7 +58,7 @@ const Registration = () => {
       <Container>
         <SingUpContainer>
           <Form onSubmit={formik.handleSubmit}>
-            <AuthTitle>Sing Up</AuthTitle>
+            <AuthTitle>Sign up</AuthTitle>
             <Label>
               Enter your email
               <Input
@@ -127,7 +127,7 @@ const Registration = () => {
               )}
               <PasswordStrengthBar password={formik.values.confirmPassword} minLength={8} />
             </Label>
-            <Button type="submit">Sing Up</Button>
+            <Button type="submit">Sign up</Button>
             <ButtonGoogle
               name="google-auth"
               onClick={handleLogInWithPopUp}
@@ -141,7 +141,7 @@ const Registration = () => {
             >
               <FcGoogle style={{ width: 25, height: 25 }} /> Google
             </ButtonGoogle>
-            <LinkTo to="/signin">Sing in</LinkTo>
+            <LinkTo to="/signin">Sign In</LinkTo>
           </Form>
         </SingUpContainer>
       </Container>
