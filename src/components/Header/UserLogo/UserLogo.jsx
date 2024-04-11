@@ -1,13 +1,14 @@
 import { useRef, useState } from 'react';
+import useAuth from '../../../hooks/useAuth';
 
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { ReactComponent as DownArrow } from '../../../assets/header-icons/down-arrow.svg';
+import getFirstLetter from '../../../helpers/getFirstLetter';
+
 import { UserLogoWrapper, UserName, AvatarBox, Button, Span } from './UserLogo.styled';
+
 import UserLogoModal from '../UserLogoModal/UserLogoModal';
 import formatEmail from '../../../helpers/formatEmail';
-import getFirstLetter from '../../../helpers/getFirstLetter';
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
-import useAuth from '../../../hooks/useAuth';
-// import UserLogoModal from '../UserAuth/UserLogoModal/UserLogoModal';
 
 const UserLogo = ({ avatarUrl }) => {
   const menuRef = useRef();
@@ -21,6 +22,7 @@ const UserLogo = ({ avatarUrl }) => {
   const handleToggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+
   const onCloseLogomodal = () => {
     setIsExpanded(false);
   };

@@ -1,8 +1,10 @@
-import { Button, Modal } from './UserLogoModal.styled';
 import { useContext } from 'react';
 import { ModalContext } from '../../../context';
+
 import { ReactComponent as LogOutIcon } from '../../../assets/header-icons/logout-icon.svg';
 import { ReactComponent as SettingIcon } from '../../../assets/header-icons/setting-icon.svg';
+
+import { Button, Modal } from './UserLogoModal.styled';
 import { SettingModal } from '../../SettingModal/SettingModal';
 import LogoutModal from '../UserLogOutModal/UserLogOutModal';
 
