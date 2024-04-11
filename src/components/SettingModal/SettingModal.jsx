@@ -36,8 +36,6 @@ import {
 export const SettingModal = () => {
   const dispatch = useDispatch();
 
-  const BASE_AVATAR_URL = 'https://smart-foxes-backend-watertracker.onrender.com/';
-
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
@@ -194,7 +192,7 @@ export const SettingModal = () => {
               {avatarLoading ? (
                 <FadeLoader color="#407BFF" />
               ) : avatarURL ? (
-                <AvatarPreview src={`${BASE_AVATAR_URL}${avatarURL}`} alt="avatar" />
+                <AvatarPreview src={avatarURL} alt="avatar" />
               ) : (
                 <DefaultAvatar style={{ width: 64, height: 64 }} />
               )}
