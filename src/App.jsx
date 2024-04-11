@@ -16,8 +16,7 @@ import { refreshUser } from './redux/auth/operations.js';
 import useAuth from './hooks/useAuth.js';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword.jsx';
 import RefreshPassword from './components/ForgotPassword/RefreshPassword.jsx';
-import { setToken } from './redux/auth/authSlice.js';
-// const Loader = lazy(() => import('./components/Loader/Loader.jsx'));
+import { setToken } from './redux/auth/authActions.js';
 
 const Main = lazy(() => import('./pages/Main/Main.jsx'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
@@ -31,9 +30,9 @@ function App() {
   const searchParam = useSearchParams();
   const token = searchParam[0].get('token');
   const navigate = useNavigate();
-  console.log(token);
 
   useEffect(() => {
+    console.log('token', token);
     if (token) {
       try {
         dispatch(setToken(token));
