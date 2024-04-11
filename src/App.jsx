@@ -31,10 +31,13 @@ function App() {
   const searchParam = useSearchParams();
   const token = searchParam[0].get('token');
   const navigate = useNavigate();
-  console.log(token);
 
   useEffect(() => {
-    if (token) {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (token !== null) {
       try {
         dispatch(setToken(token));
         dispatch(refreshUser()).then(data => {
