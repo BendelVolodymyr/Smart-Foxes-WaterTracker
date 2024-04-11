@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
-import backgroundElementMainPageDesk from '../assets/backgroundWelcomePg/backgroundElementMainPageDesk.webp';
-import backgroundElementMainPageDesk2x from '../assets/backgroundWelcomePg/backgroundElementMainPageDesk2x@2.webp';
-import bottleHomeDesk from '../assets/backgroundHomePg/botleHomeDesk.png';
-import bottleHomeDesk2x from '../assets/backgroundHomePg/botlteHomeDesk2x.png';
-import backgroundHomeTab from '../assets/backgroundHomePg/backgroundHomeTab.png';
-import backgroundHomeTab2x from '../assets/backgroundHomePg/BackgroundHomeTab2x.png';
-import bottleHomeTab from '../assets/backgroundHomePg/bottleHomeTab.png';
-import bottleHomeTab2x from '../assets/backgroundHomePg/bottleHomeTab2x.png';
+import backgroundElementMainPageDesk from "../assets/backgroundHomePg/BackgroundHomeDesk.webp";
+import backgroundElementMainPageDesk2x from "../assets/backgroundHomePg/BackgroundHomeDesk2x.webp";
+import bottleHomeDesk from "../assets/backgroundHomePg/BotleHomeDesk.webp";
+import bottleHomeDesk2x from "../assets/backgroundHomePg/BotleHomeDesk2x.webp"
+import backgroundHomeTab from "../assets/backgroundHomePg/BackgroundHomeTab.webp";
+import backgroundHomeTab2x from "../assets/backgroundHomePg/BackgroundHomeTab2x.webp";
+import bottleHomeTab from "../assets/backgroundHomePg/BottleHomeTab.webp";
+import bottleHomeTab2x from "../assets/backgroundHomePg/BottleHomeTab2x.webp";
 
-import backgroundHomeMob from '../assets/backgroundHomePg/backgroundHomeMob.png';
-import backgroundHomeMob2x from '../assets/backgroundHomePg/backgroundHomeMob2x.png';
-import bottleHomeMob from '../assets/backgroundHomePg/bottleHomeMob.png';
-import bottleHomeMob2x from '../assets/backgroundHomePg/bottleHomeMob2x.png';
+import backgroundHomeMob from "../assets/backgroundHomePg/backgroundHomeMob.webp";
+import backgroundHomeMob2x from "../assets/backgroundHomePg/BackgroundHomeMob2x.webp";
+import bottleHomeMob from "../assets/backgroundHomePg/BottleHomeMob.webp";
+import bottleHomeMob2x from "../assets/backgroundHomePg/BottleHomeMob2x.webp";
 
 const HomePageContainer = styled.main`
   display: flex;
