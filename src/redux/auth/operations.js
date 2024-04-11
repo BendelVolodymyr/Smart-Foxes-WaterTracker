@@ -76,7 +76,7 @@ export const uploadAvatar = createAsyncThunk('auth/avatar', async (formData, thu
   try {
     const {
       data: { avatarURL },
-    } = await axios.post('/users/avatars', formData);
+    } = await axios.patch('/users/avatars', formData);
 
     return avatarURL;
   } catch (error) {
