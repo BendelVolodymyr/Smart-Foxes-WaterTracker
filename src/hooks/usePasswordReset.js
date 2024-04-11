@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 axios.defaults.baseURL = 'https://smart-foxes-backend-watertracker.onrender.com/api';
 
 export const usePasswordReset = () => {
@@ -15,7 +16,12 @@ export const usePasswordReset = () => {
       Notify.success(response.data.message);
       return response.data;
     } catch (error) {
-      setError('something wrong(');
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString();
+      setError(message);
+      Report.failure(message);
     } finally {
       setLoading(false);
     }
@@ -38,7 +44,12 @@ export const usePasswordUpdate = () => {
       Notify.success(response.data.message);
       return response.data;
     } catch (error) {
-      setError('something wrong(');
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString();
+      setError(message);
+      Report.failure(message);
     } finally {
       setLoading(false);
     }
