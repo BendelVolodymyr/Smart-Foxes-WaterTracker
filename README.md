@@ -5,7 +5,7 @@ Water Tracker - це застосунок для моніторінга спож
 підтримки здоров'я. Water Tracker має зручний та адаптивний інтерфейс, який
 спрощує відслідковування кількості випитої води без зайвих зусиль.
 
-![Water Tracker](public\printable-water-tracker-for-week-or-month-water-tracker-balance-calendar-printable-a4-template-7-days-of-hydration-challenge-drinking-enough-water-concept-free-ve.jpg)
+![Water Tracker](public/printable-water-tracker-for-week-or-month-water-tracker-balance-calendar-printable-a4-template-7-days-of-hydration-challenge-drinking-enough-water-concept-free-ve.jpg)
 
 ## Основні можливості користувача:
 

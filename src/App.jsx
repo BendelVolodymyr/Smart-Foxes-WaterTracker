@@ -33,10 +33,6 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
-  useEffect(() => {
     if (token !== null) {
       try {
         dispatch(setToken(token));
@@ -46,6 +42,8 @@ function App() {
       } catch (error) {
         console.log(error.message);
       }
+    } else {
+      dispatch(refreshUser());
     }
   }, [dispatch, navigate, token]);
 
