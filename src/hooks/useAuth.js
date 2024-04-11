@@ -8,6 +8,7 @@ import {
   selectIsLoading,
   secectcreatedAt,
   selectAvatar,
+  selectToken,
 } from '../redux/auth/selectors.js';
 
 const useAuth = () => {
@@ -18,6 +19,7 @@ const useAuth = () => {
   const isLoading = useSelector(selectIsLoading);
   const createdAt = useSelector(secectcreatedAt);
   const avatarURL = useSelector(selectAvatar);
+  const token = useSelector(selectToken);
 
   return {
     isLoggedIn,
@@ -27,6 +29,7 @@ const useAuth = () => {
     isLoading,
     createdAt,
     avatarURL,
+    token,
   };
 };
 

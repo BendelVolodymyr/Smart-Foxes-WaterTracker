@@ -1,4 +1,10 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import {
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
 import { Suspense, lazy, useEffect } from 'react';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute.jsx';
@@ -10,6 +16,8 @@ import { refreshUser } from './redux/auth/operations.js';
 import useAuth from './hooks/useAuth.js';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword.jsx';
 import RefreshPassword from './components/ForgotPassword/RefreshPassword.jsx';
+import { setToken } from './redux/auth/authSlice.js';
+
 // const Loader = lazy(() => import('./components/Loader/Loader.jsx'));
 
 const Main = lazy(() => import('./pages/Main/Main.jsx'));
@@ -20,11 +28,24 @@ const HomeWaterPage = lazy(() => import('./pages/HomeWaterPage.jsx'));
 
 function App() {
   const dispatch = useDispatch();
-  const { isLoading, isLoggedIn } = useAuth();
+  const searchParam = useSearchParams();
+  const token = searchParam[0].get('token');
+  const navigate = useNavigate();
+  const { isLoading, isLoggedIn, token: data } = useAuth();
 
+  console.log('hook', data);
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (token) {
+      try {
+        dispatch(setToken(token));
+        dispatch(refreshUser()).then(data => {
+          if (!data.error) navigate('/home');
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }, [dispatch, navigate, token]);
 
   return isLoading ? (
     <Loader />

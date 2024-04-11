@@ -91,6 +91,7 @@ export const UlWrapper = styled.ul`
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
+    row-gap: 20px;
   }
 `;
 

@@ -11,11 +11,8 @@ import useAuth from '../../../hooks/useAuth';
 
 const UserLogo = ({ avatarUrl }) => {
   const menuRef = useRef();
-  const [isExpanded, setIsExpanded] = useState(false);
-
   const { user } = useAuth();
-
-  // console.log(user);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const userEmail = user.email;
   const firstNameLetter = getFirstLetter('');
@@ -38,7 +35,11 @@ const UserLogo = ({ avatarUrl }) => {
         <UserName>{formatEmail(userEmail)}</UserName>
         <AvatarBox>
           {avatarUrl ? (
-            <img src={avatarUrl} alt="uer-avatar" style={{ borderRadius: '50%' }} />
+            <img
+              src={avatarUrl}
+              alt="uer-avatar"
+              style={{ borderRadius: '50%', width: 28, height: 28 }}
+            />
           ) : (
             <Span>{firstNameLetter || firstEmailLetter}</Span>
           )}

@@ -57,7 +57,6 @@ const ForgotPassword = () => {
           )}
         </Label>
         <Button type="submit">Send</Button>
-        <LinkTo to="/forgotPassword/:userId/:temporaryId">New Password</LinkTo>
         <LinkTo to="/signin">Sing in</LinkTo>
       </Form>
     </ForgotContainer>
