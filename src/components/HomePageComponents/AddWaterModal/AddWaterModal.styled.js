@@ -209,10 +209,10 @@ const WaterInputed = styled.span`
 
 const ErrorText = styled.span`
   position: absolute;
-bottom:-16px;
+bottom:-22px;
 left: 10px;
   color: red;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
   display: block;
   display: ${(props) => (props.hideonerror === "true" ? 'none' : 'block')};
