@@ -28,12 +28,14 @@ export const ModalFooter = ({ children, inOverflow }) => {
   };
 
   return (
-    <BackdropWrapper id="close" onClick={handleClick}>
+    <>
       <ParticlesComponent id="particles" />
-      <ModalWrapper $overflow={inOverflow}>
-        <IconClose id="close" onClick={handleClick} />
-        {children}
-      </ModalWrapper>
-    </BackdropWrapper>
+      <BackdropWrapper id="close" onClick={handleClick}>
+        <ModalWrapper $overflow={inOverflow}>
+          <IconClose id="close" onClick={handleClick} />
+          {children}
+        </ModalWrapper>
+      </BackdropWrapper>
+    </>
   );
 };

@@ -19,14 +19,7 @@ const ParticlesComponent = props => {
 
   const options = useMemo(() => particlesConfig, []);
 
-  return (
-    <Particles
-      style={{ position: 'absolute' }}
-      id={props.id}
-      init={particlesLoaded}
-      options={options}
-    />
-  );
+  return <Particles id={props.id} init={particlesLoaded} options={options} />;
 };
 
 export default ParticlesComponent;
