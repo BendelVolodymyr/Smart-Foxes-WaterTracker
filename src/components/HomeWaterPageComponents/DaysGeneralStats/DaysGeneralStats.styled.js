@@ -1,7 +1,4 @@
-
-
 import styled from 'styled-components';
-
 
 
 const PopoverContainer = styled.div`
@@ -15,26 +12,7 @@ border-radius: 10px;
 background:${p => p.theme.colors.primary.bg};
 box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.30);
 
-
-
 `;
-
-
-// const PopoverStyled = styled(Popover)`
-//   @media (max-width: 780px) {
-//     width: 280px;
-//     margin-left: auto;
-//     margin-right:auto;
-//     .MuiBackdrop-root {
-
-//     }
-//     .MuiPaper-root.MuiPopover-paper {
-//       width: 100%;
-//       left: 50%;
-//       transform: translateX(-50%);
-//     }
-//   }
-// `;
 
 const PopoverDate = styled.h2`
 color:${p => p.theme.colors.primary.accent};
@@ -76,6 +54,6 @@ export {
   PopoverDate,
   StatsList,
   StatItem,
-  // PopoverStyled
+
 
 }

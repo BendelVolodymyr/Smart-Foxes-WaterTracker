@@ -40,8 +40,10 @@ const HomePageContainer = styled.main`
       center;
   }
 
-  @media (min-width: ${({ theme }) => theme.screens.desk}) {
-    flex-direction: row;
+
+@media (min-width: ${({ theme }) => theme.screens.desk}) {
+    flex-direction:row;
+    gap: 32px;
     align-items: flex-start;
     padding: 0px 112px;
 
@@ -56,24 +58,28 @@ const HomePageContainer = styled.main`
   }
 `;
 
-//змінити, коли буде контекст
+
 const DailyNormaBoxWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 240px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: space-between;
+gap: 240px;
 
-  width: 280px;
-  height: 507px;
+width: 280px;
+height: 507px;
 
-  @media (min-width: ${({ theme }) => theme.screens.tab}) {
-    width: 704px;
-    gap: 326px;
-  }
+margin-bottom:40px;
+@media (min-width: ${({ theme }) => theme.screens.tab}) {
+  width: 704px;
+  gap: 326px;
+}
 
-  @media (min-width: ${({ theme }) => theme.screens.desk}) {
-    gap: 466px;
-  }
+@media (min-width: ${({ theme }) => theme.screens.desk}) {
+
+  gap: 466px;
+}
+
 `;
 
 const TodayAndCalendarWrapper = styled.section`

@@ -26,7 +26,7 @@ const ContainerGender = styled.div`
     gap: 24px;
   }
   @media (min-width: ${({ theme }) => theme.screens.desk}) {
-   widht: 100%;
+    widht: 100%;
   }
 `;
 const GenderPargh = styled.p`
@@ -125,7 +125,29 @@ const UserInputs = styled.input`
   background: transparent;
   border-color: ${(p) => p.theme.colors.secondary.color5};
   &::placeholder {
+    color: ${(p) => p.theme.colors.secondary.color5};
+  }
+
+  &:hover {
     color: ${(p) => p.theme.colors.primary.accent};
+    border: 1px solid ${(p) => p.theme.colors.primary.accent};
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid ${(p) => p.theme.colors.primary.accent};
+  }
+
+  &:not(:placeholder-shown) {
+    color: ${(p) => p.theme.colors.primary.accent};
+  }
+
+  &[type='number'] {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
 `;
 const UserInputsContainer = styled.div`
@@ -148,10 +170,22 @@ const UserWaterPredict = styled.label`
   }
 `;
 const SaveButton = styled.button`
+  font-size: 18px;
+  font-weight: ${(p) => p.theme.fontWeights.medium};
+  line-height: 24px;
+  text-align: center;
+  color: ${(p) => p.theme.colors.primary.bg};
+  box-shadow: 0 4px 8px 0 ${(p) => p.theme.colors.primary.accent};
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 6px 12px 0 ${(p) => p.theme.colors.secondary.accent};
+  }
+  display: block;
+  width: 100%;
+  height: 44px;
   border-radius: 10px;
   padding: 10px 30px;
-  width: 100%;
-  color: ${(p) => p.theme.colors.primary.bg};
   background-color: ${(p) => p.theme.colors.primary.accent};
   @media (min-width: ${({ theme }) => theme.screens.tab}) {
     width: 160px;

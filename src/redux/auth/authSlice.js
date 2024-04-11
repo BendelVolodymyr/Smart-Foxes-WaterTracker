@@ -6,11 +6,11 @@ const initialState = {
     name: null,
     email: null,
     gender: null,
-    avatarURL: null,
     waterRate: null,
     createdAt: null,
   },
-  // isAuthenticated: false,
+
+  avatarURL: null,
   token: null,
   isRefreshing: true,
   isLoggedIn: false,
@@ -44,11 +44,11 @@ const authSlice = createSlice({
       .addCase(API.signUp.rejected, handleRejected)
       .addCase(API.signIn.pending, handlePending)
       .addCase(API.signIn.fulfilled, (state, { payload }) => {
-        // console.log(action.payload);
         state.user.email = payload.user.email;
         state.user.name = payload.user.name;
         state.user.gender = payload.user.gender;
-        state.user.avatarURL = payload.user.avatarURL;
+
+        state.avatarURL = payload.user.avatarURL;
 
         state.user.waterRate = payload.user.waterRate;
         state.user.createdAt = payload.user.createdAt;
@@ -64,7 +64,7 @@ const authSlice = createSlice({
           name: null,
           email: null,
           gender: null,
-          avatarURL: null,
+
           waterRate: null,
           createdAt: null,
         };
@@ -72,16 +72,10 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.error = null;
         state.isLoading = false;
+        state.avatarURL = null;
       })
       .addCase(API.logout.rejected, handleRejected)
-      // .addCase(API.current.pending, handlePending)
-      // .addCase(API.current.fulfilled, (state, action) => {
-      //   console.log(action);
-      //   state.user = { ...action.payload };
-      //   state.isLoggedIn = true;
-      //   state.isLoading = false;
-      // })
-      // .addCase(API.current.rejected, handleRejected)
+
       .addCase(API.refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
@@ -99,7 +93,7 @@ const authSlice = createSlice({
       })
       .addCase(API.uploadAvatar.pending, handlePending)
       .addCase(API.uploadAvatar.fulfilled, (state, { payload }) => {
-        state.user.avatarURL = payload;
+        state.avatarURL = payload;
         state.isLoading = false;
       })
       .addCase(API.uploadAvatar.rejected, handleRejected)

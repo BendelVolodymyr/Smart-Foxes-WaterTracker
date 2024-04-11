@@ -23,8 +23,9 @@ import { signIn } from '../../redux/auth/operations';
 import { FcGoogle } from 'react-icons/fc';
 import { useContext } from 'react';
 import { ModalContext } from '../../context/ModalContext/ModalContext';
-import ModalUser from './ModalUser/ModalUser';
-import { InputPassword } from '../Registration.styled';
+
+import ModalUser from '../../components/WelcomeModalUser/ModalUser';
+import { InputPassword } from '../SingUp/Registration.styled';
 
 
 const LoginPage = () => {

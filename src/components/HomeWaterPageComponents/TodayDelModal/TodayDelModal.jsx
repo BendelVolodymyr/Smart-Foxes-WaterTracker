@@ -1,13 +1,15 @@
 import { useContext } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { ModalContext } from '../../../context';
+import { deletePortion, portionsPerDay } from '../../../redux/waters/operations';
+
 import {
   ButtonCns,
   ButtonDlt,
   DialogActions,
   PortionDelModalWrapper,
 } from './TodayDelModal.styled';
-import { useDispatch } from 'react-redux';
-import { deletePortion, portionsPerDay } from '../../../redux/waters/operations';
 
 const TodayDelModal = ({ id }) => {
   const { closeModal } = useContext(ModalContext);

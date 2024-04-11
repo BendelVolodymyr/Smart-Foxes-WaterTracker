@@ -41,7 +41,7 @@ export const Footer = () => {
       <>
         <GlobalWrapperTeam>
           <TitleModal>Our Team</TitleModal>
-          <TextGlobal>Front end</TextGlobal>
+          <TextGlobal>Frontend</TextGlobal>
           <UlWrapper>
             <ListWrapper>
               <ImageWrapper src={Volodymyr} alt="Volodymyr" />
@@ -229,8 +229,7 @@ export const Footer = () => {
             </ListWrapper>
           </UlWrapper>
         </GlobalWrapperTeam>
-      </>,
-      'scroll'
+      </>
     );
   };
 
@@ -238,7 +237,7 @@ export const Footer = () => {
     <>
       <FooterWrapper>
         <Text>&copy; 2024 | Developed with</Text>
-        <AnimationSvg />{' '}
+        <AnimationSvg />
         <ButtonTeam onClick={handleClickButton}>by GoIT Students</ButtonTeam>
       </FooterWrapper>
     </>

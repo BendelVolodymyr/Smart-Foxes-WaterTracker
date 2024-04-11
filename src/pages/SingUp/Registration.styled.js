@@ -1,13 +1,14 @@
 import styled from 'styled-components';
-import theme from '../styles/theme';
-import botleTab from './LoginPage/image/bgFortab.png';
-import bottleTab2 from './LoginPage/image/bgForTab@2x.png';
+import theme from '../../styles/theme';
 
-import mobileBotl from './LoginPage/image/mobile_bottle.png';
-import mobileBotl2x from './LoginPage/image/mobile_bottle@2x.png';
+import botleTab from '../../assets/imageSingPg/bgFortab.png';
+import bottleTab2 from '../../assets/imageSingPg/bgForTab@2x.png';
 
-import bottleDesk from './LoginPage/image/desk_bottle.png';
-import bottleDesk2x from './LoginPage/image/desk_bottle@2x.png';
+import mobileBotl from '../../assets/imageSingPg/mobile_bottle.png';
+import mobileBotl2x from '../../assets/imageSingPg/mobile_bottle@2x.png';
+
+import bottleDesk from '../../assets/imageSingPg/desk_bottle.png';
+import bottleDesk2x from '../../assets/imageSingPg/desk_bottle@2x.png';
 
 export const SingUpContainer = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ export const SingUpContainer = styled.div`
   @media (min-width: ${(p) => p.theme.screens.tab}) {
     justify-content: space-between;
     background-image: image-set(url(${botleTab}) 1x, url(${bottleTab2}) 2x);
-    background-position: bottom -2px right -61px;
+    background-position: bottom right -49px;
     background-size: contain;
     background-repeat: no-repeat;
   }
@@ -42,7 +43,7 @@ export const Form = styled.form`
 
   @media (min-width: ${(p) => p.theme.screens.tab}) {
     width: 336px;
-    padding-bottom: 180px;
+    padding-bottom: 110px;
   }
 
   @media (min-width: ${(p) => p.theme.screens.desk}) {

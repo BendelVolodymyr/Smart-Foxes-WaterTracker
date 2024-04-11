@@ -5,8 +5,8 @@ import {
   DailyWaterWrapper,
   NumberDailyNorma,
   DailyWrapper,
+  SpanEditForEffect,
 } from './DailyNorma.styled';
-import { DailyNormaModal } from '../DailyNormaModal/DailyNormaModal';
 
 import useAuth from '../../../hooks/useAuth';
 
@@ -21,7 +21,9 @@ const DailyNorma = ({ handleDailyNormaModal }) => {
       <DailyWrapper>
         <NumberDailyNorma>{calculateWaterRate ? calculateWaterRate : waterRate} L</NumberDailyNorma>
         {/*waterRate*/}
-        <ButtonEditNorma onClick={handleDailyNormaModal}>Edit</ButtonEditNorma>
+        <ButtonEditNorma onClick={handleDailyNormaModal}>
+          <SpanEditForEffect>Edit</SpanEditForEffect>Edit
+        </ButtonEditNorma>
       </DailyWrapper>
     </DailyWaterWrapper>
   );
