@@ -35,11 +35,7 @@ const LoginPage = () => {
   const handleLogInWithPopUp = () => {
     window.location.assign('https://smart-foxes-backend-watertracker.onrender.com/api/auth/google');
   };
-
-  // const handleLogInWithPopUp = () => {
-  //   window.location.assign('http://localhost:3000/api/auth/google');
-  // };
-
+  
   const SigninSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string()
