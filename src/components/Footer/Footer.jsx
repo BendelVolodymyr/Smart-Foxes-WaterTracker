@@ -218,7 +218,7 @@ export const Footer = () => {
                   <IconLink href="https://github.com/KorolenkoDaria">
                     <IconGitHub />
                   </IconLink>
-                  <IconLink href="/">
+                  <IconLink href="https://www.linkedin.com/in/dariakorolenko/">
                     <IconLinkedIn />
                   </IconLink>
                   <IconLink href="https://t.me/KorolenkoD">
