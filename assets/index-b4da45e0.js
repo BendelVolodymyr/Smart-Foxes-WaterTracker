@@ -1,0 +1,1 @@
+import{af as r}from"./index-0376d268.js";async function i(a,e=!0){await a.addMover("base",async()=>{const{BaseMover:o}=await r(()=>import("./BaseMover-b4eb70d3.js"),["assets/BaseMover-b4eb70d3.js","assets/index-0376d268.js","assets/index-27f4df30.css"]);return new o},e)}export{i as loadBaseMover};
